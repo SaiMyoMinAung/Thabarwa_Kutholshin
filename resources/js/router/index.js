@@ -1,4 +1,4 @@
-import Donate from '../views/frontend/Donate.vue'
+import DonateComponent from '../components/frontend/DonateComponent.vue'
 import About from '../views/About.vue'
 
 export default {
@@ -9,7 +9,7 @@ export default {
             path: '/',
             name: 'frontend-home',
             components: {
-                Content: Donate
+                Content: DonateComponent
             },
         },
         {
