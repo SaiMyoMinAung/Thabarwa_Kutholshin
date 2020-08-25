@@ -17,17 +17,25 @@ export default class nameInput {
             this.state = false;
             this.errorMessage = "Too Long!";
         }else if(val.length > (this.maxlength - (this.maxlength - 15))){
-            if( this.reg.test(val)){
-                this.state = true;
-                this.successMessage = "Nice Email.";
-            }else{
-                this.state = false;
-                this.errorMessage = "Invalid Email";
-            }
+            this.isEmail(val)
         }else {
             this.successMessage = "";
             this.errorMessage = "";
             this.state = null;
+        }
+    }
+
+    isEmail(val) {
+        if(typeof(val) === 'object' && val.constructor.name === 'FocusEvent'){
+            val = val.target.value
+        }
+        
+        if(this.reg.test(val)){
+            this.state = true;
+            this.successMessage = "Nice Email.";
+        } else {
+            this.state = false;
+            this.errorMessage = "Invalid Email!";
         }
     }
 }

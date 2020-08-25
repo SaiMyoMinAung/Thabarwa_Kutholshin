@@ -25,6 +25,9 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.16.0",
+        "myanmar-phonenumber": "^0.3.2",
+        "tiptap": "^1.29.6",
+        "tiptap-extensions": "^1.32.5",
         "vue-router": "^3.4.2",
         "vuex": "^3.5.1"
     }
