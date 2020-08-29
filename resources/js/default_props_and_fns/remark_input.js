@@ -3,7 +3,7 @@ export default class remarkInput {
         state = null,
         successMessage = '',
         errorMessage = '',
-        maxlength = 50
+        maxlength = 200
     ){
         this.state = state;
         this.successMessage = successMessage;
@@ -17,15 +17,12 @@ export default class remarkInput {
             val = val.target.value;
         }
 
-        if(val.length >= (this.maxlength - (this.maxlength -5)) && val.length <= (this.maxlength-1)){
-            this.state = true;
-            this.successMessage = "Nice Name.";
-        } else if(val.length >= this.maxlength ){
+        if(val.length >= this.maxlength ){
             this.state = false;
             this.errorMessage = "Too Long!";
-        }else if(val.length <= (this.maxlength - (this.maxlength -5))){
-            this.state =false;
-            this.errorMessage = "Name Required!";
+        }else if(val.length >= (this.maxlength - (this.maxlength - 1))){
+            this.state = true;
+            this.successMessage = "Nice Remark.";
         } else {
             this.state = null;
             this.errorMessage = "";
