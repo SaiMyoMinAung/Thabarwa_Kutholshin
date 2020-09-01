@@ -12,7 +12,9 @@ export default class nameInput {
     }
     
     validateImage(val) {
-        if(val.length <= this.maxFile){
+        if(val.length == 0){
+            this.state = null;
+        } else if(val.length <= this.maxFile){
             this.state = true;
             this.successMessage = "Nice Photo.";
         } else if(val.length > this.maxFile ){

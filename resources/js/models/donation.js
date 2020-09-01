@@ -19,4 +19,25 @@ class donation {
         this.pickedup_at = pickedup_at;
         this.image = image;
     }
+
+    getDonationFormData()
+    {
+        var donationFormData = new FormData();
+        donationFormData.append('about_item',this.about_item);
+        donationFormData.append('name',this.name);
+        donationFormData.append('email',this.email);
+        donationFormData.append('phone',this.phone);
+        donationFormData.append('pickedup_address',this.pickedup_address);
+        donationFormData.append('remark',this.remark);
+        donationFormData.append('pickedup_at',this.pickedup_at);
+
+        if(this.image != null){
+            for( var i = 0; i < this.image.length; i++ ){
+                let image = this.image[i];
+                donationFormData.append('image[' + i + ']', image);
+            }
+        }
+        
+        return donationFormData;
+    }
 }

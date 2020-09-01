@@ -3,11 +3,11 @@
     id="pickedup_address"
     label-cols-sm="3"
     label-for="pickedup_address"
-    :state="RemarkInput.state"
-    :valid-feedback="RemarkInput.successMessage"
-    :invalid-feedback="RemarkInput.errorMessage"
+    :state="state"
+    :valid-feedback="successMessage"
+    :invalid-feedback="errorMessage"
   >
-    <template v-slot:label>Remark</template>
+    <template v-slot:label>Remark </template>
 
     <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
       <div>
@@ -50,7 +50,6 @@
         <button class="btn btn-primary" @click="commands.redo">redo</button>
       </div>
     </editor-menu-bar>
-
     <editor-content class="alert alert-default" :editor="editor" />
   </b-form-group>
 </template>
@@ -75,9 +74,33 @@ import {
 import RemarkInput from "../default_props_and_fns/remark_input.js";
 
 export default {
+  props: ["remark"],
   components: {
     EditorMenuBar,
     EditorContent
+  },
+  computed: {
+    state() {
+      if (this.remark.state === null) {
+        return this.RemarkInput.state;
+      } else {
+        return this.remark.state;
+      }
+    },
+    successMessage() {
+      if (this.remark.state === null) {
+        return this.RemarkInput.successMessage;
+      } else {
+        return this.remark.successMessage;
+      }
+    },
+    errorMessage() {
+      if (this.remark.state === null) {
+        return this.RemarkInput.errorMessage;
+      } else {
+        return this.remark.errorMessage;
+      }
+    }
   },
   data() {
     return {

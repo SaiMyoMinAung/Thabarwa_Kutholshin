@@ -139,73 +139,94 @@
           </b-form-group>
           <!-- end date picker info -->
 
-          <button class="offset-lg-3 offset-md-3 offset-sm-3 btn btn-success">Proceed Donate</button>
+          <!-- start collapse -->
+          <b-form-group label-cols-sm="3">
+            <div>
+              <b-link
+                v-b-toggle.collapse-3
+                :class="collapseVisible ? null : 'collapsed'"
+                :aria-expanded="collapseVisible ? 'true' : 'false'"
+                aria-controls="collapse-4"
+                @click="collapseVisible = !collapseVisible"
+              >
+                <span v-if="collapseVisible" class="text-warning">Hide Additional Input</span>
+                <span v-else class="text-success">Show Additional Input</span>
+              </b-link>
+            </div>
+          </b-form-group>
 
-          <hr />
-
-          <!-- start image -->
-          <b-form-group
-            label-cols-sm="3"
-            label-for="image"
-            :state="imageInput.state"
-            :valid-feedback="imageInput.successMessage"
-            :invalid-feedback="imageInput.errorMessage"
-          >
-            <template v-slot:label>
-              Choose 3 Images
-              <b-button variant="link" size="sm" @click="donation.image = null">Clear Images</b-button>
-            </template>
-            <b-form-file
-              id="image"
-              multiple
-              :file-name-formatter="formatNames"
-              accept=".jpg, .png, .gif, .jpeg"
-              v-model="donation.image"
+          <b-collapse v-model="collapseVisible" id="collapse-3">
+            <!-- start image -->
+            <b-form-group
+              label-cols-sm="3"
+              label-for="image"
               :state="imageInput.state"
-              @input="validateImage($event)"
-              placeholder="Choose Image (Optional)"
-              drop-placeholder="Drop file here..."
+              :valid-feedback="imageInput.successMessage"
+              :invalid-feedback="imageInput.errorMessage"
             >
-              <template slot="file-name" slot-scope="{ names }">
-                <b-badge variant="dark">{{ names[0] }}</b-badge>
-                <b-badge
-                  v-if="names.length > 1"
-                  variant="dark"
-                  class="ml-1"
-                >+ {{ names.length - 1 }} More files</b-badge>
+              <template v-slot:label>
+                Choose 3 Images
+                <b-button variant="link" size="sm" @click="donation.image = null">Clear Images</b-button>
               </template>
-            </b-form-file>
-          </b-form-group>
-          <!-- end image -->
+              <b-form-file
+                id="image"
+                multiple
+                :file-name-formatter="formatNames"
+                accept=".jpg, .png, .gif, .jpeg"
+                v-model="donation.image"
+                :state="imageInput.state"
+                @input="validateImage($event)"
+                placeholder="Choose Image (Optional)"
+                drop-placeholder="Drop file here..."
+              >
+                <template slot="file-name" slot-scope="{ names }">
+                  <b-badge variant="dark">{{ names[0] }}</b-badge>
+                  <b-badge
+                    v-if="names.length > 1"
+                    variant="dark"
+                    class="ml-1"
+                  >+ {{ names.length - 1 }} More files</b-badge>
+                </template>
+              </b-form-file>
+            </b-form-group>
+            <!-- end image -->
 
-          <!-- start email input -->
-          <b-form-group
-            id="email"
-            label-cols-sm="3"
-            label-for="email"
-            :state="emailInput.state"
-            :valid-feedback="emailInput.successMessage"
-            :invalid-feedback="emailInput.errorMessage"
-          >
-            <template v-slot:label>Email</template>
-            <b-form-input
+            <!-- start email input -->
+            <b-form-group
               id="email"
-              v-model="donation.email"
+              label-cols-sm="3"
+              label-for="email"
               :state="emailInput.state"
-              :maxlength="emailInput.maxlength"
-              @input="emailInput.validateEmail($event)"
-              placeholder="Fill Email (Optional)"
-              trim
-            ></b-form-input>
-          </b-form-group>
-          <!-- end email input -->
+              :valid-feedback="emailInput.successMessage"
+              :invalid-feedback="emailInput.errorMessage"
+            >
+              <template v-slot:label>Email</template>
+              <b-form-input
+                id="email"
+                v-model="donation.email"
+                :state="emailInput.state"
+                :maxlength="emailInput.maxlength"
+                @input="emailInput.validateEmail($event)"
+                placeholder="Fill Email (Optional)"
+                trim
+              ></b-form-input>
+            </b-form-group>
+            <!-- end email input -->
 
-          <!-- start remark info -->
-          <RemarkEditor v-model="donation.remark"></RemarkEditor>
-          <!-- end remark info -->
+            <!-- start remark info -->
+            <RemarkEditor v-model="donation.remark" :remark="remark"></RemarkEditor>
+            <!-- end remark info -->
+          </b-collapse>
+          <!-- end collapse -->
+
+          <button
+            @click="submitDonation()"
+            class="offset-lg-3 offset-md-3 offset-sm-3 btn btn-success"
+          >Proceed Donate</button>
         </b-card-body>
       </b-card>
     </b-card-group>
+    <hr />
   </div>
 </template>
 
@@ -223,19 +244,93 @@ import RemarkEditor from "../inputs/RemarkEditor";
 export default {
   data: () => ({
     donation: new donation(),
+    aboutItemInput: new aboutItemInput(),
     nameInput: new nameInput(),
     emailInput: new emailInput(),
     phoneInput: new phoneInput(),
     pickedUpAddressInput: new pickedUpAddressInput(),
     datePickerInput: new datePickerInput(),
     imageInput: new imageInput(),
-    aboutItemInput: new aboutItemInput()
+    collapseVisible: false,
+    remark: {
+      state: null,
+      errorMessage: "",
+      successMessage: ""
+    }
   }),
   methods: {
     onfocusin(event) {
-      // need to develop
+      // need to develop on date picker
       console.log(event);
       console.log(this.$refs.dp1);
+    },
+    submitDonation() {
+      var donationFormData = this.donation.getDonationFormData();
+
+      axios
+        .post("/donation_lists", donationFormData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          }
+        })
+        .then(({ data: { donation } }) => {
+          this.errors = [];
+          // this.$refs.recaptcha.reset();
+        })
+        .catch(error => {
+          this.showValidationErrors(error.response.data.errors);
+        });
+    },
+    showValidationErrors(errors) {
+      console.log(errors);
+      if (errors == undefined) {
+        return;
+      }
+      if (errors.about_item) {
+        this.aboutItemInput.state = false;
+        this.aboutItemInput.errorMessage = errors.about_item[0];
+      }
+      if (errors.name) {
+        this.nameInput.state = false;
+        this.nameInput.errorMessage = errors.name[0];
+      }
+      if (errors.phone) {
+        this.phoneInput.state = false;
+        this.phoneInput.errorMessage = errors.phone[0];
+      }
+      if (errors.pickedup_address) {
+        this.pickedUpAddressInput.state = false;
+        this.pickedUpAddressInput.errorMessage = errors.pickedup_address[0];
+      }
+      if (errors.pickedup_at) {
+        this.datePickerInput.state = false;
+        this.datePickerInput.errorMessage = errors.pickedup_at[0];
+      }
+      if (errors.image) {
+        this.imageInput.state = false;
+        this.imageInput.errorMessage = errors.image[0];
+      }
+      if (errors.email) {
+        this.emailInput.state = false;
+        this.emailInput.errorMessage = errors.email[0];
+      }
+      if (errors["image.0"]) {
+        this.imageInput.state = false;
+        this.imageInput.errorMessage = errors["image.0"][0];
+      }
+      if (errors["image.1"]) {
+        this.imageInput.state = false;
+        this.imageInput.errorMessage = errors["image.1"][0];
+      }
+      if (errors.remark) {
+        this.remark.state = false;
+        this.remark.errorMessage = errors.remark[0];
+      } else {
+        this.remark.state = null;
+        this.remark.errorMessage = '';
+      }
     },
     validateImage($event) {
       this.imageInput.validateImage($event);

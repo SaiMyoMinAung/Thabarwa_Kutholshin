@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'DonateController@index');
+
+Route::post('donation_lists', 'DonationController@save');
