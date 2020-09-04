@@ -149,8 +149,11 @@
                 aria-controls="collapse-4"
                 @click="collapseVisible = !collapseVisible"
               >
-                <span v-if="collapseVisible" class="text-warning">Hide Additional Input</span>
+                <span v-if="collapseVisible" class="text-primary">Hide Additional Input</span>
                 <span v-else class="text-success">Show Additional Input</span>
+                <b-iconstack font-scale="1" :rotate="collapseVisible ? 90 : 360">
+                  <b-icon stacked icon="chevron-right" shift-h="2" variant="primary"></b-icon>
+                </b-iconstack>
               </b-link>
             </div>
           </b-form-group>
@@ -268,7 +271,7 @@ export default {
       var donationFormData = this.donation.getDonationFormData();
 
       axios
-        .post("/donation_lists", donationFormData, {
+        .post("/donation", donationFormData, {
           headers: {
             "Content-Type": "multipart/form-data",
             "Content-Type": "application/json",
@@ -329,7 +332,7 @@ export default {
         this.remark.errorMessage = errors.remark[0];
       } else {
         this.remark.state = null;
-        this.remark.errorMessage = '';
+        this.remark.errorMessage = "";
       }
     },
     validateImage($event) {

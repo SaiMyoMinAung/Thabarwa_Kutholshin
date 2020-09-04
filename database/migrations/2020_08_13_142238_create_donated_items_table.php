@@ -15,21 +15,22 @@ class CreateDonatedItemsTable extends Migration
     {
         Schema::create('donated_items', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->timestamp('pickedup_at', 0);
+            $table->string('about_item');
+            $table->timestamp('pickedup_at');
             $table->string('pickedup_info');
-            $table->integer('status');
-            $table->timestamp('delivered_at', 0)->nullable();
-            $table->string('delivered_info');
-            $table->text('remark');
             $table->integer('donor_id');
-            $table->integer('item_type_id');
-            $table->integer('state_region_id');
+            $table->integer('status')->nullable();
+            $table->integer('item_type_id')->nullable();
+            $table->integer('state_region_id')->nullable();
+            $table->text('remark')->nullable();
+            $table->timestamp('delivered_at')->nullable();
+            $table->string('delivered_info')->nullable();
             $table->integer('store_id')->nullable();
             $table->integer('receiver_id')->nullable();
             $table->integer('item_unique_id')->nullable();
             $table->integer('pickedup_driver_id')->nullable();
             $table->integer('delivered_driver_id')->nullable();
+            $table->timestamps();
         });
     }
 

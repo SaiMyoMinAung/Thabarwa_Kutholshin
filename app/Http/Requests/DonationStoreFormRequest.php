@@ -2,7 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\DTO\DonationDTO;
+use App\Http\Requests\DTO\UserDTO;
+use App\Http\Requests\DTO\DonatedItemDTO;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DonationStoreFormRequest extends FormRequest
@@ -61,18 +62,24 @@ class DonationStoreFormRequest extends FormRequest
         ];
     }
 
-
-    public function donationData()
+    public function userData()
     {
-        return new DonationDTO([
-            'about_item' => $this->input('about_item'),
+        return new UserDTO([
             'name' => $this->input('name'),
             'phone' => $this->input('phone'),
-            'pickedup_address' => $this->input('pickedup_address'),
-            'pickedup_at' => $this->input('pickedup_at'),
             'email' => $this->input('email'),
-            'image' => $this->input('image'),
+            'password' => bcrypt(rand(8, 9)),
+        ]);
+    }
+
+    public function donatedItemData($donor_id)
+    {
+        return new DonatedItemDTO([
+            'about_item' => $this->input('about_item'),
+            'pickedup_info' => $this->input('pickedup_address'),
+            'pickedup_at' => $this->input('pickedup_at'),
             'remark' => $this->input('remark'),
+            'donor_id' => $donor_id
         ]);
     }
 }

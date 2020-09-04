@@ -7,7 +7,7 @@
     :valid-feedback="successMessage"
     :invalid-feedback="errorMessage"
   >
-    <template v-slot:label>Remark </template>
+    <template v-slot:label>Remark</template>
 
     <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
       <div>

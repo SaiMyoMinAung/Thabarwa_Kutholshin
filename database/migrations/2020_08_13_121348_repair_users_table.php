@@ -16,7 +16,7 @@ class RepairUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('email')->nullable()->change();
             $table->string('phone')->unique();
-            $table->integer('state_region_id');
+            $table->integer('state_region_id')->nullable();
         });
     }
 
@@ -28,8 +28,6 @@ class RepairUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            
-            $table->string('email')->nullable(false)->change();
 
             if (Schema::hasColumn('users', 'phone')) {
                 $table->dropColumn('phone');
