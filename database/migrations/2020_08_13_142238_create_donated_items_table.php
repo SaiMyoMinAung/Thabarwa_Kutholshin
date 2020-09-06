@@ -19,7 +19,8 @@ class CreateDonatedItemsTable extends Migration
             $table->timestamp('pickedup_at');
             $table->string('pickedup_info');
             $table->integer('donor_id');
-            $table->integer('status')->nullable();
+            $table->string('status')->default('orange');
+            $table->string('state_class')->default('App\\\State\\\PendingDonatedItemState');
             $table->integer('item_type_id')->nullable();
             $table->integer('state_region_id')->nullable();
             $table->text('remark')->nullable();

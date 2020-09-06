@@ -12,15 +12,16 @@ final class DonatedItemDTO extends DataTransferObject
     public $pickedup_at;
     public $pickedup_info;
     public $donor_id;
-    public $status;
-    public $item_type_id;
-    public $state_region_id;
     public $remark;
-    public $delivered_at;
-    public $delivered_info;
-    public $store_id;
-    public $receiver_id;
-    public $item_unique_id;
-    public $pickedup_driver_id;
-    public $delivered_driver_id;
+    // public $status;
+    // public $state_class;
+    // public $item_type_id;
+    // public $state_region_id;
+    // public $delivered_at;
+    // public $delivered_info;
+    // public $store_id;
+    // public $receiver_id;
+    // public $item_unique_id;
+    // public $pickedup_driver_id;
+    // public $delivered_driver_id;
 }
