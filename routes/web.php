@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'DonateController@index');
 
 Route::post('donation', 'DonationController@save');
+
+Route::group(['prefix' => 'backend', 'namespace' => 'Backend'], function () {
+    Route::get('dashboard', 'DashboardController@index');
+    Route::resource('users', 'UserController');
+    Route::resource('donated_items', 'DonatedItemController');
+});

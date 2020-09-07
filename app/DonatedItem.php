@@ -9,6 +9,10 @@ class DonatedItem extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'pickedup_at' => 'date',
+    ];
+
     public function getStateAttribute(): DonatedItemState
     {
         return new $this->state_class($this);
