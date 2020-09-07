@@ -15,11 +15,12 @@ class CreateDonatedItemsTable extends Migration
     {
         Schema::create('donated_items', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid');
             $table->string('about_item');
             $table->timestamp('pickedup_at');
             $table->string('pickedup_info');
             $table->integer('donor_id');
-            $table->string('status')->default('orange');
+            $table->string('status')->default('pending');
             $table->string('state_class')->default('App\\\State\\\PendingDonatedItemState');
             $table->integer('item_type_id')->nullable();
             $table->integer('state_region_id')->nullable();

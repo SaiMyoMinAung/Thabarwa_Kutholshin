@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\Traits\HasUUID;
 use App\State\DonatedItemState;
 use Illuminate\Database\Eloquent\Model;
 
 class DonatedItem extends Model
 {
+    use HasUUID;
+
     protected $guarded = [];
 
     protected $casts = [
