@@ -6,227 +6,229 @@
         header="Fill Donation Information"
         header-text-variant="black"
       >
-        <b-card-body>
-          <!-- start about item input -->
-          <b-form-group
-            id="about-item"
-            label-cols-sm="3"
-            label-for="name"
-            :state="aboutItemInput.state"
-            :valid-feedback="aboutItemInput.successMessage"
-            :invalid-feedback="aboutItemInput.errorMessage"
-          >
-            <template v-slot:label>
-              About Item
-              <span class="text-danger">*</span>
-            </template>
-            <b-form-input
-              id="about-item"
-              v-model="donation.about_item"
-              :state="aboutItemInput.state"
-              :maxlength="aboutItemInput.maxlength"
-              @input="aboutItemInput.validateAboutItem($event)"
-              @blur="aboutItemInput.validateAboutItem($event)"
-              placeholder="Fill About Item"
-              trim
-            ></b-form-input>
-          </b-form-group>
-          <!-- end about item input -->
-
-          <!-- start name input -->
-          <b-form-group
-            id="name"
-            label-cols-sm="3"
-            label-for="name"
-            :state="nameInput.state"
-            :valid-feedback="nameInput.successMessage"
-            :invalid-feedback="nameInput.errorMessage"
-          >
-            <template v-slot:label>
-              Name
-              <span class="text-danger">*</span>
-            </template>
-            <b-form-input
-              id="name"
-              v-model="donation.name"
-              :state="nameInput.state"
-              :maxlength="nameInput.maxlength"
-              @input="nameInput.validateName($event)"
-              @blur="nameInput.validateName($event)"
-              placeholder="Fill Name"
-              trim
-            ></b-form-input>
-          </b-form-group>
-          <!-- end name input -->
-
-          <!-- start phone input -->
-          <b-form-group
-            id="phone"
-            label-cols-sm="3"
-            label-for="phone"
-            :state="phoneInput.state"
-            :valid-feedback="phoneInput.successMessage"
-            :invalid-feedback="phoneInput.errorMessage"
-          >
-            <template v-slot:label>
-              Phone
-              <span class="text-danger">*</span>
-            </template>
-            <b-form-input
-              id="phone"
-              v-model="donation.phone"
-              :state="phoneInput.state"
-              :maxlength="phoneInput.maxlength"
-              placeholder="09 - xxxxxxxxx"
-              @input="phoneInput.validatePhone($event)"
-              @blur="phoneInput.validatePhone($event)"
-              @keypress="phoneInput.isNumber($event)"
-              trim
-            ></b-form-input>
-          </b-form-group>
-          <!-- end phone input -->
-
-          <!-- start pickedup info -->
-          <b-form-group
-            id="pickedup_address"
-            label-cols-sm="3"
-            label-for="pickedup_address"
-            :state="pickedUpAddressInput.state"
-            :valid-feedback="pickedUpAddressInput.successMessage"
-            :invalid-feedback="pickedUpAddressInput.errorMessage"
-          >
-            <template v-slot:label>
-              Pick Up Address
-              <span class="text-danger">*</span>
-            </template>
-            <b-form-textarea
-              id="pickedup_address"
-              v-model="donation.pickedup_address"
-              placeholder="Fill Pick Up Address"
-              :state="pickedUpAddressInput.state"
-              :maxlength="pickedUpAddressInput.maxlength"
-              @input="pickedUpAddressInput.validateAddress($event)"
-              @blur="pickedUpAddressInput.validateAddress($event)"
-              rows="3"
-              max-rows="6"
-            ></b-form-textarea>
-          </b-form-group>
-          <!-- end pickedup info -->
-
-          <!-- start date picker info -->
-          <b-form-group
-            label-cols-sm="3"
-            label-for="pickedup_date"
-            :state="datePickerInput.state"
-            :valid-feedback="datePickerInput.successMessage"
-            :invalid-feedback="datePickerInput.errorMessage"
-          >
-            <template v-slot:label>
-              Choose a date
-              <span class="text-danger">*</span>
-            </template>
-            <b-form-datepicker
-              ref="dp1"
-              :state="datePickerInput.state"
-              :valid-feedback="datePickerInput.successMessage"
-              :invalid-feedback="datePickerInput.errorMessage"
-              v-model="donation.pickedup_at"
-              @hidden="datePickerInput.valideDatePicker(donation.pickedup_at)"
-              @focusin.native="onfocusin($event)"
-              id="pickedup_date"
-              class="mb-2"
-            ></b-form-datepicker>
-          </b-form-group>
-          <!-- end date picker info -->
-
-          <!-- start collapse -->
-          <b-form-group label-cols-sm="3">
-            <div>
-              <b-link
-                v-b-toggle.collapse-3
-                :class="collapseVisible ? null : 'collapsed'"
-                :aria-expanded="collapseVisible ? 'true' : 'false'"
-                aria-controls="collapse-4"
-                @click="collapseVisible = !collapseVisible"
-              >
-                <span v-if="collapseVisible" class="text-primary">Hide Additional Input</span>
-                <span v-else class="text-success">Show Additional Input</span>
-                <b-iconstack font-scale="1" :rotate="collapseVisible ? 90 : 360">
-                  <b-icon stacked icon="chevron-right" shift-h="2" variant="primary"></b-icon>
-                </b-iconstack>
-              </b-link>
-            </div>
-          </b-form-group>
-
-          <b-collapse v-model="collapseVisible" id="collapse-3">
-            <!-- start image -->
+        <b-overlay :show="showSpinner" rounded="sm">
+          <b-card-body>
+            <!-- start about item input -->
             <b-form-group
+              id="about-item"
               label-cols-sm="3"
-              label-for="image"
-              :state="imageInput.state"
-              :valid-feedback="imageInput.successMessage"
-              :invalid-feedback="imageInput.errorMessage"
+              label-for="name"
+              :state="aboutItemInput.state"
+              :valid-feedback="aboutItemInput.successMessage"
+              :invalid-feedback="aboutItemInput.errorMessage"
             >
               <template v-slot:label>
-                Choose 3 Images
-                <b-button variant="link" size="sm" @click="donation.image = null">Clear Images</b-button>
+                About Item
+                <span class="text-danger">*</span>
               </template>
-              <b-form-file
-                id="image"
-                multiple
-                :file-name-formatter="formatNames"
-                accept=".jpg, .png, .gif, .jpeg"
-                v-model="donation.image"
-                :state="imageInput.state"
-                @input="validateImage($event)"
-                placeholder="Choose Image (Optional)"
-                drop-placeholder="Drop file here..."
-              >
-                <template slot="file-name" slot-scope="{ names }">
-                  <b-badge variant="dark">{{ names[0] }}</b-badge>
-                  <b-badge
-                    v-if="names.length > 1"
-                    variant="dark"
-                    class="ml-1"
-                  >+ {{ names.length - 1 }} More files</b-badge>
-                </template>
-              </b-form-file>
-            </b-form-group>
-            <!-- end image -->
-
-            <!-- start email input -->
-            <b-form-group
-              id="email"
-              label-cols-sm="3"
-              label-for="email"
-              :state="emailInput.state"
-              :valid-feedback="emailInput.successMessage"
-              :invalid-feedback="emailInput.errorMessage"
-            >
-              <template v-slot:label>Email</template>
               <b-form-input
-                id="email"
-                v-model="donation.email"
-                :state="emailInput.state"
-                :maxlength="emailInput.maxlength"
-                @input="emailInput.validateEmail($event)"
-                placeholder="Fill Email (Optional)"
+                id="about-item"
+                v-model="donation.about_item"
+                :state="aboutItemInput.state"
+                :maxlength="aboutItemInput.maxlength"
+                @input="aboutItemInput.validateAboutItem($event)"
+                @blur="aboutItemInput.validateAboutItem($event)"
+                placeholder="Fill About Item"
                 trim
               ></b-form-input>
             </b-form-group>
-            <!-- end email input -->
+            <!-- end about item input -->
 
-            <!-- start remark info -->
-            <RemarkEditor v-model="donation.remark" :remark="remark"></RemarkEditor>
-            <!-- end remark info -->
-          </b-collapse>
-          <!-- end collapse -->
+            <!-- start name input -->
+            <b-form-group
+              id="name"
+              label-cols-sm="3"
+              label-for="name"
+              :state="nameInput.state"
+              :valid-feedback="nameInput.successMessage"
+              :invalid-feedback="nameInput.errorMessage"
+            >
+              <template v-slot:label>
+                Name
+                <span class="text-danger">*</span>
+              </template>
+              <b-form-input
+                id="name"
+                v-model="donation.name"
+                :state="nameInput.state"
+                :maxlength="nameInput.maxlength"
+                @input="nameInput.validateName($event)"
+                @blur="nameInput.validateName($event)"
+                placeholder="Fill Name"
+                trim
+              ></b-form-input>
+            </b-form-group>
+            <!-- end name input -->
 
-          <button
-            @click="submitDonation()"
-            class="offset-lg-3 offset-md-3 offset-sm-3 btn btn-success"
-          >Proceed Donate</button>
-        </b-card-body>
+            <!-- start phone input -->
+            <b-form-group
+              id="phone"
+              label-cols-sm="3"
+              label-for="phone"
+              :state="phoneInput.state"
+              :valid-feedback="phoneInput.successMessage"
+              :invalid-feedback="phoneInput.errorMessage"
+            >
+              <template v-slot:label>
+                Phone
+                <span class="text-danger">*</span>
+              </template>
+              <b-form-input
+                id="phone"
+                v-model="donation.phone"
+                :state="phoneInput.state"
+                :maxlength="phoneInput.maxlength"
+                placeholder="09 - xxxxxxxxx"
+                @input="phoneInput.validatePhone($event)"
+                @blur="phoneInput.validatePhone($event)"
+                @keypress="phoneInput.isNumber($event)"
+                trim
+              ></b-form-input>
+            </b-form-group>
+            <!-- end phone input -->
+
+            <!-- start pickedup info -->
+            <b-form-group
+              id="pickedup_address"
+              label-cols-sm="3"
+              label-for="pickedup_address"
+              :state="pickedUpAddressInput.state"
+              :valid-feedback="pickedUpAddressInput.successMessage"
+              :invalid-feedback="pickedUpAddressInput.errorMessage"
+            >
+              <template v-slot:label>
+                Pick Up Address
+                <span class="text-danger">*</span>
+              </template>
+              <b-form-textarea
+                id="pickedup_address"
+                v-model="donation.pickedup_address"
+                placeholder="Fill Pick Up Address"
+                :state="pickedUpAddressInput.state"
+                :maxlength="pickedUpAddressInput.maxlength"
+                @input="pickedUpAddressInput.validateAddress($event)"
+                @blur="pickedUpAddressInput.validateAddress($event)"
+                rows="3"
+                max-rows="6"
+              ></b-form-textarea>
+            </b-form-group>
+            <!-- end pickedup info -->
+
+            <!-- start date picker info -->
+            <b-form-group
+              label-cols-sm="3"
+              label-for="pickedup_date"
+              :state="datePickerInput.state"
+              :valid-feedback="datePickerInput.successMessage"
+              :invalid-feedback="datePickerInput.errorMessage"
+            >
+              <template v-slot:label>
+                Choose a date
+                <span class="text-danger">*</span>
+              </template>
+              <b-form-datepicker
+                ref="dp1"
+                :state="datePickerInput.state"
+                :valid-feedback="datePickerInput.successMessage"
+                :invalid-feedback="datePickerInput.errorMessage"
+                v-model="donation.pickedup_at"
+                @hidden="datePickerInput.valideDatePicker(donation.pickedup_at)"
+                @focusin.native="onfocusin($event)"
+                id="pickedup_date"
+                class="mb-2"
+              ></b-form-datepicker>
+            </b-form-group>
+            <!-- end date picker info -->
+
+            <!-- start collapse -->
+            <b-form-group label-cols-sm="3">
+              <div>
+                <b-link
+                  v-b-toggle.collapse-3
+                  :class="collapseVisible ? null : 'collapsed'"
+                  :aria-expanded="collapseVisible ? 'true' : 'false'"
+                  aria-controls="collapse-4"
+                  @click="collapseVisible = !collapseVisible"
+                >
+                  <span v-if="collapseVisible" class="text-primary">Hide Additional Input</span>
+                  <span v-else class="text-success">Show Additional Input</span>
+                  <b-iconstack font-scale="1" :rotate="collapseVisible ? 90 : 360">
+                    <b-icon stacked icon="chevron-right" shift-h="2" variant="primary"></b-icon>
+                  </b-iconstack>
+                </b-link>
+              </div>
+            </b-form-group>
+
+            <b-collapse v-model="collapseVisible" id="collapse-3">
+              <!-- start image -->
+              <b-form-group
+                label-cols-sm="3"
+                label-for="image"
+                :state="imageInput.state"
+                :valid-feedback="imageInput.successMessage"
+                :invalid-feedback="imageInput.errorMessage"
+              >
+                <template v-slot:label>
+                  Choose 3 Images
+                  <b-button variant="link" size="sm" @click="donation.image = null">Clear Images</b-button>
+                </template>
+                <b-form-file
+                  id="image"
+                  multiple
+                  :file-name-formatter="formatNames"
+                  accept=".jpg, .png, .gif, .jpeg"
+                  v-model="donation.image"
+                  :state="imageInput.state"
+                  @input="validateImage($event)"
+                  placeholder="Choose Image (Optional)"
+                  drop-placeholder="Drop file here..."
+                >
+                  <template slot="file-name" slot-scope="{ names }">
+                    <b-badge variant="dark">{{ names[0] }}</b-badge>
+                    <b-badge
+                      v-if="names.length > 1"
+                      variant="dark"
+                      class="ml-1"
+                    >+ {{ names.length - 1 }} More files</b-badge>
+                  </template>
+                </b-form-file>
+              </b-form-group>
+              <!-- end image -->
+
+              <!-- start email input -->
+              <b-form-group
+                id="email"
+                label-cols-sm="3"
+                label-for="email"
+                :state="emailInput.state"
+                :valid-feedback="emailInput.successMessage"
+                :invalid-feedback="emailInput.errorMessage"
+              >
+                <template v-slot:label>Email</template>
+                <b-form-input
+                  id="email"
+                  v-model="donation.email"
+                  :state="emailInput.state"
+                  :maxlength="emailInput.maxlength"
+                  @input="emailInput.validateEmail($event)"
+                  placeholder="Fill Email (Optional)"
+                  trim
+                ></b-form-input>
+              </b-form-group>
+              <!-- end email input -->
+
+              <!-- start remark info -->
+              <RemarkEditor v-model="donation.remark" :remark="remark"></RemarkEditor>
+              <!-- end remark info -->
+            </b-collapse>
+            <!-- end collapse -->
+
+            <button
+              @click="submitDonation()"
+              class="offset-lg-3 offset-md-3 offset-sm-3 btn btn-success"
+            >Proceed Donate</button>
+          </b-card-body>
+        </b-overlay>
       </b-card>
     </b-card-group>
     <hr />
@@ -259,7 +261,8 @@ export default {
       state: null,
       errorMessage: "",
       successMessage: ""
-    }
+    },
+    showSpinner: false
   }),
   methods: {
     onfocusin(event) {
@@ -267,8 +270,26 @@ export default {
       console.log(event);
       console.log(this.$refs.dp1);
     },
+    showMsgBoxTwo() {
+      this.$bvModal
+        .msgBoxOk("Donation Was Donated Successfully.", {
+          title: "Confirm Donation",
+          size: "md",
+          buttonSize: "md",
+          okVariant: "success",
+          headerClass: "p-2",
+          footerClass: "p-2",
+          hideHeaderClose: false,
+          centered: true
+        })
+        .then(value => {
+          window.location.reload();
+        });
+    },
     submitDonation() {
       var donationFormData = this.donation.getDonationFormData();
+
+      this.showSpinner = true;
 
       axios
         .post("/donation", donationFormData, {
@@ -278,12 +299,17 @@ export default {
             Accept: "application/json"
           }
         })
-        .then(({ data: { donation } }) => {
-          this.errors = [];
+        .then(response => {
+          if (response.data.message === "success") {
+            this.showSpinner = false;
+            this.showMsgBoxTwo();
+            // window.location.reload();
+          }
           // this.$refs.recaptcha.reset();
         })
         .catch(error => {
           this.showValidationErrors(error.response.data.errors);
+          this.showSpinner = false;
         });
     },
     showValidationErrors(errors) {
