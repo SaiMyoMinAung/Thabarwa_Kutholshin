@@ -7,12 +7,18 @@ use App\DonatedItem;
 abstract class DonatedItemState
 {
     /** @var DonatedItem */
-    protected $donatedItem;
+    public $donatedItem;
 
     public function __construct(DonatedItem $donatedItem)
-    { /* … */ }
+    {
+        $this->donatedItem = $donatedItem;
+    }
 
-    abstract public function mustBePaid(): bool;
+    abstract public function canManage(): bool;
 
-    abstract public function colour(): string;
+    abstract public function canAssignDriver(): bool;
+
+    abstract public function canArriveAtOffice(): bool;
+
+    abstract public function status(): string;
 }

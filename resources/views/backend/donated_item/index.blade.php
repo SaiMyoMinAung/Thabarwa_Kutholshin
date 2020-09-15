@@ -25,21 +25,11 @@
             <th>Picked Up At</th>
             <th>Picked Up Info</th>
             <th>Status</th>
-            <th>Options</th>
         </tr>
     </thead>
     <tbody>
     </tbody>
-    <tfoot>
-        <tr>
-            <th></th>
-            <th>About Item</th>
-            <th>Pick Up At</th>
-            <th>Pick Up Info</th>
-            <th>Status</th>
-            <th>Options</th>
-        </tr>
-    </tfoot>
+
 </table>
 @stop
 
@@ -75,11 +65,6 @@
                 {
                     "data": "status"
                 },
-                {
-                    "data": "options",
-                    orderable: false,
-                    searchable: false
-                }
             ]
         });
     });

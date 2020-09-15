@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Driver;
 use App\DonatedItem;
-use App\Http\Controllers\Controller;
+use App\StateRegion;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AssignDriverStoreRequest;
+use App\Http\Requests\DonationUpdateFormRequest;
+use App\Http\Requests\DTO\ArriveAtOfficeDTO;
+use App\State\ArriveAtOfficeTransition;
+use App\State\AssignDriverTransition;
+use App\State\ManageTransition;
 
 class DonatedItemController extends Controller
 {
@@ -61,16 +69,14 @@ class DonatedItemController extends Controller
             $data = array();
             if (!empty($donated_items)) {
                 foreach ($donated_items as $key => $donated_item) {
-                    $show =  route('donated_items.show', $donated_item->id);
-                    $edit =  route('donated_items.edit', $donated_item->id);
+                    $show =  route('donated_items.show', $donated_item->uuid);
 
                     $nestedData['DT_RowIndex'] = $key + 1;
-                    $nestedData['about_item'] = $donated_item->about_item;
+                    $nestedData['about_item'] = '<a href="' . $show . '">' . $donated_item->about_item . '</a>';
                     $nestedData['pickedup_at'] = $donated_item->pickedup_at->format('d M Y');
                     $nestedData['pickedup_info'] = substr(strip_tags($donated_item->pickedup_info), 0, 50) . "...";
                     $nestedData['status'] = $donated_item->status;
-                    $nestedData['options'] = "&emsp;<a href='{$show}' title='SHOW' ><i class='fa fa-fw fa-eye'></i></a>
-                              &emsp;<a href='{$edit}' title='EDIT' ><i class='fa fa-fw fa-edit'></i></a>";
+
                     $data[] = $nestedData;
                 }
             }
@@ -115,9 +121,11 @@ class DonatedItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DonatedItem $donatedItem)
     {
-        //
+        $stateRegions = StateRegion::all();
+
+        return view('backend.donated_item.show', compact('donatedItem', 'stateRegions'));
     }
 
     /**
@@ -138,9 +146,45 @@ class DonatedItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DonationUpdateFormRequest $request, DonatedItem $donatedItem)
     {
-        //
+        $userData = $request->userData()->all();
+        $donatedItem->donor->update($userData);
+
+        $donatedItemData = $request->donatedItemData()->all();
+        $donatedItem->update($donatedItemData);
+
+        return back()->with('success', 'Donated Item Update Successful.');
+    }
+
+    public function manage(DonatedItem $donatedItem)
+    {
+        $drivers = Driver::all();
+
+        $t = new ManageTransition();
+        $donatedItem = $t($donatedItem);
+
+        return view('backend.donated_item.manage', compact('drivers', 'donatedItem'));
+    }
+
+    public function assignDriver(AssignDriverStoreRequest $request, DonatedItem $donatedItem)
+    {
+        $assignDriverData = $request->assignDriverData()->all();
+        $t = new AssignDriverTransition();
+        $donatedItem = $t($donatedItem, $assignDriverData);
+
+        $url = route('donated_items.manage', ['donated_item' => $donatedItem->uuid, 'stepper' => $request->getStepper()]);
+        return redirect($url)->with('success', 'Assign Driver Successful.');
+    }
+
+    public function arriveAtOffice(DonatedItem $donatedItem)
+    {
+        $arriveAtOfficeData = new ArriveAtOfficeDTO();
+        $t = new ArriveAtOfficeTransition();
+        $donatedItem = $t($donatedItem, $arriveAtOfficeData->all());
+
+        $url = route('donated_items.manage', ['donated_item' => $donatedItem->uuid, 'stepper' => $request->getStepper()]);
+        return redirect($url)->with('success', 'Marking Arrive At Office Is Successful.');
     }
 
     /**

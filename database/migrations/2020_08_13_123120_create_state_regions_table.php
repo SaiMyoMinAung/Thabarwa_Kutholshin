@@ -15,8 +15,8 @@ class CreateStateRegionsTable extends Migration
     {
         Schema::create('state_regions', function (Blueprint $table) {
             $table->id();
-            $table->string('state_region_name')->unique();
-            $table->string('state_region_code')->unique();
+            $table->string('name')->unique();
+            $table->string('code')->unique();
             $table->boolean('is_available')->default(0);
             $table->integer('country_id');
             $table->timestamps();

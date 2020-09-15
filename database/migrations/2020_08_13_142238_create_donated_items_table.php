@@ -16,22 +16,34 @@ class CreateDonatedItemsTable extends Migration
         Schema::create('donated_items', function (Blueprint $table) {
             $table->id();
             $table->string('uuid');
+            $table->integer('item_unique_id')->nullable();
             $table->string('about_item');
-            $table->timestamp('pickedup_at');
+            $table->date('pickedup_at');
             $table->string('pickedup_info');
-            $table->integer('donor_id');
-            $table->string('status')->default('pending');
-            $table->string('state_class')->default('App\\\State\\\PendingDonatedItemState');
+
             $table->integer('item_type_id')->nullable();
             $table->integer('state_region_id')->nullable();
             $table->text('remark')->nullable();
             $table->timestamp('delivered_at')->nullable();
             $table->string('delivered_info')->nullable();
+
+            $table->integer('donor_id');
             $table->integer('store_id')->nullable();
             $table->integer('receiver_id')->nullable();
-            $table->integer('item_unique_id')->nullable();
             $table->integer('pickedup_driver_id')->nullable();
             $table->integer('delivered_driver_id')->nullable();
+
+            $table->string('status')->default('pending');
+            $table->string('state_class')->default('App\\\State\\\PendingState');
+            $table->boolean('is_confirm_by_donor')->default(0);
+            $table->boolean('is_pickingup')->default(0);
+            $table->boolean('is_arrive_at_office')->default(0);
+            $table->boolean('is_need_repairing')->default(0);
+            $table->boolean('is_repairing')->default(0);
+            $table->boolean('is_repairing_finish')->default(0);
+            $table->boolean('is_deliver')->default(0);
+            $table->boolean('is_complete')->default(0);
+
             $table->timestamps();
         });
     }
