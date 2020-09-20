@@ -237,13 +237,13 @@
 
 <script>
 import donation from "../models/donation.js";
-import aboutItemInput from "../default_props_and_fns/about_item_input.js";
-import nameInput from "../default_props_and_fns/name_input.js";
-import emailInput from "../default_props_and_fns/email_input.js";
-import phoneInput from "../default_props_and_fns/phone_input.js";
-import imageInput from "../default_props_and_fns/image_input.js";
-import pickedUpAddressInput from "../default_props_and_fns/pickedup_address_input.js";
-import datePickerInput from "../default_props_and_fns/date_picker_input.js";
+import aboutItemInput from "../validations/about_item_input.js";
+import nameInput from "../validations/name_input.js";
+import emailInput from "../validations/email_input.js";
+import phoneInput from "../validations/phone_input.js";
+import imageInput from "../validations/image_input.js";
+import pickedUpAddressInput from "../validations/pickedup_address_input.js";
+import datePickerInput from "../validations/date_picker_input.js";
 import RemarkEditor from "../inputs/RemarkEditor";
 
 export default {

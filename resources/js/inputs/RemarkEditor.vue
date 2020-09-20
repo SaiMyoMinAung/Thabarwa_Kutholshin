@@ -71,7 +71,7 @@ import {
   Underline,
   History
 } from "tiptap-extensions";
-import RemarkInput from "../default_props_and_fns/remark_input.js";
+import RemarkInput from "../validations/remark_input.js";
 
 export default {
   props: ["remark"],

@@ -27,4 +27,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::post('donated_items/{donated_item}/assign_driver', 'DonatedItemController@assignDriver')->name('donated_items.assign_driver');
     Route::get('donated_items/{donated_item}/arrive_at_office', 'DonatedItemController@arriveAtOffice')->name('donated_items.arrive_at_office');
     Route::resource('donated_items', 'DonatedItemController');
+
+    Route::get('settings', 'SettingController@index');
+    Route::resource('cities', 'CityController');
 });

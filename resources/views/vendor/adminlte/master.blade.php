@@ -69,11 +69,13 @@
     {{-- Body Content --}}
     @yield('body')
 
+    <script src="{{asset('js/dashboard_app.js')}}"></script>
+
     {{-- Base Scripts --}}
     @if(!config('adminlte.enabled_laravel_mix'))
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+    <!-- <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script> -->
+    <!-- <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
+    <!-- <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script> -->
 
     {{-- Configured Scripts --}}
     @include('adminlte::plugins', ['type' => 'js'])
@@ -103,7 +105,6 @@
             }
 
         });
-
     </script>
 </body>
 
