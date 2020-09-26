@@ -223,13 +223,22 @@
               </div>
             </div>
             <!-- end city is_available -->
-
-            <button @click="city.model.createCity($event)" class="btn btn-success">Create</button>
+            <button
+              v-if="city.model.isEdit"
+              @click="city.model.updateCity()"
+              class="btn btn-success"
+            >Update</button>
+            <button
+              v-if="city.model.isEdit"
+              @click="city.model.goToList('city-list')"
+              class="btn btn-default"
+            >Cancel</button>
+            <button v-else @click="city.model.saveCity()" class="btn btn-success">Create</button>
           </div>
         </div>
       </div>
       <div class="tab-pane fade" id="city-list" role="tabpanel" aria-labelledby="city-list-tab">
-        <table class="table table-hover table-dark">
+        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -239,18 +248,59 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="abc in city.model.list" :key="abc.id">
-              <th scope="row">1</th>
-              <td>{{abc.name}}</td>
-              <td>
-                <button class="btn btn-warning">Edit</button>
+            <tr v-for="(item, index) in city.model.list.data" :key="item.id">
+              <th scope="row">{{index + 1}}</th>
+              <td style="max-width:20px">{{item.name}}</td>
+              <td style="max-width:20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >Edit</button>
+                <div :id="`edit-collapse-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="city.model.editRecord(index)"
+                  >Yes</button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >No</button>
+                </div>
               </td>
-              <td>
-                <button class="btn btn-danger">Delete</button>
+              <td style="max-width:20px">
+                <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >Delete</button>
+                <div :id="`collapse-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="city.model.deleteCity(item.id, index)"
+                  >Yes</button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >No</button>
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
+        <pagination :data="city.model.list" align="center" v-on:pagination-change-page="getCityResult"></pagination>
       </div>
       <!-- end city -->
     </div>
@@ -276,11 +326,43 @@ export default {
     "city.model.isLoading": function(newisLoading, oldisLoading) {
       this.isLoading = newisLoading;
     },
-    "city.model.isSuccess": function(newisSuccess, oldisSuccess) {
-      if (newisSuccess) {
+    "city.model.isCreateSuccess": function(
+      newisCreateSuccess,
+      oldisCreateSuccess
+    ) {
+      if (newisCreateSuccess) {
         this.$toasted.show("Saving Success.", { icon: "save" });
-      } else {
+      }
+    },
+    "city.model.isCreateFail": function(newisCreateFail, oldisCreateFail) {
+      if (newisCreateFail) {
         this.$toasted.show("Saving Failed.", { icon: "save" });
+      }
+    },
+    "city.model.isUpdateSuccess": function(
+      newisUpdateSuccess,
+      oldisUpdateSuccess
+    ) {
+      if (newisUpdateSuccess) {
+        this.$toasted.show("Upading Success.", { icon: "save" });
+      }
+    },
+    "city.model.isUpdateFail": function(newisUpdateFail, oldisUpdateFail) {
+      if (newisUpdateFail) {
+        this.$toasted.show("Updaing Failed.", { icon: "save" });
+      }
+    },
+    "city.model.isDeleteSuccess": function(
+      newisDeleteSuccess,
+      oldisDeleteSuccess
+    ) {
+      if (newisDeleteSuccess) {
+        this.$toasted.show("Delete Success.", { icon: "delete" });
+      }
+    },
+    "city.model.isDeleteFail": function(newisDeleteFail, oldisDeleteFail) {
+      if (newisDeleteFail) {
+        this.$toasted.show("Delete Fail.", { icon: "delete" });
       }
     },
     "city.model.validation": function(newValidation, oldValidation) {
@@ -290,7 +372,11 @@ export default {
   components: {
     Loading
   },
-  methods: {},
+  methods: {
+    getCityResult(page) {
+      this.city.model.fetchList(page)
+    }
+  },
   mounted() {},
   created() {}
 };

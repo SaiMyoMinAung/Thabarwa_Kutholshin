@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CityResource;
 use App\Http\Requests\CityStoreRequest;
+use App\Http\Requests\CityUpdateRequest;
 use App\Http\Resources\CityResourceCollection;
+use Exception;
 
 class CityController extends Controller
 {
@@ -18,9 +20,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::orderBy('id', 'desc')->get();
+        $cities = City::orderBy('id', 'desc')->paginate(5);
 
-        return response()->json(new CityResourceCollection(new CityResource($cities)), 200);
+        return response()->json(new CityResourceCollection($cities), 200);
     }
 
     /**
@@ -45,7 +47,7 @@ class CityController extends Controller
 
         $city = City::create($validated_data);
 
-        return response()->json(new CityResource($city), 200);
+        return response()->json(new CityResource($city), 201);
     }
 
     /**
@@ -77,9 +79,15 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CityUpdateRequest $request, City $city)
     {
-        //
+        try {
+            $validated_data = $request->validated();
+            $city->update($validated_data);
+            return response()->json(new CityResource($city), 200);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'fail'], 500);
+        }
     }
 
     /**
@@ -88,8 +96,14 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(City $city)
     {
-        //
+        try {
+            $city->delete();
+            return response()->json(['message' => 'success'], 200);
+        } catch (Exception $e) {
+            report($e);
+            return response()->json(['message' => 'fail'], 500);
+        }
     }
 }

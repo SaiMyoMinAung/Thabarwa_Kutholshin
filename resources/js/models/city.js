@@ -1,48 +1,37 @@
-export default class city {
-    constructor(
-        name = '',
-        is_available = 0,
-    ){
-        this.list = '';
-        this.validation = null;
-        this.isSuccess = '';
-        this.name = name;
-        this.is_available = is_available;
-        this.isLoading = false;
-        this.fetchCity()
-    }
+import base from "./base.js";
 
-    fetchCity() {
-        axios
-          .get("/backend/cities")
-          .then(response => (this.list = response.data.data));
-    }
-
-    createCity() {   
-        var self = this;
-        this.isLoading = true
-        
-        var data = {name:this.name,is_available:this.is_available};
-        axios.post("/backend/cities", data)
-            .then(response => {
-                this.list.unshift(response.data);
-                this.isLoading = false;
-                this.isSuccess = true;
-                this.clearData();
-                this.validation = null;
-                var drop_down_item = $('.dropdown-menu a[href="#city-list"]');
-                drop_down_item.tab('show');
-                drop_down_item.parent().parent()[0].childNodes[0].text = drop_down_item.text();
-            })
-            .catch(function (error) {
-                self.isLoading = false
-                self.isSuccess = false;
-                self.validation = error.response.data.errors;
-            });
-    }
-
-    clearData() {
+export default class city extends base {
+    constructor(){
+        super("/backend/cities");
         this.name = '';
         this.is_available = 0;
     }
+    
+    editRecord(index) {
+        super.edit('city-list-create', index);        
+    }
+
+    clearData() {
+        super.clearData()
+        this.is_available = 0;
+        this.name = '';
+    }
+
+    updateCity() {
+        var url = "/backend/cities/" + this.id;
+        var data = {name:this.name,is_available:this.is_available,_method:"PUT"};
+        super.update(url, data, 'city-list')
+    }
+
+    saveCity() {
+        var data = {name:this.name,is_available:this.is_available};
+        var url = "/backend/cities/";
+        super.save(url, data);
+    }
+
+    deleteCity(id, index) {
+        var url = '/backend/cities/' + id;
+        super.delete(url, index)
+    }
+
 }

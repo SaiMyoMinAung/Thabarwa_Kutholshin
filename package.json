@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.16.0",
+        "laravel-vue-pagination": "^2.3.1",
         "material-design-icons": "^3.0.1",
         "myanmar-phonenumber": "^0.3.2",
         "tiptap": "^1.29.6",

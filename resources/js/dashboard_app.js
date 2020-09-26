@@ -5,12 +5,11 @@ import 'material-design-icons/iconfont/material-icons.css';
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
 
-
 Vue.use(Toasted, { 
     iconPack : 'material-icons',
     theme: "bubble", 
     position: "top-center", 
-    duration : 10000
+    duration : 3000
 })
 
 /**
@@ -21,6 +20,7 @@ Vue.use(Toasted, {
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 Vue.component('setting-component', require('./components/SettingComponent.vue').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 const dashboard_app = new Vue({
     el: '#dashboard-app'

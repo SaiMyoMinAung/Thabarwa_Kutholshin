@@ -2,7 +2,6 @@ export default class city {
     constructor(
         validation = null
     ){
-        this.validation = validation
         if(validation != null){
 
             if(validation.name){
