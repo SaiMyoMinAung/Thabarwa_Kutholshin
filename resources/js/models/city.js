@@ -5,10 +5,12 @@ export default class city extends base {
         super("/backend/cities");
         this.name = '';
         this.is_available = 0;
+        this.listHrefId = "city-list";
+        this.createHrefId = "city-list-create";
     }
     
     editRecord(index) {
-        super.edit('city-list-create', index);        
+        super.edit(index);        
     }
 
     clearData() {
@@ -20,7 +22,7 @@ export default class city extends base {
     updateCity() {
         var url = "/backend/cities/" + this.id;
         var data = {name:this.name,is_available:this.is_available,_method:"PUT"};
-        super.update(url, data, 'city-list')
+        super.update(url, data)
     }
 
     saveCity() {

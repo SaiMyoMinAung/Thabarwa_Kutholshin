@@ -1914,6 +1914,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _validations_setting_component_city_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../validations/setting_component/city.js */ "./resources/js/validations/setting_component/city.js");
 /* harmony import */ var _models_city_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../models/city.js */ "./resources/js/models/city.js");
+/* harmony import */ var _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../validations/setting_component/country.js */ "./resources/js/validations/setting_component/country.js");
+/* harmony import */ var _models_country_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/country.js */ "./resources/js/models/country.js");
 //
 //
 //
@@ -2223,6 +2225,141 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -2235,49 +2372,76 @@ __webpack_require__.r(__webpack_exports__);
       city: {
         validation: new _validations_setting_component_city_js__WEBPACK_IMPORTED_MODULE_2__["default"](),
         model: new _models_city_js__WEBPACK_IMPORTED_MODULE_3__["default"]()
+      },
+      country: {
+        validation: new _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_4__["default"](),
+        model: new _models_country_js__WEBPACK_IMPORTED_MODULE_5__["default"]()
       }
     };
   },
+  computed: {
+    isLoadingWatch: function isLoadingWatch() {
+      return this.city.model.isLoading || this.country.model.isLoading;
+    },
+    isCreateSuccessWatch: function isCreateSuccessWatch() {
+      return this.city.model.isCreateSuccess || this.country.model.isCreateSuccess;
+    },
+    isCreateFailWatch: function isCreateFailWatch() {
+      return this.city.model.isCreateFail || this.country.model.isCreateFail;
+    },
+    isUpdateSuccessWatch: function isUpdateSuccessWatch() {
+      return this.city.model.isUpdateSuccess || this.country.model.isUpdateSuccess;
+    },
+    isUpdateFailWatch: function isUpdateFailWatch() {
+      return this.city.model.isUpdateFail || this.country.model.isUpdateFail;
+    },
+    isDeleteSuccessWatch: function isDeleteSuccessWatch() {
+      return this.city.model.isDeleteSuccess || this.country.model.isDeleteSuccess;
+    },
+    isDeleteFailWatch: function isDeleteFailWatch() {
+      return this.city.model.isDeleteFail || this.country.model.isDeleteFail;
+    }
+  },
   watch: {
-    "city.model.isLoading": function cityModelIsLoading(newisLoading, oldisLoading) {
+    isLoadingWatch: function isLoadingWatch(newisLoading, oldisLoading) {
       this.isLoading = newisLoading;
     },
-    "city.model.isCreateSuccess": function cityModelIsCreateSuccess(newisCreateSuccess, oldisCreateSuccess) {
+    isCreateSuccessWatch: function isCreateSuccessWatch(newisCreateSuccess, oldisCreateSuccess) {
       if (newisCreateSuccess) {
         this.$toasted.show("Saving Success.", {
           icon: "save"
         });
       }
     },
-    "city.model.isCreateFail": function cityModelIsCreateFail(newisCreateFail, oldisCreateFail) {
+    isCreateFailWatch: function isCreateFailWatch(newisCreateFail, oldisCreateFail) {
       if (newisCreateFail) {
         this.$toasted.show("Saving Failed.", {
           icon: "save"
         });
       }
     },
-    "city.model.isUpdateSuccess": function cityModelIsUpdateSuccess(newisUpdateSuccess, oldisUpdateSuccess) {
+    isUpdateSuccessWatch: function isUpdateSuccessWatch(newisUpdateSuccess, oldisUpdateSuccess) {
       if (newisUpdateSuccess) {
         this.$toasted.show("Upading Success.", {
           icon: "save"
         });
       }
     },
-    "city.model.isUpdateFail": function cityModelIsUpdateFail(newisUpdateFail, oldisUpdateFail) {
+    isUpdateFailWatch: function isUpdateFailWatch(newisUpdateFail, oldisUpdateFail) {
       if (newisUpdateFail) {
         this.$toasted.show("Updaing Failed.", {
           icon: "save"
         });
       }
     },
-    "city.model.isDeleteSuccess": function cityModelIsDeleteSuccess(newisDeleteSuccess, oldisDeleteSuccess) {
+    isDeleteSuccessWatch: function isDeleteSuccessWatch(newisDeleteSuccess, oldisDeleteSuccess) {
       if (newisDeleteSuccess) {
         this.$toasted.show("Delete Success.", {
           icon: "delete"
         });
       }
     },
-    "city.model.isDeleteFail": function cityModelIsDeleteFail(newisDeleteFail, oldisDeleteFail) {
+    isDeleteFailWatch: function isDeleteFailWatch(newisDeleteFail, oldisDeleteFail) {
       if (newisDeleteFail) {
         this.$toasted.show("Delete Fail.", {
           icon: "delete"
@@ -2286,6 +2450,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     "city.model.validation": function cityModelValidation(newValidation, oldValidation) {
       this.city.validation = new _validations_setting_component_city_js__WEBPACK_IMPORTED_MODULE_2__["default"](newValidation);
+    },
+    "country.model.validation": function countryModelValidation(newValidation, oldValidation) {
+      this.country.validation = new _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_4__["default"](newValidation);
     }
   },
   components: {
@@ -2294,6 +2461,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getCityResult: function getCityResult(page) {
       this.city.model.fetchList(page);
+    },
+    getCountryResult: function getCountryResult(page) {
+      this.country.model.fetchList(page);
     }
   },
   mounted: function mounted() {},
@@ -39283,7 +39453,188 @@ var render = function() {
               "aria-labelledby": "country-list-create-tab"
             }
           },
-          [_vm._v("Country Create")]
+          [
+            _c("div", { staticClass: "col-md-6 card border border-success" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.country.validation.name_hasError,
+                      "was-validated":
+                        _vm.country.validation.validation != null &&
+                        !_vm.country.validation.name_hasError
+                    }
+                  },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.country.model.name,
+                          expression: "country.model.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.country.validation.name_hasError
+                      },
+                      attrs: {
+                        id: "country_name",
+                        type: "text",
+                        placeholder: "Country Name"
+                      },
+                      domProps: { value: _vm.country.model.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.country.model,
+                            "name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(_vm._s(_vm.country.validation.name_errorMessage))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "valid-feedback" }, [
+                      _vm._v(_vm._s(_vm.country.validation.name_successMessage))
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "checkbox",
+                      class: {
+                        "has-error":
+                          _vm.country.validation.is_available_hasError
+                      }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.country.model.is_available,
+                            expression: "country.model.is_available"
+                          }
+                        ],
+                        class: {
+                          "is-invalid":
+                            _vm.country.validation.is_available_hasError
+                        },
+                        attrs: {
+                          type: "checkbox",
+                          id: "country_is_available",
+                          value: "1",
+                          "true-value": "1",
+                          "false-value": "0"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.country.model.is_available)
+                            ? _vm._i(_vm.country.model.is_available, "1") > -1
+                            : _vm._q(_vm.country.model.is_available, "1")
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.country.model.is_available,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? "1" : "0"
+                            if (Array.isArray($$a)) {
+                              var $$v = "1",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.country.model,
+                                    "is_available",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.country.model,
+                                    "is_available",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.country.model, "is_available", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm.country.validation.is_available_errorMessage
+                          )
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.country.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.country.model.updateCountry()
+                          }
+                        }
+                      },
+                      [_vm._v("Update")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.country.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default",
+                        on: {
+                          click: function($event) {
+                            return _vm.country.model.goToList("country-list")
+                          }
+                        }
+                      },
+                      [_vm._v("Cancel")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.country.model.saveCountry()
+                          }
+                        }
+                      },
+                      [_vm._v("Create")]
+                    )
+              ])
+            ])
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -39296,7 +39647,151 @@ var render = function() {
               "aria-labelledby": "country-list-tab"
             }
           },
-          [_vm._v("Country List")]
+          [
+            _c(
+              "table",
+              {
+                staticClass: "table table-hover table-dark",
+                attrs: { cellpadding: "0", cellspacing: "0" }
+              },
+              [
+                _vm._m(3),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.country.model.list.data, function(item, index) {
+                    return _c("tr", { key: item.id }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _vm._v(_vm._s(item.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-warning",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target":
+                                "#edit-collapse-country-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "editCollapseExample"
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "edit-collapse-country-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.country.model.editRecord(index)
+                                  }
+                                }
+                              },
+                              [_vm._v("Yes")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target":
+                                    "#edit-collapse-country-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "editCollapseExample"
+                                }
+                              },
+                              [_vm._v("No")]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-danger",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#collapse-country-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "collapseExample"
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "collapse-country-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.country.model.deleteCountry(
+                                      item.id,
+                                      index
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Yes")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target": "#collapse-country-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "collapseExample"
+                                }
+                              },
+                              [_vm._v("No")]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("pagination", {
+              attrs: { data: _vm.country.model.list, align: "center" },
+              on: { "pagination-change-page": _vm.getCountryResult }
+            })
+          ],
+          1
         ),
         _vm._v(" "),
         _c(
@@ -39350,7 +39845,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(1),
+                    _vm._m(4),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -39456,7 +39951,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(2),
+                      _vm._m(5),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -39530,7 +40025,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(3),
+                _vm._m(6),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -39917,6 +40412,40 @@ var staticRenderFns = [
         )
       ]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "about_item" } }, [
+      _vm._v("\n              Country Name\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "country_is_available" } }, [
+      _vm._v("\n                Is Available\n                "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -52375,8 +52904,6 @@ var base = /*#__PURE__*/function () {
     value: function fetchList(page) {
       var _this = this;
 
-      console.log(page);
-
       if (typeof page === 'undefined') {
         page = 1;
       }
@@ -52392,11 +52919,11 @@ var base = /*#__PURE__*/function () {
 
   }, {
     key: "goToCreate",
-    value: function goToCreate(id) {
-      var linkId = '.dropdown-menu a[href="#' + id + '"]';
+    value: function goToCreate() {
+      var linkId = '.dropdown-menu a[href="#' + this.createHrefId + '"]';
       var drop_down_item = $(linkId);
       drop_down_item.tab('show');
-      drop_down_item.parent().parent()[0].childNodes[0].text = "Edit City";
+      drop_down_item.parent().parent()[0].childNodes[0].text = "Edit";
     }
     /**
      * Go To List
@@ -52405,26 +52932,25 @@ var base = /*#__PURE__*/function () {
 
   }, {
     key: "goToList",
-    value: function goToList(id) {
-      var linkId = '.dropdown-menu a[href="#' + id + '"]';
+    value: function goToList() {
+      var linkId = '.dropdown-menu a[href="#' + this.listHrefId + '"]';
       var drop_down_item = $(linkId);
       drop_down_item.tab('show');
       drop_down_item.parent().parent()[0].childNodes[0].text = drop_down_item.text();
     }
     /**
      * Go To When Click Edit Yes Button
-     * @param string id of <a>
      */
 
   }, {
     key: "edit",
-    value: function edit(id, index) {
+    value: function edit(index) {
       var editRecord = this.list.data[index];
       this.editIndex = index;
       Object.assign(this, editRecord);
       this.isEdit = true;
       this.validation = null;
-      this.goToCreate(id);
+      this.goToCreate();
     }
     /**
      * Save To Database
@@ -52442,7 +52968,7 @@ var base = /*#__PURE__*/function () {
       axios.post(url, data).then(function (response) {
         _this2.createSuccessful(response.data);
 
-        _this2.goToList('city-list');
+        _this2.goToList();
       })["catch"](function (error) {
         self.createFail(error.response.data.errors);
       });
@@ -52451,7 +52977,6 @@ var base = /*#__PURE__*/function () {
      * Update To Database
      * @param string url 
      * @param {*} data 
-     * @param string id 
      */
 
   }, {
@@ -52464,7 +52989,7 @@ var base = /*#__PURE__*/function () {
       axios.post(url, data).then(function (response) {
         _this3.updateSuccessful(response.data);
 
-        _this3.goToList(id);
+        _this3.goToList();
       })["catch"](function (error) {
         self.updateFail(error.response.data.errors);
       });
@@ -52627,13 +53152,15 @@ var city = /*#__PURE__*/function (_base) {
     _this = _super.call(this, "/backend/cities");
     _this.name = '';
     _this.is_available = 0;
+    _this.listHrefId = "city-list";
+    _this.createHrefId = "city-list-create";
     return _this;
   }
 
   _createClass(city, [{
     key: "editRecord",
     value: function editRecord(index) {
-      _get(_getPrototypeOf(city.prototype), "edit", this).call(this, 'city-list-create', index);
+      _get(_getPrototypeOf(city.prototype), "edit", this).call(this, index);
     }
   }, {
     key: "clearData",
@@ -52653,7 +53180,7 @@ var city = /*#__PURE__*/function (_base) {
         _method: "PUT"
       };
 
-      _get(_getPrototypeOf(city.prototype), "update", this).call(this, url, data, 'city-list');
+      _get(_getPrototypeOf(city.prototype), "update", this).call(this, url, data);
     }
   }, {
     key: "saveCity",
@@ -52676,6 +53203,115 @@ var city = /*#__PURE__*/function (_base) {
   }]);
 
   return city;
+}(_base_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/country.js":
+/*!****************************************!*\
+  !*** ./resources/js/models/country.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return country; });
+/* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base.js */ "./resources/js/models/base.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var country = /*#__PURE__*/function (_base) {
+  _inherits(country, _base);
+
+  var _super = _createSuper(country);
+
+  function country() {
+    var _this;
+
+    _classCallCheck(this, country);
+
+    _this = _super.call(this, "/backend/countries");
+    _this.name = '';
+    _this.is_available = 0;
+    _this.listHrefId = "country-list";
+    _this.createHrefId = "country-list-create";
+    return _this;
+  }
+
+  _createClass(country, [{
+    key: "editRecord",
+    value: function editRecord(index) {
+      _get(_getPrototypeOf(country.prototype), "edit", this).call(this, index);
+    }
+  }, {
+    key: "clearData",
+    value: function clearData() {
+      _get(_getPrototypeOf(country.prototype), "clearData", this).call(this);
+
+      this.is_available = 0;
+      this.name = '';
+    }
+  }, {
+    key: "updateCountry",
+    value: function updateCountry() {
+      var url = "/backend/countries/" + this.id;
+      var data = {
+        name: this.name,
+        is_available: this.is_available,
+        _method: "PUT"
+      };
+
+      _get(_getPrototypeOf(country.prototype), "update", this).call(this, url, data);
+    }
+  }, {
+    key: "saveCountry",
+    value: function saveCountry() {
+      var data = {
+        name: this.name,
+        is_available: this.is_available
+      };
+      var url = "/backend/countries/";
+
+      _get(_getPrototypeOf(country.prototype), "save", this).call(this, url, data);
+    }
+  }, {
+    key: "deleteCountry",
+    value: function deleteCountry(id, index) {
+      var url = '/backend/countries/' + id;
+
+      _get(_getPrototypeOf(country.prototype), "delete", this).call(this, url, index);
+    }
+  }]);
+
+  return country;
 }(_base_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
@@ -52745,6 +53381,75 @@ var city = /*#__PURE__*/function () {
   }]);
 
   return city;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/validations/setting_component/country.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/validations/setting_component/country.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return country; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var country = /*#__PURE__*/function () {
+  function country() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, country);
+
+    if (validation != null) {
+      if (validation.name) {
+        this.name_hasError = true;
+        this.name_errorMessage = validation.name;
+        this.name_successMessage = null;
+      } else {
+        this.name_hasError = false;
+        this.name_successMessage = 'Good Name.';
+      }
+
+      if (validation.is_available) {
+        this.is_available_hasError = true;
+        this.is_available_errorMessage = validation.is_available;
+        this.is_available_successMessage = null;
+      } else {
+        this.is_available_hasError = false;
+        this.is_available_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(country, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.name_hasError = false;
+      this.name_errorMessage = '';
+      this.name_successMessage = '';
+      this.is_available_hasError = false;
+      this.is_available_errorMessage = '';
+      this.is_available_successMessage = '';
+    }
+  }, {
+    key: "validateName",
+    value: function validateName($event) {}
+  }]);
+
+  return country;
 }();
 
 

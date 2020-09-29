@@ -18,7 +18,6 @@ export default class base {
     }
 
     fetchList(page) {
-        console.log(page)
         if (typeof page === 'undefined') {
             page = 1;
         }
@@ -32,19 +31,19 @@ export default class base {
      * Go To Create Form
      * @param string id of <a>
      */
-    goToCreate(id) {
-        var linkId = '.dropdown-menu a[href="#' + id + '"]';
+    goToCreate() {
+        var linkId = '.dropdown-menu a[href="#' + this.createHrefId + '"]';
         var drop_down_item = $(linkId);
         drop_down_item.tab('show');
-        drop_down_item.parent().parent()[0].childNodes[0].text = "Edit City";
+        drop_down_item.parent().parent()[0].childNodes[0].text = "Edit";
     }
 
     /**
      * Go To List
      * @param string id of <a>
      */
-    goToList(id) {
-        var linkId = '.dropdown-menu a[href="#' + id + '"]';
+    goToList() {
+        var linkId = '.dropdown-menu a[href="#' + this.listHrefId + '"]';
         var drop_down_item = $(linkId);
         drop_down_item.tab('show');
         drop_down_item.parent().parent()[0].childNodes[0].text = drop_down_item.text();
@@ -52,16 +51,15 @@ export default class base {
 
     /**
      * Go To When Click Edit Yes Button
-     * @param string id of <a>
      */
-    edit(id, index) {
+    edit(index) {
         var editRecord = this.list.data[index]
         this.editIndex = index;
         Object.assign(this, editRecord);
 
         this.isEdit = true;
         this.validation = null;
-        this.goToCreate(id);
+        this.goToCreate();
     }
 
     /**
@@ -76,7 +74,7 @@ export default class base {
         axios.post(url, data)
             .then(response => {
                 this.createSuccessful(response.data);
-                this.goToList('city-list');
+                this.goToList()
             })
             .catch(function (error) {
                 self.createFail(error.response.data.errors);
@@ -87,7 +85,6 @@ export default class base {
      * Update To Database
      * @param string url 
      * @param {*} data 
-     * @param string id 
      */
     update(url, data, id) {
         self = this;
@@ -96,7 +93,7 @@ export default class base {
         axios.post(url, data)
             .then(response => {
                 this.updateSuccessful(response.data)
-                this.goToList(id)
+                this.goToList()
             })
             .catch(function (error) {
                 self.updateFail(error.response.data.errors)

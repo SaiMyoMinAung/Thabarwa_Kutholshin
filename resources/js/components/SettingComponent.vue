@@ -145,13 +145,142 @@
         id="country-list-create"
         role="tabpanel"
         aria-labelledby="country-list-create-tab"
-      >Country Create</div>
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            <!-- start country name -->
+            <div
+              class="form-group"
+              v-bind:class="{ 'has-error': country.validation.name_hasError, 'was-validated': (country.validation.validation != null && !country.validation.name_hasError) }"
+            >
+              <label for="about_item">
+                Country Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="country_name"
+                type="text"
+                class="form-control"
+                placeholder="Country Name"
+                v-model="country.model.name"
+                v-bind:class="{ 'is-invalid': country.validation.name_hasError }"
+              />
+              <div class="invalid-feedback">{{country.validation.name_errorMessage}}</div>
+              <div class="valid-feedback">{{country.validation.name_successMessage}}</div>
+            </div>
+            <!-- end country name -->
+
+            <!-- start country is_available -->
+            <div class="col-sm-offset-2 col-sm-10">
+              <div
+                class="checkbox"
+                v-bind:class="{ 'has-error': country.validation.is_available_hasError}"
+              >
+                <input
+                  type="checkbox"
+                  id="country_is_available"
+                  value="1"
+                  v-model="country.model.is_available"
+                  true-value="1"
+                  false-value="0"
+                  v-bind:class="{ 'is-invalid': country.validation.is_available_hasError}"
+                />
+                <label for="country_is_available">
+                  Is Available
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="invalid-feedback">{{country.validation.is_available_errorMessage}}</div>
+              </div>
+            </div>
+            <!-- end city is_available -->
+            <button
+              v-if="country.model.isEdit"
+              @click="country.model.updateCountry()"
+              class="btn btn-success"
+            >Update</button>
+            <button
+              v-if="country.model.isEdit"
+              @click="country.model.goToList('country-list')"
+              class="btn btn-default"
+            >Cancel</button>
+            <button v-else @click="country.model.saveCountry()" class="btn btn-success">Create</button>
+          </div>
+        </div>
+      </div>
       <div
         class="tab-pane fade"
         id="country-list"
         role="tabpanel"
         aria-labelledby="country-list-tab"
-      >Country List</div>
+      >
+        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in country.model.list.data" :key="item.id">
+              <th scope="row">{{index + 1}}</th>
+              <td style="max-width:20px">{{item.name}}</td>
+              <td style="max-width:20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-country-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >Edit</button>
+                <div :id="`edit-collapse-country-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="country.model.editRecord(index)"
+                  >Yes</button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-country-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >No</button>
+                </div>
+              </td>
+              <td style="max-width:20px">
+                <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-country-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >Delete</button>
+                <div :id="`collapse-country-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="country.model.deleteCountry(item.id, index)"
+                  >Yes</button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-country-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >No</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="country.model.list"
+          align="center"
+          v-on:pagination-change-page="getCountryResult"
+        ></pagination>
+      </div>
       <!-- end country -->
 
       <!-- start state region -->
@@ -300,7 +429,11 @@
             </tr>
           </tbody>
         </table>
-        <pagination :data="city.model.list" align="center" v-on:pagination-change-page="getCityResult"></pagination>
+        <pagination
+          :data="city.model.list"
+          align="center"
+          v-on:pagination-change-page="getCityResult"
+        ></pagination>
       </div>
       <!-- end city -->
     </div>
@@ -312,6 +445,8 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import city from "../validations/setting_component/city.js";
 import cityModel from "../models/city.js";
+import country from "../validations/setting_component/country.js";
+import countryModel from "../models/country.js";
 
 export default {
   data: () => ({
@@ -320,53 +455,80 @@ export default {
     city: {
       validation: new city(),
       model: new cityModel()
+    },
+    country: {
+      validation: new country(),
+      model: new countryModel()
     }
   }),
+  computed: {
+    isLoadingWatch() {
+      return this.city.model.isLoading || this.country.model.isLoading;
+    },
+    isCreateSuccessWatch() {
+      return (
+        this.city.model.isCreateSuccess || this.country.model.isCreateSuccess
+      );
+    },
+    isCreateFailWatch() {
+      return this.city.model.isCreateFail || this.country.model.isCreateFail;
+    },
+    isUpdateSuccessWatch() {
+      return (
+        this.city.model.isUpdateSuccess || this.country.model.isUpdateSuccess
+      );
+    },
+    isUpdateFailWatch() {
+      return this.city.model.isUpdateFail || this.country.model.isUpdateFail;
+    },
+    isDeleteSuccessWatch() {
+      return (
+        this.city.model.isDeleteSuccess || this.country.model.isDeleteSuccess
+      );
+    },
+    isDeleteFailWatch() {
+      return this.city.model.isDeleteFail || this.country.model.isDeleteFail;
+    }
+  },
   watch: {
-    "city.model.isLoading": function(newisLoading, oldisLoading) {
+    isLoadingWatch: function(newisLoading, oldisLoading) {
       this.isLoading = newisLoading;
     },
-    "city.model.isCreateSuccess": function(
-      newisCreateSuccess,
-      oldisCreateSuccess
-    ) {
+    isCreateSuccessWatch: function(newisCreateSuccess, oldisCreateSuccess) {
       if (newisCreateSuccess) {
         this.$toasted.show("Saving Success.", { icon: "save" });
       }
     },
-    "city.model.isCreateFail": function(newisCreateFail, oldisCreateFail) {
+    isCreateFailWatch: function(newisCreateFail, oldisCreateFail) {
       if (newisCreateFail) {
         this.$toasted.show("Saving Failed.", { icon: "save" });
       }
     },
-    "city.model.isUpdateSuccess": function(
-      newisUpdateSuccess,
-      oldisUpdateSuccess
-    ) {
+    isUpdateSuccessWatch: function(newisUpdateSuccess, oldisUpdateSuccess) {
       if (newisUpdateSuccess) {
         this.$toasted.show("Upading Success.", { icon: "save" });
       }
     },
-    "city.model.isUpdateFail": function(newisUpdateFail, oldisUpdateFail) {
+    isUpdateFailWatch: function(newisUpdateFail, oldisUpdateFail) {
       if (newisUpdateFail) {
         this.$toasted.show("Updaing Failed.", { icon: "save" });
       }
     },
-    "city.model.isDeleteSuccess": function(
-      newisDeleteSuccess,
-      oldisDeleteSuccess
-    ) {
+    isDeleteSuccessWatch: function(newisDeleteSuccess, oldisDeleteSuccess) {
       if (newisDeleteSuccess) {
         this.$toasted.show("Delete Success.", { icon: "delete" });
       }
     },
-    "city.model.isDeleteFail": function(newisDeleteFail, oldisDeleteFail) {
+    isDeleteFailWatch: function(newisDeleteFail, oldisDeleteFail) {
       if (newisDeleteFail) {
         this.$toasted.show("Delete Fail.", { icon: "delete" });
       }
     },
     "city.model.validation": function(newValidation, oldValidation) {
       this.city.validation = new city(newValidation);
+    },
+    "country.model.validation": function(newValidation, oldValidation) {
+      this.country.validation = new country(newValidation);
     }
   },
   components: {
@@ -374,7 +536,10 @@ export default {
   },
   methods: {
     getCityResult(page) {
-      this.city.model.fetchList(page)
+      this.city.model.fetchList(page);
+    },
+    getCountryResult(page) {
+      this.country.model.fetchList(page);
     }
   },
   mounted() {},
