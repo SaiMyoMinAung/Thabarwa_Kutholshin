@@ -8,7 +8,7 @@ export default class base {
         this.isEdit = false;
         this.isCreateSuccess = '';
         this.isCreateFail = '';
-        this.isUpdateSuccess = '';
+        this.isUpdateSuccess = false;
         this.isUpdateFail = '';
         this.isDeleteSuccess = '';
         this.isDeleteFail = '';

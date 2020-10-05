@@ -12,7 +12,8 @@ export default class city extends base {
     }
 
     editRecord(index) {
-        super.edit(index);        
+        super.edit(index);   
+        this.state_region_id = this.stateRegion ? this.stateRegion.id :'';
     }
 
     clearData() {

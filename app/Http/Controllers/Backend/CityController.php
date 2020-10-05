@@ -43,11 +43,14 @@ class CityController extends Controller
      */
     public function store(CityStoreRequest $request)
     {
-        $validated_data = $request->validated();
-
-        $city = City::create($validated_data);
-
-        return response()->json(new CityResource($city), 201);
+        try {
+            $validated_data = $request->validated();
+            $city = City::create($validated_data);
+            return response()->json(new CityResource($city), 201);
+        } catch (Exception $e) {
+            report($e);
+            return response()->json(['message' => 'fail'], 500);
+        }
     }
 
     /**

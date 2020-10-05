@@ -12,14 +12,23 @@ export default class city {
                 this.name_hasError = false;
                 this.name_successMessage = 'Good Name.';
             }
-            
-            if(validation.is_available){
-                this.is_available_hasError = true;
-                this.is_available_errorMessage = validation.is_available;
-                this.is_available_successMessage = null;
+
+            if(validation.address){
+                this.address_hasError = true;
+                this.address_errorMessage = validation.address;
+                this.address_successMessage = null;
             } else {
-                this.is_available_hasError = false;
-                this.is_available_successMessage = 'Good Job.';
+                this.address_hasError = false;
+                this.address_successMessage = 'Good Address.';
+            }
+            
+            if(validation.is_open){
+                this.is_open_hasError = true;
+                this.is_open_errorMessage = validation.is_open;
+                this.is_open_successMessage = null;
+            } else {
+                this.is_open_hasError = false;
+                this.is_open_successMessage = 'Good Job.';
             }
 
             if(validation.state_region_id){
@@ -43,9 +52,13 @@ export default class city {
         this.name_errorMessage = '';
         this.name_successMessage = '';
 
-        this.is_available_hasError = false;
-        this.is_available_errorMessage = '';
-        this.is_available_successMessage = '';
+        this.address_hasError = false;
+        this.address_errorMessage = '';
+        this.address_successMessage = '';
+
+        this.is_open_hasError = false;
+        this.is_open_errorMessage = '';
+        this.is_open_successMessage = '';
 
         this.state_region_id_hasError = false;
         this.state_region_id_errorMessage = '';

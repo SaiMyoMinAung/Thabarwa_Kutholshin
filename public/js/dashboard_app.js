@@ -1918,7 +1918,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_country_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/country.js */ "./resources/js/models/country.js");
 /* harmony import */ var _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../validations/setting_component/state_region.js */ "./resources/js/validations/setting_component/state_region.js");
 /* harmony import */ var _models_state_region_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../models/state_region.js */ "./resources/js/models/state_region.js");
-/* harmony import */ var _select2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./select2 */ "./resources/js/components/select2.vue");
+/* harmony import */ var _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../validations/setting_component/office.js */ "./resources/js/validations/setting_component/office.js");
+/* harmony import */ var _models_office_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../models/office.js */ "./resources/js/models/office.js");
+/* harmony import */ var _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../validations/setting_component/store.js */ "./resources/js/validations/setting_component/store.js");
+/* harmony import */ var _models_store_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../models/store.js */ "./resources/js/models/store.js");
+/* harmony import */ var _select2__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./select2 */ "./resources/js/components/select2.vue");
 //
 //
 //
@@ -2624,6 +2628,421 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 
 
 
@@ -2649,30 +3068,38 @@ __webpack_require__.r(__webpack_exports__);
       stateRegion: {
         validation: new _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_6__["default"](),
         model: new _models_state_region_js__WEBPACK_IMPORTED_MODULE_7__["default"]()
+      },
+      office: {
+        validation: new _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_8__["default"](),
+        model: new _models_office_js__WEBPACK_IMPORTED_MODULE_9__["default"]()
+      },
+      store: {
+        validation: new _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_10__["default"](),
+        model: new _models_store_js__WEBPACK_IMPORTED_MODULE_11__["default"]()
       }
     };
   },
   computed: {
     isLoadingWatch: function isLoadingWatch() {
-      return this.city.model.isLoading || this.country.model.isLoading || this.stateRegion.model.isLoading;
+      return this.city.model.isLoading || this.country.model.isLoading || this.stateRegion.model.isLoading || this.office.model.isLoading || this.store.model.isLoading;
     },
     isCreateSuccessWatch: function isCreateSuccessWatch() {
-      return this.city.model.isCreateSuccess || this.country.model.isCreateSuccess || this.stateRegion.model.isCreateSuccess;
+      return this.city.model.isCreateSuccess || this.country.model.isCreateSuccess || this.stateRegion.model.isCreateSuccess || this.office.model.isCreateSuccess || this.store.model.isCreateSuccess;
     },
     isCreateFailWatch: function isCreateFailWatch() {
-      return this.city.model.isCreateFail || this.country.model.isCreateFail || this.stateRegion.model.isCreateFail;
+      return this.city.model.isCreateFail || this.country.model.isCreateFail || this.stateRegion.model.isCreateFail || this.office.model.isCreateFail || this.store.model.isCreateFail;
     },
     isUpdateSuccessWatch: function isUpdateSuccessWatch() {
-      return this.city.model.isUpdateSuccess || this.country.model.isUpdateSuccess || this.stateRegion.model.isUpdateSuccess;
+      return this.city.model.isUpdateSuccess || this.country.model.isUpdateSuccess || this.stateRegion.model.isUpdateSuccess || this.office.model.isUpdateSuccess || this.store.model.isUpdateSuccess;
     },
     isUpdateFailWatch: function isUpdateFailWatch() {
-      return this.city.model.isUpdateFail || this.country.model.isUpdateFail || this.stateRegion.model.isUpdateFail;
+      return this.city.model.isUpdateFail || this.country.model.isUpdateFail || this.stateRegion.model.isUpdateFail || this.office.model.isUpdateFail || this.store.model.isUpdateFail;
     },
     isDeleteSuccessWatch: function isDeleteSuccessWatch() {
-      return this.city.model.isDeleteSuccess || this.country.model.isDeleteSuccess || this.stateRegion.model.isDeleteSuccess;
+      return this.city.model.isDeleteSuccess || this.country.model.isDeleteSuccess || this.stateRegion.model.isDeleteSuccess || this.office.model.isDeleteSuccess || this.store.model.isDeleteSuccess;
     },
     isDeleteFailWatch: function isDeleteFailWatch() {
-      return this.city.model.isDeleteFail || this.country.model.isDeleteFail || this.stateRegion.model.isDeleteFail;
+      return this.city.model.isDeleteFail || this.country.model.isDeleteFail || this.stateRegion.model.isDeleteFail || this.office.model.isDeleteFail || this.store.model.isDeleteFail;
     }
   },
   watch: {
@@ -2684,9 +3111,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$toasted.show("Saving Success.", {
           icon: "save"
         });
-        this.stateRegion.model.fetchList(this.stateRegion.model.page);
-        this.city.model.fetchList(this.city.model.page);
-        this.$forceUpdate();
+        this.fetchListAndResetCondition();
       }
     },
     isCreateFailWatch: function isCreateFailWatch(newisCreateFail, oldisCreateFail) {
@@ -2701,9 +3126,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$toasted.show("Upading Success.", {
           icon: "save"
         });
-        this.stateRegion.model.fetchList(this.stateRegion.model.page);
-        this.city.model.fetchList(this.city.model.page);
-        this.$forceUpdate();
+        this.fetchListAndResetCondition();
       }
     },
     isUpdateFailWatch: function isUpdateFailWatch(newisUpdateFail, oldisUpdateFail) {
@@ -2718,9 +3141,7 @@ __webpack_require__.r(__webpack_exports__);
         this.$toasted.show("Delete Success.", {
           icon: "delete"
         });
-        this.stateRegion.model.fetchList(this.stateRegion.model.page);
-        this.city.model.fetchList(this.city.model.page);
-        this.$forceUpdate();
+        this.fetchListAndResetCondition();
       }
     },
     isDeleteFailWatch: function isDeleteFailWatch(newisDeleteFail, oldisDeleteFail) {
@@ -2738,11 +3159,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     "stateRegion.model.validation": function stateRegionModelValidation(newValidation, oldValidation) {
       this.stateRegion.validation = new _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_6__["default"](newValidation);
+    },
+    "office.model.validation": function officeModelValidation(newValidation, oldValidation) {
+      this.office.validation = new _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_8__["default"](newValidation);
+    },
+    "store.model.validation": function storeModelValidation(newValidation, oldValidation) {
+      this.store.validation = new _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_10__["default"](newValidation);
     }
   },
   components: {
     Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a,
-    select2: _select2__WEBPACK_IMPORTED_MODULE_8__["default"]
+    select2: _select2__WEBPACK_IMPORTED_MODULE_12__["default"]
   },
   methods: {
     getCityResult: function getCityResult(page) {
@@ -2756,6 +3183,37 @@ __webpack_require__.r(__webpack_exports__);
     getStateRegionResult: function getStateRegionResult(page) {
       this.stateRegion.model.page = page;
       this.stateRegion.model.fetchList(page);
+    },
+    getOfficeResult: function getOfficeResult(page) {
+      this.office.model.page = page;
+      this.office.model.fetchList(page);
+    },
+    getStoreResult: function getStoreResult(page) {
+      this.store.model.page = page;
+      this.store.model.fetchList(page);
+    },
+    fetchListAndResetCondition: function fetchListAndResetCondition() {
+      this.stateRegion.model.fetchList(this.stateRegion.model.page);
+      this.city.model.fetchList(this.city.model.page);
+      this.office.model.fetchList(this.office.model.page);
+      this.country.model.fetchList(this.office.model.page);
+      this.store.model.fetchList(this.store.model.page);
+      this.stateRegion.model.isCreateSuccess = false;
+      this.city.model.isCreateSuccess = false;
+      this.office.model.isCreateSuccess = false;
+      this.country.model.isCreateSuccess = false;
+      this.store.model.isCreateSuccess = false;
+      this.stateRegion.model.isUpdateSuccess = false;
+      this.city.model.isUpdateSuccess = false;
+      this.office.model.isUpdateSuccess = false;
+      this.country.model.isUpdateSuccess = false;
+      this.store.model.isUpdateSuccess = false;
+      this.stateRegion.model.isDeleteSuccess = false;
+      this.city.model.isDeleteSuccess = false;
+      this.office.model.isDeleteSuccess = false;
+      this.country.model.isDeleteSuccess = false;
+      this.store.model.isDeleteSuccess = false;
+      this.$forceUpdate();
     }
   },
   mounted: function mounted() {},
@@ -7415,7 +7873,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.material-icons.red[data-v-ae7e6710] {\n  color: red;\n}\n.material-icons.green[data-v-ae7e6710] {\n  color: green;\n}\n", ""]);
+exports.push([module.i, "\n.material-icons.red[data-v-ae7e6710] {\n  color: red;\n}\n.material-icons.green[data-v-ae7e6710] {\n  color: green;\n}\n.location-setting[data-v-ae7e6710] {\n  color: green;\n}\n", ""]);
 
 // exports
 
@@ -39991,7 +40449,69 @@ var render = function() {
           attrs: { id: "myTab", role: "tablist" }
         },
         [
-          _vm._m(0),
+          _c(
+            "li",
+            {
+              staticClass: "nav-item dropdown",
+              staticStyle: { "min-width": "150px" },
+              attrs: { role: "presentation" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link dropdown-toggle active",
+                  attrs: {
+                    "data-toggle": "dropdown",
+                    href: "#",
+                    role: "button",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false"
+                  }
+                },
+                [_vm._v("Office")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-menu" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "office-list-tab",
+                      "data-toggle": "tab",
+                      href: "#office-list",
+                      role: "tab",
+                      "aria-controls": "office-list",
+                      "aria-selected": "true"
+                    }
+                  },
+                  [_vm._v("Office List")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "office-list-create-tab",
+                      "data-toggle": "tab",
+                      href: "#office-list-create",
+                      role: "tab",
+                      "aria-controls": "office-list-create",
+                      "aria-selected": "false"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.office.model.clearData()
+                      }
+                    }
+                  },
+                  [_vm._v("Create Office")]
+                )
+              ])
+            ]
+          ),
           _vm._v(" "),
           _c(
             "li",
@@ -40005,6 +40525,70 @@ var render = function() {
                 "a",
                 {
                   staticClass: "nav-link dropdown-toggle",
+                  attrs: {
+                    "data-toggle": "dropdown",
+                    href: "#",
+                    role: "button",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false"
+                  }
+                },
+                [_vm._v("Store")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-menu" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "store-list-tab",
+                      "data-toggle": "tab",
+                      href: "#store-list",
+                      role: "tab",
+                      "aria-controls": "store-list",
+                      "aria-selected": "true"
+                    }
+                  },
+                  [_vm._v("Store List")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "store-list-create-tab",
+                      "data-toggle": "tab",
+                      href: "#store-list-create",
+                      role: "tab",
+                      "aria-controls": "store-list-create",
+                      "aria-selected": "false"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.store.model.clearData()
+                      }
+                    }
+                  },
+                  [_vm._v("Create Store")]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "nav-item dropdown",
+              staticStyle: { "min-width": "150px" },
+              attrs: { role: "presentation" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link dropdown-toggle location-setting",
                   attrs: {
                     "data-toggle": "dropdown",
                     href: "#",
@@ -40068,7 +40652,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "nav-link dropdown-toggle",
+                  staticClass: "nav-link dropdown-toggle location-setting",
                   attrs: {
                     "data-toggle": "dropdown",
                     href: "#",
@@ -40132,7 +40716,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  staticClass: "nav-link dropdown-toggle",
+                  staticClass: "nav-link dropdown-toggle location-setting",
                   attrs: {
                     "data-toggle": "dropdown",
                     href: "#",
@@ -40191,6 +40775,417 @@ var render = function() {
         _c(
           "div",
           {
+            staticClass: "tab-pane fade show",
+            attrs: {
+              id: "store-list",
+              role: "tabpanel",
+              "aria-labelledby": "store-list-tab"
+            }
+          },
+          [
+            _c(
+              "table",
+              {
+                staticClass: "table table-hover table-dark",
+                attrs: { cellpadding: "0", cellspacing: "0" }
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.store.model.list.data, function(item, index) {
+                    return _c("tr", { key: item.id }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _vm._v(_vm._s(item.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _vm._v(_vm._s(item.store_number))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        item.office && item.office.is_open == 1
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons green",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("check_circle")]
+                            )
+                          : item.office && item.office.is_open == 0
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons red",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("cancel")]
+                            )
+                          : _vm._e(),
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(item.office ? item.office.name : "-") +
+                            "\n            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-warning",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#edit-collapse-store-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "editCollapseExample"
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "edit-collapse-store-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.store.model.editRecord(index)
+                                  }
+                                }
+                              },
+                              [_vm._v("Yes")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target":
+                                    "#edit-collapse-store-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "editCollapseExample"
+                                }
+                              },
+                              [_vm._v("No")]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-danger",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#collapse-store-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "collapseExample"
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "collapse-store-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.store.model.deleteStore(
+                                      item.uuid,
+                                      index
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Yes")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target": "#collapse-store-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "collapseExample"
+                                }
+                              },
+                              [_vm._v("No")]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("pagination", {
+              attrs: { data: _vm.store.model.list, align: "center" },
+              on: { "pagination-change-page": _vm.getStoreResult }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade show",
+            attrs: {
+              id: "store-list-create",
+              role: "tabpanel",
+              "aria-labelledby": "store-list-create-tab"
+            }
+          },
+          [
+            _c("div", { staticClass: "col-md-6 card border border-success" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.store.validation.office_id_hasError,
+                      "was-validated":
+                        _vm.store.validation.office_id_successMessage &&
+                        !_vm.store.validation.office_id_hasError
+                    }
+                  },
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("select2", {
+                      class: {
+                        "is-invalid": _vm.store.validation.office_id_hasError
+                      },
+                      attrs: {
+                        url: _vm.office.model.fetchListUrl,
+                        value: _vm.store.model.office_id,
+                        "selected-option": _vm.store.model.office
+                      },
+                      on: {
+                        input: function($event) {
+                          return _vm.store.model.officeSelected($event)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        _vm._s(_vm.store.validation.office_id_errorMessage)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "valid-feedback",
+                        staticStyle: { display: "block" }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(_vm.store.validation.office_id_successMessage)
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.store.validation.name_hasError,
+                      "was-validated":
+                        _vm.store.validation.validation != null &&
+                        !_vm.store.validation.name_hasError
+                    }
+                  },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.store.model.name,
+                          expression: "store.model.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.store.validation.name_hasError
+                      },
+                      attrs: {
+                        id: "store_name",
+                        type: "text",
+                        placeholder: "store Name"
+                      },
+                      domProps: { value: _vm.store.model.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.store.model, "name", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(_vm._s(_vm.store.validation.name_errorMessage))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "valid-feedback" }, [
+                      _vm._v(_vm._s(_vm.store.validation.name_successMessage))
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.store.validation.store_number_hasError,
+                      "was-validated":
+                        _vm.store.validation.store_number_successMessage &&
+                        !_vm.stateRegion.validation.store_number_hasError
+                    }
+                  },
+                  [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.store.model.store_number,
+                          expression: "store.model.store_number"
+                        }
+                      ],
+                      staticClass: "form-control only-number",
+                      class: {
+                        "is-invalid": _vm.store.validation.store_number_hasError
+                      },
+                      attrs: {
+                        id: "store_number",
+                        type: "text",
+                        placeholder: "Store Number"
+                      },
+                      domProps: { value: _vm.store.model.store_number },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.store.model,
+                            "store_number",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        _vm._s(_vm.store.validation.store_number_errorMessage)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "valid-feedback" }, [
+                      _vm._v(
+                        _vm._s(_vm.store.validation.store_number_successMessage)
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.store.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.store.model.updateStore()
+                          }
+                        }
+                      },
+                      [_vm._v("Update")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.store.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default",
+                        on: {
+                          click: function($event) {
+                            return _vm.store.model.goToList()
+                          }
+                        }
+                      },
+                      [_vm._v("Cancel")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.store.model.saveStore()
+                          }
+                        }
+                      },
+                      [_vm._v("Create")]
+                    )
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
             staticClass: "tab-pane fade show active",
             attrs: {
               id: "office-list",
@@ -40198,7 +41193,203 @@ var render = function() {
               "aria-labelledby": "office-list-tab"
             }
           },
-          [_vm._v("office list")]
+          [
+            _c(
+              "table",
+              {
+                staticClass: "table table-hover table-dark",
+                attrs: { cellpadding: "0", cellspacing: "0" }
+              },
+              [
+                _vm._m(4),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.office.model.list.data, function(item, index) {
+                    return _c("tr", { key: item.id }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _vm._v(_vm._s(item.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        item.is_open == 1
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons green",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("check_circle")]
+                            )
+                          : _c(
+                              "i",
+                              {
+                                staticClass: "material-icons red",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("cancel")]
+                            )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        (item.stateRegion
+                        ? item.stateRegion.is_available == 1
+                        : "")
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons green",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("check_circle")]
+                            )
+                          : (item.stateRegion
+                            ? item.stateRegion.is_available == 0
+                            : "")
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons red",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("cancel")]
+                            )
+                          : _vm._e(),
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(
+                              item.stateRegion ? item.stateRegion.name : "-"
+                            ) +
+                            "\n            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-warning",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#edit-collapse-office-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "editCollapseExample"
+                            }
+                          },
+                          [_vm._v("Edit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "edit-collapse-office-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.office.model.editRecord(index)
+                                  }
+                                }
+                              },
+                              [_vm._v("Yes")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target":
+                                    "#edit-collapse-office-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "editCollapseExample"
+                                }
+                              },
+                              [_vm._v("No")]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-danger",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#collapse-office-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "collapseExample"
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "collapse-office-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.office.model.deleteOffice(
+                                      item.uuid,
+                                      index
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v("Yes")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target": "#collapse-office-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "collapseExample"
+                                }
+                              },
+                              [_vm._v("No")]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("pagination", {
+              attrs: { data: _vm.office.model.list, align: "center" },
+              on: { "pagination-change-page": _vm.getOfficeResult }
+            })
+          ],
+          1
         ),
         _vm._v(" "),
         _c(
@@ -40211,7 +41402,301 @@ var render = function() {
               "aria-labelledby": "office-list-create-tab"
             }
           },
-          [_vm._v("Create Office")]
+          [
+            _c("div", { staticClass: "col-md-6 card border border-success" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error":
+                        _vm.office.validation.state_region_id_hasError,
+                      "was-validated":
+                        _vm.office.validation.state_region_id_successMessage &&
+                        !_vm.office.validation.state_region_id_hasError
+                    }
+                  },
+                  [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("select2", {
+                      class: {
+                        "is-invalid":
+                          _vm.office.validation.state_region_id_hasError
+                      },
+                      attrs: {
+                        url: _vm.stateRegion.model.fetchListUrl,
+                        value: _vm.office.model.state_region_id,
+                        "selected-option": _vm.office.model.stateRegion
+                      },
+                      on: {
+                        input: function($event) {
+                          return _vm.office.model.stateRegionSelected($event)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        _vm._s(
+                          _vm.office.validation.state_region_id_errorMessage
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "valid-feedback",
+                        staticStyle: { display: "block" }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(
+                            _vm.office.validation.state_region_id_successMessage
+                          )
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.office.validation.name_hasError,
+                      "was-validated":
+                        _vm.office.validation.validation != null &&
+                        !_vm.office.validation.name_hasError
+                    }
+                  },
+                  [
+                    _vm._m(6),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.office.model.name,
+                          expression: "office.model.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.office.validation.name_hasError
+                      },
+                      attrs: {
+                        id: "office_name",
+                        type: "text",
+                        placeholder: "office Name"
+                      },
+                      domProps: { value: _vm.office.model.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.office.model,
+                            "name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(_vm._s(_vm.office.validation.name_errorMessage))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "valid-feedback" }, [
+                      _vm._v(_vm._s(_vm.office.validation.name_successMessage))
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.office.validation.address_hasError,
+                      "was-validated":
+                        _vm.office.validation.validation != null &&
+                        !_vm.office.validation.address_hasError
+                    }
+                  },
+                  [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.office.model.address,
+                          expression: "office.model.address"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.office.validation.address_hasError
+                      },
+                      attrs: {
+                        id: "office_address",
+                        type: "text",
+                        placeholder: "Office Address"
+                      },
+                      domProps: { value: _vm.office.model.address },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.office.model,
+                            "address",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(_vm._s(_vm.office.validation.address_errorMessage))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "valid-feedback" }, [
+                      _vm._v(
+                        _vm._s(_vm.office.validation.address_successMessage)
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "checkbox",
+                      class: {
+                        "has-error": _vm.office.validation.is_open_hasError
+                      }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.office.model.is_open,
+                            expression: "office.model.is_open"
+                          }
+                        ],
+                        class: {
+                          "is-invalid": _vm.office.validation.is_open_hasError
+                        },
+                        attrs: {
+                          type: "checkbox",
+                          id: "office_is_open",
+                          value: "1",
+                          "true-value": "1",
+                          "false-value": "0"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.office.model.is_open)
+                            ? _vm._i(_vm.office.model.is_open, "1") > -1
+                            : _vm._q(_vm.office.model.is_open, "1")
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.office.model.is_open,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? "1" : "0"
+                            if (Array.isArray($$a)) {
+                              var $$v = "1",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.office.model,
+                                    "is_open",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.office.model,
+                                    "is_open",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.office.model, "is_open", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          _vm._s(_vm.office.validation.is_open_errorMessage)
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.office.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.office.model.updateOffice()
+                          }
+                        }
+                      },
+                      [_vm._v("Update")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.office.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default",
+                        on: {
+                          click: function($event) {
+                            return _vm.office.model.goToList()
+                          }
+                        }
+                      },
+                      [_vm._v("Cancel")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.office.model.saveOffice()
+                          }
+                        }
+                      },
+                      [_vm._v("Create")]
+                    )
+              ])
+            ])
+          ]
         ),
         _vm._v(" "),
         _c(
@@ -40239,7 +41724,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(1),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -40350,7 +41835,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(2),
+                      _vm._m(10),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -40426,7 +41911,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(3),
+                _vm._m(11),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -40611,7 +42096,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(4),
+                    _vm._m(12),
                     _vm._v(" "),
                     _c("select2", {
                       class: {
@@ -40668,7 +42153,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(5),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -40729,7 +42214,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(6),
+                    _vm._m(14),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -40851,7 +42336,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(7),
+                      _vm._m(15),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -40927,7 +42412,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(8),
+                _vm._m(16),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -41151,7 +42636,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(9),
+                    _vm._m(17),
                     _vm._v(" "),
                     _c("select2", {
                       class: {
@@ -41206,7 +42691,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(10),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -41312,7 +42797,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(11),
+                      _vm._m(19),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -41386,7 +42871,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(12),
+                _vm._m(20),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -41585,64 +43070,104 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "li",
-      {
-        staticClass: "nav-item dropdown",
-        staticStyle: { "min-width": "150px" },
-        attrs: { role: "presentation" }
-      },
-      [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link dropdown-toggle active",
-            attrs: {
-              "data-toggle": "dropdown",
-              href: "#",
-              role: "button",
-              "aria-haspopup": "true",
-              "aria-expanded": "false"
-            }
-          },
-          [_vm._v("Office")]
-        ),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
         _vm._v(" "),
-        _c("div", { staticClass: "dropdown-menu" }, [
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item",
-              attrs: {
-                id: "office-list-tab",
-                "data-toggle": "tab",
-                href: "#office-list",
-                role: "tab",
-                "aria-controls": "office-list",
-                "aria-selected": "true"
-              }
-            },
-            [_vm._v("Office List")]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item",
-              attrs: {
-                id: "office-list-create-tab",
-                "data-toggle": "tab",
-                href: "#office-list-create",
-                role: "tab",
-                "aria-controls": "office-list-create",
-                "aria-selected": "false"
-              }
-            },
-            [_vm._v("Create Office")]
-          )
-        ])
-      ]
-    )
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Store Number")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Office")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "country-id" } }, [
+      _vm._v("\n              Select Office\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "store_name" } }, [
+      _vm._v("\n              Store Name\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "store_number" } }, [
+      _vm._v("\n              Store Number\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Open")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("State Or Region")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "country-id" } }, [
+      _vm._v("\n              Select State Region\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "office_name" } }, [
+      _vm._v("\n              Office Name\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "office_address" } }, [
+      _vm._v("\n              Office Address\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "office_is_open" } }, [
+      _vm._v("\n                Is Open\n                "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
   },
   function() {
     var _vm = this
@@ -54461,7 +55986,7 @@ var base = /*#__PURE__*/function () {
     this.isEdit = false;
     this.isCreateSuccess = '';
     this.isCreateFail = '';
-    this.isUpdateSuccess = '';
+    this.isUpdateSuccess = false;
     this.isUpdateFail = '';
     this.isDeleteSuccess = '';
     this.isDeleteFail = '';
@@ -54749,6 +56274,8 @@ var city = /*#__PURE__*/function (_base) {
     key: "editRecord",
     value: function editRecord(index) {
       _get(_getPrototypeOf(city.prototype), "edit", this).call(this, index);
+
+      this.state_region_id = this.stateRegion ? this.stateRegion.id : '';
     }
   }, {
     key: "clearData",
@@ -54916,6 +56443,133 @@ var country = /*#__PURE__*/function (_base) {
 
 /***/ }),
 
+/***/ "./resources/js/models/office.js":
+/*!***************************************!*\
+  !*** ./resources/js/models/office.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return office; });
+/* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base.js */ "./resources/js/models/base.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var office = /*#__PURE__*/function (_base) {
+  _inherits(office, _base);
+
+  var _super = _createSuper(office);
+
+  function office() {
+    var _this;
+
+    _classCallCheck(this, office);
+
+    _this = _super.call(this, route('offices.index'));
+    _this.name = '';
+    _this.address = '';
+    _this.state_region_id = '';
+    _this.stateRegion = null;
+    _this.is_open = 0;
+    _this.listHrefId = "office-list";
+    _this.createHrefId = "office-list-create";
+    return _this;
+  }
+
+  _createClass(office, [{
+    key: "editRecord",
+    value: function editRecord(index) {
+      _get(_getPrototypeOf(office.prototype), "edit", this).call(this, index);
+
+      this.state_region_id = this.stateRegion ? this.stateRegion.id : '';
+    }
+  }, {
+    key: "clearData",
+    value: function clearData() {
+      _get(_getPrototypeOf(office.prototype), "clearData", this).call(this);
+
+      this.is_open = 0;
+      this.state_region_id = '';
+      this.stateRegion = null;
+      this.name = '';
+      this.address = '';
+    }
+  }, {
+    key: "stateRegionSelected",
+    value: function stateRegionSelected($event) {
+      this.stateRegion = $event;
+      this.state_region_id = $event != null ? $event.id : "";
+    }
+  }, {
+    key: "updateOffice",
+    value: function updateOffice() {
+      var url = route('offices.update', this.uuid);
+      var data = {
+        name: this.name,
+        address: this.address,
+        is_open: this.is_open,
+        state_region_id: this.state_region_id,
+        _method: "PUT"
+      };
+
+      _get(_getPrototypeOf(office.prototype), "update", this).call(this, url, data);
+    }
+  }, {
+    key: "saveOffice",
+    value: function saveOffice() {
+      var data = {
+        name: this.name,
+        address: this.address,
+        is_open: this.is_open,
+        state_region_id: this.state_region_id
+      };
+      var url = route('offices.store');
+
+      _get(_getPrototypeOf(office.prototype), "save", this).call(this, url, data);
+    }
+  }, {
+    key: "deleteOffice",
+    value: function deleteOffice(id, index) {
+      var url = route('offices.destroy', id);
+
+      _get(_getPrototypeOf(office.prototype), "delete", this).call(this, url, index);
+    }
+  }]);
+
+  return office;
+}(_base_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/models/state_region.js":
 /*!*********************************************!*\
   !*** ./resources/js/models/state_region.js ***!
@@ -54981,7 +56635,7 @@ var StateRegion = /*#__PURE__*/function (_base) {
     value: function editRecord(index) {
       _get(_getPrototypeOf(StateRegion.prototype), "edit", this).call(this, index);
 
-      this.country_id = this.country.id;
+      this.country_id = this.country ? this.country.id : '';
     }
   }, {
     key: "clearData",
@@ -55044,6 +56698,129 @@ var StateRegion = /*#__PURE__*/function (_base) {
 
 /***/ }),
 
+/***/ "./resources/js/models/store.js":
+/*!**************************************!*\
+  !*** ./resources/js/models/store.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return store; });
+/* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base.js */ "./resources/js/models/base.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var store = /*#__PURE__*/function (_base) {
+  _inherits(store, _base);
+
+  var _super = _createSuper(store);
+
+  function store() {
+    var _this;
+
+    _classCallCheck(this, store);
+
+    _this = _super.call(this, route('stores.index'));
+    _this.name = '';
+    _this.store_number = '';
+    _this.office_id = '';
+    _this.office = null;
+    _this.listHrefId = "store-list";
+    _this.createHrefId = "store-list-create";
+    return _this;
+  }
+
+  _createClass(store, [{
+    key: "editRecord",
+    value: function editRecord(index) {
+      _get(_getPrototypeOf(store.prototype), "edit", this).call(this, index);
+
+      this.office_id = this.office ? this.office.id : '';
+    }
+  }, {
+    key: "clearData",
+    value: function clearData() {
+      _get(_getPrototypeOf(store.prototype), "clearData", this).call(this);
+
+      this.office_id = '';
+      this.office = null;
+      this.name = '';
+      this.store_number = '';
+    }
+  }, {
+    key: "officeSelected",
+    value: function officeSelected($event) {
+      this.office = $event;
+      this.office_id = $event != null ? $event.id : "";
+    }
+  }, {
+    key: "updateStore",
+    value: function updateStore() {
+      var url = route('stores.update', this.uuid);
+      var data = {
+        name: this.name,
+        store_number: this.store_number,
+        office_id: this.office_id,
+        _method: "PUT"
+      };
+
+      _get(_getPrototypeOf(store.prototype), "update", this).call(this, url, data);
+    }
+  }, {
+    key: "saveStore",
+    value: function saveStore() {
+      var data = {
+        name: this.name,
+        store_number: this.store_number,
+        office_id: this.office_id
+      };
+      var url = route('stores.store');
+
+      _get(_getPrototypeOf(store.prototype), "save", this).call(this, url, data);
+    }
+  }, {
+    key: "deleteStore",
+    value: function deleteStore(id, index) {
+      var url = route('stores.destroy', id);
+
+      _get(_getPrototypeOf(store.prototype), "delete", this).call(this, url, index);
+    }
+  }]);
+
+  return store;
+}(_base_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/router.js":
 /*!********************************!*\
   !*** ./resources/js/router.js ***!
@@ -55100,13 +56877,22 @@ var city = /*#__PURE__*/function () {
         this.name_successMessage = 'Good Name.';
       }
 
-      if (validation.is_available) {
-        this.is_available_hasError = true;
-        this.is_available_errorMessage = validation.is_available;
-        this.is_available_successMessage = null;
+      if (validation.address) {
+        this.address_hasError = true;
+        this.address_errorMessage = validation.address;
+        this.address_successMessage = null;
       } else {
-        this.is_available_hasError = false;
-        this.is_available_successMessage = 'Good Job.';
+        this.address_hasError = false;
+        this.address_successMessage = 'Good Address.';
+      }
+
+      if (validation.is_open) {
+        this.is_open_hasError = true;
+        this.is_open_errorMessage = validation.is_open;
+        this.is_open_successMessage = null;
+      } else {
+        this.is_open_hasError = false;
+        this.is_open_successMessage = 'Good Job.';
       }
 
       if (validation.state_region_id) {
@@ -55130,9 +56916,12 @@ var city = /*#__PURE__*/function () {
       this.name_hasError = false;
       this.name_errorMessage = '';
       this.name_successMessage = '';
-      this.is_available_hasError = false;
-      this.is_available_errorMessage = '';
-      this.is_available_successMessage = '';
+      this.address_hasError = false;
+      this.address_errorMessage = '';
+      this.address_successMessage = '';
+      this.is_open_hasError = false;
+      this.is_open_errorMessage = '';
+      this.is_open_successMessage = '';
       this.state_region_id_hasError = false;
       this.state_region_id_errorMessage = '';
       this.state_region_id_successMessage = '';
@@ -55212,6 +57001,87 @@ var country = /*#__PURE__*/function () {
   }]);
 
   return country;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/validations/setting_component/office.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/validations/setting_component/office.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return office; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var office = /*#__PURE__*/function () {
+  function office() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, office);
+
+    if (validation != null) {
+      if (validation.name) {
+        this.name_hasError = true;
+        this.name_errorMessage = validation.name;
+        this.name_successMessage = null;
+      } else {
+        this.name_hasError = false;
+        this.name_successMessage = 'Good Name.';
+      }
+
+      if (validation.is_available) {
+        this.is_available_hasError = true;
+        this.is_available_errorMessage = validation.is_available;
+        this.is_available_successMessage = null;
+      } else {
+        this.is_available_hasError = false;
+        this.is_available_successMessage = 'Good Job.';
+      }
+
+      if (validation.state_region_id) {
+        this.state_region_id_hasError = true;
+        this.state_region_id_errorMessage = validation.state_region_id;
+        this.state_region_id_successMessage = null;
+      } else {
+        this.state_region_id_hasError = false;
+        this.state_region_id_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(office, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.name_hasError = false;
+      this.name_errorMessage = '';
+      this.name_successMessage = '';
+      this.is_available_hasError = false;
+      this.is_available_errorMessage = '';
+      this.is_available_successMessage = '';
+      this.state_region_id_hasError = false;
+      this.state_region_id_errorMessage = '';
+      this.state_region_id_successMessage = '';
+    }
+  }, {
+    key: "validateName",
+    value: function validateName($event) {}
+  }]);
+
+  return office;
 }();
 
 
@@ -55305,6 +57175,87 @@ var StateRegion = /*#__PURE__*/function () {
   }]);
 
   return StateRegion;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/validations/setting_component/store.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/validations/setting_component/store.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return store; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var store = /*#__PURE__*/function () {
+  function store() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, store);
+
+    if (validation != null) {
+      if (validation.name) {
+        this.name_hasError = true;
+        this.name_errorMessage = validation.name;
+        this.name_successMessage = null;
+      } else {
+        this.name_hasError = false;
+        this.name_successMessage = 'Good Name.';
+      }
+
+      if (validation.store_number) {
+        this.store_number_hasError = true;
+        this.store_number_errorMessage = validation.store_number;
+        this.store_number_successMessage = null;
+      } else {
+        this.store_number_hasError = false;
+        this.store_number_successMessage = 'Good Store Number.';
+      }
+
+      if (validation.office_id) {
+        this.office_id_hasError = true;
+        this.office_id_errorMessage = validation.office_id;
+        this.office_id_successMessage = null;
+      } else {
+        this.office_id_hasError = false;
+        this.office_id_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(store, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.name_hasError = false;
+      this.name_errorMessage = '';
+      this.name_successMessage = '';
+      this.store_number_hasError = false;
+      this.store_number_errorMessage = '';
+      this.store_number_successMessage = '';
+      this.office_id_hasError = false;
+      this.office_id_errorMessage = '';
+      this.office_id_successMessage = '';
+    }
+  }, {
+    key: "validateName",
+    value: function validateName($event) {}
+  }]);
+
+  return store;
 }();
 
 

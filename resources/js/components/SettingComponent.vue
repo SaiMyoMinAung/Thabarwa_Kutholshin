@@ -29,12 +29,44 @@
             role="tab"
             aria-controls="office-list-create"
             aria-selected="false"
+            @click="office.model.clearData()"
           >Create Office</a>
         </div>
       </li>
       <li class="nav-item dropdown" role="presentation" style="min-width:150px">
         <a
           class="nav-link dropdown-toggle"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >Store</a>
+        <div class="dropdown-menu">
+          <a
+            class="dropdown-item"
+            id="store-list-tab"
+            data-toggle="tab"
+            href="#store-list"
+            role="tab"
+            aria-controls="store-list"
+            aria-selected="true"
+          >Store List</a>
+          <a
+            class="dropdown-item"
+            id="store-list-create-tab"
+            data-toggle="tab"
+            href="#store-list-create"
+            role="tab"
+            aria-controls="store-list-create"
+            aria-selected="false"
+            @click="store.model.clearData()"
+          >Create Store</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown" role="presentation" style="min-width:150px">
+        <a
+          class="nav-link dropdown-toggle location-setting"
           data-toggle="dropdown"
           href="#"
           role="button"
@@ -65,7 +97,7 @@
       </li>
       <li class="nav-item dropdown" role="presentation" style="min-width:180px">
         <a
-          class="nav-link dropdown-toggle"
+          class="nav-link dropdown-toggle location-setting"
           data-toggle="dropdown"
           href="#"
           role="button"
@@ -96,7 +128,7 @@
       </li>
       <li class="nav-item dropdown" role="presentation" style="min-width:150px">
         <a
-          class="nav-link dropdown-toggle"
+          class="nav-link dropdown-toggle location-setting"
           data-toggle="dropdown"
           href="#"
           role="button"
@@ -127,19 +159,398 @@
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
+      <!-- start store -->
+      <div
+        class="tab-pane fade show"
+        id="store-list"
+        role="tabpanel"
+        aria-labelledby="store-list-tab"
+      >
+        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Store Number</th>
+              <th scope="col">Office</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in store.model.list.data" :key="item.id">
+              <th scope="row">{{index + 1}}</th>
+              <td style="max-width:20px">{{item.name}}</td>
+              <td style="max-width:20px">{{item.store_number}}</td>
+              <td style="max-width:20px">
+                <i
+                  aria-hidden="true"
+                  v-if="item.office && item.office.is_open == 1"
+                  class="material-icons green"
+                >check_circle</i>
+                <i aria-hidden="true" v-else-if="item.office && item.office.is_open == 0" class="material-icons red">cancel</i>
+                {{item.office ? item.office.name : '-'}}
+              </td>
+              <td style="max-width:20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-store-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >Edit</button>
+                <div :id="`edit-collapse-store-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="store.model.editRecord(index)"
+                  >Yes</button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-store-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >No</button>
+                </div>
+              </td>
+              <td style="max-width:20px">
+                <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-store-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >Delete</button>
+                <div :id="`collapse-store-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="store.model.deleteStore(item.uuid, index)"
+                  >Yes</button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-store-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >No</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="store.model.list"
+          align="center"
+          v-on:pagination-change-page="getStoreResult"
+        ></pagination>
+      </div>
+      <div
+        class="tab-pane fade show"
+        id="store-list-create"
+        role="tabpanel"
+        aria-labelledby="store-list-create-tab"
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            <!-- start office select2 -->
+            <div
+              class="form-group"
+              v-bind:class="{ 'has-error': store.validation.office_id_hasError, 'was-validated': (store.validation.office_id_successMessage && !store.validation.office_id_hasError) }"
+            >
+              <label for="country-id">
+                Select Office
+                <span class="text-danger">*</span>
+              </label>
+              <select2
+                :url="office.model.fetchListUrl"
+                :value="store.model.office_id"
+                @input="store.model.officeSelected($event)"
+                :selected-option="store.model.office"
+                v-bind:class="{ 'is-invalid': store.validation.office_id_hasError }"
+              ></select2>
+
+              <div class="invalid-feedback">{{store.validation.office_id_errorMessage}}</div>
+              <div
+                class="valid-feedback"
+                style="display:block"
+              >{{store.validation.office_id_successMessage}}</div>
+            </div>
+            <!-- end office select2 -->
+
+            <!-- start store name -->
+            <div
+              class="form-group"
+              v-bind:class="{ 'has-error': store.validation.name_hasError, 'was-validated': (store.validation.validation != null && !store.validation.name_hasError) }"
+            >
+              <label for="store_name">
+                Store Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="store_name"
+                type="text"
+                class="form-control"
+                placeholder="store Name"
+                v-model="store.model.name"
+                v-bind:class="{ 'is-invalid': store.validation.name_hasError }"
+              />
+              <div class="invalid-feedback">{{store.validation.name_errorMessage}}</div>
+              <div class="valid-feedback">{{store.validation.name_successMessage}}</div>
+            </div>
+            <!-- end store name -->
+
+            <!-- start store number -->
+            <div
+              class="form-group"
+              v-bind:class="{ 'has-error': store.validation.store_number_hasError, 'was-validated': (store.validation.store_number_successMessage && !stateRegion.validation.store_number_hasError) }"
+            >
+              <label for="store_number">
+                Store Number
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="store_number"
+                type="text"
+                class="form-control only-number"
+                placeholder="Store Number"
+                v-model="store.model.store_number"
+                v-bind:class="{ 'is-invalid': store.validation.store_number_hasError }"
+              />
+              <div class="invalid-feedback">{{store.validation.store_number_errorMessage}}</div>
+              <div class="valid-feedback">{{store.validation.store_number_successMessage}}</div>
+            </div>
+            <!-- end store number -->
+
+            <button
+              v-if="store.model.isEdit"
+              @click="store.model.updateStore()"
+              class="btn btn-success"
+            >Update</button>
+            <button
+              v-if="store.model.isEdit"
+              @click="store.model.goToList()"
+              class="btn btn-default"
+            >Cancel</button>
+            <button v-else @click="store.model.saveStore()" class="btn btn-success">Create</button>
+          </div>
+        </div>
+      </div>
+      <!-- end store -->
+
       <!-- start office -->
       <div
         class="tab-pane fade show active"
         id="office-list"
         role="tabpanel"
         aria-labelledby="office-list-tab"
-      >office list</div>
+      >
+        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Open</th>
+              <th scope="col">State Or Region</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in office.model.list.data" :key="item.id">
+              <th scope="row">{{index + 1}}</th>
+              <td style="max-width:20px">{{item.name}}</td>
+              <td style="max-width:20px">
+                <i
+                  aria-hidden="true"
+                  v-if="item.is_open == 1"
+                  class="material-icons green"
+                >check_circle</i>
+                <i aria-hidden="true" v-else class="material-icons red">cancel</i>
+              </td>
+              <td style="max-width:20px">
+                <i
+                  aria-hidden="true"
+                  v-if="(item.stateRegion) ? item.stateRegion.is_available == 1 : ''"
+                  class="material-icons green"
+                >check_circle</i>
+                <i
+                  aria-hidden="true"
+                  v-else-if="(item.stateRegion) ? item.stateRegion.is_available == 0 : ''"
+                  class="material-icons red"
+                >cancel</i>
+                {{item.stateRegion ? item.stateRegion.name : '-' }}
+              </td>
+              <td style="max-width:20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-office-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >Edit</button>
+                <div :id="`edit-collapse-office-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="office.model.editRecord(index)"
+                  >Yes</button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-office-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >No</button>
+                </div>
+              </td>
+              <td style="max-width:20px">
+                <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-office-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >Delete</button>
+                <div :id="`collapse-office-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="office.model.deleteOffice(item.uuid, index)"
+                  >Yes</button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-office-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >No</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="office.model.list"
+          align="center"
+          v-on:pagination-change-page="getOfficeResult"
+        ></pagination>
+      </div>
       <div
         class="tab-pane fade show"
         id="office-list-create"
         role="tabpanel"
         aria-labelledby="office-list-create-tab"
-      >Create Office</div>
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            <!-- start state region select2 -->
+            <div
+              class="form-group"
+              v-bind:class="{ 'has-error': office.validation.state_region_id_hasError, 'was-validated': (office.validation.state_region_id_successMessage && !office.validation.state_region_id_hasError) }"
+            >
+              <label for="country-id">
+                Select State Region
+                <span class="text-danger">*</span>
+              </label>
+              <select2
+                :url="stateRegion.model.fetchListUrl"
+                :value="office.model.state_region_id"
+                @input="office.model.stateRegionSelected($event)"
+                :selected-option="office.model.stateRegion"
+                v-bind:class="{ 'is-invalid': office.validation.state_region_id_hasError }"
+              ></select2>
+
+              <div class="invalid-feedback">{{office.validation.state_region_id_errorMessage}}</div>
+              <div
+                class="valid-feedback"
+                style="display:block"
+              >{{office.validation.state_region_id_successMessage}}</div>
+            </div>
+            <!-- end state region select2 -->
+
+            <!-- start office name -->
+            <div
+              class="form-group"
+              v-bind:class="{ 'has-error': office.validation.name_hasError, 'was-validated': (office.validation.validation != null && !office.validation.name_hasError) }"
+            >
+              <label for="office_name">
+                Office Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="office_name"
+                type="text"
+                class="form-control"
+                placeholder="office Name"
+                v-model="office.model.name"
+                v-bind:class="{ 'is-invalid': office.validation.name_hasError }"
+              />
+              <div class="invalid-feedback">{{office.validation.name_errorMessage}}</div>
+              <div class="valid-feedback">{{office.validation.name_successMessage}}</div>
+            </div>
+            <!-- end office name -->
+
+            <!-- start office address -->
+            <div
+              class="form-group"
+              v-bind:class="{ 'has-error': office.validation.address_hasError, 'was-validated': (office.validation.validation != null && !office.validation.address_hasError) }"
+            >
+              <label for="office_address">
+                Office Address
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="office_address"
+                type="text"
+                class="form-control"
+                placeholder="Office Address"
+                v-model="office.model.address"
+                v-bind:class="{ 'is-invalid': office.validation.address_hasError }"
+              />
+              <div class="invalid-feedback">{{office.validation.address_errorMessage}}</div>
+              <div class="valid-feedback">{{office.validation.address_successMessage}}</div>
+            </div>
+            <!-- end office address -->
+
+            <!-- start office is_open -->
+            <div class="col-sm-offset-2 col-sm-10">
+              <div
+                class="checkbox"
+                v-bind:class="{ 'has-error': office.validation.is_open_hasError}"
+              >
+                <input
+                  type="checkbox"
+                  id="office_is_open"
+                  value="1"
+                  v-model="office.model.is_open"
+                  true-value="1"
+                  false-value="0"
+                  v-bind:class="{ 'is-invalid': office.validation.is_open_hasError}"
+                />
+                <label for="office_is_open">
+                  Is Open
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="invalid-feedback">{{office.validation.is_open_errorMessage}}</div>
+              </div>
+            </div>
+            <!-- end office is_open -->
+            <button
+              v-if="office.model.isEdit"
+              @click="office.model.updateOffice()"
+              class="btn btn-success"
+            >Update</button>
+            <button
+              v-if="office.model.isEdit"
+              @click="office.model.goToList()"
+              class="btn btn-default"
+            >Cancel</button>
+            <button v-else @click="office.model.saveOffice()" class="btn btn-success">Create</button>
+          </div>
+        </div>
+      </div>
       <!-- end office -->
 
       <!-- start country -->
@@ -351,7 +762,7 @@
             </div>
             <!-- end state region name -->
 
-            <!-- start state region name -->
+            <!-- start state region code -->
             <div
               class="form-group"
               v-bind:class="{ 'has-error': stateRegion.validation.code_hasError, 'was-validated': (stateRegion.validation.code_successMessage && !stateRegion.validation.code_hasError) }"
@@ -371,7 +782,7 @@
               <div class="invalid-feedback">{{stateRegion.validation.code_errorMessage}}</div>
               <div class="valid-feedback">{{stateRegion.validation.code_successMessage}}</div>
             </div>
-            <!-- end state region name -->
+            <!-- end state region code -->
 
             <!-- start state region is_available -->
             <div class="col-sm-offset-2 col-sm-10">
@@ -712,6 +1123,10 @@ import countryValidation from "../validations/setting_component/country.js";
 import countryModel from "../models/country.js";
 import stateRegionValidation from "../validations/setting_component/state_region.js";
 import stateRegionModel from "../models/state_region.js";
+import officeValidation from "../validations/setting_component/office.js";
+import officeModel from "../models/office.js";
+import storeValidation from "../validations/setting_component/store.js";
+import storeModel from "../models/store.js";
 import select2 from "./select2";
 
 export default {
@@ -729,6 +1144,14 @@ export default {
     stateRegion: {
       validation: new stateRegionValidation(),
       model: new stateRegionModel()
+    },
+    office: {
+      validation: new officeValidation(),
+      model: new officeModel()
+    },
+    store: {
+      validation: new storeValidation(),
+      model: new storeModel()
     }
   }),
   computed: {
@@ -736,49 +1159,63 @@ export default {
       return (
         this.city.model.isLoading ||
         this.country.model.isLoading ||
-        this.stateRegion.model.isLoading
+        this.stateRegion.model.isLoading ||
+        this.office.model.isLoading ||
+        this.store.model.isLoading
       );
     },
     isCreateSuccessWatch() {
       return (
         this.city.model.isCreateSuccess ||
         this.country.model.isCreateSuccess ||
-        this.stateRegion.model.isCreateSuccess
+        this.stateRegion.model.isCreateSuccess ||
+        this.office.model.isCreateSuccess ||
+        this.store.model.isCreateSuccess
       );
     },
     isCreateFailWatch() {
       return (
         this.city.model.isCreateFail ||
         this.country.model.isCreateFail ||
-        this.stateRegion.model.isCreateFail
+        this.stateRegion.model.isCreateFail ||
+        this.office.model.isCreateFail ||
+        this.store.model.isCreateFail
       );
     },
     isUpdateSuccessWatch() {
       return (
         this.city.model.isUpdateSuccess ||
         this.country.model.isUpdateSuccess ||
-        this.stateRegion.model.isUpdateSuccess
+        this.stateRegion.model.isUpdateSuccess ||
+        this.office.model.isUpdateSuccess ||
+        this.store.model.isUpdateSuccess
       );
     },
     isUpdateFailWatch() {
       return (
         this.city.model.isUpdateFail ||
         this.country.model.isUpdateFail ||
-        this.stateRegion.model.isUpdateFail
+        this.stateRegion.model.isUpdateFail ||
+        this.office.model.isUpdateFail ||
+        this.store.model.isUpdateFail
       );
     },
     isDeleteSuccessWatch() {
       return (
         this.city.model.isDeleteSuccess ||
         this.country.model.isDeleteSuccess ||
-        this.stateRegion.model.isDeleteSuccess
+        this.stateRegion.model.isDeleteSuccess ||
+        this.office.model.isDeleteSuccess ||
+        this.store.model.isDeleteSuccess
       );
     },
     isDeleteFailWatch() {
       return (
         this.city.model.isDeleteFail ||
         this.country.model.isDeleteFail ||
-        this.stateRegion.model.isDeleteFail
+        this.stateRegion.model.isDeleteFail ||
+        this.office.model.isDeleteFail ||
+        this.store.model.isDeleteFail
       );
     }
   },
@@ -789,9 +1226,7 @@ export default {
     isCreateSuccessWatch: function(newisCreateSuccess, oldisCreateSuccess) {
       if (newisCreateSuccess) {
         this.$toasted.show("Saving Success.", { icon: "save" });
-        this.stateRegion.model.fetchList(this.stateRegion.model.page);
-        this.city.model.fetchList(this.city.model.page);
-        this.$forceUpdate();
+        this.fetchListAndResetCondition();
       }
     },
     isCreateFailWatch: function(newisCreateFail, oldisCreateFail) {
@@ -802,9 +1237,7 @@ export default {
     isUpdateSuccessWatch: function(newisUpdateSuccess, oldisUpdateSuccess) {
       if (newisUpdateSuccess) {
         this.$toasted.show("Upading Success.", { icon: "save" });
-        this.stateRegion.model.fetchList(this.stateRegion.model.page);
-        this.city.model.fetchList(this.city.model.page);
-        this.$forceUpdate();
+        this.fetchListAndResetCondition();
       }
     },
     isUpdateFailWatch: function(newisUpdateFail, oldisUpdateFail) {
@@ -815,9 +1248,7 @@ export default {
     isDeleteSuccessWatch: function(newisDeleteSuccess, oldisDeleteSuccess) {
       if (newisDeleteSuccess) {
         this.$toasted.show("Delete Success.", { icon: "delete" });
-        this.stateRegion.model.fetchList(this.stateRegion.model.page);
-        this.city.model.fetchList(this.city.model.page);
-        this.$forceUpdate();
+        this.fetchListAndResetCondition();
       }
     },
     isDeleteFailWatch: function(newisDeleteFail, oldisDeleteFail) {
@@ -833,6 +1264,12 @@ export default {
     },
     "stateRegion.model.validation": function(newValidation, oldValidation) {
       this.stateRegion.validation = new stateRegionValidation(newValidation);
+    },
+    "office.model.validation": function(newValidation, oldValidation) {
+      this.office.validation = new officeValidation(newValidation);
+    },
+    "store.model.validation": function(newValidation, oldValidation) {
+      this.store.validation = new storeValidation(newValidation);
     }
   },
   components: {
@@ -851,6 +1288,41 @@ export default {
     getStateRegionResult(page) {
       this.stateRegion.model.page = page;
       this.stateRegion.model.fetchList(page);
+    },
+    getOfficeResult(page) {
+      this.office.model.page = page;
+      this.office.model.fetchList(page);
+    },
+    getStoreResult(page) {
+      this.store.model.page = page;
+      this.store.model.fetchList(page);
+    },
+    fetchListAndResetCondition() {
+      this.stateRegion.model.fetchList(this.stateRegion.model.page);
+      this.city.model.fetchList(this.city.model.page);
+      this.office.model.fetchList(this.office.model.page);
+      this.country.model.fetchList(this.office.model.page);
+      this.store.model.fetchList(this.store.model.page);
+
+      this.stateRegion.model.isCreateSuccess = false;
+      this.city.model.isCreateSuccess = false;
+      this.office.model.isCreateSuccess = false;
+      this.country.model.isCreateSuccess = false;
+      this.store.model.isCreateSuccess = false;
+
+      this.stateRegion.model.isUpdateSuccess = false;
+      this.city.model.isUpdateSuccess = false;
+      this.office.model.isUpdateSuccess = false;
+      this.country.model.isUpdateSuccess = false;
+      this.store.model.isUpdateSuccess = false;
+
+      this.stateRegion.model.isDeleteSuccess = false;
+      this.city.model.isDeleteSuccess = false;
+      this.office.model.isDeleteSuccess = false;
+      this.country.model.isDeleteSuccess = false;
+      this.store.model.isDeleteSuccess = false;
+
+      this.$forceUpdate();
     }
   },
   mounted() {},
@@ -863,6 +1335,9 @@ export default {
   color: red;
 }
 .material-icons.green {
+  color: green;
+}
+.location-setting {
   color: green;
 }
 </style>

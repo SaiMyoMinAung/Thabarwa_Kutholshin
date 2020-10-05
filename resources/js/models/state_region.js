@@ -14,7 +14,7 @@ export default class StateRegion extends base {
     
     editRecord(index) {
         super.edit(index);
-        this.country_id = this.country.id
+        this.country_id = this.country ? this.country.id: '';
     }
 
     clearData() {
