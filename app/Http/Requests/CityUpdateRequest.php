@@ -25,6 +25,7 @@ class CityUpdateRequest extends FormRequest
     {
         $id = $this->city->id;
         return [
+            'state_region_id' => 'required|numeric|max:99999999',
             'name' => "required|max:255|unique:cities,name,$id",
             'is_available' => 'required|numeric|max:1'
         ];

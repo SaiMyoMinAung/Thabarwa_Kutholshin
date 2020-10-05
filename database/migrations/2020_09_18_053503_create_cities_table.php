@@ -16,7 +16,8 @@ class CreateCitiesTable extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('is_available')->default(0);
+            $table->boolean('is_available')->default(0);
+            $table->integer('state_region_id');
             $table->timestamps();
         });
     }

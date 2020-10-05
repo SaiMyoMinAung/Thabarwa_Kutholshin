@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(StateRegionSeeder::class);
         $this->call(AdminSeeder::class);
-
-        factory(App\Driver::class, 5)->create();
+        $this->call(CitySeeder::class);
     }
 }

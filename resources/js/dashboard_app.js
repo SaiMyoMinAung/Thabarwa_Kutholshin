@@ -1,7 +1,10 @@
 require('./bootstrap');
 require('material-design-icons');
-import 'material-design-icons/iconfont/material-icons.css';
+window.route = require('./router');
 
+import 'material-design-icons/iconfont/material-icons.css';
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
 
@@ -21,6 +24,7 @@ Vue.use(Toasted, {
  */
 Vue.component('setting-component', require('./components/SettingComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
+Vue.component('v-select', vSelect);
 
 const dashboard_app = new Vue({
     el: '#dashboard-app'

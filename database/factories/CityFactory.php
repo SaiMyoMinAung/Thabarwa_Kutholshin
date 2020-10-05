@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\City;
+use App\Country;
 use Faker\Generator as Faker;
 
 /*
@@ -19,6 +20,7 @@ use Faker\Generator as Faker;
 $factory->define(City::class, function (Faker $faker) {
     return [
         'name' => $faker->city,
-        'is_available' => 0
+        'is_available' => 0,
+        'state_region_id' => Country::first()->id,
     ];
 });

@@ -18,9 +18,9 @@ class CountryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $countries = Country::orderBy('id', 'desc')->paginate(5);
+        $countries = Country::where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new CountryResourceCollection($countries), 200);
     }
@@ -43,11 +43,15 @@ class CountryController extends Controller
      */
     public function store(CountryStoreRequest $request)
     {
-        $validated_data = $request->validated();
-
-        $country = Country::create($validated_data);
-
-        return response()->json(new CountryResource($country), 201);
+        try {
+            $validated_data = $request->validated();
+            $country = Country::create($validated_data);
+            return response()->json(new CountryResource($country), 201);
+        } catch (Exception $e) {
+            report($e);
+            return response()->json(['message' => 'fail'], 500);
+        }
+        
     }
 
     /**
@@ -86,6 +90,7 @@ class CountryController extends Controller
             $country->update($validated_data);
             return response()->json(new CountryResource($country), 200);
         } catch (Exception $e) {
+            report($e);
             return response()->json(['message' => 'fail'], 500);
         }
     }

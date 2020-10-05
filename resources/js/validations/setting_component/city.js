@@ -22,6 +22,15 @@ export default class city {
                 this.is_available_successMessage = 'Good Job.';
             }
 
+            if(validation.state_region_id){
+                this.state_region_id_hasError = true;
+                this.state_region_id_errorMessage = validation.state_region_id;
+                this.state_region_id_successMessage = null;
+            } else {
+                this.state_region_id_hasError = false;
+                this.state_region_id_successMessage = 'Good Job.';
+            }
+
         } else {
             this.clearValidation()
         }
@@ -37,6 +46,10 @@ export default class city {
         this.is_available_hasError = false;
         this.is_available_errorMessage = '';
         this.is_available_successMessage = '';
+
+        this.state_region_id_hasError = false;
+        this.state_region_id_errorMessage = '';
+        this.state_region_id_successMessage = '';
     }
 
     validateName($event) {

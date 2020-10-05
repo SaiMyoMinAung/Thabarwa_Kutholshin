@@ -31,4 +31,5 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::get('settings', 'SettingController@index');
     Route::resource('cities', 'CityController');
     Route::resource('countries', 'CountryController');
+    Route::resource('state_regions', 'StateRegionController');
 });

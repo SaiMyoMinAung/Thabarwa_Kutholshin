@@ -13,8 +13,11 @@ export default class base {
         this.isDeleteSuccess = '';
         this.isDeleteFail = '';
         this.isLoading = false;
-        this.list = {};
+        this.list = {
+            data : []
+        };
         this.offset = 10;
+        this.page = 1;
     }
 
     fetchList(page) {
@@ -86,7 +89,7 @@ export default class base {
      * @param string url 
      * @param {*} data 
      */
-    update(url, data, id) {
+    update(url, data) {
         self = this;
         this.resetIsCondition();
         
@@ -107,9 +110,20 @@ export default class base {
         axios.delete(url)
           .then( response => {
               if(response.status === 200){
-                this.list.data.splice(index, 1)
-                this.isLoading = false
+                this.list.data.splice(index, 1);
+                this.isLoading = false;
                 this.isDeleteSuccess = true;
+
+                if(this.list.data.length === 0){
+                    this.fetchList(this.page)
+                    if(this.list.data.length === 0){
+                        this.fetchList(this.page + 1);
+                        if(this.list.data.length === 0){
+                            this.fetchList(this.page - 1);
+                        }
+                    }
+                }
+
               }
           })
           .catch(function (error) {
@@ -123,7 +137,7 @@ export default class base {
      * @param {axio respose} responseData 
      */
     createSuccessful(responseData) {
-        this.list.data.unshift(responseData);
+        this.fetchList(1);
         this.isLoading = false;
         this.isCreateSuccess = true;
         this.clearData();

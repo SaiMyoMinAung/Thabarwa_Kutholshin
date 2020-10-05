@@ -20,7 +20,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::orderBy('id', 'desc')->paginate(5);
+        $cities = City::with('stateRegion')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new CityResourceCollection($cities), 200);
     }

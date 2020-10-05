@@ -24,6 +24,7 @@ class CityStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'state_region_id' => 'required|numeric|max:99999999',
             'name' => 'required|max:255|unique:cities,name',
             'is_available' => 'required|numeric|max:1'
         ];
