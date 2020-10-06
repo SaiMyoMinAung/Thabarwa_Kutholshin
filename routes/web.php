@@ -34,4 +34,5 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::resource('state_regions', 'StateRegionController');
     Route::resource('offices', 'OfficeController');
     Route::resource('stores', 'StoreController');
+    Route::resource('boxes', 'BoxController');
 });

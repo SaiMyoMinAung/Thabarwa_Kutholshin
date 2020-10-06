@@ -10,7 +10,7 @@
       ref="select2"
       :value="(selectedOption === null) ? value : selectedOption"
     >
-      <template slot="no-options">Type to search Country..</template>
+      <template slot="no-options">{{ placeholder }}</template>
       <template slot="option" slot-scope="option">
         <div class="d-center">
           <!-- <img :src="option.owner.avatar_url" /> -->
@@ -81,7 +81,7 @@ img {
 
 <script>
 export default {
-  props: ["value", "selectedOption","url"],
+  props: ["value", "selectedOption", "url", "placeholder"],
   data: () => ({
     options: [],
     page: 1,
