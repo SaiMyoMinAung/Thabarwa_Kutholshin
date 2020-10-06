@@ -18,6 +18,7 @@ class donation {
         this.remark = remark;
         this.pickedup_at = pickedup_at;
         this.image = image;
+        this.recaptcha = '';
     }
 
     getDonationFormData()
@@ -30,6 +31,7 @@ class donation {
         donationFormData.append('pickedup_address',this.pickedup_address);
         donationFormData.append('remark',this.remark);
         donationFormData.append('pickedup_at',this.pickedup_at);
+        donationFormData.append('recaptcha',this.recaptcha);
 
         if(this.image != null){
             for( var i = 0; i < this.image.length; i++ ){

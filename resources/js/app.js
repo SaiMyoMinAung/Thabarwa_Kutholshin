@@ -1,12 +1,19 @@
 require('./bootstrap');
 
 import Vue from 'vue';
-
+import { VueReCaptcha } from 'vue-recaptcha-v3'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import "bootstrap-vue/dist/bootstrap-vue.css";
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(VueReCaptcha, {
+    siteKey: process.env.MIX_RECAPTCHA_KEY,
+    loaderOptions: {
+      useRecaptchaNet: true,
+    }
+  })
 
-import "bootstrap-vue/dist/bootstrap-vue.css";
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

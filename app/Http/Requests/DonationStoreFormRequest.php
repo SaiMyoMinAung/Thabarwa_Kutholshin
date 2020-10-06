@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\DTO\UserDTO;
 use App\Http\Requests\DTO\DonatedItemDTO;
+use App\Rules\Recaptcha;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DonationStoreFormRequest extends FormRequest
@@ -35,6 +36,7 @@ class DonationStoreFormRequest extends FormRequest
             'image.*' => 'nullable|mimes:jpeg,png,jpg|max:1024',
             'email' => 'nullable|email|max:255',
             'remark' => 'nullable|max:255',
+            'recaptcha' => new Recaptcha,
         ];
     }
 

@@ -223,6 +223,20 @@
             </b-collapse>
             <!-- end collapse -->
 
+            <!-- start recaptcha info -->
+            <b-form-group label-cols-sm="3">
+              <b-form-checkbox
+                :state="clickme.state"
+                :checked="clickme.checked"
+                :disabled="clickme.disabled"
+                @change="recaptcha()"
+                size="lg"
+              >Click Me</b-form-checkbox>
+              <b-form-invalid-feedback :state="clickme.state">Need Verification!</b-form-invalid-feedback>
+              <b-form-valid-feedback :state="clickme.state">Verified</b-form-valid-feedback>
+            </b-form-group>
+            <!-- end recaptcha info -->
+
             <button
               @click="submitDonation()"
               class="offset-lg-3 offset-md-3 offset-sm-3 btn btn-success"
@@ -262,9 +276,41 @@ export default {
       errorMessage: "",
       successMessage: ""
     },
+    clickme: {
+      state: null,
+      checked: false,
+      disabled: false,
+      successMessage: "verified",
+      errorMessage: "Need Verification"
+    },
     showSpinner: false
   }),
   methods: {
+    async recaptcha() {
+      // (optional) Wait until recaptcha has been loaded.
+      await this.$recaptchaLoaded();
+
+      // Execute reCAPTCHA with action "donate".
+      this.$recaptcha("donate")
+        .then(res => {
+          this.recaptchaSuccess();
+          this.donation.recaptcha = res;
+        })
+        .catch(error => {
+          this.recaptchaFail();
+        });
+    },
+    recaptchaSuccess() {
+      this.clickme.state = true;
+      this.clickme.checked = true;
+      this.clickme.disabled = true;
+    },
+    recaptchaFail(msg) {
+      this.clickme.state = false;
+      this.clickme.checked = false;
+      this.clickme.disabled = false;
+      this.clickme.errorMessage = msg;
+    },
     onfocusin(event) {
       // need to develop on date picker
       console.log(event);
@@ -302,8 +348,8 @@ export default {
         .then(response => {
           if (response.data.message === "success") {
             this.showSpinner = false;
+            this.donation.token = "";
             this.showMsgBoxTwo();
-            // window.location.reload();
           }
           // this.$refs.recaptcha.reset();
         })
@@ -359,6 +405,9 @@ export default {
       } else {
         this.remark.state = null;
         this.remark.errorMessage = "";
+      }
+      if (errors.recaptcha) {
+        this.recaptchaFail(errors.recaptcha[0]);
       }
     },
     validateImage($event) {
