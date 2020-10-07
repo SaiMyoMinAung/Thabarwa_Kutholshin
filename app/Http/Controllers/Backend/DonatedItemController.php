@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Driver;
 use App\DonatedItem;
 use App\StateRegion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\State\AssignDriverTransition;
+use App\State\ArriveAtOfficeTransition;
+use App\State\NewToConfirmedTransition;
+use App\State\ToAssignDriverTransition;
+use App\Http\Requests\DTO\ArriveAtOfficeDTO;
+use App\State\ConfirmedToCancelledTransition;
 use App\Http\Requests\AssignDriverStoreRequest;
 use App\Http\Requests\DonationUpdateFormRequest;
-use App\Http\Requests\DTO\ArriveAtOfficeDTO;
-use App\State\ArriveAtOfficeTransition;
-use App\State\AssignDriverTransition;
-use App\State\ManageTransition;
 
 class DonatedItemController extends Controller
 {
@@ -151,6 +152,16 @@ class DonatedItemController extends Controller
         $userData = $request->userData()->all();
         $donatedItem->donor->update($userData);
 
+        if ($request->hasIsConfirmed()) {
+            $t = new NewToConfirmedTransition();
+            $donatedItem = $t($donatedItem);
+        }
+        
+        if ($request->hasIsCancelled()) {
+            $t = new ConfirmedToCancelledTransition();
+            $donatedItem = $t($donatedItem);
+        }
+
         $donatedItemData = $request->donatedItemData()->all();
         $donatedItem->update($donatedItemData);
 
@@ -159,12 +170,11 @@ class DonatedItemController extends Controller
 
     public function manage(DonatedItem $donatedItem)
     {
-        $drivers = Driver::all();
+        if ($donatedItem->is_confirmed == 0) {
+            return back()->with('danger', 'You Must Confirm To Donor')->withErrors(['is_confirmed' => 'Please Check This!']);
+        }
 
-        $t = new ManageTransition();
-        $donatedItem = $t($donatedItem);
-
-        return view('backend.donated_item.manage', compact('drivers', 'donatedItem'));
+        return view('backend.donated_item.manage', compact('donatedItem'));
     }
 
     public function assignDriver(AssignDriverStoreRequest $request, DonatedItem $donatedItem)

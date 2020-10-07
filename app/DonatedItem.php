@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\HasUUID;
 use App\State\DonatedItemState;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class DonatedItem extends Model
 {
@@ -22,19 +23,9 @@ class DonatedItem extends Model
         return new $this->state_class($this);
     }
 
-    public function canManage()
+    public function getShortAboutItemAttribute()
     {
-        return $this->state->canManage();
-    }
-
-    public function canAssignDriver()
-    {
-        return $this->state->canAssignDriver();
-    }
-
-    public function canArriveAtOffice()
-    {
-        return $this->state->canArriveAtOffice();
+        return Str::limit($this->about_item, 20, '...');
     }
 
     public function donor()

@@ -13,12 +13,4 @@ abstract class DonatedItemState
     {
         $this->donatedItem = $donatedItem;
     }
-
-    abstract public function canManage(): bool;
-
-    abstract public function canAssignDriver(): bool;
-
-    abstract public function canArriveAtOffice(): bool;
-
-    abstract public function status(): string;
 }

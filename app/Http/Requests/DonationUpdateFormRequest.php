@@ -31,15 +31,14 @@ class DonationUpdateFormRequest extends FormRequest
         return [
             'about_item' => 'required|max:255',
             'name' => 'required|max:255',
-            'phone' => "required|numeric|max:99999999999|unique:users,phone,$donorId",
+            'phone' => "required|numeric|unique:users,phone,$donorId|max:99999999999",
             'pickedup_address' => 'required|max:255',
-            'state_region_id' => 'nullable',
+            'state_region_id' => 'nullable|max:9999999',
             'pickedup_at' => 'required|date',
             'image' => 'nullable|array|max:3',
-            'image.*' => 'nullable|mimes:jpeg,png,jpg|max:1024',
-            'email' => "nullable|email|max:255|unique:users,email,$donorId",
+            'image.*' => 'nullable|mimes:jpeg,png,jpg|max:10240',
+            'email' => "nullable|email|unique:users,email,$donorId|max:255",
             'remark' => 'nullable|max:255',
-            'is_confirm_by_donor' => 'nullable|numeric'
         ];
     }
 
@@ -84,7 +83,24 @@ class DonationUpdateFormRequest extends FormRequest
             'pickedup_info' => $this->input('pickedup_address'),
             'pickedup_at' => $this->input('pickedup_at'),
             'remark' => $this->input('remark'),
-            'is_confirm_by_donor' => $this->input('is_confirm_by_donor') ?? 0,
         ]);
+    }
+
+    public function hasIsConfirmed()
+    {
+        if ($this->input('is_confirmed')) {
+            return true;
+        } else {
+            return false;
+        };
+    }
+
+    public function hasIsCancelled()
+    {
+        if ($this->input('is_cancelled')) {
+            return true;
+        } else {
+            return false;
+        };
     }
 }

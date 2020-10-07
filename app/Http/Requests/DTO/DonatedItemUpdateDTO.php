@@ -12,5 +12,4 @@ final class DonatedItemUpdateDTO extends DataTransferObject
     public $pickedup_at;
     public $pickedup_info;
     public $remark;
-    public $is_confirm_by_donor;
 }

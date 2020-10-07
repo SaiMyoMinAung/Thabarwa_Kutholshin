@@ -10,7 +10,7 @@
 
 <div class="row">
     <div class="col-md-12 ">
-        <h2><span class="badge badge-success">{{$donatedItem->about_item}}</span> Item Management</h2>
+        <h2><span class="badge badge-success">{{$donatedItem->short_about_item}}</span> Item Management</h2>
         <div id="stepper2" class="bs-stepper">
             <div class="bs-stepper-header">
                 <div class="step" data-target="#test-nl-1">
@@ -59,9 +59,6 @@
                                     <label for="state_region">Assign Driver <span class="text-danger">*</span></label>
                                     <select name="pickedup_driver_id" class="form-control select2 {{ $errors->has('driver_id') ? 'is-invalid' : '' }}">
                                         <option></option>
-                                        @foreach($drivers as $driver)
-                                        <option value="{{$driver->id}}" @if($donatedItem->pickedup_driver_id == $driver->id) selected @endif>{{$driver->name}}</option>
-                                        @endforeach
                                     </select>
                                     @if ($errors->has('driver_id'))
                                     <div class="invalid-feedback">

@@ -35,7 +35,7 @@ class CreateDonatedItemsTable extends Migration
 
             $table->string('status')->default('pending');
             $table->string('state_class')->default('App\\\State\\\PendingState');
-            $table->boolean('is_confirm_by_donor')->default(0);
+            $table->boolean('is_confirmed')->default(0);
             $table->boolean('is_pickingup')->default(0);
             $table->boolean('is_arrive_at_office')->default(0);
             $table->boolean('is_need_repairing')->default(0);

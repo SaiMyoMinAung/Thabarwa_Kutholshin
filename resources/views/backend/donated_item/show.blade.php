@@ -19,7 +19,8 @@
             <div class="card border border-success">
                 <div class="card-body row">
                     <div class="col-md-6">
-                        <h3>Item Information</h3>
+                        <h3>Item Status - <span class="badge badge-success">{{$donatedItem->status}}</span></h3>
+
 
                         <div class="form-group {{ $errors->has('about_item') ? 'has-error' : '' }}">
                             <label for="about_item">About Item <span class="text-danger">*</span></label>
@@ -53,19 +54,16 @@
                             </div>
                             @endif
                         </div>
-                        <div class="form-group {{ $errors->has('remark') ? 'has-error' : '' }}">
-                            <label for="remark">Remark <span class="text-danger">*</span></label>
-                            <textarea id="remark" name="remark" hidden>{{$donatedItem->remark ?? 'No Remark!'}}</textarea>
-                            <div class="remark-div" style="border:1px solid white;border-radius:5px;padding:5px;margin-bottom:4px;">{!! $donatedItem->remark ?? 'No Remark!' !!}</div>
-                            <button class="btn btn-xs btn-primary remark-edit" type="button">Edit Remark</button>
-                            <button class="btn btn-xs btn-success remark-done" type="button">Done</button>
-                        </div>
 
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="is_confirm_by_donor" value="1" @if($donatedItem->is_confirm_by_donor == 1) checked @endif> Is Confirm By Donor<span class="text-danger">*</span>
-                                </label>
+                        <div class="row">
+                            <div class="col-md-12 card">
+                                <div class="form-group card-body {{ $errors->has('remark') ? 'has-error' : '' }}">
+                                    <label for="remark">Remark <span class="text-danger">*</span></label>
+                                    <textarea id="remark" name="remark" hidden>{{$donatedItem->remark ?? 'No Remark!'}}</textarea>
+                                    <div class="remark-div" style="border:1px solid white;border-radius:5px;padding:5px;margin-bottom:4px;">{!! $donatedItem->remark ?? 'No Remark!' !!}</div>
+                                    <button class="btn btn-xs btn-primary remark-edit" type="button">Edit Remark</button>
+                                    <button class="btn btn-xs btn-success remark-done" type="button">Done</button>
+                                </div>
                             </div>
                         </div>
 
@@ -123,7 +121,13 @@
                     </div>
                     <div class="card-body">
                         <button type="submit" class="btn btn-success">Update</button>
+                        @if($donatedItem->is_confirmed == 0)
+                        <input type="submit" class="btn btn-primary" name="is_confirmed" value="Update And Confirmed">
+                        @endif
+                        @if($donatedItem->is_confirmed == 1)
+                        <input type="submit" class="btn btn-warning" name="is_cancelled" value="Update And Cancel">
                         <a class="btn btn-info" href="{{route('donated_items.manage',$donatedItem->uuid)}}">Manage</a>
+                        @endif
                     </div>
                 </div>
             </div>
