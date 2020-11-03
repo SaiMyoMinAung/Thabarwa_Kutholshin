@@ -25,6 +25,7 @@
             <th>Picked Up At</th>
             <th>Picked Up Info</th>
             <th>Status</th>
+            <th>Kind Of Item</th>
         </tr>
     </thead>
     <tbody>
@@ -64,6 +65,9 @@
                 },
                 {
                     "data": "status"
+                },
+                {
+                    "data": "kind_of_item"
                 },
             ]
         });

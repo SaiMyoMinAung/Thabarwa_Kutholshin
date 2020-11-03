@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Office;
 use App\Traits\HasUUID;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -37,4 +38,10 @@ class Admin extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function office()
+    {
+        return $this->belongsTo(Office::class, 'office_id')->withDefault();
+    }
+
 }

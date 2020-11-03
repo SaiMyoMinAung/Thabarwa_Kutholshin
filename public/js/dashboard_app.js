@@ -1899,6 +1899,631 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OnlineManageComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OnlineManageComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _select2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./select2 */ "./resources/js/components/select2.vue");
+/* harmony import */ var _yesno__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./yesno */ "./resources/js/components/yesno.vue");
+/* harmony import */ var _models_online_manage_component_step1__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../models/online_manage_component/step1 */ "./resources/js/models/online_manage_component/step1.js");
+/* harmony import */ var _models_online_manage_component_step2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../models/online_manage_component/step2 */ "./resources/js/models/online_manage_component/step2.js");
+/* harmony import */ var _models_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../models/online_manage_component/step3 */ "./resources/js/models/online_manage_component/step3.js");
+/* harmony import */ var _models_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/online_manage_component/step4 */ "./resources/js/models/online_manage_component/step4.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
+/* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    model: {
+      required: true
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    var visitedStep = localStorage.getItem("visited-step");
+
+    if (visitedStep != null) {
+      this.makeActive(visitedStep);
+    }
+
+    console.log(this.model);
+    this.step1 = new _models_online_manage_component_step1__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    this.step1.constructData(this.model);
+    this.step2 = new _models_online_manage_component_step2__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    this.step2.constructData(this.model);
+    this.step3 = new _models_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    this.step3.constructData(this.model);
+    this.step4 = new _models_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    this.step4.constructData(this.model);
+    this.$root.$on("startLoading", function () {
+      _this.isLoading = true;
+    });
+    this.$root.$on("endLoading", function () {
+      _this.isLoading = false;
+    });
+    this.$root.$on("success", function (data) {
+      Object.assign(_this.model, data);
+    });
+    this.$root.$on("failed", function (data) {
+      _this.step1.constructData(_this.model);
+    });
+  },
+  components: {
+    select2: _select2__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6___default.a,
+    yesno: _yesno__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      fullPage: false,
+      isLoading: false,
+      step1: null,
+      step2: null,
+      step3: null,
+      step4: null,
+      steps: {
+        step1: true,
+        step2: false,
+        step3: false,
+        step4: false,
+        step5: false
+      }
+    };
+  },
+  methods: {
+    changeStep: function changeStep(step) {
+      this.makeActive(step);
+      localStorage.setItem("visited-step", step);
+    },
+    makeActive: function makeActive(step) {
+      var _this2 = this;
+
+      var keys = Object.keys(this.steps);
+      keys.forEach(function (key, index) {
+        key == step ? _this2.steps[key] = true : _this2.steps[key] = false;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SettingComponent.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SettingComponent.vue?vue&type=script&lang=js& ***!
@@ -3544,8 +4169,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["value", "selectedOption", "url", "placeholder"],
+  props: ["value", "selectedOption", "url", "placeholder", "disabled"],
   data: function data() {
     return {
       options: [],
@@ -3560,14 +4186,17 @@ __webpack_require__.r(__webpack_exports__);
     value: function value(val) {
       console.log(val);
 
-      if (val === null) {
-        this.$refs.select2.clearSelection();
+      if (val == "") {
+        this.fetchData();
       }
 
-      if (this.selectedOption != null) {
-        this.options = [];
-        this.options.push(this.selectedOption);
-      }
+      if (val === null) {
+        this.$refs.select2.clearSelection();
+      } // if (this.selectedOption != null) {
+      // this.options = [];
+      // this.options.push(this.selectedOption);
+      // }
+
     }
   },
   methods: {
@@ -3610,6 +4239,61 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.fetchData();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/yesno.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/yesno.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["text", "addClass"],
+  data: function data() {
+    return {
+      confirm: false
+    };
+  },
+  methods: {
+    confirmed: function confirmed() {
+      this.$emit("confirmed");
+      this.confirm = !this.confirm;
+    },
+    toggleConfirm: function toggleConfirm() {
+      this.confirm = !this.confirm;
+    }
   }
 });
 
@@ -40643,6 +41327,1082 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OnlineManageComponent.vue?vue&type=template&id=5ef1b32c&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OnlineManageComponent.vue?vue&type=template&id=5ef1b32c& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "col-md-12" },
+    [
+      _c("loading", {
+        attrs: {
+          active: _vm.isLoading,
+          "can-cancel": true,
+          "is-full-page": _vm.fullPage
+        },
+        on: {
+          "update:active": function($event) {
+            _vm.isLoading = $event
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("h4", [
+        _c("span", {}, [_vm._v(_vm._s(_vm.model.about_item))]),
+        _vm._v(" "),
+        _c("span", { staticClass: "badge badge-primary" }, [
+          _vm._v(_vm._s(_vm.model.statusName))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "bs-stepper" }, [
+        _c("div", { staticClass: "bs-stepper-header" }, [
+          _c(
+            "div",
+            {
+              staticClass: "step",
+              on: {
+                click: function($event) {
+                  return _vm.changeStep("step1")
+                }
+              }
+            },
+            [
+              _c(
+                "button",
+                { staticClass: "btn step-trigger", attrs: { type: "button" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "bs-stepper-circle",
+                      class: {
+                        "badge-primary": _vm.steps.step1,
+                        "badge-success": _vm.model.is_done_pickingup
+                      }
+                    },
+                    [_vm._v("1")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "bs-stepper-label",
+                      class: {
+                        "text-primary": _vm.steps.step1
+                      }
+                    },
+                    [_vm._v("Assign Driver Step")]
+                  )
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "line" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "step",
+              on: {
+                click: function($event) {
+                  return _vm.changeStep("step2")
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "btn step-trigger" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "bs-stepper-circle",
+                    class: {
+                      "badge-primary": _vm.steps.step2,
+                      "badge-success": _vm.model.is_done_storing
+                    }
+                  },
+                  [_vm._v("2")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "bs-stepper-label",
+                    class: { "text-primary": _vm.steps.step2 }
+                  },
+                  [_vm._v("Assign Store Keeper Step")]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "line" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "step",
+              on: {
+                click: function($event) {
+                  return _vm.changeStep("step3")
+                }
+              }
+            },
+            [
+              _c(
+                "button",
+                { staticClass: "btn step-trigger", attrs: { type: "button" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "bs-stepper-circle",
+                      class: {
+                        "badge-primary": _vm.steps.step3,
+                        "badge-success":
+                          _vm.model.is_done_repairing ||
+                          !_vm.model.is_required_repairing
+                      }
+                    },
+                    [_vm._v("3")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "bs-stepper-label",
+                      class: { "text-primary": _vm.steps.step3 }
+                    },
+                    [_vm._v("Assign Repairer Step")]
+                  )
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "line" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "step",
+              on: {
+                click: function($event) {
+                  return _vm.changeStep("step4")
+                }
+              }
+            },
+            [
+              _c(
+                "button",
+                { staticClass: "btn step-trigger", attrs: { type: "button" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "bs-stepper-circle",
+                      class: {
+                        "badge-primary": _vm.steps.step4,
+                        "badge-success": _vm.model.is_done_delivering
+                      }
+                    },
+                    [_vm._v("4")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "bs-stepper-label",
+                      class: { "text-primary": _vm.steps.step4 }
+                    },
+                    [_vm._v("Assign Deliver Step")]
+                  )
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "line" }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "step",
+              on: {
+                click: function($event) {
+                  return _vm.changeStep("step5")
+                }
+              }
+            },
+            [
+              _c(
+                "button",
+                { staticClass: "btn step-trigger", attrs: { type: "button" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticClass: "bs-stepper-circle",
+                      class: { "badge-primary": _vm.steps.step5 }
+                    },
+                    [_vm._v("5")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "bs-stepper-label",
+                      class: { "text-primary": _vm.steps.step5 }
+                    },
+                    [_vm._v("Receiver Step")]
+                  )
+                ]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "bs-stepper-content" }, [
+          _c(
+            "div",
+            { staticClass: "content", class: { active: _vm.steps.step1 } },
+            [
+              _c("div", { staticClass: "row p-2 rounded" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      class: {
+                        "has-error":
+                          _vm.step1.validation.pickedup_volunteer_id_hasError,
+                        "was-validated":
+                          _vm.step1.validation
+                            .pickedup_volunteer_id_successMessage &&
+                          !_vm.step1.validation.pickedup_volunteer_id_hasError
+                      }
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("select2", {
+                        class: {
+                          "is-invalid":
+                            _vm.step1.validation.pickedup_volunteer_id_hasError
+                        },
+                        attrs: {
+                          url: _vm.step1.getVolunteerUrl,
+                          placeholder: _vm.step1.placeholder,
+                          value: _vm.step1.data.pickedup_volunteer_id,
+                          "selected-option": _vm.step1.pickedup_volunteer,
+                          disabled: _vm.model.is_pickingup
+                        },
+                        on: {
+                          input: function($event) {
+                            return _vm.step1.selectedPickedupVolunteer($event)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.step1.validation
+                                .pickedup_volunteer_id_errorMessage
+                            ) +
+                            "\n              "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "valid-feedback",
+                          staticStyle: { display: "block" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(
+                                _vm.step1.validation
+                                  .pickedup_volunteer_id_successMessage
+                              ) +
+                              "\n              "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    !_vm.model.is_pickingup
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-2" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Assign",
+                                addClass: "btn-primary"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step1.assignDriver()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.pickedup_volunteer_id != null &&
+                    !_vm.model.is_pickingup
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-5" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Change Pickingup State",
+                                addClass: "btn-danger"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step1.changePickingUpState()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.pickedup_volunteer_id != null &&
+                    _vm.model.is_pickingup &&
+                    !_vm.model.is_done_pickingup
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-4" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Done Pickingup",
+                                addClass: "btn-success"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step1.changeDonePickingUpState()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "content", class: { active: _vm.steps.step2 } },
+            [
+              _c("div", { staticClass: "row p-2 rounded" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      class: {
+                        "has-error":
+                          _vm.step2.validation
+                            .store_keeper_volunteer_id_hasError,
+                        "was-validated":
+                          _vm.step2.validation
+                            .store_keeper_volunteer_id_successMessage &&
+                          !_vm.step2.validation
+                            .store_keeper_volunteer_id_hasError
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("select2", {
+                        class: {
+                          "is-invalid":
+                            _vm.step2.validation
+                              .store_keeper_volunteer_id_hasError
+                        },
+                        attrs: {
+                          url: _vm.step2.getVolunteerUrl,
+                          placeholder: _vm.step2.placeholder,
+                          value: _vm.step2.data.store_keeper_volunteer_id,
+                          disabled: _vm.model.is_storing,
+                          "selected-option": _vm.step2.store_keeper_volunteer
+                        },
+                        on: {
+                          input: function($event) {
+                            return _vm.step2.selectedStoreKeeperVolunteer(
+                              $event
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.step2.validation
+                                .store_keeper_volunteer_id_errorMessage
+                            ) +
+                            "\n              "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "valid-feedback",
+                          staticStyle: { display: "block" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(
+                                _vm.step2.validation
+                                  .store_keeper_volunteer_id_successMessage
+                              ) +
+                              "\n              "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      class: {
+                        "has-error": _vm.step2.validation.store_id_hasError,
+                        "was-validated":
+                          _vm.step2.validation.store_id_successMessage &&
+                          !_vm.step2.validation.store_id_hasError
+                      }
+                    },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("select2", {
+                        class: {
+                          "is-invalid": _vm.step2.validation.store_id_hasError
+                        },
+                        attrs: {
+                          url: _vm.step2.getStoreUrl,
+                          placeholder: _vm.step2.placeholderForStore,
+                          value: _vm.step2.data.store_id,
+                          disabled: _vm.model.is_storing,
+                          "selected-option": _vm.step2.store
+                        },
+                        on: {
+                          input: function($event) {
+                            return _vm.step2.selectedStore($event)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.step2.validation.store_id_errorMessage) +
+                            "\n              "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "valid-feedback",
+                          staticStyle: { display: "block" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(
+                                _vm.step2.validation.store_id_successMessage
+                              ) +
+                              "\n              "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      class: {
+                        "has-error": _vm.step2.validation.box_id_hasError,
+                        "was-validated":
+                          _vm.step2.validation.box_id_successMessage &&
+                          !_vm.step2.validation.box_id_hasError
+                      }
+                    },
+                    [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("select2", {
+                        class: {
+                          "is-invalid": _vm.step2.validation.box_id_hasError
+                        },
+                        attrs: {
+                          url: _vm.step2.getBoxUrl,
+                          placeholder: _vm.step2.placeholderForBox,
+                          value: _vm.step2.data.box_id,
+                          disabled: _vm.model.is_storing,
+                          "selected-option": _vm.step2.box
+                        },
+                        on: {
+                          input: function($event) {
+                            return _vm.step2.selectedBox($event)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.step2.validation.box_id_errorMessage) +
+                            "\n              "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "valid-feedback",
+                          staticStyle: { display: "block" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(
+                                _vm.step2.validation.box_id_successMessage
+                              ) +
+                              "\n              "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    !_vm.model.is_storing
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-3" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Assign",
+                                addClass: "btn-primary"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step2.assignStoreKeeper()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.store_keeper_volunteer_id != null &&
+                    !_vm.model.is_storing
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-5" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Change Storing State",
+                                addClass: "btn-danger"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step2.changeStoringState()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.store_keeper_volunteer_id != null &&
+                    _vm.model.is_storing &&
+                    !_vm.model.is_done_storing
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-4" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Done Storing",
+                                addClass: "btn-success"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step2.changeDoneStoringState()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "content", class: { active: _vm.steps.step3 } },
+            [
+              _c("div", { staticClass: "row p-2 rounded" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _vm.model.is_required_repairing || _vm.step3.showForm
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "form-group",
+                          class: {
+                            "has-error":
+                              _vm.step3.validation.repairing_id_hasError,
+                            "was-validated":
+                              _vm.step3.validation
+                                .repairing_id_successMessage &&
+                              !_vm.step3.validation.repairing_id_hasError
+                          }
+                        },
+                        [
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c("select2", {
+                            class: {
+                              "is-invalid":
+                                _vm.step3.validation
+                                  .repaired_volunteer_id_hasError
+                            },
+                            attrs: {
+                              url: _vm.step3.getVolunteerUrl,
+                              placeholder: _vm.step3.placeholder,
+                              value: _vm.step3.data.repaired_volunteer_id,
+                              disabled: _vm.model.is_repairing,
+                              "selected-option": _vm.step3.repaired_volunteer
+                            },
+                            on: {
+                              input: function($event) {
+                                return _vm.step3.selectedRepairerVolunteer(
+                                  $event
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "invalid-feedback" }, [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  _vm.step3.validation
+                                    .repaired_volunteer_id_errorMessage
+                                ) +
+                                "\n              "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "valid-feedback",
+                              staticStyle: { display: "block" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(
+                                    _vm.step3.validation
+                                      .repaired_volunteer_id_successMessage
+                                  ) +
+                                  "\n              "
+                              )
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    !_vm.model.is_repairing && _vm.model.is_required_repairing
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-2" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Assign",
+                                addClass: "btn-primary"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step3.assignRepairer()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.repaired_volunteer_id != null &&
+                    !_vm.model.is_repairing
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-5" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Change Repairing State",
+                                addClass: "btn-danger"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step3.changeRepairingState()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.repaired_volunteer_id != null &&
+                    _vm.model.is_repairing &&
+                    !_vm.model.is_done_repairing
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-5" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Done Repairing",
+                                addClass: "btn-success"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step3.changeDoneRepairingState()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.model.is_required_repairing &&
+                    _vm.model.delivered_volunteer_id == null
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-4" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Required To Repair",
+                                addClass: "btn-success"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step3.requiredRepairing()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.repaired_volunteer_id == null &&
+                    _vm.model.delivered_volunteer_id == null
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-5" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Not Required To Repair",
+                                addClass: "btn-warning"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step3.notRequiredRepairing()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "content", class: { active: _vm.steps.step4 } },
+            [
+              _c("div", { staticClass: "row p-2 rounded" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      class: {
+                        "has-error":
+                          _vm.step4.validation.delivered_volunteer_id_hasError,
+                        "was-validated":
+                          _vm.step4.validation
+                            .delivered_volunteer_id_successMessage &&
+                          !_vm.step4.validation.delivered_volunteer_id_hasError
+                      }
+                    },
+                    [
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _c("select2", {
+                        class: {
+                          "is-invalid":
+                            _vm.step4.validation.delivered_volunteer_id_hasError
+                        },
+                        attrs: {
+                          url: _vm.step4.getVolunteerUrl,
+                          placeholder: _vm.step4.placeholder,
+                          value: _vm.step4.data.delivered_volunteer_id,
+                          disabled: _vm.model.is_delivering,
+                          "selected-option": _vm.step4.delivered_volunteer
+                        },
+                        on: {
+                          input: function($event) {
+                            return _vm.step4.selectedDeliverVolunteer($event)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.step4.validation
+                                .delivered_volunteer_id_errorMessage
+                            ) +
+                            "\n              "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "valid-feedback",
+                          staticStyle: { display: "block" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(
+                                _vm.step4.validation
+                                  .delivered_volunteer_id_successMessage
+                              ) +
+                              "\n              "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    !_vm.model.is_delivering
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-2" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Assign",
+                                addClass: "btn-primary"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step4.assignDeliver()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.delivered_volunteer_id != null &&
+                    !_vm.model.is_delivering
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-5" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Change Delivering State",
+                                addClass: "btn-danger"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step4.changeDeliveringState()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.model.delivered_volunteer_id != null &&
+                    _vm.model.is_delivering &&
+                    !_vm.model.is_done_delivering
+                      ? _c(
+                          "div",
+                          { staticClass: "col-md-5" },
+                          [
+                            _c("yesno", {
+                              attrs: {
+                                text: "Done Delivering",
+                                addClass: "btn-success"
+                              },
+                              on: {
+                                confirmed: function($event) {
+                                  return _vm.step4.changeDoneDeliveringState()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      : _vm._e()
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "content", class: { active: _vm.steps.step5 } },
+            [_c("p", { staticClass: "text-center" }, [_vm._v("test 5")])]
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "pickedup_volunteer" } }, [
+      _vm._v("\n                Assign Driver "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "store_keeper_volunteer" } }, [
+      _vm._v("\n                Assign Store Keeper "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v(" Select Store "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v(" Select Box "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("\n                Select Repairer "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("\n                Select Deliver Volunteer "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SettingComponent.vue?vue&type=template&id=ae7e6710&scoped=true&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SettingComponent.vue?vue&type=template&id=ae7e6710&scoped=true& ***!
@@ -44084,6 +45844,7 @@ var render = function() {
             loading: _vm.loading,
             filterable: false,
             options: _vm.options,
+            disabled: _vm.disabled,
             value: _vm.selectedOption === null ? _vm.value : _vm.selectedOption
           },
           on: {
@@ -44163,6 +45924,75 @@ var render = function() {
     ],
     1
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/yesno.vue?vue&type=template&id=1f0d30a6&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/yesno.vue?vue&type=template&id=1f0d30a6& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "btn",
+        class: [_vm.addClass, { "d-none": _vm.confirm }],
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.toggleConfirm($event)
+          }
+        }
+      },
+      [_vm._v("\n    " + _vm._s(_vm.text) + "\n  ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-sm btn-danger",
+        class: { "d-none": !_vm.confirm },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.confirmed($event)
+          }
+        }
+      },
+      [_vm._v("\n    Yes\n  ")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-sm btn-warning",
+        class: { "d-none": !_vm.confirm },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.toggleConfirm($event)
+          }
+        }
+      },
+      [_vm._v("\n    No\n  ")]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56472,6 +58302,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/OnlineManageComponent.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/OnlineManageComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OnlineManageComponent_vue_vue_type_template_id_5ef1b32c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OnlineManageComponent.vue?vue&type=template&id=5ef1b32c& */ "./resources/js/components/OnlineManageComponent.vue?vue&type=template&id=5ef1b32c&");
+/* harmony import */ var _OnlineManageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OnlineManageComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/OnlineManageComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OnlineManageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OnlineManageComponent_vue_vue_type_template_id_5ef1b32c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OnlineManageComponent_vue_vue_type_template_id_5ef1b32c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/OnlineManageComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/OnlineManageComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/OnlineManageComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OnlineManageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./OnlineManageComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OnlineManageComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OnlineManageComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/OnlineManageComponent.vue?vue&type=template&id=5ef1b32c&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/OnlineManageComponent.vue?vue&type=template&id=5ef1b32c& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OnlineManageComponent_vue_vue_type_template_id_5ef1b32c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./OnlineManageComponent.vue?vue&type=template&id=5ef1b32c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OnlineManageComponent.vue?vue&type=template&id=5ef1b32c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OnlineManageComponent_vue_vue_type_template_id_5ef1b32c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OnlineManageComponent_vue_vue_type_template_id_5ef1b32c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/SettingComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/SettingComponent.vue ***!
@@ -56646,6 +58545,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/yesno.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/yesno.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _yesno_vue_vue_type_template_id_1f0d30a6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./yesno.vue?vue&type=template&id=1f0d30a6& */ "./resources/js/components/yesno.vue?vue&type=template&id=1f0d30a6&");
+/* harmony import */ var _yesno_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./yesno.vue?vue&type=script&lang=js& */ "./resources/js/components/yesno.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _yesno_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _yesno_vue_vue_type_template_id_1f0d30a6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _yesno_vue_vue_type_template_id_1f0d30a6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/yesno.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/yesno.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/yesno.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_yesno_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./yesno.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/yesno.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_yesno_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/yesno.vue?vue&type=template&id=1f0d30a6&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/yesno.vue?vue&type=template&id=1f0d30a6& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_yesno_vue_vue_type_template_id_1f0d30a6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./yesno.vue?vue&type=template&id=1f0d30a6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/yesno.vue?vue&type=template&id=1f0d30a6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_yesno_vue_vue_type_template_id_1f0d30a6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_yesno_vue_vue_type_template_id_1f0d30a6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/dashboard_app.js":
 /*!***************************************!*\
   !*** ./resources/js/dashboard_app.js ***!
@@ -56690,9 +58658,10 @@ vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_toasted__WEBPACK_IMPORTED_MOD
  */
 
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('setting-component', __webpack_require__(/*! ./components/SettingComponent.vue */ "./resources/js/components/SettingComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('online-manage-component', __webpack_require__(/*! ./components/OnlineManageComponent.vue */ "./resources/js/components/OnlineManageComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_1___default.a);
-var dashboard_app = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
+window.dashboard_app = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
   el: '#dashboard-app'
 });
 
@@ -57435,6 +59404,558 @@ var office = /*#__PURE__*/function (_base) {
 
 /***/ }),
 
+/***/ "./resources/js/models/online_manage_component/step1.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/models/online_manage_component/step1.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return step1; });
+/* harmony import */ var _validations_online_manage_component_step1__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../validations/online_manage_component/step1 */ "./resources/js/validations/online_manage_component/step1.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var step1 = /*#__PURE__*/function () {
+  function step1() {
+    var uuid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+    _classCallCheck(this, step1);
+
+    this.uuid = uuid;
+    this.pickedup_volunteer = null;
+    this.data = {
+      pickedup_volunteer_id: null
+    };
+    this.validation = new _validations_online_manage_component_step1__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    this.getVolunteerUrl = route("volunteers.get_all_volunteers");
+    this.placeholder = "Type To Search Volunteer...";
+  }
+
+  _createClass(step1, [{
+    key: "assignDriver",
+    value: function assignDriver() {
+      var _this = this;
+
+      var self = this;
+      var assignDriverApi = route("donatedItem.assignDriver", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.post(assignDriverApi, this.data).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        _this.validation = new _validations_online_manage_component_step1__WEBPACK_IMPORTED_MODULE_0__["default"]();
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        self.validation = new _validations_online_manage_component_step1__WEBPACK_IMPORTED_MODULE_0__["default"](error.response.data.errors);
+      });
+    }
+  }, {
+    key: "changePickingUpState",
+    value: function changePickingUpState() {
+      var changePickingupStateApi = route("donatedItem.changePickingupState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.get(changePickingupStateApi).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "changeDonePickingUpState",
+    value: function changeDonePickingUpState() {
+      var changeDonePickingupStateApi = route("donatedItem.changeDonePickingupState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.get(changeDonePickingupStateApi).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "selectedPickedupVolunteer",
+    value: function selectedPickedupVolunteer(event) {
+      this.pickedup_volunteer = event;
+      this.data.pickedup_volunteer_id = event != null ? event.id : "";
+    }
+  }, {
+    key: "constructData",
+    value: function constructData(model) {
+      this.uuid = model.uuid;
+      this.pickedup_volunteer = model.pickedup_volunteer;
+      this.data.pickedup_volunteer_id = model.pickedup_volunteer_id;
+    }
+  }]);
+
+  return step1;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/online_manage_component/step2.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/models/online_manage_component/step2.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return step2; });
+/* harmony import */ var _validations_online_manage_component_step2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../validations/online_manage_component/step2 */ "./resources/js/validations/online_manage_component/step2.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var step2 = /*#__PURE__*/function () {
+  function step2() {
+    var uuid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+    _classCallCheck(this, step2);
+
+    this.uuid = uuid; // selected data
+
+    this.store_keeper_volunteer = null;
+    this.store = null;
+    this.box = null;
+    this.data = {
+      store_keeper_volunteer_id: null,
+      store_id: null,
+      box_id: null
+    };
+    this.validation = new _validations_online_manage_component_step2__WEBPACK_IMPORTED_MODULE_0__["default"](); // url
+
+    this.getVolunteerUrl = route("volunteers.get_all_volunteers");
+    this.getStoreUrl = route("stores.auth");
+    this.getBoxUrl = route("boxes.auth"); // placeholder
+
+    this.placeholder = "Type To Search Volunteer...";
+    this.placeholderForStore = "Type To Search Store...";
+    this.placeholderForBox = "Type To Search Box...";
+  }
+
+  _createClass(step2, [{
+    key: "assignStoreKeeper",
+    value: function assignStoreKeeper() {
+      var _this = this;
+
+      var self = this;
+      var assignStoreKeeperApi = route("donatedItem.assignStoreKeeper", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.post(assignStoreKeeperApi, this.data).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        _this.validation = new _validations_online_manage_component_step2__WEBPACK_IMPORTED_MODULE_0__["default"]();
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        self.validation = new _validations_online_manage_component_step2__WEBPACK_IMPORTED_MODULE_0__["default"](error.response.data.errors);
+      });
+    }
+  }, {
+    key: "changeStoringState",
+    value: function changeStoringState() {
+      var changeStoringStateApi = route("donatedItem.changeStoringState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.get(changeStoringStateApi).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "changeDoneStoringState",
+    value: function changeDoneStoringState() {
+      var changeDoneStoringStateApi = route("donatedItem.changeDoneStoringState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.get(changeDoneStoringStateApi).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "selectedStoreKeeperVolunteer",
+    value: function selectedStoreKeeperVolunteer(event) {
+      this.store_keeper_volunteer = event;
+      this.data.store_keeper_volunteer_id = event != null ? event.id : "";
+    }
+  }, {
+    key: "selectedStore",
+    value: function selectedStore(event) {
+      this.store = event;
+      this.data.store_id = event != null ? event.id : "";
+    }
+  }, {
+    key: "selectedBox",
+    value: function selectedBox(event) {
+      this.box = event;
+      this.data.box_id = event != null ? event.id : "";
+    }
+  }, {
+    key: "constructData",
+    value: function constructData(model) {
+      this.uuid = model.uuid;
+      this.store_keeper_volunteer = model.store_keeper_volunteer;
+      this.data.store_keeper_volunteer_id = model.store_keeper_volunteer_id;
+      this.store = model.store;
+      this.data.store_id = model.store_id;
+      this.box = model.box;
+      this.data.box_id = model.box_id;
+    }
+  }]);
+
+  return step2;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/online_manage_component/step3.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/models/online_manage_component/step3.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return step3; });
+/* harmony import */ var _validations_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../validations/online_manage_component/step3 */ "./resources/js/validations/online_manage_component/step3.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var step3 = /*#__PURE__*/function () {
+  function step3() {
+    var uuid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+    _classCallCheck(this, step3);
+
+    this.uuid = uuid; // selected data
+
+    this.repaired_volunteer = null;
+    this.data = {
+      repaired_volunteer_id: null
+    };
+    this.validation = new _validations_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_0__["default"](); // url
+
+    this.getVolunteerUrl = route("volunteers.get_all_volunteers"); // placeholder
+
+    this.placeholder = "Type To Search Repairer..."; // confirm condition
+
+    this.showForm = false;
+  }
+
+  _createClass(step3, [{
+    key: "assignRepairer",
+    value: function assignRepairer() {
+      var _this = this;
+
+      var self = this;
+      var assignRepairerApi = route("donatedItem.assignRepairer", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.post(assignRepairerApi, this.data).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        _this.validation = new _validations_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_0__["default"]();
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        self.validation = new _validations_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_0__["default"](error.response.data.errors);
+      });
+    }
+  }, {
+    key: "changeRepairingState",
+    value: function changeRepairingState() {
+      var changeRepairingStateApi = route("donatedItem.changeRepairingState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.get(changeRepairingStateApi).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "changeDoneRepairingState",
+    value: function changeDoneRepairingState() {
+      var changeDoneRepairingStateApi = route("donatedItem.changeDoneRepairingState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.get(changeDoneRepairingStateApi).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "selectedRepairerVolunteer",
+    value: function selectedRepairerVolunteer(event) {
+      this.repaired_volunteer = event;
+      this.data.repaired_volunteer_id = event != null ? event.id : "";
+    }
+  }, {
+    key: "requiredRepairing",
+    value: function requiredRepairing() {
+      this.callRequiredRepairingApi(true);
+    }
+  }, {
+    key: "notRequiredRepairing",
+    value: function notRequiredRepairing() {
+      this.callRequiredRepairingApi(false);
+    }
+  }, {
+    key: "callRequiredRepairingApi",
+    value: function callRequiredRepairingApi(required) {
+      var _this2 = this;
+
+      var self = this;
+      var requiredRepairingApi = route("donatedItem.requiredRepairState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.post(requiredRepairingApi, {
+        required: required
+      }).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        _this2.validation = new _validations_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_0__["default"]();
+        _this2.showForm = required;
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        self.validation = new _validations_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_0__["default"](error.response.data.errors);
+        self.showForm = false;
+      });
+    }
+  }, {
+    key: "constructData",
+    value: function constructData(model) {
+      this.uuid = model.uuid;
+      this.repaired_volunteer = model.repaired_volunteer;
+      this.data.repaired_volunteer_id = model.repaired_volunteer_id;
+      this.showForm = model.is_required_repairing;
+    }
+  }]);
+
+  return step3;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/online_manage_component/step4.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/models/online_manage_component/step4.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return step4; });
+/* harmony import */ var _validations_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../validations/online_manage_component/step4 */ "./resources/js/validations/online_manage_component/step4.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var step4 = /*#__PURE__*/function () {
+  function step4() {
+    var uuid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+    _classCallCheck(this, step4);
+
+    this.uuid = uuid; // selected data
+
+    this.delivered_volunteer = null;
+    this.data = {
+      delivered_volunteer_id: null
+    };
+    this.validation = new _validations_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_0__["default"](); // url
+
+    this.getVolunteerUrl = route("volunteers.get_all_volunteers"); // placeholder
+
+    this.placeholder = "Type To Search Deliver Volunteer..."; // confirm condition
+
+    this.showForm = false;
+  }
+
+  _createClass(step4, [{
+    key: "assignDeliver",
+    value: function assignDeliver() {
+      var _this = this;
+
+      var self = this;
+      var assignDeliverApi = route("donatedItem.assignDeliver", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.post(assignDeliverApi, this.data).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        _this.validation = new _validations_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_0__["default"]();
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+        self.validation = new _validations_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_0__["default"](error.response.data.errors);
+      });
+    }
+  }, {
+    key: "changeDeliveringState",
+    value: function changeDeliveringState() {
+      var changeDeliveringStateApi = route("donatedItem.changeDeliveringState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.get(changeDeliveringStateApi).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "changeDoneDeliveringState",
+    value: function changeDoneDeliveringState() {
+      var changeDoneDeliveringStateApi = route("donatedItem.changeDoneDeliveringState", this.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.get(changeDoneDeliveringStateApi).then(function (response) {
+        window.dashboard_app.$emit('success', response.data);
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      })["catch"](function (error) {
+        window.dashboard_app.$emit('failed');
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "selectedDeliverVolunteer",
+    value: function selectedDeliverVolunteer(event) {
+      this.delivered_volunteer = event;
+      this.data.delivered_volunteer_id = event != null ? event.id : "";
+    }
+  }, {
+    key: "constructData",
+    value: function constructData(model) {
+      this.uuid = model.uuid;
+      this.delivered_volunteer = model.delivered_volunteer;
+      this.data.delivered_volunteer_id = model.delivered_volunteer_id;
+    }
+  }]);
+
+  return step4;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/models/state_region.js":
 /*!*********************************************!*\
   !*** ./resources/js/models/state_region.js ***!
@@ -57707,6 +60228,246 @@ module.exports = function () {
     }).join('/');
   }
 };
+
+/***/ }),
+
+/***/ "./resources/js/validations/online_manage_component/step1.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/validations/online_manage_component/step1.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return step1; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var step1 = /*#__PURE__*/function () {
+  function step1() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, step1);
+
+    if (validation != null) {
+      if (validation.pickedup_volunteer_id) {
+        this.pickedup_volunteer_id_hasError = true;
+        this.pickedup_volunteer_id_errorMessage = validation.pickedup_volunteer_id[0];
+        this.pickedup_volunteer_id_successMessage = null;
+      } else {
+        this.pickedup_volunteer_id_hasError = false;
+        this.pickedup_volunteer_id_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(step1, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.pickedup_volunteer_id_hasError = false;
+      this.pickedup_volunteer_id_errorMessage = '';
+      this.pickedup_volunteer_id_successMessage = '';
+    }
+  }]);
+
+  return step1;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/validations/online_manage_component/step2.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/validations/online_manage_component/step2.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return step2; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var step2 = /*#__PURE__*/function () {
+  function step2() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, step2);
+
+    if (validation != null) {
+      if (validation.store_keeper_volunteer_id) {
+        this.store_keeper_volunteer_id_hasError = true;
+        this.store_keeper_volunteer_id_errorMessage = validation.store_keeper_volunteer_id[0];
+        this.store_keeper_volunteer_id_successMessage = null;
+      } else {
+        this.store_keeper_volunteer_id_hasError = false;
+        this.store_keeper_volunteer_id_successMessage = 'Good Job.';
+      }
+
+      if (validation.store_id) {
+        this.store_id_hasError = true;
+        this.store_id_errorMessage = validation.store_id[0];
+        this.store_id_successMessage = null;
+      } else {
+        this.store_id_hasError = false;
+        this.store_id_successMessage = 'Good Job.';
+      }
+
+      if (validation.box_id) {
+        this.box_id_hasError = true;
+        this.box_id_errorMessage = validation.box_id[0];
+        this.box_id_successMessage = null;
+      } else {
+        this.box_id_hasError = false;
+        this.box_id_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(step2, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.store_keeper_volunteer_id_hasError = false;
+      this.store_keeper_volunteer_id_errorMessage = '';
+      this.store_keeper_volunteer_id_successMessage = '';
+      this.store_id_hasError = false;
+      this.store_id_errorMessage = '';
+      this.store_id_successMessage = '';
+      this.box_id_hasError = false;
+      this.box_id_errorMessage = '';
+      this.box_id_successMessage = '';
+    }
+  }]);
+
+  return step2;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/validations/online_manage_component/step3.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/validations/online_manage_component/step3.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return step3; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var step3 = /*#__PURE__*/function () {
+  function step3() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, step3);
+
+    if (validation != null) {
+      if (validation.repaired_volunteer_id) {
+        this.repaired_volunteer_id_hasError = true;
+        this.repaired_volunteer_id_errorMessage = validation.repaired_volunteer_id[0];
+        this.repaired_volunteer_id_successMessage = null;
+      } else {
+        this.repaired_volunteer_id_hasError = false;
+        this.repaired_volunteer_id_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(step3, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.repaired_volunteer_id_hasError = false;
+      this.repaired_volunteer_id_errorMessage = '';
+      this.repaired_volunteer_id_successMessage = '';
+    }
+  }]);
+
+  return step3;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/validations/online_manage_component/step4.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/validations/online_manage_component/step4.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return step4; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var step4 = /*#__PURE__*/function () {
+  function step4() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, step4);
+
+    if (validation != null) {
+      if (validation.delivered_volunteer_id) {
+        this.delivered_volunteer_id_hasError = true;
+        this.delivered_volunteer_id_errorMessage = validation.delivered_volunteer_id[0];
+        this.delivered_volunteer_id_successMessage = null;
+      } else {
+        this.delivered_volunteer_id_hasError = false;
+        this.delivered_volunteer_id_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(step4, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.delivered_volunteer_id_hasError = false;
+      this.delivered_volunteer_id_errorMessage = '';
+      this.delivered_volunteer_id_successMessage = '';
+    }
+  }]);
+
+  return step4;
+}();
+
+
 
 /***/ }),
 

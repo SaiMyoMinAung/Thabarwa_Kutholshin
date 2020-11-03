@@ -20,7 +20,7 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-        $countries = Country::where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->orderBy('id', 'desc')->paginate(5);
+        $countries = Country::where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new CountryResourceCollection($countries), 200);
     }

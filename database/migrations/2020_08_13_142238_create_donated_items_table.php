@@ -20,28 +20,40 @@ class CreateDonatedItemsTable extends Migration
             $table->string('about_item');
             $table->date('pickedup_at');
             $table->string('pickedup_info');
-
-            $table->integer('item_type_id')->nullable();
-            $table->integer('state_region_id')->nullable();
             $table->text('remark')->nullable();
             $table->timestamp('delivered_at')->nullable();
             $table->string('delivered_info')->nullable();
 
-            $table->integer('donor_id');
-            $table->integer('store_id')->nullable();
-            $table->integer('receiver_id')->nullable();
-            $table->integer('pickedup_driver_id')->nullable();
-            $table->integer('delivered_driver_id')->nullable();
+            $table->integer('kind_of_item');
+            $table->integer('item_type_id')->nullable();
 
-            $table->string('status')->default('pending');
-            $table->string('state_class')->default('App\\\State\\\PendingState');
-            $table->boolean('is_confirmed')->default(0);
+            $table->integer('donated_user_id');
+            $table->integer('received_user_id')->nullable();
+
+            $table->integer('state_region_id')->nullable();
+            $table->integer('store_id')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->integer('box_id')->nullable();
+
+            $table->integer('pickedup_volunteer_id')->nullable();
+            $table->integer('store_keeper_volunteer_id')->nullable();
+            $table->integer('repaired_volunteer_id')->nullable();
+            $table->integer('delivered_volunteer_id')->nullable();
+            $table->integer('receiver_user_id')->nullable();
+
+            $table->integer('status');
+            $table->string('state_class');
+
+            $table->boolean('is_confirmed_by_donor')->default(0);
             $table->boolean('is_pickingup')->default(0);
-            $table->boolean('is_arrive_at_office')->default(0);
-            $table->boolean('is_need_repairing')->default(0);
+            $table->boolean('is_done_pickingup')->default(0);
+            $table->boolean('is_storing')->default(0);
+            $table->boolean('is_done_storing')->default(0);
+            $table->boolean('is_required_repairing')->default(0);
             $table->boolean('is_repairing')->default(0);
-            $table->boolean('is_repairing_finish')->default(0);
-            $table->boolean('is_deliver')->default(0);
+            $table->boolean('is_done_repairing')->default(0);
+            $table->boolean('is_delivering')->default(0);
+            $table->boolean('is_done_delivering')->default(0);
             $table->boolean('is_complete')->default(0);
 
             $table->timestamps();

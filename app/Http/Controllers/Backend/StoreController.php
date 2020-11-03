@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\StoreResource;
 use App\Http\Requests\StoreStoreRequest;
 use App\Http\Requests\StoreUpdateRequest;
+use App\Http\Resources\Select2\StoreSelect2ResourceCollection;
 use App\Http\Resources\StoreResourceCollection;
 
 class StoreController extends Controller
@@ -109,5 +110,13 @@ class StoreController extends Controller
             report($e);
             return response()->json(['message' => 'fail'], 500);
         }
+    }
+
+
+    public function getStoresOfAuth(Request $request)
+    {
+        $stores = auth()->user()->office->stores()->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+
+        return response()->json(new StoreSelect2ResourceCollection($stores), 200);
     }
 }

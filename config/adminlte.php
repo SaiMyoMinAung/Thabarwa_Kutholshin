@@ -237,6 +237,13 @@ return [
         //     'topnav' => true,
         // ],
         [
+            'text'        => 'Volunteers',
+            'url'         => 'backend/volunteers',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'Users',
             'url'         => 'backend/users',
             'icon'        => 'far fa-fw fa-file',
@@ -368,11 +375,11 @@ return [
         'bs-stepper' => [
             'active' => true,
             'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => '//cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js',
-                ],
+                // [
+                //     'type' => 'js',
+                //     'asset' => true,
+                //     'location' => '//cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js',
+                // ],
                 [
                     'type' => 'css',
                     'asset' => true,

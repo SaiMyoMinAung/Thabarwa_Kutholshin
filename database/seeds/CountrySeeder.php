@@ -13,7 +13,7 @@ class CountrySeeder extends Seeder
     public function run()
     {
         $data = [
-            ['name' => 'Myanmar']
+            ['name' => COUNTRY_ONE]
         ];
 
         Country::insert($data);

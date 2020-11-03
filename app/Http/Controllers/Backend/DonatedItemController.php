@@ -5,15 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\DonatedItem;
 use App\StateRegion;
 use Illuminate\Http\Request;
+use App\Status\KindOfItemStatus;
 use App\Http\Controllers\Controller;
-use App\State\AssignDriverTransition;
-use App\State\ArriveAtOfficeTransition;
-use App\State\NewToConfirmedTransition;
-use App\State\ToAssignDriverTransition;
-use App\Http\Requests\DTO\ArriveAtOfficeDTO;
-use App\State\ConfirmedToCancelledTransition;
-use App\Http\Requests\AssignDriverStoreRequest;
 use App\Http\Requests\DonationUpdateFormRequest;
+use App\Http\Resources\DonatedItem\DonatedItemResource;
+use App\State\Online\Transition\NewToConfirmedTransition;
+use App\State\Online\Transition\ConfirmedToCancelledTransition;
 
 class DonatedItemController extends Controller
 {
@@ -31,7 +28,8 @@ class DonatedItemController extends Controller
                 1 => 'about_item',
                 2 => 'pickedup_at',
                 3 => 'pickedup_info',
-                4 => 'status'
+                4 => 'status',
+                5 => 'kind_of_item',
             );
 
             $totalData = DonatedItem::count();
@@ -51,20 +49,36 @@ class DonatedItemController extends Controller
             } else {
                 $search = $request->input('search.value');
 
+                $totalFiltered = DonatedItem::where('about_item', 'LIKE', "%{$search}%")
+                    ->orWhere('pickedup_at', 'LIKE', "%{$search}%")
+                    ->orWhere('pickedup_info', 'LIKE', "%{$search}%");
+
                 $donated_items =  DonatedItem::where('about_item', 'LIKE', "%{$search}%")
                     ->orWhere('pickedup_at', 'LIKE', "%{$search}%")
-                    ->orWhere('pickedup_info', 'LIKE', "%{$search}%")
-                    ->orWhere('status', 'LIKE', "%{$search}%")
-                    ->offset($start)
+                    ->orWhere('pickedup_info', 'LIKE', "%{$search}%");
+
+                // add status filter query
+                $status = strtoupper($request->input('search.value'));
+                if (in_array($status, DonatedItemStatus::keys())) {
+                    $search = (string) DonatedItemStatus::values()[$status];
+                    $donated_items = $donated_items->orWhere('status', 'LIKE', "%{$search}%");
+                    $totalFiltered = $totalFiltered->orWhere('status', 'LIKE', "%{$search}%");
+                }
+
+                // add kind of item filter
+                $kind_of_item = strtoupper($request->input('search.value'));
+                if (in_array($kind_of_item, KindOfItemStatus::keys())) {
+                    $search = (string) KindOfItemStatus::values()[$kind_of_item];
+                    $donated_items = $donated_items->orWhere('kind_of_item', 'LIKE', "%{$search}%");
+                    $totalFiltered = $totalFiltered->orWhere('kind_of_item', 'LIKE', "%{$search}%");
+                }
+
+                $donated_items = $donated_items->offset($start)
                     ->limit($limit)
                     ->orderBy($order, $dir)
                     ->get();
 
-                $totalFiltered = DonatedItem::where('about_item', 'LIKE', "%{$search}%")
-                    ->orWhere('pickedup_at', 'LIKE', "%{$search}%")
-                    ->orWhere('pickedup_info', 'LIKE', "%{$search}%")
-                    ->orWhere('status', 'LIKE', "%{$search}%")
-                    ->count();
+                $totalFiltered = $totalFiltered->count();
             }
 
             $data = array();
@@ -76,7 +90,8 @@ class DonatedItemController extends Controller
                     $nestedData['about_item'] = '<a href="' . $show . '">' . $donated_item->about_item . '</a>';
                     $nestedData['pickedup_at'] = $donated_item->pickedup_at->format('d M Y');
                     $nestedData['pickedup_info'] = substr(strip_tags($donated_item->pickedup_info), 0, 50) . "...";
-                    $nestedData['status'] = $donated_item->status;
+                    $nestedData['status'] = $donated_item->statusName;
+                    $nestedData['kind_of_item'] = $donated_item->kindOfItemName;
 
                     $data[] = $nestedData;
                 }
@@ -101,17 +116,6 @@ class DonatedItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
     {
         //
     }
@@ -156,7 +160,7 @@ class DonatedItemController extends Controller
             $t = new NewToConfirmedTransition();
             $donatedItem = $t($donatedItem);
         }
-        
+
         if ($request->hasIsCancelled()) {
             $t = new ConfirmedToCancelledTransition();
             $donatedItem = $t($donatedItem);
@@ -168,33 +172,19 @@ class DonatedItemController extends Controller
         return back()->with('success', 'Donated Item Update Successful.');
     }
 
-    public function manage(DonatedItem $donatedItem)
+    public function manage($uuid)
     {
-        if ($donatedItem->is_confirmed == 0) {
+        $donatedItem = DonatedItem::with(['pickedupVolunteer'])->where('uuid', $uuid)->first();
+
+        if ($donatedItem->is_confirmed_by_donor == 0) {
             return back()->with('danger', 'You Must Confirm To Donor')->withErrors(['is_confirmed' => 'Please Check This!']);
         }
 
-        return view('backend.donated_item.manage', compact('donatedItem'));
-    }
-
-    public function assignDriver(AssignDriverStoreRequest $request, DonatedItem $donatedItem)
-    {
-        $assignDriverData = $request->assignDriverData()->all();
-        $t = new AssignDriverTransition();
-        $donatedItem = $t($donatedItem, $assignDriverData);
-
-        $url = route('donated_items.manage', ['donated_item' => $donatedItem->uuid, 'stepper' => $request->getStepper()]);
-        return redirect($url)->with('success', 'Assign Driver Successful.');
-    }
-
-    public function arriveAtOffice(DonatedItem $donatedItem)
-    {
-        $arriveAtOfficeData = new ArriveAtOfficeDTO();
-        $t = new ArriveAtOfficeTransition();
-        $donatedItem = $t($donatedItem, $arriveAtOfficeData->all());
-
-        $url = route('donated_items.manage', ['donated_item' => $donatedItem->uuid, 'stepper' => $request->getStepper()]);
-        return redirect($url)->with('success', 'Marking Arrive At Office Is Successful.');
+        $donatedItem = new DonatedItemResource($donatedItem);
+        
+        if ($donatedItem->kind_of_item == (string) KindOfItemStatus::ONLINE()) {
+            return view('backend.donated_item.online.manage', compact('donatedItem'));
+        }
     }
 
     /**

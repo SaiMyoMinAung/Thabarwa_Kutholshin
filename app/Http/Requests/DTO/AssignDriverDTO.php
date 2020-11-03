@@ -8,6 +8,5 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class AssignDriverDTO extends DataTransferObject
 {
-    public $pickedup_driver_id;
-    public $is_pickingup;
+    public $pickedup_volunteer_id;
 }

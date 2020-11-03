@@ -19,7 +19,7 @@
             <div class="card border border-success">
                 <div class="card-body row">
                     <div class="col-md-6">
-                        <h3>Item Status - <span class="badge badge-success">{{$donatedItem->status}}</span></h3>
+                        <h3>Item Status - <span class="badge badge-success">{{$donatedItem->statusName}}</span></h3>
 
 
                         <div class="form-group {{ $errors->has('about_item') ? 'has-error' : '' }}">
@@ -121,11 +121,13 @@
                     </div>
                     <div class="card-body">
                         <button type="submit" class="btn btn-success">Update</button>
-                        @if($donatedItem->is_confirmed == 0)
+                        @if($donatedItem->is_confirmed_by_donor == 0)
                         <input type="submit" class="btn btn-primary" name="is_confirmed" value="Update And Confirmed">
                         @endif
-                        @if($donatedItem->is_confirmed == 1)
+                        @if($donatedItem->is_confirmed_by_donor == 1 && $donatedItem->pickedup_volunteer_id == null)
                         <input type="submit" class="btn btn-warning" name="is_cancelled" value="Update And Cancel">
+                        @endif
+                        @if($donatedItem->is_confirmed_by_donor == 1)
                         <a class="btn btn-info" href="{{route('donated_items.manage',$donatedItem->uuid)}}">Manage</a>
                         @endif
                     </div>

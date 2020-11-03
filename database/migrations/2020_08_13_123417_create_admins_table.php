@@ -20,6 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->integer('state_region_id');
+            $table->integer('office_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

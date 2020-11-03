@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use App\Http\Requests\DTO\UserDTO;
 use App\Http\Requests\DTO\DonatedItemDTO;
 use App\Rules\Recaptcha;
+use App\Status\DonatedItemStatus;
+use App\Status\KindOfItemStatus;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DonationStoreFormRequest extends FormRequest
@@ -81,7 +83,10 @@ class DonationStoreFormRequest extends FormRequest
             'pickedup_info' => $this->input('pickedup_address'),
             'pickedup_at' => $this->input('pickedup_at'),
             'remark' => $this->input('remark'),
-            'donor_id' => $donor_id
+            'donated_user_id' => $donor_id,
+            'status' => DonatedItemStatus::NEW_STATE(),
+            'state_class' => 'App\State\Online\NewState',
+            'kind_of_item' => KindOfItemStatus::ONLINE(),
         ]);
     }
 }

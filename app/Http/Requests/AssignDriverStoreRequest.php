@@ -25,22 +25,15 @@ class AssignDriverStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'stepper' => 'numeric|max:999999999',
-            'pickedup_driver_id' => 'required|numeric|max:999999999',
-            'is_pickingup' => 'nullable|numeric|max:999999999',
+            'pickedup_volunteer_id' => 'required|numeric|max:999999999',
         ];
     }
 
     public function assignDriverData()
     {
         return new AssignDriverDTO([
-            'pickedup_driver_id' => $this->input('pickedup_driver_id'),
-            'is_pickingup' => $this->input('is_pickingup') ?? 0,
+            'pickedup_volunteer_id' => $this->input('pickedup_volunteer_id')
         ]);
     }
 
-    public function getStepper()
-    {
-        return $this->input('stepper');
-    }
 }

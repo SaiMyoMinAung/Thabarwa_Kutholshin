@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BoxStoreRequest;
 use App\Http\Requests\BoxUpdateRequest;
 use App\Http\Resources\BoxResourceCollection;
+use App\Http\Resources\Select2\BoxSelect2ResourceCollection;
 
 class BoxController extends Controller
 {
@@ -109,5 +110,12 @@ class BoxController extends Controller
             report($e);
             return response()->json(['message' => 'fail'], 500);
         }
+    }
+
+    public function getBoxesOfAuth(Request $request)
+    {
+        $boxes = auth()->user()->office->boxes()->where('boxes.name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+
+        return response()->json(new BoxSelect2ResourceCollection($boxes), 200);
     }
 }

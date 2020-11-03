@@ -11,10 +11,11 @@ final class DonatedItemDTO extends DataTransferObject
     public $about_item;
     public $pickedup_at;
     public $pickedup_info;
-    public $donor_id;
+    public $donated_user_id;
     public $remark;
-    // public $status;
-    // public $state_class;
+    public $status;
+    public $state_class;
+    public $kind_of_item;
     // public $item_type_id;
     // public $state_region_id;
     // public $delivered_at;

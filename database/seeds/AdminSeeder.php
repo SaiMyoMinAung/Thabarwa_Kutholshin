@@ -1,6 +1,7 @@
 <?php
 
 use App\Admin;
+use App\Office;
 use App\StateRegion;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,8 @@ class AdminSeeder extends Seeder
         $admin->email = 'admin@kutholshin.com';
         $admin->phone = '0977777777';
         $admin->password = bcrypt('123456');
-        $admin->state_region_id = StateRegion::where('name', 'Yangon')->first()->id;
+        $admin->state_region_id = StateRegion::where('name', STATE_REGION_ONE)->first()->id;
+        $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
         $admin->save();
     }
 }

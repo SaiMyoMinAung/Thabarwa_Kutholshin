@@ -5,10 +5,11 @@
       :loading="loading"
       :filterable="false"
       :options="options"
+      :disabled="disabled"
       @search="onSearch"
       @input="userSelected($event)"
       ref="select2"
-      :value="(selectedOption === null) ? value : selectedOption"
+      :value="selectedOption === null ? value : selectedOption"
     >
       <template slot="no-options">{{ placeholder }}</template>
       <template slot="option" slot-scope="option">
@@ -81,26 +82,29 @@ img {
 
 <script>
 export default {
-  props: ["value", "selectedOption", "url", "placeholder"],
+  props: ["value", "selectedOption", "url", "placeholder", "disabled"],
   data: () => ({
     options: [],
     page: 1,
     q: "",
     loading: false,
     hasPrevPage: "",
-    hasNextPage: ""
+    hasNextPage: "",
   }),
   watch: {
-    value: function(val) {
+    value: function (val) {
       console.log(val);
+      if (val == "") {
+        this.fetchData();
+      }
       if (val === null) {
         this.$refs.select2.clearSelection();
       }
-      if (this.selectedOption != null) {
-        this.options = [];
-        this.options.push(this.selectedOption);
-      }
-    }
+      // if (this.selectedOption != null) {
+      // this.options = [];
+      // this.options.push(this.selectedOption);
+      // }
+    },
   },
   methods: {
     userSelected($event) {
@@ -128,8 +132,8 @@ export default {
     fetchData() {
       var self = this;
       fetch(this.url + `?q=${escape(this.q)}&page=${this.page}`)
-        .then(res => {
-          res.json().then(json => {
+        .then((res) => {
+          res.json().then((json) => {
             self.options = json.data;
             self.page = json.current_page;
             self.hasPrevPage = json.prev_page_url;
@@ -137,13 +141,13 @@ export default {
           });
           self.loading = false;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
   created() {
     this.fetchData();
-  }
+  },
 };
 </script>

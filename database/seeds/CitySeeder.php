@@ -1,7 +1,7 @@
 <?php
 
 use App\City;
-use App\Country;
+use App\StateRegion;
 use Illuminate\Database\Seeder;
 
 class CitySeeder extends Seeder
@@ -15,8 +15,12 @@ class CitySeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Yangon',
-                'state_region_id' => Country::first()->id,
+                'name' => CITY_ONE,
+                'state_region_id' => StateRegion::where('name', STATE_REGION_ONE)->first()->id,
+            ],
+            [
+                'name' => CITY_TWO,
+                'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
             ]
         ];
 

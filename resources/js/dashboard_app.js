@@ -8,11 +8,11 @@ import 'vue-select/dist/vue-select.css';
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
 
-Vue.use(Toasted, { 
-    iconPack : 'material-icons',
-    theme: "bubble", 
-    position: "top-center", 
-    duration : 3000
+Vue.use(Toasted, {
+    iconPack: 'material-icons',
+    theme: "bubble",
+    position: "top-center",
+    duration: 3000
 })
 
 /**
@@ -23,9 +23,10 @@ Vue.use(Toasted, {
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 Vue.component('setting-component', require('./components/SettingComponent.vue').default);
+Vue.component('online-manage-component', require('./components/OnlineManageComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('v-select', vSelect);
 
-const dashboard_app = new Vue({
+window.dashboard_app = new Vue({
     el: '#dashboard-app'
 });
