@@ -1,9 +1,17 @@
 <template>
   <div>
-    <loading :active.sync="isLoading" :can-cancel="true" :is-full-page="fullPage"></loading>
+    <loading
+      :active.sync="isLoading"
+      :can-cancel="true"
+      :is-full-page="fullPage"
+    ></loading>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <span class="badge badge-warning">1</span>
-      <li class="nav-item dropdown" role="presentation" style="min-width:150px">
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
         <a
           class="nav-link dropdown-toggle active store-setting"
           data-toggle="dropdown"
@@ -11,7 +19,8 @@
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
-        >Office</a>
+          >Office</a
+        >
         <div class="dropdown-menu">
           <a
             class="dropdown-item"
@@ -21,7 +30,8 @@
             role="tab"
             aria-controls="office-list"
             aria-selected="true"
-          >Office List</a>
+            >Office List</a
+          >
           <a
             class="dropdown-item"
             id="office-list-create-tab"
@@ -31,11 +41,16 @@
             aria-controls="office-list-create"
             aria-selected="false"
             @click="office.model.clearData()"
-          >Create Office</a>
+            >Create Office</a
+          >
         </div>
       </li>
       <span class="badge badge-warning">2</span>
-      <li class="nav-item dropdown" role="presentation" style="min-width:150px">
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
         <a
           class="nav-link dropdown-toggle store-setting"
           data-toggle="dropdown"
@@ -43,7 +58,8 @@
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
-        >Store</a>
+          >Store</a
+        >
         <div class="dropdown-menu">
           <a
             class="dropdown-item"
@@ -53,7 +69,8 @@
             role="tab"
             aria-controls="store-list"
             aria-selected="true"
-          >Store List</a>
+            >Store List</a
+          >
           <a
             class="dropdown-item"
             id="store-list-create-tab"
@@ -63,11 +80,16 @@
             aria-controls="store-list-create"
             aria-selected="false"
             @click="store.model.clearData()"
-          >Create Store</a>
+            >Create Store</a
+          >
         </div>
       </li>
       <span class="badge badge-warning">3</span>
-      <li class="nav-item dropdown" role="presentation" style="min-width:150px">
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
         <a
           class="nav-link dropdown-toggle store-setting"
           data-toggle="dropdown"
@@ -75,7 +97,8 @@
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
-        >Box</a>
+          >Box</a
+        >
         <div class="dropdown-menu">
           <a
             class="dropdown-item"
@@ -85,7 +108,8 @@
             role="tab"
             aria-controls="box-list"
             aria-selected="true"
-          >Box List</a>
+            >Box List</a
+          >
           <a
             class="dropdown-item"
             id="box-list-create-tab"
@@ -95,11 +119,16 @@
             aria-controls="box-list-create"
             aria-selected="false"
             @click="box.model.clearData()"
-          >Create Box</a>
+            >Create Box</a
+          >
         </div>
       </li>
       <span class="badge badge-success">1</span>
-      <li class="nav-item dropdown" role="presentation" style="min-width:150px">
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
         <a
           class="nav-link dropdown-toggle location-setting"
           data-toggle="dropdown"
@@ -107,7 +136,8 @@
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
-        >Country</a>
+          >Country</a
+        >
         <div class="dropdown-menu">
           <a
             class="dropdown-item"
@@ -117,7 +147,8 @@
             role="tab"
             aria-controls="country-list"
             aria-selected="false"
-          >Country List</a>
+            >Country List</a
+          >
           <a
             class="dropdown-item"
             id="country-list-create-tab"
@@ -127,11 +158,16 @@
             aria-controls="country-list-create"
             aria-selected="false"
             @click="country.model.clearData()"
-          >Create Country</a>
+            >Create Country</a
+          >
         </div>
       </li>
       <span class="badge badge-success">2</span>
-      <li class="nav-item dropdown" role="presentation" style="min-width:180px">
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 180px"
+      >
         <a
           class="nav-link dropdown-toggle location-setting"
           data-toggle="dropdown"
@@ -139,7 +175,8 @@
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
-        >State Region</a>
+          >State Region</a
+        >
         <div class="dropdown-menu">
           <a
             class="dropdown-item"
@@ -149,7 +186,8 @@
             role="tab"
             aria-controls="state-region-list"
             aria-selected="false"
-          >State Region List</a>
+            >State Region List</a
+          >
           <a
             class="dropdown-item"
             id="state-region-list-create-tab"
@@ -159,11 +197,16 @@
             aria-controls="city-list-create"
             aria-selected="false"
             @click="stateRegion.model.clearData()"
-          >Create State Region</a>
+            >Create State Region</a
+          >
         </div>
       </li>
       <span class="badge badge-success">3</span>
-      <li class="nav-item dropdown" role="presentation" style="min-width:150px">
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
         <a
           class="nav-link dropdown-toggle location-setting"
           data-toggle="dropdown"
@@ -171,7 +214,8 @@
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
-        >City</a>
+          >City</a
+        >
         <div class="dropdown-menu">
           <a
             class="dropdown-item"
@@ -181,7 +225,8 @@
             role="tab"
             aria-controls="city-list"
             aria-selected="false"
-          >City List</a>
+            >City List</a
+          >
           <a
             class="dropdown-item"
             id="city-create-tab"
@@ -191,14 +236,102 @@
             aria-controls="city-list-create"
             aria-selected="false"
             @click="city.model.clearData()"
-          >Create City</a>
+            >Create City</a
+          >
+        </div>
+      </li>
+      <span class="badge badge-primary">1</span>
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
+        <a
+          class="nav-link dropdown-toggle center-setting"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Center</a
+        >
+        <div class="dropdown-menu">
+          <a
+            class="dropdown-item"
+            id="center-list-tab"
+            data-toggle="tab"
+            href="#center-list"
+            role="tab"
+            aria-controls="center-list"
+            aria-selected="false"
+            >Center List</a
+          >
+          <a
+            class="dropdown-item"
+            id="center-create-tab"
+            href="#center-list-create"
+            data-toggle="tab"
+            role="tab"
+            aria-controls="center-list-create"
+            aria-selected="false"
+            @click="center.model.clearData()"
+            >Create Center</a
+          >
+        </div>
+      </li>
+      <span class="badge badge-primary">2</span>
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
+        <a
+          class="nav-link dropdown-toggle ward-setting"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Ward</a
+        >
+        <div class="dropdown-menu">
+          <a
+            class="dropdown-item"
+            id="ward-list-tab"
+            data-toggle="tab"
+            href="#ward-list"
+            role="tab"
+            aria-controls="ward-list"
+            aria-selected="false"
+            >Ward List</a
+          >
+          <a
+            class="dropdown-item"
+            id="ward-create-tab"
+            href="#ward-list-create"
+            data-toggle="tab"
+            role="tab"
+            aria-controls="ward-list-create"
+            aria-selected="false"
+            @click="ward.model.clearData()"
+            >Create Ward</a
+          >
         </div>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <!-- start box -->
-      <div class="tab-pane fade show" id="box-list" role="tabpanel" aria-labelledby="box-list-tab">
-        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+      <div
+        class="tab-pane fade show"
+        id="box-list"
+        role="tabpanel"
+        aria-labelledby="box-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -211,11 +344,13 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in box.model.list.data" :key="item.id">
-              <th scope="row">{{index + 1}}</th>
-              <td style="max-width:20px">{{item.name}}</td>
-              <td style="max-width:20px">{{item.box_number}}</td>
-              <td style="max-width:20px">{{(item.store) ? item.store.name : '-'}}</td>
-              <td style="max-width:20px">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">{{ item.box_number }}</td>
+              <td style="max-width: 20px">
+                {{ item.store ? item.store.name : "-" }}
+              </td>
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-warning"
                   type="button"
@@ -223,22 +358,28 @@
                   :data-target="`#edit-collapse-box-${item.id}`"
                   aria-expanded="false"
                   aria-controls="editCollapseExample"
-                >Edit</button>
+                >
+                  Edit
+                </button>
                 <div :id="`edit-collapse-box-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="box.model.editRecord(index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#edit-collapse-box-${item.id}`"
                     aria-expanded="false"
                     aria-controls="editCollapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-danger"
                   type="button"
@@ -246,19 +387,25 @@
                   :data-target="`#collapse-box-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
-                >Delete</button>
+                >
+                  Delete
+                </button>
                 <div :id="`collapse-box-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="box.model.deleteBox(item.uuid, index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#collapse-box-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
             </tr>
@@ -281,7 +428,12 @@
             <!-- start store select2 -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': box.validation.office_id_hasError, 'was-validated': (box.validation.office_id_successMessage && !box.validation.office_id_hasError) }"
+              v-bind:class="{
+                'has-error': box.validation.office_id_hasError,
+                'was-validated':
+                  box.validation.office_id_successMessage &&
+                  !box.validation.office_id_hasError,
+              }"
             >
               <label for="country-id">
                 Select Store
@@ -293,21 +445,29 @@
                 :value="box.model.store_id"
                 @input="box.model.storeSelected($event)"
                 :selected-option="box.model.store"
-                v-bind:class="{ 'is-invalid': box.validation.store_id_hasError }"
+                v-bind:class="{
+                  'is-invalid': box.validation.store_id_hasError,
+                }"
               ></select2>
 
-              <div class="invalid-feedback">{{box.validation.store_id_errorMessage}}</div>
-              <div
-                class="valid-feedback"
-                style="display:block"
-              >{{box.validation.store_id_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ box.validation.store_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ box.validation.store_id_successMessage }}
+              </div>
             </div>
             <!-- end office select2 -->
 
             <!-- start box name -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': box.validation.name_hasError, 'was-validated': (box.validation.validation != null && !box.validation.name_hasError) }"
+              v-bind:class="{
+                'has-error': box.validation.name_hasError,
+                'was-validated':
+                  box.validation.validation != null &&
+                  !box.validation.name_hasError,
+              }"
             >
               <label for="box_name">
                 Box Name
@@ -321,15 +481,24 @@
                 v-model="box.model.name"
                 v-bind:class="{ 'is-invalid': box.validation.name_hasError }"
               />
-              <div class="invalid-feedback">{{box.validation.name_errorMessage}}</div>
-              <div class="valid-feedback">{{box.validation.name_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ box.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ box.validation.name_successMessage }}
+              </div>
             </div>
             <!-- end box name -->
 
             <!-- start box number -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': box.validation.box_number_hasError, 'was-validated': (box.validation.box_number_successMessage && !box.validation.box_number_hasError) }"
+              v-bind:class="{
+                'has-error': box.validation.box_number_hasError,
+                'was-validated':
+                  box.validation.box_number_successMessage &&
+                  !box.validation.box_number_hasError,
+              }"
             >
               <label for="box_number">
                 Box Number
@@ -341,10 +510,16 @@
                 class="form-control only-number"
                 placeholder="Box Number"
                 v-model="box.model.box_number"
-                v-bind:class="{ 'is-invalid': box.validation.box_number_hasError }"
+                v-bind:class="{
+                  'is-invalid': box.validation.box_number_hasError,
+                }"
               />
-              <div class="invalid-feedback">{{box.validation.box_number_errorMessage}}</div>
-              <div class="valid-feedback">{{box.validation.box_number_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ box.validation.box_number_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ box.validation.box_number_successMessage }}
+              </div>
             </div>
             <!-- end box number -->
 
@@ -352,13 +527,19 @@
               v-if="box.model.isEdit"
               @click="box.model.updateBox()"
               class="btn btn-success"
-            >Update</button>
+            >
+              Update
+            </button>
             <button
               v-if="box.model.isEdit"
               @click="box.model.goToList()"
               class="btn btn-default"
-            >Cancel</button>
-            <button v-else @click="box.model.saveBox()" class="btn btn-success">Create</button>
+            >
+              Cancel
+            </button>
+            <button v-else @click="box.model.saveBox()" class="btn btn-success">
+              Create
+            </button>
           </div>
         </div>
       </div>
@@ -371,7 +552,11 @@
         role="tabpanel"
         aria-labelledby="store-list-tab"
       >
-        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -384,23 +569,25 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in store.model.list.data" :key="item.id">
-              <th scope="row">{{index + 1}}</th>
-              <td style="max-width:20px">{{item.name}}</td>
-              <td style="max-width:20px">{{item.store_number}}</td>
-              <td style="max-width:20px">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">{{ item.store_number }}</td>
+              <td style="max-width: 20px">
                 <i
                   aria-hidden="true"
                   v-if="item.office && item.office.is_open == 1"
                   class="material-icons green"
-                >check_circle</i>
+                  >check_circle</i
+                >
                 <i
                   aria-hidden="true"
                   v-else-if="item.office && item.office.is_open == 0"
                   class="material-icons red"
-                >cancel</i>
-                {{item.office ? item.office.name : '-'}}
+                  >cancel</i
+                >
+                {{ item.office ? item.office.name : "-" }}
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-warning"
                   type="button"
@@ -408,22 +595,31 @@
                   :data-target="`#edit-collapse-store-${item.id}`"
                   aria-expanded="false"
                   aria-controls="editCollapseExample"
-                >Edit</button>
-                <div :id="`edit-collapse-store-${item.id}`" class="collapse p-1">
+                >
+                  Edit
+                </button>
+                <div
+                  :id="`edit-collapse-store-${item.id}`"
+                  class="collapse p-1"
+                >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="store.model.editRecord(index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#edit-collapse-store-${item.id}`"
                     aria-expanded="false"
                     aria-controls="editCollapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-danger"
                   type="button"
@@ -431,19 +627,25 @@
                   :data-target="`#collapse-store-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
-                >Delete</button>
+                >
+                  Delete
+                </button>
                 <div :id="`collapse-store-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="store.model.deleteStore(item.uuid, index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#collapse-store-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
             </tr>
@@ -466,7 +668,12 @@
             <!-- start office select2 -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': store.validation.office_id_hasError, 'was-validated': (store.validation.office_id_successMessage && !store.validation.office_id_hasError) }"
+              v-bind:class="{
+                'has-error': store.validation.office_id_hasError,
+                'was-validated':
+                  store.validation.office_id_successMessage &&
+                  !store.validation.office_id_hasError,
+              }"
             >
               <label for="country-id">
                 Select Office
@@ -478,21 +685,29 @@
                 :value="store.model.office_id"
                 @input="store.model.officeSelected($event)"
                 :selected-option="store.model.office"
-                v-bind:class="{ 'is-invalid': store.validation.office_id_hasError }"
+                v-bind:class="{
+                  'is-invalid': store.validation.office_id_hasError,
+                }"
               ></select2>
 
-              <div class="invalid-feedback">{{store.validation.office_id_errorMessage}}</div>
-              <div
-                class="valid-feedback"
-                style="display:block"
-              >{{store.validation.office_id_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ store.validation.office_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ store.validation.office_id_successMessage }}
+              </div>
             </div>
             <!-- end office select2 -->
 
             <!-- start store name -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': store.validation.name_hasError, 'was-validated': (store.validation.validation != null && !store.validation.name_hasError) }"
+              v-bind:class="{
+                'has-error': store.validation.name_hasError,
+                'was-validated':
+                  store.validation.validation != null &&
+                  !store.validation.name_hasError,
+              }"
             >
               <label for="store_name">
                 Store Name
@@ -506,15 +721,24 @@
                 v-model="store.model.name"
                 v-bind:class="{ 'is-invalid': store.validation.name_hasError }"
               />
-              <div class="invalid-feedback">{{store.validation.name_errorMessage}}</div>
-              <div class="valid-feedback">{{store.validation.name_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ store.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ store.validation.name_successMessage }}
+              </div>
             </div>
             <!-- end store name -->
 
             <!-- start store number -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': store.validation.store_number_hasError, 'was-validated': (store.validation.store_number_successMessage && !store.validation.store_number_hasError) }"
+              v-bind:class="{
+                'has-error': store.validation.store_number_hasError,
+                'was-validated':
+                  store.validation.store_number_successMessage &&
+                  !store.validation.store_number_hasError,
+              }"
             >
               <label for="store_number">
                 Store Number
@@ -526,10 +750,16 @@
                 class="form-control only-number"
                 placeholder="Store Number"
                 v-model="store.model.store_number"
-                v-bind:class="{ 'is-invalid': store.validation.store_number_hasError }"
+                v-bind:class="{
+                  'is-invalid': store.validation.store_number_hasError,
+                }"
               />
-              <div class="invalid-feedback">{{store.validation.store_number_errorMessage}}</div>
-              <div class="valid-feedback">{{store.validation.store_number_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ store.validation.store_number_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ store.validation.store_number_successMessage }}
+              </div>
             </div>
             <!-- end store number -->
 
@@ -537,13 +767,23 @@
               v-if="store.model.isEdit"
               @click="store.model.updateStore()"
               class="btn btn-success"
-            >Update</button>
+            >
+              Update
+            </button>
             <button
               v-if="store.model.isEdit"
               @click="store.model.goToList()"
               class="btn btn-default"
-            >Cancel</button>
-            <button v-else @click="store.model.saveStore()" class="btn btn-success">Create</button>
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="store.model.saveStore()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
           </div>
         </div>
       </div>
@@ -556,7 +796,11 @@
         role="tabpanel"
         aria-labelledby="office-list-tab"
       >
-        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -569,30 +813,39 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in office.model.list.data" :key="item.id">
-              <th scope="row">{{index + 1}}</th>
-              <td style="max-width:20px">{{item.name}}</td>
-              <td style="max-width:20px">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">
                 <i
                   aria-hidden="true"
                   v-if="item.is_open == 1"
                   class="material-icons green"
-                >check_circle</i>
-                <i aria-hidden="true" v-else class="material-icons red">cancel</i>
+                  >check_circle</i
+                >
+                <i aria-hidden="true" v-else class="material-icons red"
+                  >cancel</i
+                >
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <i
                   aria-hidden="true"
-                  v-if="(item.stateRegion) ? item.stateRegion.is_available == 1 : ''"
+                  v-if="
+                    item.stateRegion ? item.stateRegion.is_available == 1 : ''
+                  "
                   class="material-icons green"
-                >check_circle</i>
+                  >check_circle</i
+                >
                 <i
                   aria-hidden="true"
-                  v-else-if="(item.stateRegion) ? item.stateRegion.is_available == 0 : ''"
+                  v-else-if="
+                    item.stateRegion ? item.stateRegion.is_available == 0 : ''
+                  "
                   class="material-icons red"
-                >cancel</i>
-                {{item.stateRegion ? item.stateRegion.name : '-' }}
+                  >cancel</i
+                >
+                {{ item.stateRegion ? item.stateRegion.name : "-" }}
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-warning"
                   type="button"
@@ -600,22 +853,31 @@
                   :data-target="`#edit-collapse-office-${item.id}`"
                   aria-expanded="false"
                   aria-controls="editCollapseExample"
-                >Edit</button>
-                <div :id="`edit-collapse-office-${item.id}`" class="collapse p-1">
+                >
+                  Edit
+                </button>
+                <div
+                  :id="`edit-collapse-office-${item.id}`"
+                  class="collapse p-1"
+                >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="office.model.editRecord(index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#edit-collapse-office-${item.id}`"
                     aria-expanded="false"
                     aria-controls="editCollapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-danger"
                   type="button"
@@ -623,19 +885,25 @@
                   :data-target="`#collapse-office-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
-                >Delete</button>
+                >
+                  Delete
+                </button>
                 <div :id="`collapse-office-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="office.model.deleteOffice(item.uuid, index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#collapse-office-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
             </tr>
@@ -658,7 +926,12 @@
             <!-- start state region select2 -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': office.validation.state_region_id_hasError, 'was-validated': (office.validation.state_region_id_successMessage && !office.validation.state_region_id_hasError) }"
+              v-bind:class="{
+                'has-error': office.validation.state_region_id_hasError,
+                'was-validated':
+                  office.validation.state_region_id_successMessage &&
+                  !office.validation.state_region_id_hasError,
+              }"
             >
               <label for="country-id">
                 Select State Region
@@ -670,21 +943,29 @@
                 :value="office.model.state_region_id"
                 @input="office.model.stateRegionSelected($event)"
                 :selected-option="office.model.stateRegion"
-                v-bind:class="{ 'is-invalid': office.validation.state_region_id_hasError }"
+                v-bind:class="{
+                  'is-invalid': office.validation.state_region_id_hasError,
+                }"
               ></select2>
 
-              <div class="invalid-feedback">{{office.validation.state_region_id_errorMessage}}</div>
-              <div
-                class="valid-feedback"
-                style="display:block"
-              >{{office.validation.state_region_id_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ office.validation.state_region_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ office.validation.state_region_id_successMessage }}
+              </div>
             </div>
             <!-- end state region select2 -->
 
             <!-- start office name -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': office.validation.name_hasError, 'was-validated': (office.validation.validation != null && !office.validation.name_hasError) }"
+              v-bind:class="{
+                'has-error': office.validation.name_hasError,
+                'was-validated':
+                  office.validation.validation != null &&
+                  !office.validation.name_hasError,
+              }"
             >
               <label for="office_name">
                 Office Name
@@ -698,15 +979,24 @@
                 v-model="office.model.name"
                 v-bind:class="{ 'is-invalid': office.validation.name_hasError }"
               />
-              <div class="invalid-feedback">{{office.validation.name_errorMessage}}</div>
-              <div class="valid-feedback">{{office.validation.name_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ office.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ office.validation.name_successMessage }}
+              </div>
             </div>
             <!-- end office name -->
 
             <!-- start office address -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': office.validation.address_hasError, 'was-validated': (office.validation.validation != null && !office.validation.address_hasError) }"
+              v-bind:class="{
+                'has-error': office.validation.address_hasError,
+                'was-validated':
+                  office.validation.validation != null &&
+                  !office.validation.address_hasError,
+              }"
             >
               <label for="office_address">
                 Office Address
@@ -718,10 +1008,16 @@
                 class="form-control"
                 placeholder="Office Address"
                 v-model="office.model.address"
-                v-bind:class="{ 'is-invalid': office.validation.address_hasError }"
+                v-bind:class="{
+                  'is-invalid': office.validation.address_hasError,
+                }"
               />
-              <div class="invalid-feedback">{{office.validation.address_errorMessage}}</div>
-              <div class="valid-feedback">{{office.validation.address_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ office.validation.address_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ office.validation.address_successMessage }}
+              </div>
             </div>
             <!-- end office address -->
 
@@ -729,7 +1025,9 @@
             <div class="col-sm-offset-2 col-sm-10">
               <div
                 class="checkbox"
-                v-bind:class="{ 'has-error': office.validation.is_open_hasError}"
+                v-bind:class="{
+                  'has-error': office.validation.is_open_hasError,
+                }"
               >
                 <input
                   type="checkbox"
@@ -738,13 +1036,17 @@
                   v-model="office.model.is_open"
                   true-value="1"
                   false-value="0"
-                  v-bind:class="{ 'is-invalid': office.validation.is_open_hasError}"
+                  v-bind:class="{
+                    'is-invalid': office.validation.is_open_hasError,
+                  }"
                 />
                 <label for="office_is_open">
                   Is Open
                   <span class="text-danger">*</span>
                 </label>
-                <div class="invalid-feedback">{{office.validation.is_open_errorMessage}}</div>
+                <div class="invalid-feedback">
+                  {{ office.validation.is_open_errorMessage }}
+                </div>
               </div>
             </div>
             <!-- end office is_open -->
@@ -752,13 +1054,23 @@
               v-if="office.model.isEdit"
               @click="office.model.updateOffice()"
               class="btn btn-success"
-            >Update</button>
+            >
+              Update
+            </button>
             <button
               v-if="office.model.isEdit"
               @click="office.model.goToList()"
               class="btn btn-default"
-            >Cancel</button>
-            <button v-else @click="office.model.saveOffice()" class="btn btn-success">Create</button>
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="office.model.saveOffice()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
           </div>
         </div>
       </div>
@@ -776,7 +1088,12 @@
             <!-- start country name -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': country.validation.name_hasError, 'was-validated': (country.validation.validation != null && !country.validation.name_hasError) }"
+              v-bind:class="{
+                'has-error': country.validation.name_hasError,
+                'was-validated':
+                  country.validation.validation != null &&
+                  !country.validation.name_hasError,
+              }"
             >
               <label for="about_item">
                 Country Name
@@ -788,10 +1105,16 @@
                 class="form-control"
                 placeholder="Country Name"
                 v-model="country.model.name"
-                v-bind:class="{ 'is-invalid': country.validation.name_hasError }"
+                v-bind:class="{
+                  'is-invalid': country.validation.name_hasError,
+                }"
               />
-              <div class="invalid-feedback">{{country.validation.name_errorMessage}}</div>
-              <div class="valid-feedback">{{country.validation.name_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ country.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ country.validation.name_successMessage }}
+              </div>
             </div>
             <!-- end country name -->
 
@@ -799,7 +1122,9 @@
             <div class="col-sm-offset-2 col-sm-10">
               <div
                 class="checkbox"
-                v-bind:class="{ 'has-error': country.validation.is_available_hasError}"
+                v-bind:class="{
+                  'has-error': country.validation.is_available_hasError,
+                }"
               >
                 <input
                   type="checkbox"
@@ -808,13 +1133,17 @@
                   v-model="country.model.is_available"
                   true-value="1"
                   false-value="0"
-                  v-bind:class="{ 'is-invalid': country.validation.is_available_hasError}"
+                  v-bind:class="{
+                    'is-invalid': country.validation.is_available_hasError,
+                  }"
                 />
                 <label for="country_is_available">
                   Available
                   <span class="text-danger">*</span>
                 </label>
-                <div class="invalid-feedback">{{country.validation.is_available_errorMessage}}</div>
+                <div class="invalid-feedback">
+                  {{ country.validation.is_available_errorMessage }}
+                </div>
               </div>
             </div>
             <!-- end city is_available -->
@@ -822,13 +1151,23 @@
               v-if="country.model.isEdit"
               @click="country.model.updateCountry()"
               class="btn btn-success"
-            >Update</button>
+            >
+              Update
+            </button>
             <button
               v-if="country.model.isEdit"
               @click="country.model.goToList('country-list')"
               class="btn btn-default"
-            >Cancel</button>
-            <button v-else @click="country.model.saveCountry()" class="btn btn-success">Create</button>
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="country.model.saveCountry()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
           </div>
         </div>
       </div>
@@ -838,7 +1177,11 @@
         role="tabpanel"
         aria-labelledby="country-list-tab"
       >
-        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -850,17 +1193,20 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in country.model.list.data" :key="item.id">
-              <th scope="row">{{index + 1}}</th>
-              <td style="max-width:20px">{{item.name}}</td>
-              <td style="max-width:20px">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">
                 <i
                   aria-hidden="true"
                   v-if="item.is_available == 1"
                   class="material-icons green"
-                >check_circle</i>
-                <i aria-hidden="true" v-else class="material-icons red">cancel</i>
+                  >check_circle</i
+                >
+                <i aria-hidden="true" v-else class="material-icons red"
+                  >cancel</i
+                >
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-warning"
                   type="button"
@@ -868,22 +1214,31 @@
                   :data-target="`#edit-collapse-country-${item.id}`"
                   aria-expanded="false"
                   aria-controls="editCollapseExample"
-                >Edit</button>
-                <div :id="`edit-collapse-country-${item.id}`" class="collapse p-1">
+                >
+                  Edit
+                </button>
+                <div
+                  :id="`edit-collapse-country-${item.id}`"
+                  class="collapse p-1"
+                >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="country.model.editRecord(index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#edit-collapse-country-${item.id}`"
                     aria-expanded="false"
                     aria-controls="editCollapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-danger"
                   type="button"
@@ -891,19 +1246,25 @@
                   :data-target="`#collapse-country-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
-                >Delete</button>
+                >
+                  Delete
+                </button>
                 <div :id="`collapse-country-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="country.model.deleteCountry(item.id, index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#collapse-country-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
             </tr>
@@ -929,7 +1290,12 @@
             <!-- start country select2 -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': stateRegion.validation.country_id_hasError, 'was-validated': (stateRegion.validation.country_id_successMessage && !stateRegion.validation.country_id_hasError) }"
+              v-bind:class="{
+                'has-error': stateRegion.validation.country_id_hasError,
+                'was-validated':
+                  stateRegion.validation.country_id_successMessage &&
+                  !stateRegion.validation.country_id_hasError,
+              }"
             >
               <label for="country-id">
                 Select Country
@@ -941,21 +1307,29 @@
                 :value="stateRegion.model.country_id"
                 @input="stateRegion.model.countrySelected($event)"
                 :selected-option="stateRegion.model.country"
-                v-bind:class="{ 'is-invalid': stateRegion.validation.country_id_hasError }"
+                v-bind:class="{
+                  'is-invalid': stateRegion.validation.country_id_hasError,
+                }"
               ></select2>
 
-              <div class="invalid-feedback">{{stateRegion.validation.country_id_errorMessage}}</div>
-              <div
-                class="valid-feedback"
-                style="display:block"
-              >{{stateRegion.validation.country_id_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ stateRegion.validation.country_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ stateRegion.validation.country_id_successMessage }}
+              </div>
             </div>
             <!-- end country select2 -->
 
             <!-- start state region name -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': stateRegion.validation.name_hasError, 'was-validated': (stateRegion.validation.name_successMessage && !stateRegion.validation.name_hasError) }"
+              v-bind:class="{
+                'has-error': stateRegion.validation.name_hasError,
+                'was-validated':
+                  stateRegion.validation.name_successMessage &&
+                  !stateRegion.validation.name_hasError,
+              }"
             >
               <label for="about_item">
                 State Or Region Name
@@ -967,17 +1341,28 @@
                 class="form-control"
                 placeholder="State Or Region Name"
                 v-model="stateRegion.model.name"
-                v-bind:class="{ 'is-invalid': stateRegion.validation.name_hasError }"
+                v-bind:class="{
+                  'is-invalid': stateRegion.validation.name_hasError,
+                }"
               />
-              <div class="invalid-feedback">{{stateRegion.validation.name_errorMessage}}</div>
-              <div class="valid-feedback">{{stateRegion.validation.name_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ stateRegion.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ stateRegion.validation.name_successMessage }}
+              </div>
             </div>
             <!-- end state region name -->
 
             <!-- start state region code -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': stateRegion.validation.code_hasError, 'was-validated': (stateRegion.validation.code_successMessage && !stateRegion.validation.code_hasError) }"
+              v-bind:class="{
+                'has-error': stateRegion.validation.code_hasError,
+                'was-validated':
+                  stateRegion.validation.code_successMessage &&
+                  !stateRegion.validation.code_hasError,
+              }"
             >
               <label for="about_item">
                 State Or Region Code
@@ -989,10 +1374,16 @@
                 class="form-control only-number"
                 placeholder="State Or Region Code"
                 v-model="stateRegion.model.code"
-                v-bind:class="{ 'is-invalid': stateRegion.validation.code_hasError }"
+                v-bind:class="{
+                  'is-invalid': stateRegion.validation.code_hasError,
+                }"
               />
-              <div class="invalid-feedback">{{stateRegion.validation.code_errorMessage}}</div>
-              <div class="valid-feedback">{{stateRegion.validation.code_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ stateRegion.validation.code_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ stateRegion.validation.code_successMessage }}
+              </div>
             </div>
             <!-- end state region code -->
 
@@ -1000,7 +1391,9 @@
             <div class="col-sm-offset-2 col-sm-10">
               <div
                 class="checkbox"
-                v-bind:class="{ 'has-error': stateRegion.validation.is_available_hasError}"
+                v-bind:class="{
+                  'has-error': stateRegion.validation.is_available_hasError,
+                }"
               >
                 <input
                   type="checkbox"
@@ -1009,13 +1402,17 @@
                   v-model="stateRegion.model.is_available"
                   true-value="1"
                   false-value="0"
-                  v-bind:class="{ 'is-invalid': stateRegion.validation.is_available_hasError}"
+                  v-bind:class="{
+                    'is-invalid': stateRegion.validation.is_available_hasError,
+                  }"
                 />
                 <label for="state_region_is_available">
                   Is Available
                   <span class="text-danger">*</span>
                 </label>
-                <div class="invalid-feedback">{{stateRegion.validation.is_available_errorMessage}}</div>
+                <div class="invalid-feedback">
+                  {{ stateRegion.validation.is_available_errorMessage }}
+                </div>
               </div>
             </div>
             <!-- end city is_available -->
@@ -1023,17 +1420,23 @@
               v-if="stateRegion.model.isEdit"
               @click="stateRegion.model.updateStateRegion()"
               class="btn btn-success"
-            >Update</button>
+            >
+              Update
+            </button>
             <button
               v-if="stateRegion.model.isEdit"
               @click="stateRegion.model.goToList()"
               class="btn btn-default"
-            >Cancel</button>
+            >
+              Cancel
+            </button>
             <button
               v-else
               @click="stateRegion.model.saveStateRegion()"
               class="btn btn-success"
-            >Create</button>
+            >
+              Create
+            </button>
           </div>
         </div>
       </div>
@@ -1043,7 +1446,11 @@
         role="tabpanel"
         aria-labelledby="state-region-list-tab"
       >
-        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -1055,31 +1462,39 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in stateRegion.model.list.data" :key="item.id">
-              <th scope="row">{{index + 1}}</th>
-              <td style="max-width:20px">{{item.name}}</td>
-              <td style="max-width:20px">
+            <tr
+              v-for="(item, index) in stateRegion.model.list.data"
+              :key="item.id"
+            >
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">
                 <i
                   aria-hidden="true"
                   v-if="item.is_available == 1"
                   class="material-icons green"
-                >check_circle</i>
-                <i aria-hidden="true" v-else class="material-icons red">cancel</i>
+                  >check_circle</i
+                >
+                <i aria-hidden="true" v-else class="material-icons red"
+                  >cancel</i
+                >
               </td>
               <td>
                 <i
                   aria-hidden="true"
                   v-if="item.country ? item.country.is_available == 1 : ''"
                   class="material-icons green"
-                >check_circle</i>
+                  >check_circle</i
+                >
                 <i
                   aria-hidden="true"
-                  v-else-if="(item.country) ? item.country.is_available == 0 : ''"
+                  v-else-if="item.country ? item.country.is_available == 0 : ''"
                   class="material-icons red"
-                >cancel</i>
-                {{item.country ? item.country.name : '-'}}
+                  >cancel</i
+                >
+                {{ item.country ? item.country.name : "-" }}
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-warning"
                   type="button"
@@ -1087,22 +1502,31 @@
                   :data-target="`#edit-collapse-state-region-${item.id}`"
                   aria-expanded="false"
                   aria-controls="editCollapseExample"
-                >Edit</button>
-                <div :id="`edit-collapse-state-region-${item.id}`" class="collapse p-1">
+                >
+                  Edit
+                </button>
+                <div
+                  :id="`edit-collapse-state-region-${item.id}`"
+                  class="collapse p-1"
+                >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="stateRegion.model.editRecord(index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#edit-collapse-state-region-${item.id}`"
                     aria-expanded="false"
                     aria-controls="editCollapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-danger"
                   type="button"
@@ -1110,19 +1534,28 @@
                   :data-target="`#collapse-state-region-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
-                >Delete</button>
-                <div :id="`collapse-state-region-${item.id}`" class="collapse p-1">
+                >
+                  Delete
+                </button>
+                <div
+                  :id="`collapse-state-region-${item.id}`"
+                  class="collapse p-1"
+                >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="stateRegion.model.deleteStateRegion(item.id, index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#collapse-state-region-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
             </tr>
@@ -1148,7 +1581,12 @@
             <!-- start state region select2 -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': city.validation.state_region_id_hasError, 'was-validated': (city.validation.state_region_id_successMessage && !city.validation.state_region_id_hasError) }"
+              v-bind:class="{
+                'has-error': city.validation.state_region_id_hasError,
+                'was-validated':
+                  city.validation.state_region_id_successMessage &&
+                  !city.validation.state_region_id_hasError,
+              }"
             >
               <label for="country-id">
                 Select State Region
@@ -1160,21 +1598,29 @@
                 :value="city.model.state_region_id"
                 @input="city.model.stateRegionSelected($event)"
                 :selected-option="city.model.stateRegion"
-                v-bind:class="{ 'is-invalid': city.validation.state_region_id_hasError }"
+                v-bind:class="{
+                  'is-invalid': city.validation.state_region_id_hasError,
+                }"
               ></select2>
 
-              <div class="invalid-feedback">{{city.validation.state_region_id_errorMessage}}</div>
-              <div
-                class="valid-feedback"
-                style="display:block"
-              >{{city.validation.state_region_id_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ city.validation.state_region_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ city.validation.state_region_id_successMessage }}
+              </div>
             </div>
             <!-- end state region select2 -->
 
             <!-- start city name -->
             <div
               class="form-group"
-              v-bind:class="{ 'has-error': city.validation.name_hasError, 'was-validated': (city.validation.validation != null && !city.validation.name_hasError) }"
+              v-bind:class="{
+                'has-error': city.validation.name_hasError,
+                'was-validated':
+                  city.validation.validation != null &&
+                  !city.validation.name_hasError,
+              }"
             >
               <label for="about_item">
                 City Name
@@ -1188,8 +1634,12 @@
                 v-model="city.model.name"
                 v-bind:class="{ 'is-invalid': city.validation.name_hasError }"
               />
-              <div class="invalid-feedback">{{city.validation.name_errorMessage}}</div>
-              <div class="valid-feedback">{{city.validation.name_successMessage}}</div>
+              <div class="invalid-feedback">
+                {{ city.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ city.validation.name_successMessage }}
+              </div>
             </div>
             <!-- end city name -->
 
@@ -1197,7 +1647,9 @@
             <div class="col-sm-offset-2 col-sm-10">
               <div
                 class="checkbox"
-                v-bind:class="{ 'has-error': city.validation.is_available_hasError}"
+                v-bind:class="{
+                  'has-error': city.validation.is_available_hasError,
+                }"
               >
                 <input
                   type="checkbox"
@@ -1206,13 +1658,17 @@
                   v-model="city.model.is_available"
                   true-value="1"
                   false-value="0"
-                  v-bind:class="{ 'is-invalid': city.validation.is_available_hasError}"
+                  v-bind:class="{
+                    'is-invalid': city.validation.is_available_hasError,
+                  }"
                 />
                 <label for="city_is_available">
                   Is Available
                   <span class="text-danger">*</span>
                 </label>
-                <div class="invalid-feedback">{{city.validation.is_available_errorMessage}}</div>
+                <div class="invalid-feedback">
+                  {{ city.validation.is_available_errorMessage }}
+                </div>
               </div>
             </div>
             <!-- end city is_available -->
@@ -1220,18 +1676,37 @@
               v-if="city.model.isEdit"
               @click="city.model.updateCity()"
               class="btn btn-success"
-            >Update</button>
+            >
+              Update
+            </button>
             <button
               v-if="city.model.isEdit"
               @click="city.model.goToList('city-list')"
               class="btn btn-default"
-            >Cancel</button>
-            <button v-else @click="city.model.saveCity()" class="btn btn-success">Create</button>
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="city.model.saveCity()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="city-list" role="tabpanel" aria-labelledby="city-list-tab">
-        <table class="table table-hover table-dark" cellpadding="0" cellspacing="0">
+      <div
+        class="tab-pane fade"
+        id="city-list"
+        role="tabpanel"
+        aria-labelledby="city-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -1244,30 +1719,39 @@
           </thead>
           <tbody>
             <tr v-for="(item, index) in city.model.list.data" :key="item.id">
-              <th scope="row">{{index + 1}}</th>
-              <td style="max-width:20px">{{item.name}}</td>
-              <td style="max-width:20px">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">
                 <i
                   aria-hidden="true"
                   v-if="item.is_available == 1"
                   class="material-icons green"
-                >check_circle</i>
-                <i aria-hidden="true" v-else class="material-icons red">cancel</i>
+                  >check_circle</i
+                >
+                <i aria-hidden="true" v-else class="material-icons red"
+                  >cancel</i
+                >
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <i
                   aria-hidden="true"
-                  v-if="(item.stateRegion) ? item.stateRegion.is_available == 1 : ''"
+                  v-if="
+                    item.stateRegion ? item.stateRegion.is_available == 1 : ''
+                  "
                   class="material-icons green"
-                >check_circle</i>
+                  >check_circle</i
+                >
                 <i
                   aria-hidden="true"
-                  v-else-if="(item.stateRegion) ? item.stateRegion.is_available == 0 : ''"
+                  v-else-if="
+                    item.stateRegion ? item.stateRegion.is_available == 0 : ''
+                  "
                   class="material-icons red"
-                >cancel</i>
-                {{item.stateRegion ? item.stateRegion.name : '-' }}
+                  >cancel</i
+                >
+                {{ item.stateRegion ? item.stateRegion.name : "-" }}
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-warning"
                   type="button"
@@ -1275,22 +1759,28 @@
                   :data-target="`#edit-collapse-${item.id}`"
                   aria-expanded="false"
                   aria-controls="editCollapseExample"
-                >Edit</button>
+                >
+                  Edit
+                </button>
                 <div :id="`edit-collapse-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="city.model.editRecord(index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#edit-collapse-${item.id}`"
                     aria-expanded="false"
                     aria-controls="editCollapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
-              <td style="max-width:20px">
+              <td style="max-width: 20px">
                 <button
                   class="btn btn-outline-danger"
                   type="button"
@@ -1298,19 +1788,25 @@
                   :data-target="`#collapse-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
-                >Delete</button>
+                >
+                  Delete
+                </button>
                 <div :id="`collapse-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="city.model.deleteCity(item.id, index)"
-                  >Yes</button>
+                  >
+                    Yes
+                  </button>
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
                     :data-target="`#collapse-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
-                  >No</button>
+                  >
+                    No
+                  </button>
                 </div>
               </td>
             </tr>
@@ -1323,6 +1819,500 @@
         ></pagination>
       </div>
       <!-- end city -->
+
+      <!-- start center -->
+      <div
+        class="tab-pane fade row"
+        id="center-list-create"
+        role="tabpanel"
+        aria-labelledby="center-create-tab"
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            <!-- start city select2 -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': center.validation.city_id_hasError,
+                'was-validated':
+                  center.validation.city_id_successMessage &&
+                  !center.validation.city_id_hasError,
+              }"
+            >
+              <label for="country-id">
+                Select City
+                <span class="text-danger">*</span>
+              </label>
+              <select2
+                placeholder="Type To Search State Region..."
+                :url="city.model.fetchListUrl"
+                :value="center.model.city_id"
+                @input="center.model.citySelected($event)"
+                :selected-option="center.model.city"
+                v-bind:class="{
+                  'is-invalid': center.validation.city_id_hasError,
+                }"
+              ></select2>
+
+              <div class="invalid-feedback">
+                {{ center.validation.city_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ center.validation.city_id_successMessage }}
+              </div>
+            </div>
+            <!-- end city select2 -->
+
+            <!-- start center name -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': center.validation.name_hasError,
+                'was-validated':
+                  center.validation.validation != null &&
+                  !center.validation.name_hasError,
+              }"
+            >
+              <label for="about_item">
+                Center Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="center_name"
+                type="text"
+                class="form-control"
+                placeholder="Center Name"
+                v-model="center.model.name"
+                v-bind:class="{ 'is-invalid': center.validation.name_hasError }"
+              />
+              <div class="invalid-feedback">
+                {{ center.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ center.validation.name_successMessage }}
+              </div>
+            </div>
+            <!-- end center name -->
+
+            <!-- start center is_available -->
+            <div class="col-sm-offset-2 col-sm-10">
+              <div
+                class="checkbox"
+                v-bind:class="{
+                  'has-error': center.validation.is_available_hasError,
+                }"
+              >
+                <input
+                  type="checkbox"
+                  id="center_is_available"
+                  value="1"
+                  v-model="center.model.is_available"
+                  true-value="1"
+                  false-value="0"
+                  v-bind:class="{
+                    'is-invalid': center.validation.is_available_hasError,
+                  }"
+                />
+                <label for="center_is_available">
+                  Is Available
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="invalid-feedback">
+                  {{ center.validation.is_available_errorMessage }}
+                </div>
+              </div>
+            </div>
+            <!-- end center is_available -->
+            <button
+              v-if="center.model.isEdit"
+              @click="center.model.updateCenter()"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              v-if="center.model.isEdit"
+              @click="center.model.goToList('center-list')"
+              class="btn btn-default"
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="center.model.saveCenter()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="center-list"
+        role="tabpanel"
+        aria-labelledby="center-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Available</th>
+              <th scope="col">City</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in center.model.list.data" :key="item.id">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">
+                <i
+                  aria-hidden="true"
+                  v-if="item.is_available == 1"
+                  class="material-icons green"
+                  >check_circle</i
+                >
+                <i aria-hidden="true" v-else class="material-icons red"
+                  >cancel</i
+                >
+              </td>
+              <td style="max-width: 20px">
+                <i
+                  aria-hidden="true"
+                  v-if="item.city ? item.city.is_available == 1 : ''"
+                  class="material-icons green"
+                  >check_circle</i
+                >
+                <i
+                  aria-hidden="true"
+                  v-else-if="item.city ? item.city.is_available == 0 : ''"
+                  class="material-icons red"
+                  >cancel</i
+                >
+                {{ item.city ? item.city.name : "-" }}
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >
+                  Edit
+                </button>
+                <div :id="`edit-collapse-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="center.model.editRecord(index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  Delete
+                </button>
+                <div :id="`collapse-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="center.model.deleteCenter(item.id, index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="center.model.list"
+          align="center"
+          v-on:pagination-change-page="getCenterResult"
+        ></pagination>
+      </div>
+      <!-- end center -->
+
+      <!-- start ward -->
+      <div
+        class="tab-pane fade row"
+        id="ward-list-create"
+        role="tabpanel"
+        aria-labelledby="ward-create-tab"
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            <!-- start center select2 -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': ward.validation.center_id_hasError,
+                'was-validated':
+                  ward.validation.center_id_successMessage &&
+                  !ward.validation.center_id_hasError,
+              }"
+            >
+              <label for="country-id">
+                Select Center
+                <span class="text-danger">*</span>
+              </label>
+              <select2
+                placeholder="Type To Search State Region..."
+                :url="center.model.fetchListUrl"
+                :value="ward.model.center_id"
+                @input="ward.model.centerSelected($event)"
+                :selected-option="ward.model.ward"
+                v-bind:class="{
+                  'is-invalid': ward.validation.center_id_hasError,
+                }"
+              ></select2>
+
+              <div class="invalid-feedback">
+                {{ ward.validation.center_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ ward.validation.center_id_successMessage }}
+              </div>
+            </div>
+            <!-- end city select2 -->
+
+            <!-- start ward name -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': ward.validation.name_hasError,
+                'was-validated':
+                  ward.validation.validation != null &&
+                  !ward.validation.name_hasError,
+              }"
+            >
+              <label for="about_item">
+                Ward Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="ward_name"
+                type="text"
+                class="form-control"
+                placeholder="Ward Name"
+                v-model="ward.model.name"
+                v-bind:class="{ 'is-invalid': ward.validation.name_hasError }"
+              />
+              <div class="invalid-feedback">
+                {{ ward.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ ward.validation.name_successMessage }}
+              </div>
+            </div>
+            <!-- end ward name -->
+
+            <!-- start ward is_available -->
+            <div class="col-sm-offset-2 col-sm-10">
+              <div
+                class="checkbox"
+                v-bind:class="{
+                  'has-error': ward.validation.is_available_hasError,
+                }"
+              >
+                <input
+                  type="checkbox"
+                  id="ward_is_available"
+                  value="1"
+                  v-model="ward.model.is_available"
+                  true-value="1"
+                  false-value="0"
+                  v-bind:class="{
+                    'is-invalid': ward.validation.is_available_hasError,
+                  }"
+                />
+                <label for="ward_is_available">
+                  Is Available
+                  <span class="text-danger">*</span>
+                </label>
+                <div class="invalid-feedback">
+                  {{ ward.validation.is_available_errorMessage }}
+                </div>
+              </div>
+            </div>
+            <!-- end ward is_available -->
+            <button
+              v-if="ward.model.isEdit"
+              @click="ward.model.updateWard()"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              v-if="ward.model.isEdit"
+              @click="ward.model.goToList('ward-list')"
+              class="btn btn-default"
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="ward.model.saveWard()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="ward-list"
+        role="tabpanel"
+        aria-labelledby="ward-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Available</th>
+              <th scope="col">Center</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in ward.model.list.data" :key="item.id">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">
+                <i
+                  aria-hidden="true"
+                  v-if="item.is_available == 1"
+                  class="material-icons green"
+                  >check_circle</i
+                >
+                <i aria-hidden="true" v-else class="material-icons red"
+                  >cancel</i
+                >
+              </td>
+              <td style="max-width: 20px">
+                <i
+                  aria-hidden="true"
+                  v-if="item.center ? item.center.is_available == 1 : ''"
+                  class="material-icons green"
+                  >check_circle</i
+                >
+                <i
+                  aria-hidden="true"
+                  v-else-if="item.center ? item.center.is_available == 0 : ''"
+                  class="material-icons red"
+                  >cancel</i
+                >
+                {{ item.center ? item.center.name : "-" }}
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >
+                  Edit
+                </button>
+                <div :id="`edit-collapse-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="ward.model.editRecord(index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  Delete
+                </button>
+                <div :id="`collapse-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="ward.model.deleteWard(item.id, index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="ward.model.list"
+          align="center"
+          v-on:pagination-change-page="getWardResult"
+        ></pagination>
+      </div>
+      <!-- end ward -->
     </div>
   </div>
 </template>
@@ -1332,6 +2322,10 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import cityValidation from "../validations/setting_component/city.js";
 import cityModel from "../models/city.js";
+import centerValidation from "../validations/setting_component/center.js";
+import centerModel from "../models/center.js";
+import wardValidation from "../validations/setting_component/ward.js";
+import wardModel from "../models/ward.js";
 import countryValidation from "../validations/setting_component/country.js";
 import countryModel from "../models/country.js";
 import stateRegionValidation from "../validations/setting_component/state_region.js";
@@ -1350,28 +2344,36 @@ export default {
     isLoading: false,
     city: {
       validation: new cityValidation(),
-      model: new cityModel()
+      model: new cityModel(),
     },
     country: {
       validation: new countryValidation(),
-      model: new countryModel()
+      model: new countryModel(),
     },
     stateRegion: {
       validation: new stateRegionValidation(),
-      model: new stateRegionModel()
+      model: new stateRegionModel(),
     },
     office: {
       validation: new officeValidation(),
-      model: new officeModel()
+      model: new officeModel(),
     },
     store: {
       validation: new storeValidation(),
-      model: new storeModel()
+      model: new storeModel(),
     },
     box: {
       validation: new boxValidation(),
-      model: new boxModel()
-    }
+      model: new boxModel(),
+    },
+    center: {
+      validation: new centerValidation(),
+      model: new centerModel(),
+    },
+    ward: {
+      validation: new wardValidation(),
+      model: new wardModel(),
+    },
   }),
   computed: {
     isLoadingWatch() {
@@ -1381,7 +2383,9 @@ export default {
         this.stateRegion.model.isLoading ||
         this.office.model.isLoading ||
         this.store.model.isLoading ||
-        this.box.model.isLoading
+        this.box.model.isLoading ||
+        this.center.model.isLoading ||
+        this.ward.model.isLoading
       );
     },
     isCreateSuccessWatch() {
@@ -1391,7 +2395,9 @@ export default {
         this.stateRegion.model.isCreateSuccess ||
         this.office.model.isCreateSuccess ||
         this.store.model.isCreateSuccess ||
-        this.box.model.isCreateSuccess
+        this.box.model.isCreateSuccess ||
+        this.center.model.isCreateSuccess ||
+        this.ward.model.isCreateSuccess
       );
     },
     isCreateFailWatch() {
@@ -1401,7 +2407,9 @@ export default {
         this.stateRegion.model.isCreateFail ||
         this.office.model.isCreateFail ||
         this.store.model.isCreateFail ||
-        this.box.model.isCreateFail
+        this.box.model.isCreateFail ||
+        this.center.model.isCreateFail ||
+        this.ward.model.isCreateFail
       );
     },
     isUpdateSuccessWatch() {
@@ -1411,7 +2419,9 @@ export default {
         this.stateRegion.model.isUpdateSuccess ||
         this.office.model.isUpdateSuccess ||
         this.store.model.isUpdateSuccess ||
-        this.box.model.isUpdateSuccess
+        this.box.model.isUpdateSuccess ||
+        this.center.model.isUpdateSuccess ||
+        this.ward.model.isUpdateSuccess
       );
     },
     isUpdateFailWatch() {
@@ -1421,7 +2431,9 @@ export default {
         this.stateRegion.model.isUpdateFail ||
         this.office.model.isUpdateFail ||
         this.store.model.isUpdateFail ||
-        this.box.model.isUpdateFail
+        this.box.model.isUpdateFail ||
+        this.center.model.isUpdateFail ||
+        this.ward.model.isUpdateFail
       );
     },
     isDeleteSuccessWatch() {
@@ -1431,7 +2443,9 @@ export default {
         this.stateRegion.model.isDeleteSuccess ||
         this.office.model.isDeleteSuccess ||
         this.store.model.isDeleteSuccess ||
-        this.box.model.isDeleteSuccess
+        this.box.model.isDeleteSuccess ||
+        this.center.model.isDeleteSuccess ||
+        this.ward.model.isDeleteSuccess
       );
     },
     isDeleteFailWatch() {
@@ -1441,69 +2455,77 @@ export default {
         this.stateRegion.model.isDeleteFail ||
         this.office.model.isDeleteFail ||
         this.store.model.isDeleteFail ||
-        this.box.model.isDeleteFail
+        this.box.model.isDeleteFail ||
+        this.center.model.isDeleteFail ||
+        this.ward.model.isDeleteFail
       );
-    }
+    },
   },
   watch: {
-    isLoadingWatch: function(newisLoading, oldisLoading) {
+    isLoadingWatch: function (newisLoading, oldisLoading) {
       this.isLoading = newisLoading;
     },
-    isCreateSuccessWatch: function(newisCreateSuccess, oldisCreateSuccess) {
+    isCreateSuccessWatch: function (newisCreateSuccess, oldisCreateSuccess) {
       if (newisCreateSuccess) {
         this.$toasted.show("Saving Success.", { icon: "save" });
         this.fetchListAndResetCondition();
       }
     },
-    isCreateFailWatch: function(newisCreateFail, oldisCreateFail) {
+    isCreateFailWatch: function (newisCreateFail, oldisCreateFail) {
       if (newisCreateFail) {
         this.$toasted.show("Saving Failed.", { icon: "save" });
       }
     },
-    isUpdateSuccessWatch: function(newisUpdateSuccess, oldisUpdateSuccess) {
+    isUpdateSuccessWatch: function (newisUpdateSuccess, oldisUpdateSuccess) {
       if (newisUpdateSuccess) {
         this.$toasted.show("Upading Success.", { icon: "save" });
         this.fetchListAndResetCondition();
       }
     },
-    isUpdateFailWatch: function(newisUpdateFail, oldisUpdateFail) {
+    isUpdateFailWatch: function (newisUpdateFail, oldisUpdateFail) {
       if (newisUpdateFail) {
         this.$toasted.show("Updaing Failed.", { icon: "save" });
       }
     },
-    isDeleteSuccessWatch: function(newisDeleteSuccess, oldisDeleteSuccess) {
+    isDeleteSuccessWatch: function (newisDeleteSuccess, oldisDeleteSuccess) {
       if (newisDeleteSuccess) {
         this.$toasted.show("Delete Success.", { icon: "delete" });
         this.fetchListAndResetCondition();
       }
     },
-    isDeleteFailWatch: function(newisDeleteFail, oldisDeleteFail) {
+    isDeleteFailWatch: function (newisDeleteFail, oldisDeleteFail) {
       if (newisDeleteFail) {
         this.$toasted.show("Delete Fail.", { icon: "delete" });
       }
     },
-    "city.model.validation": function(newValidation, oldValidation) {
+    "city.model.validation": function (newValidation, oldValidation) {
       this.city.validation = new cityValidation(newValidation);
     },
-    "country.model.validation": function(newValidation, oldValidation) {
+    "country.model.validation": function (newValidation, oldValidation) {
       this.country.validation = new countryValidation(newValidation);
     },
-    "stateRegion.model.validation": function(newValidation, oldValidation) {
+    "stateRegion.model.validation": function (newValidation, oldValidation) {
       this.stateRegion.validation = new stateRegionValidation(newValidation);
     },
-    "office.model.validation": function(newValidation, oldValidation) {
+    "office.model.validation": function (newValidation, oldValidation) {
       this.office.validation = new officeValidation(newValidation);
     },
-    "store.model.validation": function(newValidation, oldValidation) {
+    "store.model.validation": function (newValidation, oldValidation) {
       this.store.validation = new storeValidation(newValidation);
     },
-    "box.model.validation": function(newValidation, oldValidation) {
+    "box.model.validation": function (newValidation, oldValidation) {
       this.box.validation = new boxValidation(newValidation);
-    }
+    },
+    "center.model.validation": function (newValidation, oldValidation) {
+      this.center.validation = new centerValidation(newValidation);
+    },
+    "ward.model.validation": function (newValidation, oldValidation) {
+      this.ward.validation = new wardValidation(newValidation);
+    },
   },
   components: {
     Loading,
-    select2
+    select2,
   },
   methods: {
     getCityResult(page) {
@@ -1530,13 +2552,23 @@ export default {
       this.box.model.page = page;
       this.box.model.fetchList(page);
     },
+    getCenterResult(page) {
+      this.center.model.page = page;
+      this.center.model.fetchList(page);
+    },
+    getWardResult(page) {
+      this.ward.model.page = page;
+      this.ward.model.fetchList(page);
+    },
     fetchListAndResetCondition() {
       this.stateRegion.model.fetchList(this.stateRegion.model.page);
       this.city.model.fetchList(this.city.model.page);
       this.office.model.fetchList(this.office.model.page);
-      this.country.model.fetchList(this.office.model.page);
+      this.country.model.fetchList(this.country.model.page);
       this.store.model.fetchList(this.store.model.page);
       this.box.model.fetchList(this.box.model.page);
+      this.center.model.fetchList(this.center.model.page);
+      this.ward.model.fetchList(this.ward.model.page);
 
       this.stateRegion.model.isCreateSuccess = false;
       this.city.model.isCreateSuccess = false;
@@ -1544,6 +2576,8 @@ export default {
       this.country.model.isCreateSuccess = false;
       this.store.model.isCreateSuccess = false;
       this.box.model.isCreateSuccess = false;
+      this.center.model.isCreateSuccess = false;
+      this.ward.model.isCreateSuccess = false;
 
       this.stateRegion.model.isUpdateSuccess = false;
       this.city.model.isUpdateSuccess = false;
@@ -1551,6 +2585,8 @@ export default {
       this.country.model.isUpdateSuccess = false;
       this.store.model.isUpdateSuccess = false;
       this.box.model.isUpdateSuccess = false;
+      this.center.model.isUpdateSuccess = false;
+      this.ward.model.isUpdateSuccess = false;
 
       this.stateRegion.model.isDeleteSuccess = false;
       this.city.model.isDeleteSuccess = false;
@@ -1558,12 +2594,14 @@ export default {
       this.country.model.isDeleteSuccess = false;
       this.store.model.isDeleteSuccess = false;
       this.box.model.isDeleteSuccess = false;
+      this.center.model.isDeleteSuccess = false;
+      this.ward.model.isDeleteSuccess = false;
 
       this.$forceUpdate();
-    }
+    },
   },
   mounted() {},
-  created() {}
+  created() {},
 };
 </script>
 

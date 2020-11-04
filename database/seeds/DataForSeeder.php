@@ -16,3 +16,9 @@ const VOLUNTEER_TWO = "Volunteer Two";
 
 const JOB_ONE = "Driver";
 const JOB_TWO = "Office Assistant";
+
+const CENTER_ONE = "Center One";
+const CENTER_TWO = "Center Two";
+
+const WARD_ONE = "Ward One";
+const WARD_TWO = "Ward Two";

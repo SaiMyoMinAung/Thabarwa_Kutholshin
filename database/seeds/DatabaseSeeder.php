@@ -14,12 +14,13 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(StateRegionSeeder::class);
         $this->call(CitySeeder::class);
+        $this->call(CenterSeeder::class);
+        $this->call(WardSeeder::class);
         $this->call(OfficeSeeder::class);
         $this->call(AdminSeeder::class);
-        
+
         $this->call(VolunteerJobSeeder::class);
 
-        
         $this->call(VolunteerSeeder::class);
     }
 }

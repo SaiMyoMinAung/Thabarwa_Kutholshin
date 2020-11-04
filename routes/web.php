@@ -75,4 +75,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::resource('offices', 'OfficeController');
     Route::resource('stores', 'StoreController');
     Route::resource('boxes', 'BoxController');
+    Route::resource('centers', 'CenterController');
+    Route::resource('wards', 'WardController');
 });

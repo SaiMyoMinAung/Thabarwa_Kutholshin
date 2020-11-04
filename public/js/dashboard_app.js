@@ -2539,17 +2539,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay_dist_vue_loading_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _validations_setting_component_city_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../validations/setting_component/city.js */ "./resources/js/validations/setting_component/city.js");
 /* harmony import */ var _models_city_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../models/city.js */ "./resources/js/models/city.js");
-/* harmony import */ var _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../validations/setting_component/country.js */ "./resources/js/validations/setting_component/country.js");
-/* harmony import */ var _models_country_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/country.js */ "./resources/js/models/country.js");
-/* harmony import */ var _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../validations/setting_component/state_region.js */ "./resources/js/validations/setting_component/state_region.js");
-/* harmony import */ var _models_state_region_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../models/state_region.js */ "./resources/js/models/state_region.js");
-/* harmony import */ var _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../validations/setting_component/office.js */ "./resources/js/validations/setting_component/office.js");
-/* harmony import */ var _models_office_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../models/office.js */ "./resources/js/models/office.js");
-/* harmony import */ var _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../validations/setting_component/store.js */ "./resources/js/validations/setting_component/store.js");
-/* harmony import */ var _models_store_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../models/store.js */ "./resources/js/models/store.js");
-/* harmony import */ var _validations_setting_component_box_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../validations/setting_component/box.js */ "./resources/js/validations/setting_component/box.js");
-/* harmony import */ var _models_box_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../models/box.js */ "./resources/js/models/box.js");
-/* harmony import */ var _select2__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./select2 */ "./resources/js/components/select2.vue");
+/* harmony import */ var _validations_setting_component_center_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../validations/setting_component/center.js */ "./resources/js/validations/setting_component/center.js");
+/* harmony import */ var _models_center_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/center.js */ "./resources/js/models/center.js");
+/* harmony import */ var _validations_setting_component_ward_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../validations/setting_component/ward.js */ "./resources/js/validations/setting_component/ward.js");
+/* harmony import */ var _models_ward_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../models/ward.js */ "./resources/js/models/ward.js");
+/* harmony import */ var _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../validations/setting_component/country.js */ "./resources/js/validations/setting_component/country.js");
+/* harmony import */ var _models_country_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../models/country.js */ "./resources/js/models/country.js");
+/* harmony import */ var _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../validations/setting_component/state_region.js */ "./resources/js/validations/setting_component/state_region.js");
+/* harmony import */ var _models_state_region_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../models/state_region.js */ "./resources/js/models/state_region.js");
+/* harmony import */ var _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../validations/setting_component/office.js */ "./resources/js/validations/setting_component/office.js");
+/* harmony import */ var _models_office_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../models/office.js */ "./resources/js/models/office.js");
+/* harmony import */ var _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../validations/setting_component/store.js */ "./resources/js/validations/setting_component/store.js");
+/* harmony import */ var _models_store_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../models/store.js */ "./resources/js/models/store.js");
+/* harmony import */ var _validations_setting_component_box_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../validations/setting_component/box.js */ "./resources/js/validations/setting_component/box.js");
+/* harmony import */ var _models_box_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../models/box.js */ "./resources/js/models/box.js");
+/* harmony import */ var _select2__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./select2 */ "./resources/js/components/select2.vue");
 //
 //
 //
@@ -3879,6 +3883,1000 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 
 
 
@@ -3904,48 +4902,56 @@ __webpack_require__.r(__webpack_exports__);
         model: new _models_city_js__WEBPACK_IMPORTED_MODULE_3__["default"]()
       },
       country: {
-        validation: new _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_4__["default"](),
-        model: new _models_country_js__WEBPACK_IMPORTED_MODULE_5__["default"]()
+        validation: new _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_8__["default"](),
+        model: new _models_country_js__WEBPACK_IMPORTED_MODULE_9__["default"]()
       },
       stateRegion: {
-        validation: new _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_6__["default"](),
-        model: new _models_state_region_js__WEBPACK_IMPORTED_MODULE_7__["default"]()
+        validation: new _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_10__["default"](),
+        model: new _models_state_region_js__WEBPACK_IMPORTED_MODULE_11__["default"]()
       },
       office: {
-        validation: new _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_8__["default"](),
-        model: new _models_office_js__WEBPACK_IMPORTED_MODULE_9__["default"]()
+        validation: new _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_12__["default"](),
+        model: new _models_office_js__WEBPACK_IMPORTED_MODULE_13__["default"]()
       },
       store: {
-        validation: new _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_10__["default"](),
-        model: new _models_store_js__WEBPACK_IMPORTED_MODULE_11__["default"]()
+        validation: new _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_14__["default"](),
+        model: new _models_store_js__WEBPACK_IMPORTED_MODULE_15__["default"]()
       },
       box: {
-        validation: new _validations_setting_component_box_js__WEBPACK_IMPORTED_MODULE_12__["default"](),
-        model: new _models_box_js__WEBPACK_IMPORTED_MODULE_13__["default"]()
+        validation: new _validations_setting_component_box_js__WEBPACK_IMPORTED_MODULE_16__["default"](),
+        model: new _models_box_js__WEBPACK_IMPORTED_MODULE_17__["default"]()
+      },
+      center: {
+        validation: new _validations_setting_component_center_js__WEBPACK_IMPORTED_MODULE_4__["default"](),
+        model: new _models_center_js__WEBPACK_IMPORTED_MODULE_5__["default"]()
+      },
+      ward: {
+        validation: new _validations_setting_component_ward_js__WEBPACK_IMPORTED_MODULE_6__["default"](),
+        model: new _models_ward_js__WEBPACK_IMPORTED_MODULE_7__["default"]()
       }
     };
   },
   computed: {
     isLoadingWatch: function isLoadingWatch() {
-      return this.city.model.isLoading || this.country.model.isLoading || this.stateRegion.model.isLoading || this.office.model.isLoading || this.store.model.isLoading || this.box.model.isLoading;
+      return this.city.model.isLoading || this.country.model.isLoading || this.stateRegion.model.isLoading || this.office.model.isLoading || this.store.model.isLoading || this.box.model.isLoading || this.center.model.isLoading || this.ward.model.isLoading;
     },
     isCreateSuccessWatch: function isCreateSuccessWatch() {
-      return this.city.model.isCreateSuccess || this.country.model.isCreateSuccess || this.stateRegion.model.isCreateSuccess || this.office.model.isCreateSuccess || this.store.model.isCreateSuccess || this.box.model.isCreateSuccess;
+      return this.city.model.isCreateSuccess || this.country.model.isCreateSuccess || this.stateRegion.model.isCreateSuccess || this.office.model.isCreateSuccess || this.store.model.isCreateSuccess || this.box.model.isCreateSuccess || this.center.model.isCreateSuccess || this.ward.model.isCreateSuccess;
     },
     isCreateFailWatch: function isCreateFailWatch() {
-      return this.city.model.isCreateFail || this.country.model.isCreateFail || this.stateRegion.model.isCreateFail || this.office.model.isCreateFail || this.store.model.isCreateFail || this.box.model.isCreateFail;
+      return this.city.model.isCreateFail || this.country.model.isCreateFail || this.stateRegion.model.isCreateFail || this.office.model.isCreateFail || this.store.model.isCreateFail || this.box.model.isCreateFail || this.center.model.isCreateFail || this.ward.model.isCreateFail;
     },
     isUpdateSuccessWatch: function isUpdateSuccessWatch() {
-      return this.city.model.isUpdateSuccess || this.country.model.isUpdateSuccess || this.stateRegion.model.isUpdateSuccess || this.office.model.isUpdateSuccess || this.store.model.isUpdateSuccess || this.box.model.isUpdateSuccess;
+      return this.city.model.isUpdateSuccess || this.country.model.isUpdateSuccess || this.stateRegion.model.isUpdateSuccess || this.office.model.isUpdateSuccess || this.store.model.isUpdateSuccess || this.box.model.isUpdateSuccess || this.center.model.isUpdateSuccess || this.ward.model.isUpdateSuccess;
     },
     isUpdateFailWatch: function isUpdateFailWatch() {
-      return this.city.model.isUpdateFail || this.country.model.isUpdateFail || this.stateRegion.model.isUpdateFail || this.office.model.isUpdateFail || this.store.model.isUpdateFail || this.box.model.isUpdateFail;
+      return this.city.model.isUpdateFail || this.country.model.isUpdateFail || this.stateRegion.model.isUpdateFail || this.office.model.isUpdateFail || this.store.model.isUpdateFail || this.box.model.isUpdateFail || this.center.model.isUpdateFail || this.ward.model.isUpdateFail;
     },
     isDeleteSuccessWatch: function isDeleteSuccessWatch() {
-      return this.city.model.isDeleteSuccess || this.country.model.isDeleteSuccess || this.stateRegion.model.isDeleteSuccess || this.office.model.isDeleteSuccess || this.store.model.isDeleteSuccess || this.box.model.isDeleteSuccess;
+      return this.city.model.isDeleteSuccess || this.country.model.isDeleteSuccess || this.stateRegion.model.isDeleteSuccess || this.office.model.isDeleteSuccess || this.store.model.isDeleteSuccess || this.box.model.isDeleteSuccess || this.center.model.isDeleteSuccess || this.ward.model.isDeleteSuccess;
     },
     isDeleteFailWatch: function isDeleteFailWatch() {
-      return this.city.model.isDeleteFail || this.country.model.isDeleteFail || this.stateRegion.model.isDeleteFail || this.office.model.isDeleteFail || this.store.model.isDeleteFail || this.box.model.isDeleteFail;
+      return this.city.model.isDeleteFail || this.country.model.isDeleteFail || this.stateRegion.model.isDeleteFail || this.office.model.isDeleteFail || this.store.model.isDeleteFail || this.box.model.isDeleteFail || this.center.model.isDeleteFail || this.ward.model.isDeleteFail;
     }
   },
   watch: {
@@ -4001,24 +5007,30 @@ __webpack_require__.r(__webpack_exports__);
       this.city.validation = new _validations_setting_component_city_js__WEBPACK_IMPORTED_MODULE_2__["default"](newValidation);
     },
     "country.model.validation": function countryModelValidation(newValidation, oldValidation) {
-      this.country.validation = new _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_4__["default"](newValidation);
+      this.country.validation = new _validations_setting_component_country_js__WEBPACK_IMPORTED_MODULE_8__["default"](newValidation);
     },
     "stateRegion.model.validation": function stateRegionModelValidation(newValidation, oldValidation) {
-      this.stateRegion.validation = new _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_6__["default"](newValidation);
+      this.stateRegion.validation = new _validations_setting_component_state_region_js__WEBPACK_IMPORTED_MODULE_10__["default"](newValidation);
     },
     "office.model.validation": function officeModelValidation(newValidation, oldValidation) {
-      this.office.validation = new _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_8__["default"](newValidation);
+      this.office.validation = new _validations_setting_component_office_js__WEBPACK_IMPORTED_MODULE_12__["default"](newValidation);
     },
     "store.model.validation": function storeModelValidation(newValidation, oldValidation) {
-      this.store.validation = new _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_10__["default"](newValidation);
+      this.store.validation = new _validations_setting_component_store_js__WEBPACK_IMPORTED_MODULE_14__["default"](newValidation);
     },
     "box.model.validation": function boxModelValidation(newValidation, oldValidation) {
-      this.box.validation = new _validations_setting_component_box_js__WEBPACK_IMPORTED_MODULE_12__["default"](newValidation);
+      this.box.validation = new _validations_setting_component_box_js__WEBPACK_IMPORTED_MODULE_16__["default"](newValidation);
+    },
+    "center.model.validation": function centerModelValidation(newValidation, oldValidation) {
+      this.center.validation = new _validations_setting_component_center_js__WEBPACK_IMPORTED_MODULE_4__["default"](newValidation);
+    },
+    "ward.model.validation": function wardModelValidation(newValidation, oldValidation) {
+      this.ward.validation = new _validations_setting_component_ward_js__WEBPACK_IMPORTED_MODULE_6__["default"](newValidation);
     }
   },
   components: {
     Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a,
-    select2: _select2__WEBPACK_IMPORTED_MODULE_14__["default"]
+    select2: _select2__WEBPACK_IMPORTED_MODULE_18__["default"]
   },
   methods: {
     getCityResult: function getCityResult(page) {
@@ -4045,31 +5057,47 @@ __webpack_require__.r(__webpack_exports__);
       this.box.model.page = page;
       this.box.model.fetchList(page);
     },
+    getCenterResult: function getCenterResult(page) {
+      this.center.model.page = page;
+      this.center.model.fetchList(page);
+    },
+    getWardResult: function getWardResult(page) {
+      this.ward.model.page = page;
+      this.ward.model.fetchList(page);
+    },
     fetchListAndResetCondition: function fetchListAndResetCondition() {
       this.stateRegion.model.fetchList(this.stateRegion.model.page);
       this.city.model.fetchList(this.city.model.page);
       this.office.model.fetchList(this.office.model.page);
-      this.country.model.fetchList(this.office.model.page);
+      this.country.model.fetchList(this.country.model.page);
       this.store.model.fetchList(this.store.model.page);
       this.box.model.fetchList(this.box.model.page);
+      this.center.model.fetchList(this.center.model.page);
+      this.ward.model.fetchList(this.ward.model.page);
       this.stateRegion.model.isCreateSuccess = false;
       this.city.model.isCreateSuccess = false;
       this.office.model.isCreateSuccess = false;
       this.country.model.isCreateSuccess = false;
       this.store.model.isCreateSuccess = false;
       this.box.model.isCreateSuccess = false;
+      this.center.model.isCreateSuccess = false;
+      this.ward.model.isCreateSuccess = false;
       this.stateRegion.model.isUpdateSuccess = false;
       this.city.model.isUpdateSuccess = false;
       this.office.model.isUpdateSuccess = false;
       this.country.model.isUpdateSuccess = false;
       this.store.model.isUpdateSuccess = false;
       this.box.model.isUpdateSuccess = false;
+      this.center.model.isUpdateSuccess = false;
+      this.ward.model.isUpdateSuccess = false;
       this.stateRegion.model.isDeleteSuccess = false;
       this.city.model.isDeleteSuccess = false;
       this.office.model.isDeleteSuccess = false;
       this.country.model.isDeleteSuccess = false;
       this.store.model.isDeleteSuccess = false;
       this.box.model.isDeleteSuccess = false;
+      this.center.model.isDeleteSuccess = false;
+      this.ward.model.isDeleteSuccess = false;
       this.$forceUpdate();
     }
   },
@@ -42835,6 +43863,138 @@ var render = function() {
                 )
               ])
             ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "badge badge-primary" }, [_vm._v("1")]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "nav-item dropdown",
+              staticStyle: { "min-width": "150px" },
+              attrs: { role: "presentation" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link dropdown-toggle center-setting",
+                  attrs: {
+                    "data-toggle": "dropdown",
+                    href: "#",
+                    role: "button",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false"
+                  }
+                },
+                [_vm._v("Center")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-menu" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "center-list-tab",
+                      "data-toggle": "tab",
+                      href: "#center-list",
+                      role: "tab",
+                      "aria-controls": "center-list",
+                      "aria-selected": "false"
+                    }
+                  },
+                  [_vm._v("Center List")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "center-create-tab",
+                      href: "#center-list-create",
+                      "data-toggle": "tab",
+                      role: "tab",
+                      "aria-controls": "center-list-create",
+                      "aria-selected": "false"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.center.model.clearData()
+                      }
+                    }
+                  },
+                  [_vm._v("Create Center")]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "badge badge-primary" }, [_vm._v("2")]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "nav-item dropdown",
+              staticStyle: { "min-width": "150px" },
+              attrs: { role: "presentation" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link dropdown-toggle ward-setting",
+                  attrs: {
+                    "data-toggle": "dropdown",
+                    href: "#",
+                    role: "button",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false"
+                  }
+                },
+                [_vm._v("Ward")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-menu" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "ward-list-tab",
+                      "data-toggle": "tab",
+                      href: "#ward-list",
+                      role: "tab",
+                      "aria-controls": "ward-list",
+                      "aria-selected": "false"
+                    }
+                  },
+                  [_vm._v("Ward List")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "ward-create-tab",
+                      href: "#ward-list-create",
+                      "data-toggle": "tab",
+                      role: "tab",
+                      "aria-controls": "ward-list-create",
+                      "aria-selected": "false"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.ward.model.clearData()
+                      }
+                    }
+                  },
+                  [_vm._v("Create Ward")]
+                )
+              ])
+            ]
           )
         ]
       ),
@@ -42877,7 +44037,11 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("td", { staticStyle: { "max-width": "20px" } }, [
-                        _vm._v(_vm._s(item.store ? item.store.name : "-"))
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(item.store ? item.store.name : "-") +
+                            "\n            "
+                        )
                       ]),
                       _vm._v(" "),
                       _c("td", { staticStyle: { "max-width": "20px" } }, [
@@ -42893,7 +44057,7 @@ var render = function() {
                               "aria-controls": "editCollapseExample"
                             }
                           },
-                          [_vm._v("Edit")]
+                          [_vm._v("\n                Edit\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -42913,7 +44077,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -42928,7 +44096,11 @@ var render = function() {
                                   "aria-controls": "editCollapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -42947,7 +44119,7 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("Delete")]
+                          [_vm._v("\n                Delete\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -42970,7 +44142,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -42984,7 +44160,11 @@ var render = function() {
                                   "aria-controls": "collapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -43049,7 +44229,11 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(_vm._s(_vm.box.validation.store_id_errorMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.box.validation.store_id_errorMessage) +
+                          "\n            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c(
@@ -43060,7 +44244,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          _vm._s(_vm.box.validation.store_id_successMessage)
+                          "\n              " +
+                            _vm._s(_vm.box.validation.store_id_successMessage) +
+                            "\n            "
                         )
                       ]
                     )
@@ -43110,11 +44296,19 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(_vm._s(_vm.box.validation.name_errorMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.box.validation.name_errorMessage) +
+                          "\n            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
-                      _vm._v(_vm._s(_vm.box.validation.name_successMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.box.validation.name_successMessage) +
+                          "\n            "
+                      )
                     ])
                   ]
                 ),
@@ -43167,12 +44361,18 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(_vm._s(_vm.box.validation.box_number_errorMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.box.validation.box_number_errorMessage) +
+                          "\n            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.box.validation.box_number_successMessage)
+                        "\n              " +
+                          _vm._s(_vm.box.validation.box_number_successMessage) +
+                          "\n            "
                       )
                     ])
                   ]
@@ -43189,7 +44389,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Update")]
+                      [_vm._v("\n            Update\n          ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -43204,7 +44404,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Cancel")]
+                      [_vm._v("\n            Cancel\n          ")]
                     )
                   : _c(
                       "button",
@@ -43216,7 +44416,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Create")]
+                      [_vm._v("\n            Create\n          ")]
                     )
               ])
             ])
@@ -43299,7 +44499,7 @@ var render = function() {
                               "aria-controls": "editCollapseExample"
                             }
                           },
-                          [_vm._v("Edit")]
+                          [_vm._v("\n                Edit\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -43319,7 +44519,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -43334,7 +44538,11 @@ var render = function() {
                                   "aria-controls": "editCollapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -43353,7 +44561,7 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("Delete")]
+                          [_vm._v("\n                Delete\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -43376,7 +44584,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -43390,7 +44602,11 @@ var render = function() {
                                   "aria-controls": "collapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -43456,7 +44672,9 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.store.validation.office_id_errorMessage)
+                        "\n              " +
+                          _vm._s(_vm.store.validation.office_id_errorMessage) +
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
@@ -43468,7 +44686,11 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          _vm._s(_vm.store.validation.office_id_successMessage)
+                          "\n              " +
+                            _vm._s(
+                              _vm.store.validation.office_id_successMessage
+                            ) +
+                            "\n            "
                         )
                       ]
                     )
@@ -43520,11 +44742,19 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(_vm._s(_vm.store.validation.name_errorMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.store.validation.name_errorMessage) +
+                          "\n            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
-                      _vm._v(_vm._s(_vm.store.validation.name_successMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.store.validation.name_successMessage) +
+                          "\n            "
+                      )
                     ])
                   ]
                 ),
@@ -43578,13 +44808,21 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.store.validation.store_number_errorMessage)
+                        "\n              " +
+                          _vm._s(
+                            _vm.store.validation.store_number_errorMessage
+                          ) +
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.store.validation.store_number_successMessage)
+                        "\n              " +
+                          _vm._s(
+                            _vm.store.validation.store_number_successMessage
+                          ) +
+                          "\n            "
                       )
                     ])
                   ]
@@ -43601,7 +44839,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Update")]
+                      [_vm._v("\n            Update\n          ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -43616,7 +44854,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Cancel")]
+                      [_vm._v("\n            Cancel\n          ")]
                     )
                   : _c(
                       "button",
@@ -43628,7 +44866,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Create")]
+                      [_vm._v("\n            Create\n          ")]
                     )
               ])
             ])
@@ -43733,7 +44971,7 @@ var render = function() {
                               "aria-controls": "editCollapseExample"
                             }
                           },
-                          [_vm._v("Edit")]
+                          [_vm._v("\n                Edit\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -43753,7 +44991,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -43768,7 +45010,11 @@ var render = function() {
                                   "aria-controls": "editCollapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -43787,7 +45033,7 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("Delete")]
+                          [_vm._v("\n                Delete\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -43810,7 +45056,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -43824,7 +45074,11 @@ var render = function() {
                                   "aria-controls": "collapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -43892,9 +45146,11 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
-                        _vm._s(
-                          _vm.office.validation.state_region_id_errorMessage
-                        )
+                        "\n              " +
+                          _vm._s(
+                            _vm.office.validation.state_region_id_errorMessage
+                          ) +
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
@@ -43906,9 +45162,12 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          _vm._s(
-                            _vm.office.validation.state_region_id_successMessage
-                          )
+                          "\n              " +
+                            _vm._s(
+                              _vm.office.validation
+                                .state_region_id_successMessage
+                            ) +
+                            "\n            "
                         )
                       ]
                     )
@@ -43964,11 +45223,19 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(_vm._s(_vm.office.validation.name_errorMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.office.validation.name_errorMessage) +
+                          "\n            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
-                      _vm._v(_vm._s(_vm.office.validation.name_successMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.office.validation.name_successMessage) +
+                          "\n            "
+                      )
                     ])
                   ]
                 ),
@@ -44021,12 +45288,18 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(_vm._s(_vm.office.validation.address_errorMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.office.validation.address_errorMessage) +
+                          "\n            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.office.validation.address_successMessage)
+                        "\n              " +
+                          _vm._s(_vm.office.validation.address_successMessage) +
+                          "\n            "
                       )
                     ])
                   ]
@@ -44100,7 +45373,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
-                          _vm._s(_vm.office.validation.is_open_errorMessage)
+                          "\n                " +
+                            _vm._s(_vm.office.validation.is_open_errorMessage) +
+                            "\n              "
                         )
                       ])
                     ]
@@ -44118,7 +45393,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Update")]
+                      [_vm._v("\n            Update\n          ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -44133,7 +45408,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Cancel")]
+                      [_vm._v("\n            Cancel\n          ")]
                     )
                   : _c(
                       "button",
@@ -44145,7 +45420,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Create")]
+                      [_vm._v("\n            Create\n          ")]
                     )
               ])
             ])
@@ -44213,11 +45488,19 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(_vm._s(_vm.country.validation.name_errorMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.country.validation.name_errorMessage) +
+                          "\n            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
-                      _vm._v(_vm._s(_vm.country.validation.name_successMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.country.validation.name_successMessage) +
+                          "\n            "
+                      )
                     ])
                   ]
                 ),
@@ -44292,9 +45575,11 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
-                          _vm._s(
-                            _vm.country.validation.is_available_errorMessage
-                          )
+                          "\n                " +
+                            _vm._s(
+                              _vm.country.validation.is_available_errorMessage
+                            ) +
+                            "\n              "
                         )
                       ])
                     ]
@@ -44312,7 +45597,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Update")]
+                      [_vm._v("\n            Update\n          ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -44327,7 +45612,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Cancel")]
+                      [_vm._v("\n            Cancel\n          ")]
                     )
                   : _c(
                       "button",
@@ -44339,7 +45624,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Create")]
+                      [_vm._v("\n            Create\n          ")]
                     )
               ])
             ])
@@ -44412,7 +45697,7 @@ var render = function() {
                               "aria-controls": "editCollapseExample"
                             }
                           },
-                          [_vm._v("Edit")]
+                          [_vm._v("\n                Edit\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -44432,7 +45717,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -44447,7 +45736,11 @@ var render = function() {
                                   "aria-controls": "editCollapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -44466,7 +45759,7 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("Delete")]
+                          [_vm._v("\n                Delete\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -44489,7 +45782,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -44503,7 +45800,11 @@ var render = function() {
                                   "aria-controls": "collapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -44571,9 +45872,11 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
-                        _vm._s(
-                          _vm.stateRegion.validation.country_id_errorMessage
-                        )
+                        "\n              " +
+                          _vm._s(
+                            _vm.stateRegion.validation.country_id_errorMessage
+                          ) +
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
@@ -44585,9 +45888,12 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          _vm._s(
-                            _vm.stateRegion.validation.country_id_successMessage
-                          )
+                          "\n              " +
+                            _vm._s(
+                              _vm.stateRegion.validation
+                                .country_id_successMessage
+                            ) +
+                            "\n            "
                         )
                       ]
                     )
@@ -44644,13 +45950,19 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.stateRegion.validation.name_errorMessage)
+                        "\n              " +
+                          _vm._s(_vm.stateRegion.validation.name_errorMessage) +
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.stateRegion.validation.name_successMessage)
+                        "\n              " +
+                          _vm._s(
+                            _vm.stateRegion.validation.name_successMessage
+                          ) +
+                          "\n            "
                       )
                     ])
                   ]
@@ -44705,13 +46017,19 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.stateRegion.validation.code_errorMessage)
+                        "\n              " +
+                          _vm._s(_vm.stateRegion.validation.code_errorMessage) +
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.stateRegion.validation.code_successMessage)
+                        "\n              " +
+                          _vm._s(
+                            _vm.stateRegion.validation.code_successMessage
+                          ) +
+                          "\n            "
                       )
                     ])
                   ]
@@ -44794,9 +46112,12 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
-                          _vm._s(
-                            _vm.stateRegion.validation.is_available_errorMessage
-                          )
+                          "\n                " +
+                            _vm._s(
+                              _vm.stateRegion.validation
+                                .is_available_errorMessage
+                            ) +
+                            "\n              "
                         )
                       ])
                     ]
@@ -44814,7 +46135,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Update")]
+                      [_vm._v("\n            Update\n          ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -44829,7 +46150,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Cancel")]
+                      [_vm._v("\n            Cancel\n          ")]
                     )
                   : _c(
                       "button",
@@ -44841,7 +46162,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Create")]
+                      [_vm._v("\n            Create\n          ")]
                     )
               ])
             ])
@@ -44948,7 +46269,7 @@ var render = function() {
                               "aria-controls": "editCollapseExample"
                             }
                           },
-                          [_vm._v("Edit")]
+                          [_vm._v("\n                Edit\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -44972,7 +46293,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -44987,7 +46312,11 @@ var render = function() {
                                   "aria-controls": "editCollapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -45007,7 +46336,7 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("Delete")]
+                          [_vm._v("\n                Delete\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -45030,7 +46359,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -45045,7 +46378,11 @@ var render = function() {
                                   "aria-controls": "collapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -45112,7 +46449,11 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
-                        _vm._s(_vm.city.validation.state_region_id_errorMessage)
+                        "\n              " +
+                          _vm._s(
+                            _vm.city.validation.state_region_id_errorMessage
+                          ) +
+                          "\n            "
                       )
                     ]),
                     _vm._v(" "),
@@ -45124,9 +46465,11 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          _vm._s(
-                            _vm.city.validation.state_region_id_successMessage
-                          )
+                          "\n              " +
+                            _vm._s(
+                              _vm.city.validation.state_region_id_successMessage
+                            ) +
+                            "\n            "
                         )
                       ]
                     )
@@ -45178,11 +46521,19 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("div", { staticClass: "invalid-feedback" }, [
-                      _vm._v(_vm._s(_vm.city.validation.name_errorMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.city.validation.name_errorMessage) +
+                          "\n            "
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "valid-feedback" }, [
-                      _vm._v(_vm._s(_vm.city.validation.name_successMessage))
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.city.validation.name_successMessage) +
+                          "\n            "
+                      )
                     ])
                   ]
                 ),
@@ -45256,7 +46607,11 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
-                          _vm._s(_vm.city.validation.is_available_errorMessage)
+                          "\n                " +
+                            _vm._s(
+                              _vm.city.validation.is_available_errorMessage
+                            ) +
+                            "\n              "
                         )
                       ])
                     ]
@@ -45274,7 +46629,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Update")]
+                      [_vm._v("\n            Update\n          ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -45289,7 +46644,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Cancel")]
+                      [_vm._v("\n            Cancel\n          ")]
                     )
                   : _c(
                       "button",
@@ -45301,7 +46656,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Create")]
+                      [_vm._v("\n            Create\n          ")]
                     )
               ])
             ])
@@ -45406,7 +46761,7 @@ var render = function() {
                               "aria-controls": "editCollapseExample"
                             }
                           },
-                          [_vm._v("Edit")]
+                          [_vm._v("\n                Edit\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -45426,7 +46781,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -45440,7 +46799,11 @@ var render = function() {
                                   "aria-controls": "editCollapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -45459,7 +46822,7 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("Delete")]
+                          [_vm._v("\n                Delete\n              ")]
                         ),
                         _vm._v(" "),
                         _c(
@@ -45482,7 +46845,11 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Yes")]
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
@@ -45496,7 +46863,11 @@ var render = function() {
                                   "aria-controls": "collapseExample"
                                 }
                               },
-                              [_vm._v("No")]
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
                             )
                           ]
                         )
@@ -45511,6 +46882,970 @@ var render = function() {
             _c("pagination", {
               attrs: { data: _vm.city.model.list, align: "center" },
               on: { "pagination-change-page": _vm.getCityResult }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade row",
+            attrs: {
+              id: "center-list-create",
+              role: "tabpanel",
+              "aria-labelledby": "center-create-tab"
+            }
+          },
+          [
+            _c("div", { staticClass: "col-md-6 card border border-success" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.center.validation.city_id_hasError,
+                      "was-validated":
+                        _vm.center.validation.city_id_successMessage &&
+                        !_vm.center.validation.city_id_hasError
+                    }
+                  },
+                  [
+                    _vm._m(25),
+                    _vm._v(" "),
+                    _c("select2", {
+                      class: {
+                        "is-invalid": _vm.center.validation.city_id_hasError
+                      },
+                      attrs: {
+                        placeholder: "Type To Search State Region...",
+                        url: _vm.city.model.fetchListUrl,
+                        value: _vm.center.model.city_id,
+                        "selected-option": _vm.center.model.city
+                      },
+                      on: {
+                        input: function($event) {
+                          return _vm.center.model.citySelected($event)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.center.validation.city_id_errorMessage) +
+                          "\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "valid-feedback",
+                        staticStyle: { display: "block" }
+                      },
+                      [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(
+                              _vm.center.validation.city_id_successMessage
+                            ) +
+                            "\n            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.center.validation.name_hasError,
+                      "was-validated":
+                        _vm.center.validation.validation != null &&
+                        !_vm.center.validation.name_hasError
+                    }
+                  },
+                  [
+                    _vm._m(26),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.center.model.name,
+                          expression: "center.model.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.center.validation.name_hasError
+                      },
+                      attrs: {
+                        id: "center_name",
+                        type: "text",
+                        placeholder: "Center Name"
+                      },
+                      domProps: { value: _vm.center.model.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.center.model,
+                            "name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.center.validation.name_errorMessage) +
+                          "\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "valid-feedback" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.center.validation.name_successMessage) +
+                          "\n            "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "checkbox",
+                      class: {
+                        "has-error": _vm.center.validation.is_available_hasError
+                      }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.center.model.is_available,
+                            expression: "center.model.is_available"
+                          }
+                        ],
+                        class: {
+                          "is-invalid":
+                            _vm.center.validation.is_available_hasError
+                        },
+                        attrs: {
+                          type: "checkbox",
+                          id: "center_is_available",
+                          value: "1",
+                          "true-value": "1",
+                          "false-value": "0"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.center.model.is_available)
+                            ? _vm._i(_vm.center.model.is_available, "1") > -1
+                            : _vm._q(_vm.center.model.is_available, "1")
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.center.model.is_available,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? "1" : "0"
+                            if (Array.isArray($$a)) {
+                              var $$v = "1",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.center.model,
+                                    "is_available",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.center.model,
+                                    "is_available",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.center.model, "is_available", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(27),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.center.validation.is_available_errorMessage
+                            ) +
+                            "\n              "
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.center.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.center.model.updateCenter()
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Update\n          ")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.center.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default",
+                        on: {
+                          click: function($event) {
+                            return _vm.center.model.goToList("center-list")
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Cancel\n          ")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.center.model.saveCenter()
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Create\n          ")]
+                    )
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade",
+            attrs: {
+              id: "center-list",
+              role: "tabpanel",
+              "aria-labelledby": "center-list-tab"
+            }
+          },
+          [
+            _c(
+              "table",
+              {
+                staticClass: "table table-hover table-dark",
+                attrs: { cellpadding: "0", cellspacing: "0" }
+              },
+              [
+                _vm._m(28),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.center.model.list.data, function(item, index) {
+                    return _c("tr", { key: item.id }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _vm._v(_vm._s(item.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        item.is_available == 1
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons green",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("check_circle")]
+                            )
+                          : _c(
+                              "i",
+                              {
+                                staticClass: "material-icons red",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("cancel")]
+                            )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        (item.city
+                        ? item.city.is_available == 1
+                        : "")
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons green",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("check_circle")]
+                            )
+                          : (item.city
+                            ? item.city.is_available == 0
+                            : "")
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons red",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("cancel")]
+                            )
+                          : _vm._e(),
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(item.city ? item.city.name : "-") +
+                            "\n            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-warning",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#edit-collapse-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "editCollapseExample"
+                            }
+                          },
+                          [_vm._v("\n                Edit\n              ")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "edit-collapse-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.center.model.editRecord(index)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target": "#edit-collapse-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "editCollapseExample"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-danger",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#collapse-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "collapseExample"
+                            }
+                          },
+                          [_vm._v("\n                Delete\n              ")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "collapse-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.center.model.deleteCenter(
+                                      item.id,
+                                      index
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target": "#collapse-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "collapseExample"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("pagination", {
+              attrs: { data: _vm.center.model.list, align: "center" },
+              on: { "pagination-change-page": _vm.getCenterResult }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade row",
+            attrs: {
+              id: "ward-list-create",
+              role: "tabpanel",
+              "aria-labelledby": "ward-create-tab"
+            }
+          },
+          [
+            _c("div", { staticClass: "col-md-6 card border border-success" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.ward.validation.center_id_hasError,
+                      "was-validated":
+                        _vm.ward.validation.center_id_successMessage &&
+                        !_vm.ward.validation.center_id_hasError
+                    }
+                  },
+                  [
+                    _vm._m(29),
+                    _vm._v(" "),
+                    _c("select2", {
+                      class: {
+                        "is-invalid": _vm.ward.validation.center_id_hasError
+                      },
+                      attrs: {
+                        placeholder: "Type To Search State Region...",
+                        url: _vm.center.model.fetchListUrl,
+                        value: _vm.ward.model.center_id,
+                        "selected-option": _vm.ward.model.ward
+                      },
+                      on: {
+                        input: function($event) {
+                          return _vm.ward.model.centerSelected($event)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.ward.validation.center_id_errorMessage) +
+                          "\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "valid-feedback",
+                        staticStyle: { display: "block" }
+                      },
+                      [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(
+                              _vm.ward.validation.center_id_successMessage
+                            ) +
+                            "\n            "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.ward.validation.name_hasError,
+                      "was-validated":
+                        _vm.ward.validation.validation != null &&
+                        !_vm.ward.validation.name_hasError
+                    }
+                  },
+                  [
+                    _vm._m(30),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.ward.model.name,
+                          expression: "ward.model.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.ward.validation.name_hasError
+                      },
+                      attrs: {
+                        id: "ward_name",
+                        type: "text",
+                        placeholder: "Ward Name"
+                      },
+                      domProps: { value: _vm.ward.model.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.ward.model, "name", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.ward.validation.name_errorMessage) +
+                          "\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "valid-feedback" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.ward.validation.name_successMessage) +
+                          "\n            "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-offset-2 col-sm-10" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "checkbox",
+                      class: {
+                        "has-error": _vm.ward.validation.is_available_hasError
+                      }
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.ward.model.is_available,
+                            expression: "ward.model.is_available"
+                          }
+                        ],
+                        class: {
+                          "is-invalid":
+                            _vm.ward.validation.is_available_hasError
+                        },
+                        attrs: {
+                          type: "checkbox",
+                          id: "ward_is_available",
+                          value: "1",
+                          "true-value": "1",
+                          "false-value": "0"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.ward.model.is_available)
+                            ? _vm._i(_vm.ward.model.is_available, "1") > -1
+                            : _vm._q(_vm.ward.model.is_available, "1")
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.ward.model.is_available,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? "1" : "0"
+                            if (Array.isArray($$a)) {
+                              var $$v = "1",
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.ward.model,
+                                    "is_available",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.ward.model,
+                                    "is_available",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.ward.model, "is_available", $$c)
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(31),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.ward.validation.is_available_errorMessage
+                            ) +
+                            "\n              "
+                        )
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.ward.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.ward.model.updateWard()
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Update\n          ")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.ward.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default",
+                        on: {
+                          click: function($event) {
+                            return _vm.ward.model.goToList("ward-list")
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Cancel\n          ")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.ward.model.saveWard()
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Create\n          ")]
+                    )
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade",
+            attrs: {
+              id: "ward-list",
+              role: "tabpanel",
+              "aria-labelledby": "ward-list-tab"
+            }
+          },
+          [
+            _c(
+              "table",
+              {
+                staticClass: "table table-hover table-dark",
+                attrs: { cellpadding: "0", cellspacing: "0" }
+              },
+              [
+                _vm._m(32),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.ward.model.list.data, function(item, index) {
+                    return _c("tr", { key: item.id }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _vm._v(_vm._s(item.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        item.is_available == 1
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons green",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("check_circle")]
+                            )
+                          : _c(
+                              "i",
+                              {
+                                staticClass: "material-icons red",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("cancel")]
+                            )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        (item.center
+                        ? item.center.is_available == 1
+                        : "")
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons green",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("check_circle")]
+                            )
+                          : (item.center
+                            ? item.center.is_available == 0
+                            : "")
+                          ? _c(
+                              "i",
+                              {
+                                staticClass: "material-icons red",
+                                attrs: { "aria-hidden": "true" }
+                              },
+                              [_vm._v("cancel")]
+                            )
+                          : _vm._e(),
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(item.center ? item.center.name : "-") +
+                            "\n            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-warning",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#edit-collapse-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "editCollapseExample"
+                            }
+                          },
+                          [_vm._v("\n                Edit\n              ")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "edit-collapse-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.ward.model.editRecord(index)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target": "#edit-collapse-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "editCollapseExample"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-danger",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#collapse-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "collapseExample"
+                            }
+                          },
+                          [_vm._v("\n                Delete\n              ")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "collapse-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.ward.model.deleteWard(
+                                      item.id,
+                                      index
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target": "#collapse-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "collapseExample"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("pagination", {
+              attrs: { data: _vm.ward.model.list, align: "center" },
+              on: { "pagination-change-page": _vm.getWardResult }
             })
           ],
           1
@@ -45803,6 +48138,100 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Available")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("State Or Region")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "country-id" } }, [
+      _vm._v("\n              Select City\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "about_item" } }, [
+      _vm._v("\n              Center Name\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "center_is_available" } }, [
+      _vm._v("\n                Is Available\n                "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Available")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("City")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "country-id" } }, [
+      _vm._v("\n              Select Center\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "about_item" } }, [
+      _vm._v("\n              Ward Name\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "ward_is_available" } }, [
+      _vm._v("\n                Is Available\n                "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Available")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Center")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
         _vm._v(" "),
@@ -59045,6 +61474,129 @@ var box = /*#__PURE__*/function (_base) {
 
 /***/ }),
 
+/***/ "./resources/js/models/center.js":
+/*!***************************************!*\
+  !*** ./resources/js/models/center.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return center; });
+/* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base.js */ "./resources/js/models/base.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var center = /*#__PURE__*/function (_base) {
+  _inherits(center, _base);
+
+  var _super = _createSuper(center);
+
+  function center() {
+    var _this;
+
+    _classCallCheck(this, center);
+
+    _this = _super.call(this, route('centers.index'));
+    _this.name = '';
+    _this.city_id = '';
+    _this.city = null;
+    _this.is_available = 0;
+    _this.listHrefId = "center-list";
+    _this.createHrefId = "center-list-create";
+    return _this;
+  }
+
+  _createClass(center, [{
+    key: "editRecord",
+    value: function editRecord(index) {
+      _get(_getPrototypeOf(center.prototype), "edit", this).call(this, index);
+
+      this.city_id = this.city ? this.city.id : '';
+    }
+  }, {
+    key: "clearData",
+    value: function clearData() {
+      _get(_getPrototypeOf(center.prototype), "clearData", this).call(this);
+
+      this.is_available = 0;
+      this.city_id = '';
+      this.city = null;
+      this.name = '';
+    }
+  }, {
+    key: "citySelected",
+    value: function citySelected($event) {
+      this.city = $event;
+      this.city_id = $event != null ? $event.id : "";
+    }
+  }, {
+    key: "updateCenter",
+    value: function updateCenter() {
+      var url = route('centers.update', this.id);
+      var data = {
+        name: this.name,
+        is_available: this.is_available,
+        city_id: this.city_id,
+        _method: "PUT"
+      };
+
+      _get(_getPrototypeOf(center.prototype), "update", this).call(this, url, data);
+    }
+  }, {
+    key: "saveCenter",
+    value: function saveCenter() {
+      var data = {
+        name: this.name,
+        is_available: this.is_available,
+        city_id: this.city_id
+      };
+      var url = route('centers.store');
+
+      _get(_getPrototypeOf(center.prototype), "save", this).call(this, url, data);
+    }
+  }, {
+    key: "deleteCenter",
+    value: function deleteCenter(id, index) {
+      var url = route('centers.destroy', id);
+
+      _get(_getPrototypeOf(center.prototype), "delete", this).call(this, url, index);
+    }
+  }]);
+
+  return center;
+}(_base_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/models/city.js":
 /*!*************************************!*\
   !*** ./resources/js/models/city.js ***!
@@ -60207,6 +62759,129 @@ var store = /*#__PURE__*/function (_base) {
 
 /***/ }),
 
+/***/ "./resources/js/models/ward.js":
+/*!*************************************!*\
+  !*** ./resources/js/models/ward.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ward; });
+/* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base.js */ "./resources/js/models/base.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ward = /*#__PURE__*/function (_base) {
+  _inherits(ward, _base);
+
+  var _super = _createSuper(ward);
+
+  function ward() {
+    var _this;
+
+    _classCallCheck(this, ward);
+
+    _this = _super.call(this, route('wards.index'));
+    _this.name = '';
+    _this.center_id = '';
+    _this.center = null;
+    _this.is_available = 0;
+    _this.listHrefId = "ward-list";
+    _this.createHrefId = "ward-list-create";
+    return _this;
+  }
+
+  _createClass(ward, [{
+    key: "editRecord",
+    value: function editRecord(index) {
+      _get(_getPrototypeOf(ward.prototype), "edit", this).call(this, index);
+
+      this.center_id = this.center ? this.center.id : '';
+    }
+  }, {
+    key: "clearData",
+    value: function clearData() {
+      _get(_getPrototypeOf(ward.prototype), "clearData", this).call(this);
+
+      this.is_available = 0;
+      this.center_id = '';
+      this.center = null;
+      this.name = '';
+    }
+  }, {
+    key: "centerSelected",
+    value: function centerSelected($event) {
+      this.center = $event;
+      this.center_id = $event != null ? $event.id : "";
+    }
+  }, {
+    key: "updateWard",
+    value: function updateWard() {
+      var url = route('wards.update', this.id);
+      var data = {
+        name: this.name,
+        is_available: this.is_available,
+        center_id: this.center_id,
+        _method: "PUT"
+      };
+
+      _get(_getPrototypeOf(ward.prototype), "update", this).call(this, url, data);
+    }
+  }, {
+    key: "saveWard",
+    value: function saveWard() {
+      var data = {
+        name: this.name,
+        is_available: this.is_available,
+        center_id: this.center_id
+      };
+      var url = route('wards.store');
+
+      _get(_getPrototypeOf(ward.prototype), "save", this).call(this, url, data);
+    }
+  }, {
+    key: "deleteWard",
+    value: function deleteWard(id, index) {
+      var url = route('wards.destroy', id);
+
+      _get(_getPrototypeOf(ward.prototype), "delete", this).call(this, url, index);
+    }
+  }]);
+
+  return ward;
+}(_base_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/router.js":
 /*!********************************!*\
   !*** ./resources/js/router.js ***!
@@ -60552,6 +63227,87 @@ var box = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/validations/setting_component/center.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/validations/setting_component/center.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return center; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var center = /*#__PURE__*/function () {
+  function center() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, center);
+
+    if (validation != null) {
+      if (validation.name) {
+        this.name_hasError = true;
+        this.name_errorMessage = validation.name;
+        this.name_successMessage = null;
+      } else {
+        this.name_hasError = false;
+        this.name_successMessage = 'Good Name.';
+      }
+
+      if (validation.is_available) {
+        this.is_available_hasError = true;
+        this.is_available_errorMessage = validation.is_available;
+        this.is_available_successMessage = null;
+      } else {
+        this.is_available_hasError = false;
+        this.is_available_successMessage = 'Good Job.';
+      }
+
+      if (validation.city_id) {
+        this.city_id_hasError = true;
+        this.city_id_errorMessage = validation.city_id;
+        this.city_id_successMessage = null;
+      } else {
+        this.city_id_hasError = false;
+        this.city_id_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(center, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.name_hasError = false;
+      this.name_errorMessage = '';
+      this.name_successMessage = '';
+      this.is_available_hasError = false;
+      this.is_available_errorMessage = '';
+      this.is_available_successMessage = '';
+      this.city_id_hasError = false;
+      this.city_id_errorMessage = '';
+      this.city_id_successMessage = '';
+    }
+  }, {
+    key: "validateName",
+    value: function validateName($event) {}
+  }]);
+
+  return center;
+}();
+
+
+
+/***/ }),
+
 /***/ "./resources/js/validations/setting_component/city.js":
 /*!************************************************************!*\
   !*** ./resources/js/validations/setting_component/city.js ***!
@@ -60584,24 +63340,6 @@ var city = /*#__PURE__*/function () {
         this.name_successMessage = 'Good Name.';
       }
 
-      if (validation.address) {
-        this.address_hasError = true;
-        this.address_errorMessage = validation.address;
-        this.address_successMessage = null;
-      } else {
-        this.address_hasError = false;
-        this.address_successMessage = 'Good Address.';
-      }
-
-      if (validation.is_open) {
-        this.is_open_hasError = true;
-        this.is_open_errorMessage = validation.is_open;
-        this.is_open_successMessage = null;
-      } else {
-        this.is_open_hasError = false;
-        this.is_open_successMessage = 'Good Job.';
-      }
-
       if (validation.state_region_id) {
         this.state_region_id_hasError = true;
         this.state_region_id_errorMessage = validation.state_region_id;
@@ -60623,12 +63361,6 @@ var city = /*#__PURE__*/function () {
       this.name_hasError = false;
       this.name_errorMessage = '';
       this.name_successMessage = '';
-      this.address_hasError = false;
-      this.address_errorMessage = '';
-      this.address_successMessage = '';
-      this.is_open_hasError = false;
-      this.is_open_errorMessage = '';
-      this.is_open_successMessage = '';
       this.state_region_id_hasError = false;
       this.state_region_id_errorMessage = '';
       this.state_region_id_successMessage = '';
@@ -60963,6 +63695,87 @@ var store = /*#__PURE__*/function () {
   }]);
 
   return store;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/validations/setting_component/ward.js":
+/*!************************************************************!*\
+  !*** ./resources/js/validations/setting_component/ward.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ward; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ward = /*#__PURE__*/function () {
+  function ward() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, ward);
+
+    if (validation != null) {
+      if (validation.name) {
+        this.name_hasError = true;
+        this.name_errorMessage = validation.name;
+        this.name_successMessage = null;
+      } else {
+        this.name_hasError = false;
+        this.name_successMessage = 'Good Name.';
+      }
+
+      if (validation.is_available) {
+        this.is_available_hasError = true;
+        this.is_available_errorMessage = validation.is_available;
+        this.is_available_successMessage = null;
+      } else {
+        this.is_available_hasError = false;
+        this.is_available_successMessage = 'Good Job.';
+      }
+
+      if (validation.center_id) {
+        this.center_id_hasError = true;
+        this.center_id_errorMessage = validation.center_id;
+        this.center_id_successMessage = null;
+      } else {
+        this.center_id_hasError = false;
+        this.center_id_successMessage = 'Good Job.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(ward, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.name_hasError = false;
+      this.name_errorMessage = '';
+      this.name_successMessage = '';
+      this.is_available_hasError = false;
+      this.is_available_errorMessage = '';
+      this.is_available_successMessage = '';
+      this.center_id_hasError = false;
+      this.center_id_errorMessage = '';
+      this.center_id_successMessage = '';
+    }
+  }, {
+    key: "validateName",
+    value: function validateName($event) {}
+  }]);
+
+  return ward;
 }();
 
 
