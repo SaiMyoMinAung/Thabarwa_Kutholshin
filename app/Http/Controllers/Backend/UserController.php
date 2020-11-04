@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\User;
+use App\Ward;
+use App\StateRegion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserStoreFormRequest;
+use App\Http\Requests\UserUpdateFormRequest;
 
 class UserController extends Controller
 {
@@ -58,13 +62,14 @@ class UserController extends Controller
             $data = array();
             if (!empty($users)) {
                 foreach ($users as $key => $user) {
-                    $show =  route('users.show', $user->id);
-                    $edit =  route('users.edit', $user->id);
+                    $show =  route('users.show', $user->uuid);
+                    $edit =  route('users.edit', $user->uuid);
 
                     $nestedData['DT_RowIndex'] = $key + 1;
                     $nestedData['name'] = $user->name;
                     $nestedData['email'] = $user->email ?? '-';
-                    $nestedData['phone'] = substr(strip_tags($user->phone), 0, 50) . "...";
+                    $nestedData['phone'] = $user->phone;
+                    // $nestedData['phone'] = substr(strip_tags($user->phone), 0, 50) . "...";
                     $nestedData['options'] = "&emsp;<a href='{$show}' title='SHOW' ><i class='fa fa-fw fa-eye'></i></a>
                               &emsp;<a href='{$edit}' title='EDIT' ><i class='fa fa-fw fa-edit'></i></a>";
                     $data[] = $nestedData;
@@ -91,7 +96,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $wards = Ward::all();
+        $stateRegions = StateRegion::all();
+        return view('backend.user.create', compact('wards', 'stateRegions'));
     }
 
     /**
@@ -100,9 +107,13 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreFormRequest $request)
     {
-        //
+        $data = $request->userData()->all();
+
+        User::create($data);
+
+        return redirect(route('users.index'))->with('success', 'Create User Successful');
     }
 
     /**
@@ -122,9 +133,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $wards = Ward::all();
+        $stateRegions = StateRegion::all();
+        return view('backend.user.edit', compact('wards', 'stateRegions', 'user'));
     }
 
     /**
@@ -134,9 +147,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateFormRequest $request, User $user)
     {
-        //
+        $data = $request->userData()->all();
+
+        $user->update($data);
+
+        return redirect(route('users.index'))->with('success', 'Update User Successful.');
     }
 
     /**

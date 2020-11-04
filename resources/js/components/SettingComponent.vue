@@ -318,6 +318,45 @@
           >
         </div>
       </li>
+      <span class="badge badge-info">1</span>
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
+        <a
+          class="nav-link dropdown-toggle volunteer-job-setting"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Volunteer Job</a
+        >
+        <div class="dropdown-menu">
+          <a
+            class="dropdown-item"
+            id="volunteer-job-list-tab"
+            data-toggle="tab"
+            href="#volunteer-job-list"
+            role="tab"
+            aria-controls="volunteer-job-list"
+            aria-selected="false"
+            >Job List</a
+          >
+          <a
+            class="dropdown-item"
+            id="volunteer-job-create-tab"
+            href="#volunteer-job-list-create"
+            data-toggle="tab"
+            role="tab"
+            aria-controls="volunteer-job-list-create"
+            aria-selected="false"
+            @click="volunteerJob.model.clearData()"
+            >Create Job</a
+          >
+        </div>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <!-- start box -->
@@ -2108,7 +2147,7 @@
                 {{ ward.validation.center_id_successMessage }}
               </div>
             </div>
-            <!-- end city select2 -->
+            <!-- end center select2 -->
 
             <!-- start ward name -->
             <div
@@ -2313,6 +2352,211 @@
         ></pagination>
       </div>
       <!-- end ward -->
+
+      <!-- start volunteer job -->
+      <div
+        class="tab-pane fade row"
+        id="volunteer-job-list-create"
+        role="tabpanel"
+        aria-labelledby="volunteer-job-create-tab"
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            <!-- start volunteer job name -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': volunteerJob.validation.name_hasError,
+                'was-validated':
+                  volunteerJob.validation.validation != null &&
+                  !volunteerJob.validation.name_hasError,
+              }"
+            >
+              <label for="volunteer_job_name">
+                Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="volunteer_job_name"
+                type="text"
+                class="form-control"
+                placeholder="Volunteer Job Name"
+                v-model="volunteerJob.model.name"
+                v-bind:class="{
+                  'is-invalid': volunteerJob.validation.name_hasError,
+                }"
+              />
+              <div class="invalid-feedback">
+                {{ volunteerJob.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ volunteerJob.validation.name_successMessage }}
+              </div>
+            </div>
+            <!-- end volunteer job name -->
+
+            <!-- start volunteer description name -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': volunteerJob.validation.description_hasError,
+                'was-validated':
+                  volunteerJob.validation.validation != null &&
+                  !volunteerJob.validation.description_hasError,
+              }"
+            >
+              <label for="volunteer_job_description">
+                Description
+                <span class="text-danger">*</span>
+              </label>
+              <textarea
+                class="form-control"
+                v-model="volunteerJob.model.description"
+                v-bind:class="{
+                  'is-invalid': volunteerJob.validation.description_hasError,
+                }"
+              ></textarea>
+              <!-- <input
+                id="volunteer_job_description"
+                type="text"
+                class="form-control"
+                placeholder="Volunteer Job Description"
+                v-model="volunteerJob.model.description"
+                v-bind:class="{
+                  'is-invalid': volunteerJob.validation.description_hasError,
+                }"
+              /> -->
+              <div class="invalid-feedback">
+                {{ volunteerJob.validation.description_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ volunteerJob.validation.description_successMessage }}
+              </div>
+            </div>
+            <!-- end volunteer description -->
+
+            <button
+              v-if="volunteerJob.model.isEdit"
+              @click="volunteerJob.model.updateVolunteerJob()"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              v-if="volunteerJob.model.isEdit"
+              @click="volunteerJob.model.goToList('volunteer-job-list')"
+              class="btn btn-default"
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="volunteerJob.model.saveVolunteerJob()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="volunteer-job-list"
+        role="tabpanel"
+        aria-labelledby="volunteer-job-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(item, index) in volunteerJob.model.list.data"
+              :key="item.id"
+            >
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">{{ item.description }}</td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >
+                  Edit
+                </button>
+                <div :id="`edit-collapse-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="volunteerJob.model.editRecord(index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  Delete
+                </button>
+                <div :id="`collapse-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="
+                      volunteerJob.model.deleteVolunteerJob(item.id, index)
+                    "
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="volunteerJob.model.list"
+          align="center"
+          v-on:pagination-change-page="getVolunteerJobResult"
+        ></pagination>
+      </div>
+      <!-- end volunteer job -->
     </div>
   </div>
 </template>
@@ -2336,6 +2580,8 @@ import storeValidation from "../validations/setting_component/store.js";
 import storeModel from "../models/store.js";
 import boxValidation from "../validations/setting_component/box.js";
 import boxModel from "../models/box.js";
+import volunteerJobValidation from "../validations/setting_component/volunteer_job.js";
+import volunteerJobModel from "../models/volunteer_job.js";
 import select2 from "./select2";
 
 export default {
@@ -2374,6 +2620,10 @@ export default {
       validation: new wardValidation(),
       model: new wardModel(),
     },
+    volunteerJob: {
+      validation: new volunteerJobValidation(),
+      model: new volunteerJobModel(),
+    },
   }),
   computed: {
     isLoadingWatch() {
@@ -2385,7 +2635,8 @@ export default {
         this.store.model.isLoading ||
         this.box.model.isLoading ||
         this.center.model.isLoading ||
-        this.ward.model.isLoading
+        this.ward.model.isLoading ||
+        this.volunteerJob.model.isLoading
       );
     },
     isCreateSuccessWatch() {
@@ -2397,7 +2648,8 @@ export default {
         this.store.model.isCreateSuccess ||
         this.box.model.isCreateSuccess ||
         this.center.model.isCreateSuccess ||
-        this.ward.model.isCreateSuccess
+        this.ward.model.isCreateSuccess ||
+        this.volunteerJob.model.isCreateSuccess
       );
     },
     isCreateFailWatch() {
@@ -2409,7 +2661,8 @@ export default {
         this.store.model.isCreateFail ||
         this.box.model.isCreateFail ||
         this.center.model.isCreateFail ||
-        this.ward.model.isCreateFail
+        this.ward.model.isCreateFail ||
+        this.volunteerJob.model.isCreateFail
       );
     },
     isUpdateSuccessWatch() {
@@ -2421,7 +2674,8 @@ export default {
         this.store.model.isUpdateSuccess ||
         this.box.model.isUpdateSuccess ||
         this.center.model.isUpdateSuccess ||
-        this.ward.model.isUpdateSuccess
+        this.ward.model.isUpdateSuccess ||
+        this.volunteerJob.model.isUpdateSuccess
       );
     },
     isUpdateFailWatch() {
@@ -2433,7 +2687,8 @@ export default {
         this.store.model.isUpdateFail ||
         this.box.model.isUpdateFail ||
         this.center.model.isUpdateFail ||
-        this.ward.model.isUpdateFail
+        this.ward.model.isUpdateFail ||
+        this.volunteerJob.model.isUpdateFail
       );
     },
     isDeleteSuccessWatch() {
@@ -2445,7 +2700,8 @@ export default {
         this.store.model.isDeleteSuccess ||
         this.box.model.isDeleteSuccess ||
         this.center.model.isDeleteSuccess ||
-        this.ward.model.isDeleteSuccess
+        this.ward.model.isDeleteSuccess ||
+        this.volunteerJob.model.isDeleteSuccess
       );
     },
     isDeleteFailWatch() {
@@ -2457,7 +2713,8 @@ export default {
         this.store.model.isDeleteFail ||
         this.box.model.isDeleteFail ||
         this.center.model.isDeleteFail ||
-        this.ward.model.isDeleteFail
+        this.ward.model.isDeleteFail ||
+        this.volunteerJob.model.isDeleteFail
       );
     },
   },
@@ -2522,6 +2779,9 @@ export default {
     "ward.model.validation": function (newValidation, oldValidation) {
       this.ward.validation = new wardValidation(newValidation);
     },
+    "volunteerJob.model.validation": function (newValidation, oldValidation) {
+      this.volunteerJob.validation = new volunteerJobValidation(newValidation);
+    },
   },
   components: {
     Loading,
@@ -2560,6 +2820,10 @@ export default {
       this.ward.model.page = page;
       this.ward.model.fetchList(page);
     },
+    getVolunteerJobResult(page) {
+      this.volunteerJob.model.page = page;
+      this.volunteerJob.model.fetchList(page);
+    },
     fetchListAndResetCondition() {
       this.stateRegion.model.fetchList(this.stateRegion.model.page);
       this.city.model.fetchList(this.city.model.page);
@@ -2569,6 +2833,7 @@ export default {
       this.box.model.fetchList(this.box.model.page);
       this.center.model.fetchList(this.center.model.page);
       this.ward.model.fetchList(this.ward.model.page);
+      this.volunteerJob.model.fetchList(this.volunteerJob.model.page);
 
       this.stateRegion.model.isCreateSuccess = false;
       this.city.model.isCreateSuccess = false;
@@ -2578,6 +2843,7 @@ export default {
       this.box.model.isCreateSuccess = false;
       this.center.model.isCreateSuccess = false;
       this.ward.model.isCreateSuccess = false;
+      this.volunteerJob.model.isCreateSuccess = false;
 
       this.stateRegion.model.isUpdateSuccess = false;
       this.city.model.isUpdateSuccess = false;
@@ -2587,6 +2853,7 @@ export default {
       this.box.model.isUpdateSuccess = false;
       this.center.model.isUpdateSuccess = false;
       this.ward.model.isUpdateSuccess = false;
+      this.volunteerJob.model.isUpdateSuccess = false;
 
       this.stateRegion.model.isDeleteSuccess = false;
       this.city.model.isDeleteSuccess = false;
@@ -2596,6 +2863,7 @@ export default {
       this.box.model.isDeleteSuccess = false;
       this.center.model.isDeleteSuccess = false;
       this.ward.model.isDeleteSuccess = false;
+      this.volunteerJob.model.isDeleteSuccess = false;
 
       this.$forceUpdate();
     },

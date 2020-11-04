@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Office;
 use App\Volunteer;
+use App\StateRegion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VolunteerStoreFormRequest;
+use App\Http\Requests\VolunteerUpdateFormRequest;
 use App\Http\Resources\Select2\VolunteerSelect2ResourceCollection;
 
 class VolunteerController extends Controller
@@ -59,13 +63,15 @@ class VolunteerController extends Controller
             $data = array();
             if (!empty($volunteers)) {
                 foreach ($volunteers as $key => $volunteer) {
-                    $show =  route('volunteers.show', $volunteer->id);
-                    $edit =  route('volunteers.edit', $volunteer->id);
+                    $show =  route('volunteers.show', $volunteer->uuid);
+                    $edit =  route('volunteers.edit', $volunteer->uuid);
 
                     $nestedData['DT_RowIndex'] = $key + 1;
                     $nestedData['name'] = $volunteer->name;
                     $nestedData['email'] = $volunteer->email ?? '-';
-                    $nestedData['phone'] = substr(strip_tags($volunteer->phone), 0, 50) . "...";
+                    $nestedData['phone'] = $volunteer->phone;
+                    $nestedData['state_region'] = $volunteer->state_region->name ?? '-';
+                    $nestedData['office'] = $volunteer->office->name ?? '-';
                     $nestedData['options'] = "&emsp;<a href='{$show}' title='SHOW' ><i class='fa fa-fw fa-eye'></i></a>
                               &emsp;<a href='{$edit}' title='EDIT' ><i class='fa fa-fw fa-edit'></i></a>";
                     $data[] = $nestedData;
@@ -92,7 +98,9 @@ class VolunteerController extends Controller
      */
     public function create()
     {
-        //
+        $stateRegions = StateRegion::all();
+        $offices = Office::all();
+        return view('backend.volunteer.create', compact('stateRegions', 'offices'));
     }
 
     /**
@@ -101,9 +109,13 @@ class VolunteerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VolunteerStoreFormRequest $request)
     {
-        //
+        $data = $request->volunteerData()->all();
+
+        Volunteer::create($data);
+
+        return redirect(route('volunteers.index'))->with('success', 'Create Volunteer Successful.');
     }
 
     /**
@@ -123,9 +135,13 @@ class VolunteerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Volunteer $volunteer)
     {
-        //
+        $stateRegions = StateRegion::all();
+
+        $offices = Office::all();
+
+        return view('backend.volunteer.edit', compact('volunteer', 'stateRegions', 'offices'));
     }
 
     /**
@@ -135,9 +151,13 @@ class VolunteerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(VolunteerUpdateFormRequest $request, Volunteer $volunteer)
     {
-        //
+        $data = $request->volunteerData()->all();
+
+        $volunteer->update($data);
+
+        return redirect(route('volunteers.index'))->with('success', 'Update Volunteer Successful.');
     }
 
     /**
@@ -146,14 +166,15 @@ class VolunteerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Volunteer $volunteer)
     {
-        //
+        // $volunteer->delete();
+
+        // return back()->with('success', 'Delete Volunteer Successful.');
     }
 
     public function getAllVolunteers(Request $request)
     {
-
         $volunteers = Volunteer::with(['state_region', 'office'])->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new VolunteerSelect2ResourceCollection($volunteers), 200);

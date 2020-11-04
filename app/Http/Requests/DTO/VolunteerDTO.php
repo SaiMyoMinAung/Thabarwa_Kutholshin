@@ -6,12 +6,12 @@ namespace App\Http\Requests\DTO;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-final class UserDTO extends DataTransferObject
+final class VolunteerDTO extends DataTransferObject
 {
     public $name;
     public $email;
     public $password;
     public $phone;
     public $state_region_id;
-    public $ward_id;
+    public $office_id;
 }

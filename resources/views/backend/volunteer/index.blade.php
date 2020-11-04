@@ -23,6 +23,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>State Region</th>
+            <th>Office</th>
             <th>Options</th>
         </tr>
     </thead>
@@ -34,6 +36,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>State Region</th>
+            <th>Office</th>
             <th>Options</th>
         </tr>
     </tfoot>
@@ -68,6 +72,12 @@
                 },
                 {
                     "data": "phone"
+                },
+                {
+                    "data": "state_region"
+                },
+                {
+                    "data": "office"
                 },
                 {
                     "data": "options",

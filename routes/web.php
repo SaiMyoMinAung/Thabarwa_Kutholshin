@@ -77,4 +77,5 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::resource('boxes', 'BoxController');
     Route::resource('centers', 'CenterController');
     Route::resource('wards', 'WardController');
+    Route::resource('volunteer_jobs', 'VolunteerJobController');
 });
