@@ -102,13 +102,24 @@
                             @endif
                         </div>
 
-                        <div class="form-group {{ $errors->has('state_region_id') ? 'has-error' : '' }}">
-                            <label for="state_region">State Region <span class="text-danger">*</span></label>
-                            <select name="state_region_id" class="form-control select2 {{ $errors->has('state_region_id') ? 'is-invalid' : '' }}">
+                        <div class="form-group {{ $errors->has('country_id') ? 'has-error' : '' }}">
+                            <label for="country">Country </label>
+                            <select name="country_id" class="form-control country-select2 {{ $errors->has('country_id') ? 'is-invalid' : '' }}">
                                 <option></option>
-                                @foreach($stateRegions as $stateRegion)
-                                <option value="{{$stateRegion->id}}" @if($stateRegion->id == $donatedItem->donor->state_region_id) selected @endif>{{$stateRegion->name}}</option>
-                                @endforeach
+                                <option value="{{$donatedItem->country->id}}" selected>{{$donatedItem->country->name}}</option>
+                            </select>
+                            @if ($errors->has('country_id'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('country_id') }}
+                            </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group {{ $errors->has('state_region_id') ? 'has-error' : '' }}">
+                            <label for="state_region">State Region </label>
+                            <select name="state_region_id" class="form-control state-region-select2 {{ $errors->has('state_region_id') ? 'is-invalid' : '' }}">
+                                <option></option>
+                                <option value="{{$donatedItem->stateRegion->id}}" selected>{{$donatedItem->stateRegion->name}}</option>
                             </select>
                             @if ($errors->has('state_region_id'))
                             <div class="invalid-feedback">
@@ -117,6 +128,18 @@
                             @endif
                         </div>
 
+                        <div class="form-group {{ $errors->has('city_id') ? 'has-error' : '' }}">
+                            <label for="city">City </label>
+                            <select name="city_id" class="form-control city-select2 {{ $errors->has('city_id') ? 'is-invalid' : '' }}">
+                                <option></option>
+                                <option value="{{$donatedItem->city->id}}" selected>{{$donatedItem->city->name}}</option>
+                            </select>
+                            @if ($errors->has('city_id'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('city_id') }}
+                            </div>
+                            @endif
+                        </div>
 
                     </div>
                     <div class="card-body">
@@ -141,10 +164,100 @@
 @section('js')
 <script src="{{asset('vendor/summernote/summernote-bs4.js')}}"></script>
 <script>
-    $(document).ready(function() {
-        $('.select2').select2({
+    $(function() {
+        var country_url = "{{route('getCountries')}}";
+        // start country select2
+        $(".country-select2").select2({
+            placeholder: "Select Country",
+            allowClear: true,
+            ajax: {
+                url: country_url,
+                dataType: 'json',
+                data: function(params) {
+                    return {
+                        q: params.term, // search term
+                        page: params.page
+                    };
+                },
+                processResults: function(data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+                    console.log(data)
+                    let mappedData = data.data.map((data) => {
+                        return {
+                            id: data.id,
+                            text: data.name
+                        }
+                    })
+
+                    return {
+                        results: mappedData,
+                        pagination: {
+                            more: (params.page * data.per_page) < data.total
+                        }
+                    };
+                },
+
+            },
+        });
+        // end country select2
+
+        $('.state-region-select2').select2({
             placeholder: "Select State Region",
             allowClear: true
+        })
+
+        $('.city-select2').select2({
+            placeholder: "Select City",
+            allowClear: true
+        })
+
+        let country_id = $('.country-select2').val();
+        if (country_id.length == 0) {
+            $('.state-region-select2').attr("disabled", true);
+        } else {
+            initStateRegionSelect2(country_id)
+        }
+
+        let state_region_id = $('.state-region-select2').val();
+        if (state_region_id.length == 0) {
+            $('.city-select2').attr("disabled", true);
+        } else {
+            initCitySelect2(state_region_id)
+        }
+
+    })
+
+    $(document).ready(function() {
+
+        $('.country-select2').on("select2:select", function(event) {
+            var country_id = $(event.currentTarget).find("option:selected").val();
+            $('.state-region-select2').attr("disabled", false);
+            $('.state-region-select2').val(null).trigger('change');
+            $('.city-select2').val(null).trigger('change');
+            initStateRegionSelect2(country_id)
+        })
+
+        $('.state-region-select2').on("select2:select", function(event) {
+            var state_region_id = $(event.currentTarget).find("option:selected").val();
+            $('.city-select2').attr("disabled", false);
+            $('.city-select2').val(null).trigger('change');
+            initCitySelect2(state_region_id)
+        })
+
+        $('.country-select2').on("select2:unselect", function(event) {
+            $('.state-region-select2').attr("disabled", true);
+            $('.state-region-select2').val(null).trigger('change');
+            $('.city-select2').attr("disabled", true);
+            $('.city-select2').val(null).trigger('change');
+        })
+
+        $('.state-region-select2').on("select2:unselect", function(event) {
+            $('.city-select2').attr("disabled", true);
+            $('.city-select2').val(null).trigger('change');
         })
 
         $('.remark-edit').click(function() {
@@ -168,5 +281,93 @@
             textarea.value = markup
         };
     })
+
+    function initCitySelect2(state_region_id) {
+        var url = "{{route('getCities')}}" + "?state_region_id=" + state_region_id
+
+        // start city select2
+        $(".city-select2").select2({
+            allowClear: true,
+            placeholder: "Select City",
+            ajax: {
+                url,
+                dataType: 'json',
+                data: function(params) {
+                    return {
+                        state_region_id: state_region_id,
+                        q: params.term, // search term
+                        page: params.page
+                    };
+                },
+                processResults: function(data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+                    console.log(data)
+                    let mappedData = data.data.map((data) => {
+                        return {
+                            id: data.id,
+                            text: data.name
+                        }
+                    })
+
+                    return {
+                        results: mappedData,
+                        pagination: {
+                            more: (params.page * data.per_page) < data.total
+                        }
+                    };
+                },
+
+            },
+        });
+        // end city select2
+    }
+
+    function initStateRegionSelect2(country_id) {
+        var url = "{{route('getStateRegions')}}" + "?country_id=" + country_id
+
+        // start state region select2
+        $(".state-region-select2").select2({
+            allowClear: true,
+            placeholder: "Select State Region",
+            ajax: {
+                url,
+                dataType: 'json',
+                data: function(params) {
+                    return {
+                        country_id: country_id,
+                        q: params.term, // search term
+                        page: params.page
+                    };
+                },
+                processResults: function(data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+                    console.log(data)
+                    let mappedData = data.data.map((data) => {
+                        return {
+                            id: data.id,
+                            text: data.name
+                        }
+                    })
+
+                    return {
+                        results: mappedData,
+                        pagination: {
+                            more: (params.page * data.per_page) < data.total
+                        }
+                    };
+                },
+
+            },
+        });
+        // end state region select2
+    }
 </script>
 @stop

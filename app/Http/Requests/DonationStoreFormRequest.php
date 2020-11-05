@@ -39,6 +39,9 @@ class DonationStoreFormRequest extends FormRequest
             'email' => 'nullable|email|max:255',
             'remark' => 'nullable|max:255',
             'recaptcha' => new Recaptcha,
+            'country_id' => 'nullable|numeric|max:99999999999',
+            'city_id' => 'nullable|numeric|max:99999999999',
+            'state_region_id' => 'nullable|numeric|max:99999999999',
         ];
     }
 
@@ -87,6 +90,9 @@ class DonationStoreFormRequest extends FormRequest
             'status' => DonatedItemStatus::NEW_STATE(),
             'state_class' => 'App\State\Online\NewState',
             'kind_of_item' => KindOfItemStatus::ONLINE(),
+            'country_id' => $this->input('country_id'),
+            'state_region_id' => $this->input('state_region_id'),
+            'city_id' => $this->input('city_id'),
         ]);
     }
 }

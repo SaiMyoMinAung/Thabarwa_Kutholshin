@@ -18,6 +18,12 @@ Auth::routes();
 Route::get('/', 'DonateController@index');
 
 Route::post('donation', 'DonationController@save');
+/**
+ * For Select2 Data
+ */
+Route::get('get_countries_for_select2', 'Select2Controller@getCountries')->name('getCountries');
+Route::get('get_state_regions_for_select2', 'Select2Controller@getStateRegions')->name('getStateRegions');
+Route::get('get_cities_for_select2', 'Select2Controller@getCities')->name('getCities');
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace' => 'Backend'], function () {
     Route::get('dashboard', 'DashboardController@index');

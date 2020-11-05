@@ -39,6 +39,9 @@ class DonationUpdateFormRequest extends FormRequest
             'image.*' => 'nullable|mimes:jpeg,png,jpg|max:10240',
             'email' => "nullable|email|unique:users,email,$donorId|max:255",
             'remark' => 'nullable|max:255',
+            'country_id' => 'nullable',
+            'city_id' => 'nullable',
+            'state_region_id' => 'nullable'
         ];
     }
 
@@ -83,6 +86,9 @@ class DonationUpdateFormRequest extends FormRequest
             'pickedup_info' => $this->input('pickedup_address'),
             'pickedup_at' => $this->input('pickedup_at'),
             'remark' => $this->input('remark'),
+            'country_id' => $this->input('country_id'),
+            'city_id' => $this->input('city_id'),
+            'state_region_id' => $this->input('state_region_id'),
         ]);
     }
 

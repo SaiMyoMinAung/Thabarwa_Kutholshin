@@ -75,4 +75,19 @@ class DonatedItem extends Model
     {
         return $this->belongsTo(Box::class, 'box_id')->withDefault();
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id')->withDefault();
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id')->withDefault();
+    }
+
+    public function stateRegion()
+    {
+        return $this->belongsTo(StateRegion::class, 'state_region_id')->withDefault();
+    }
 }

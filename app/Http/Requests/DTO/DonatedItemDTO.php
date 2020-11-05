@@ -16,6 +16,9 @@ final class DonatedItemDTO extends DataTransferObject
     public $status;
     public $state_class;
     public $kind_of_item;
+    public $country_id;
+    public $city_id;
+    public $state_region_id;
     // public $item_type_id;
     // public $state_region_id;
     // public $delivered_at;

@@ -2416,16 +2416,6 @@
                   'is-invalid': volunteerJob.validation.description_hasError,
                 }"
               ></textarea>
-              <!-- <input
-                id="volunteer_job_description"
-                type="text"
-                class="form-control"
-                placeholder="Volunteer Job Description"
-                v-model="volunteerJob.model.description"
-                v-bind:class="{
-                  'is-invalid': volunteerJob.validation.description_hasError,
-                }"
-              /> -->
               <div class="invalid-feedback">
                 {{ volunteerJob.validation.description_errorMessage }}
               </div>

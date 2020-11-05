@@ -1,6 +1,5 @@
 require('./bootstrap');
 require('material-design-icons');
-window.route = require('./router');
 
 import 'material-design-icons/iconfont/material-icons.css';
 import vSelect from 'vue-select'

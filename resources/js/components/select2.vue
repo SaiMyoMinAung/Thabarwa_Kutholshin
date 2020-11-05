@@ -82,7 +82,7 @@ img {
 
 <script>
 export default {
-  props: ["value", "selectedOption", "url", "placeholder", "disabled"],
+  props: ["value", "selectedOption", "url", "placeholder", "disabled", "fetch"],
   data: () => ({
     options: [],
     page: 1,
@@ -92,6 +92,9 @@ export default {
     hasNextPage: "",
   }),
   watch: {
+    fetch() {
+      this.fetchData();
+    },
     value: function (val) {
       console.log(val);
       if (val == "") {
@@ -130,6 +133,9 @@ export default {
       vm.fetchData();
     }, 350),
     fetchData() {
+      if (this.url == null || this.url == undefined) {
+        return;
+      }
       var self = this;
       fetch(this.url + `?q=${escape(this.q)}&page=${this.page}`)
         .then((res) => {

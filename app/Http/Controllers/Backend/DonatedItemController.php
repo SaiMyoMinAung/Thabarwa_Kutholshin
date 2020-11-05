@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\City;
+use App\Country;
 use App\DonatedItem;
 use App\StateRegion;
 use Illuminate\Http\Request;
@@ -128,9 +130,7 @@ class DonatedItemController extends Controller
      */
     public function show(DonatedItem $donatedItem)
     {
-        $stateRegions = StateRegion::all();
-
-        return view('backend.donated_item.show', compact('donatedItem', 'stateRegions'));
+        return view('backend.donated_item.show', compact('donatedItem'));
     }
 
     /**
@@ -181,7 +181,7 @@ class DonatedItemController extends Controller
         }
 
         $donatedItem = new DonatedItemResource($donatedItem);
-        
+
         if ($donatedItem->kind_of_item == (string) KindOfItemStatus::ONLINE()) {
             return view('backend.donated_item.online.manage', compact('donatedItem'));
         }

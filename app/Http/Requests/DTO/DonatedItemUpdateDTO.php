@@ -12,4 +12,7 @@ final class DonatedItemUpdateDTO extends DataTransferObject
     public $pickedup_at;
     public $pickedup_info;
     public $remark;
+    public $country_id;
+    public $city_id;
+    public $state_region_id;
 }

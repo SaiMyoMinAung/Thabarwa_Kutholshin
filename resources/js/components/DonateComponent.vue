@@ -150,16 +150,75 @@
                   aria-controls="collapse-4"
                   @click="collapseVisible = !collapseVisible"
                 >
-                  <span v-if="collapseVisible" class="text-primary">Hide Additional Input</span>
+                  <span v-if="collapseVisible" class="text-primary"
+                    >Hide Additional Input</span
+                  >
                   <span v-else class="text-success">Show Additional Input</span>
-                  <b-iconstack font-scale="1" :rotate="collapseVisible ? 90 : 360">
-                    <b-icon stacked icon="chevron-right" shift-h="2" variant="primary"></b-icon>
+                  <b-iconstack
+                    font-scale="1"
+                    :rotate="collapseVisible ? 90 : 360"
+                  >
+                    <b-icon
+                      stacked
+                      icon="chevron-right"
+                      shift-h="2"
+                      variant="primary"
+                    ></b-icon>
                   </b-iconstack>
                 </b-link>
               </div>
             </b-form-group>
 
             <b-collapse v-model="collapseVisible" id="collapse-3">
+              <!-- start location select -->
+              <b-form-group
+                label-cols-sm="3"
+                label-for="pickedup_date"
+                :state="location.state"
+                :valid-feedback="location.successMessage"
+                :invalid-feedback="location.errorMessage"
+              >
+                <template v-slot:label>
+                  Select Your Location
+                  <span class="text-danger">*</span>
+                </template>
+                <b-row>
+                  <b-col>
+                    <select2
+                      :placeholder="countryInput.placeholder"
+                      :disabled="countryDisabled"
+                      :url="countryInput.url"
+                      :value="countryInput.country_id"
+                      :selectedOption="countryInput.country"
+                      @input="countrySelected($event)"
+                    ></select2>
+                  </b-col>
+                  <b-col>
+                    <select2
+                      :placeholder="stateRegionInput.placeholder"
+                      :disabled="stateRegionDisabled"
+                      :url="stateRegionInput.url"
+                      :value="stateRegionInput.state_region_id"
+                      :selectedOption="stateRegionInput.stateRegion"
+                      @input="stateRegionSelected($event)"
+                      :fetch="stateRegionInput.fetch"
+                    ></select2>
+                  </b-col>
+                  <b-col>
+                    <select2
+                      :placeholder="cityInput.placeholder"
+                      :disabled="cityDisabled"
+                      :url="cityInput.url"
+                      :value="cityInput.city_id"
+                      :selectedOption="cityInput.city"
+                      @input="citySelected($event)"
+                      :fetch="cityInput.fetch"
+                    ></select2>
+                  </b-col>
+                </b-row>
+              </b-form-group>
+              <!-- end location select -->
+
               <!-- start image -->
               <b-form-group
                 label-cols-sm="3"
@@ -170,7 +229,12 @@
               >
                 <template v-slot:label>
                   Choose 3 Images
-                  <b-button variant="link" size="sm" @click="donation.image = null">Clear Images</b-button>
+                  <b-button
+                    variant="link"
+                    size="sm"
+                    @click="donation.image = null"
+                    >Clear Images</b-button
+                  >
                 </template>
                 <b-form-file
                   id="image"
@@ -185,11 +249,9 @@
                 >
                   <template slot="file-name" slot-scope="{ names }">
                     <b-badge variant="dark">{{ names[0] }}</b-badge>
-                    <b-badge
-                      v-if="names.length > 1"
-                      variant="dark"
-                      class="ml-1"
-                    >+ {{ names.length - 1 }} More files</b-badge>
+                    <b-badge v-if="names.length > 1" variant="dark" class="ml-1"
+                      >+ {{ names.length - 1 }} More files</b-badge
+                    >
                   </template>
                 </b-form-file>
               </b-form-group>
@@ -218,7 +280,10 @@
               <!-- end email input -->
 
               <!-- start remark info -->
-              <RemarkEditor v-model="donation.remark" :remark="remark"></RemarkEditor>
+              <RemarkEditor
+                v-model="donation.remark"
+                :remark="remark"
+              ></RemarkEditor>
               <!-- end remark info -->
             </b-collapse>
             <!-- end collapse -->
@@ -231,16 +296,23 @@
                 :disabled="clickme.disabled"
                 @change="recaptcha()"
                 size="lg"
-              >Click Me</b-form-checkbox>
-              <b-form-invalid-feedback :state="clickme.state">Need Verification!</b-form-invalid-feedback>
-              <b-form-valid-feedback :state="clickme.state">Verified</b-form-valid-feedback>
+                >Click Me</b-form-checkbox
+              >
+              <b-form-invalid-feedback :state="clickme.state"
+                >Need Verification!</b-form-invalid-feedback
+              >
+              <b-form-valid-feedback :state="clickme.state"
+                >Verified</b-form-valid-feedback
+              >
             </b-form-group>
             <!-- end recaptcha info -->
 
             <button
               @click="submitDonation()"
               class="offset-lg-3 offset-md-3 offset-sm-3 btn btn-success"
-            >Proceed Donate</button>
+            >
+              Proceed Donate
+            </button>
           </b-card-body>
         </b-overlay>
       </b-card>
@@ -256,9 +328,13 @@ import nameInput from "../validations/name_input.js";
 import emailInput from "../validations/email_input.js";
 import phoneInput from "../validations/phone_input.js";
 import imageInput from "../validations/image_input.js";
+import countryInput from "../validations/country_input.js";
+import stateRegionInput from "../validations/state_region_input.js";
+import cityInput from "../validations/city_input.js";
 import pickedUpAddressInput from "../validations/pickedup_address_input.js";
 import datePickerInput from "../validations/date_picker_input.js";
 import RemarkEditor from "../inputs/RemarkEditor";
+import select2 from "./select2";
 
 export default {
   data: () => ({
@@ -270,20 +346,28 @@ export default {
     pickedUpAddressInput: new pickedUpAddressInput(),
     datePickerInput: new datePickerInput(),
     imageInput: new imageInput(),
+    countryInput: new countryInput(),
+    stateRegionInput: new stateRegionInput(),
+    cityInput: new cityInput(),
     collapseVisible: false,
     remark: {
       state: null,
       errorMessage: "",
-      successMessage: ""
+      successMessage: "",
+    },
+    location: {
+      state: null,
+      errorMessage: "",
+      successMessage: "",
     },
     clickme: {
       state: null,
       checked: false,
       disabled: false,
       successMessage: "verified",
-      errorMessage: "Need Verification"
+      errorMessage: "Need Verification",
     },
-    showSpinner: false
+    showSpinner: false,
   }),
   methods: {
     async recaptcha() {
@@ -292,11 +376,11 @@ export default {
 
       // Execute reCAPTCHA with action "donate".
       this.$recaptcha("donate")
-        .then(res => {
+        .then((res) => {
           this.recaptchaSuccess();
           this.donation.recaptcha = res;
         })
-        .catch(error => {
+        .catch((error) => {
           this.recaptchaFail();
         });
     },
@@ -326,9 +410,9 @@ export default {
           headerClass: "p-2",
           footerClass: "p-2",
           hideHeaderClose: false,
-          centered: true
+          centered: true,
         })
-        .then(value => {
+        .then((value) => {
           window.location.reload();
         });
     },
@@ -342,10 +426,10 @@ export default {
           headers: {
             "Content-Type": "multipart/form-data",
             "Content-Type": "application/json",
-            Accept: "application/json"
-          }
+            Accept: "application/json",
+          },
         })
-        .then(response => {
+        .then((response) => {
           if (response.data.message === "success") {
             this.showSpinner = false;
             this.donation.token = "";
@@ -353,7 +437,7 @@ export default {
           }
           // this.$refs.recaptcha.reset();
         })
-        .catch(error => {
+        .catch((error) => {
           this.showValidationErrors(error.response.data.errors);
           this.showSpinner = false;
         });
@@ -409,6 +493,18 @@ export default {
       if (errors.recaptcha) {
         this.recaptchaFail(errors.recaptcha[0]);
       }
+      if (errors.country_id || errors.city_id || errors.state_region_id) {
+        this.location.state = false;
+        this.location.errorMessage =
+          errors.country_id[0] +
+          " " +
+          errors.city_id[0] +
+          " " +
+          errors.state_region_id[0];
+      } else {
+        this.location.state = true;
+        this.location.successMessage = "Good Job";
+      }
     },
     validateImage($event) {
       this.imageInput.validateImage($event);
@@ -419,14 +515,66 @@ export default {
       } else {
         return `${files.length} files selected`;
       }
-    }
+    },
+    countrySelected(event) {
+      let id = event != null ? event.id : null;
+      this.countryInput.country = event;
+      this.countryInput.country_id = id;
+      this.donation.country_id = id;
+
+      this.stateRegionInput.url =
+        route("getStateRegions") + "?country_id=" + id + "&";
+      this.stateRegionInput.fetch++;
+      this.validateLocation();
+    },
+    stateRegionSelected(event) {
+      let id = event != null ? event.id : null;
+      this.stateRegionInput.stateRegion = event;
+      this.stateRegionInput.state_region_id = id;
+      this.donation.state_region_id = id;
+      this.cityInput.url = route("getCities") + "?state_region_id=" + id + "&";
+      this.cityInput.fetch++;
+      this.validateLocation();
+    },
+    citySelected(event) {
+      let id = event != null ? event.id : null;
+      this.cityInput.city = event;
+      this.cityInput.city_id = id;
+      this.donation.city_id = id;
+      this.validateLocation();
+    },
+    validateLocation() {
+      if (
+        this.donation.country_id == null ||
+        this.donation.city_id == null ||
+        this.donation.state_region_id == null
+      ) {
+        this.location.state = false;
+        this.location.errorMessage = "Please Choose Location. ";
+      } else {
+        this.location.state = true;
+        this.location.successMessage = "Good Location. ";
+      }
+    },
   },
   components: {
-    RemarkEditor
+    RemarkEditor,
+    select2,
+  },
+  computed: {
+    countryDisabled() {
+      return this.donation.state_region_id != null;
+    },
+    stateRegionDisabled() {
+      return this.donation.country_id == null || this.donation.city_id != null;
+    },
+    cityDisabled() {
+      return this.donation.state_region_id == null;
+    },
   },
   mounted() {
     console.log("Component mounted.");
   },
-  created() {}
+  created() {},
 };
 </script>

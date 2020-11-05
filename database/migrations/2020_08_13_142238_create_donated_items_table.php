@@ -27,19 +27,19 @@ class CreateDonatedItemsTable extends Migration
             $table->integer('kind_of_item');
             $table->integer('item_type_id')->nullable();
 
-            $table->integer('donated_user_id');
-            $table->integer('received_user_id')->nullable();
-
+            $table->integer('country_id')->nullable();
             $table->integer('state_region_id')->nullable();
-            $table->integer('store_id')->nullable();
             $table->integer('city_id')->nullable();
+
+            $table->integer('store_id')->nullable();
             $table->integer('box_id')->nullable();
 
+            $table->integer('donated_user_id');
             $table->integer('pickedup_volunteer_id')->nullable();
             $table->integer('store_keeper_volunteer_id')->nullable();
             $table->integer('repaired_volunteer_id')->nullable();
             $table->integer('delivered_volunteer_id')->nullable();
-            $table->integer('receiver_user_id')->nullable();
+            $table->integer('received_user_id')->nullable();
 
             $table->integer('status');
             $table->string('state_class');

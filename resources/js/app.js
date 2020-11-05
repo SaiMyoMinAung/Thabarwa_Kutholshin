@@ -3,16 +3,18 @@ require('./bootstrap');
 import Vue from 'vue';
 import { VueReCaptcha } from 'vue-recaptcha-v3'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueReCaptcha, {
-    siteKey: process.env.MIX_RECAPTCHA_KEY,
-    loaderOptions: {
-      useRecaptchaNet: true,
-    }
-  })
+  siteKey: process.env.MIX_RECAPTCHA_KEY,
+  loaderOptions: {
+    useRecaptchaNet: true,
+  }
+})
 
 /**
  * The following block of code may be used to automatically register your
@@ -25,6 +27,8 @@ Vue.use(VueReCaptcha, {
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('v-select', vSelect);
+
 const app = new Vue({
-    el: '#app',
+  el: '#app',
 });
