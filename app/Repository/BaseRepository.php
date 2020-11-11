@@ -8,6 +8,11 @@ class BaseRepository extends Controller
 {
     public $model;
 
+    public function findByUUID(string $uuid)
+    {
+        return $this->model->where('uuid', $uuid)->firstOrFail();
+    }
+
     public function createRecord(array $validated_data)
     {
         return $this->model->create($validated_data);

@@ -60,6 +60,7 @@ return [
         ],
 
         'redis' => [
+            'client' => env('REDIS_CLIENT', 'predis'),
             'driver' => 'redis',
             'connection' => 'default',
             'queue' => env('REDIS_QUEUE', 'default'),

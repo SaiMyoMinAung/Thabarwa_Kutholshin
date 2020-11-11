@@ -69,11 +69,11 @@
     {{-- Body Content --}}
     @yield('body')
     <script>
-        window.Laravel = {!! json_encode([
+        window.Laravel = {!!json_encode([
                 'csrfToken' => csrf_token(),
                 'baseUrl' => url('/'),
                 'routes' => collect(\Route::getRoutes())->mapWithKeys(function($route) {
-                    return [$route-> getName() => $route->uri()];
+                    return [$route->getName() => $route->uri()];
                 })
             ]) !!};
     </script>
@@ -113,6 +113,43 @@
             }
 
         });
+        
+        window.Echo.channel('donated-item-'+'{{auth()->user()->uuid}}')
+            .listen('.Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function(data) {
+                console.log(data);
+                var name = data.name.substr(0,10)
+                var about_item = data.about_item.substr(0,10)
+                var noti_route = route("notifications.click",data.id)
+                var noti = 
+                `<a href="${noti_route}" class="dropdown-item bg-danger">
+                <i class="fas fa-envelope mr-2"></i> ${name} donated ${about_item}
+                </a>
+                <div class="dropdown-divider"></div>`;
+                
+                $("#no-new-noti").remove()
+                $('#noti-menu').prepend(noti)
+                var count = $("#noti-badge").data("num") + 1;
+                $("#noti-badge").removeClass("d-none").data('num',count).html(count);
+
+                var notiTableData = 
+                `
+                <tr class="clickable-row bg-gradient-success" data-href="${noti_route}">
+                    <td><i class="fas fa-envelope mr-2"></i></td>
+                    <td class="mailbox-name">${name}</td>
+                    <td class="mailbox-subject">
+                        ${data.phone}
+                    </td>
+                    <td class="mailbox-subject">${data.about_item}</td>
+                    <td class="mailbox-date">${data.created_at}</td>
+                </tr>
+                `;
+                $('#noti-table').prepend(notiTableData)
+
+                $(".clickable-row").click(function() {
+                    window.location = $(this).data("href");
+                });
+            
+            });
     </script>
 </body>
 

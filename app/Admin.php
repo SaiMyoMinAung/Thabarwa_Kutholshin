@@ -44,4 +44,8 @@ class Admin extends Authenticatable
         return $this->belongsTo(Office::class, 'office_id')->withDefault();
     }
 
+    public function getUnreadNotis()
+    {
+        return $this->unreadNotifications()->orderBy('id', 'desc')->take(5)->get();
+    }
 }

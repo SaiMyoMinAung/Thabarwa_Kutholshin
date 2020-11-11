@@ -140,6 +140,78 @@
             </b-form-group>
             <!-- end date picker info -->
 
+            <!-- start location select -->
+            <b-form-group
+              label-cols-sm="3"
+              label-for="pickedup_date"
+              :state="location.state"
+              :valid-feedback="location.successMessage"
+              :invalid-feedback="location.errorMessage"
+            >
+              <template v-slot:label>
+                <br>
+                Select Your Location
+                <span class="text-danger">*</span>
+              </template>
+              <b-row>
+                <b-col>
+                  <label class="text-muted">Country</label>
+                  <select2
+                    :placeholder="countryInput.placeholder"
+                    :disabled="countryDisabled"
+                    :url="countryInput.url"
+                    :value="countryInput.country_id"
+                    :selectedOption="countryInput.country"
+                    @input="countrySelected($event)"
+                  ></select2>
+                </b-col>
+                <b-col>
+                  <label class="text-muted">State Or Region</label>
+                  <select2
+                    :placeholder="stateRegionInput.placeholder"
+                    :disabled="stateRegionDisabled"
+                    :url="stateRegionInput.url"
+                    :value="stateRegionInput.state_region_id"
+                    :selectedOption="stateRegionInput.stateRegion"
+                    @input="stateRegionSelected($event)"
+                    :fetch="stateRegionInput.fetch"
+                  ></select2>
+                </b-col>
+                <b-col>
+                  <label class="text-muted">City</label>
+                  <select2
+                    :placeholder="cityInput.placeholder"
+                    :disabled="cityDisabled"
+                    :url="cityInput.url"
+                    :value="cityInput.city_id"
+                    :selectedOption="cityInput.city"
+                    @input="citySelected($event)"
+                    :fetch="cityInput.fetch"
+                  ></select2>
+                </b-col>
+              </b-row>
+            </b-form-group>
+            <!-- end location select -->
+
+            <!-- start recaptcha info -->
+            <b-form-group label-cols-sm="3">
+              <b-form-checkbox
+                :state="clickme.state"
+                :checked="clickme.checked"
+                :disabled="clickme.disabled"
+                @change="recaptcha()"
+                size="lg"
+                >Click Me</b-form-checkbox
+              >
+              <b-form-invalid-feedback :state="clickme.state"
+                >Need Verification!</b-form-invalid-feedback
+              >
+              <b-form-valid-feedback :state="clickme.state"
+                >Verified</b-form-valid-feedback
+              >
+            </b-form-group>
+            <!-- end recaptcha info -->
+
             <!-- start collapse -->
             <b-form-group label-cols-sm="3">
               <div>
@@ -153,7 +225,7 @@
                   <span v-if="collapseVisible" class="text-primary"
                     >Hide Additional Input</span
                   >
-                  <span v-else class="text-success">Show Additional Input</span>
+                  <span v-else class="text-primary">Show Additional Input</span>
                   <b-iconstack
                     font-scale="1"
                     :rotate="collapseVisible ? 90 : 360"
@@ -170,55 +242,6 @@
             </b-form-group>
 
             <b-collapse v-model="collapseVisible" id="collapse-3">
-              <!-- start location select -->
-              <b-form-group
-                label-cols-sm="3"
-                label-for="pickedup_date"
-                :state="location.state"
-                :valid-feedback="location.successMessage"
-                :invalid-feedback="location.errorMessage"
-              >
-                <template v-slot:label>
-                  Select Your Location
-                  <span class="text-danger">*</span>
-                </template>
-                <b-row>
-                  <b-col>
-                    <select2
-                      :placeholder="countryInput.placeholder"
-                      :disabled="countryDisabled"
-                      :url="countryInput.url"
-                      :value="countryInput.country_id"
-                      :selectedOption="countryInput.country"
-                      @input="countrySelected($event)"
-                    ></select2>
-                  </b-col>
-                  <b-col>
-                    <select2
-                      :placeholder="stateRegionInput.placeholder"
-                      :disabled="stateRegionDisabled"
-                      :url="stateRegionInput.url"
-                      :value="stateRegionInput.state_region_id"
-                      :selectedOption="stateRegionInput.stateRegion"
-                      @input="stateRegionSelected($event)"
-                      :fetch="stateRegionInput.fetch"
-                    ></select2>
-                  </b-col>
-                  <b-col>
-                    <select2
-                      :placeholder="cityInput.placeholder"
-                      :disabled="cityDisabled"
-                      :url="cityInput.url"
-                      :value="cityInput.city_id"
-                      :selectedOption="cityInput.city"
-                      @input="citySelected($event)"
-                      :fetch="cityInput.fetch"
-                    ></select2>
-                  </b-col>
-                </b-row>
-              </b-form-group>
-              <!-- end location select -->
-
               <!-- start image -->
               <b-form-group
                 label-cols-sm="3"
@@ -288,25 +311,6 @@
             </b-collapse>
             <!-- end collapse -->
 
-            <!-- start recaptcha info -->
-            <b-form-group label-cols-sm="3">
-              <b-form-checkbox
-                :state="clickme.state"
-                :checked="clickme.checked"
-                :disabled="clickme.disabled"
-                @change="recaptcha()"
-                size="lg"
-                >Click Me</b-form-checkbox
-              >
-              <b-form-invalid-feedback :state="clickme.state"
-                >Need Verification!</b-form-invalid-feedback
-              >
-              <b-form-valid-feedback :state="clickme.state"
-                >Verified</b-form-valid-feedback
-              >
-            </b-form-group>
-            <!-- end recaptcha info -->
-
             <button
               @click="submitDonation()"
               class="offset-lg-3 offset-md-3 offset-sm-3 btn btn-success"
@@ -337,6 +341,43 @@ import RemarkEditor from "../inputs/RemarkEditor";
 import select2 from "./select2";
 
 export default {
+  created() {
+    axios
+      .get(route("getCountry.autoselect"))
+      .then((data) => {
+        this.countrySelected(data.data);
+        // this.countryInput.country_id = data.id;
+        // this.countryInput.country = { id: data.id, name: data.name };
+        // this.donation.country_id = data.id;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+
+    axios
+      .get(route("getStateRegion.autoselect"))
+      .then((data) => {
+        this.stateRegionSelected(data.data);
+        // this.stateRegionInput.state_region_id = data.id;
+        // this.stateRegionInput.stateRegion = { id: data.id, name: data.name };
+        // this.donation.state_region_id = data.id;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+
+    axios
+      .get(route("getCity.autoselect"))
+      .then((data) => {
+        this.citySelected(data.data);
+        // this.cityInput.city_id = data.id;
+        // this.cityInput.city = { id: data.id, name: data.name };
+        // this.donation.city_id = data.id;
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  },
   data: () => ({
     donation: new donation(),
     aboutItemInput: new aboutItemInput(),
@@ -575,6 +616,5 @@ export default {
   mounted() {
     console.log("Component mounted.");
   },
-  created() {},
 };
 </script>

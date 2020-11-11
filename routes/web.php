@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'DonateController@index');
+Route::get('/', 'DonationController@index');
 
 Route::post('donation', 'DonationController@save');
 /**
@@ -24,11 +24,17 @@ Route::post('donation', 'DonationController@save');
 Route::get('get_countries_for_select2', 'Select2Controller@getCountries')->name('getCountries');
 Route::get('get_state_regions_for_select2', 'Select2Controller@getStateRegions')->name('getStateRegions');
 Route::get('get_cities_for_select2', 'Select2Controller@getCities')->name('getCities');
+Route::get('get_autoselect_country', 'Select2Controller@getAutoSelectCountry')->name('getCountry.autoselect');
+Route::get('get_autoselect_state_region', 'Select2Controller@getAutoSelectStateRegion')->name('getStateRegion.autoselect');
+Route::get('get_autoselect_city', 'Select2Controller@getAutoSelectCity')->name('getCity.autoselect');
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace' => 'Backend'], function () {
     Route::get('dashboard', 'DashboardController@index');
     Route::resource('users', 'UserController');
     Route::resource('volunteers', 'VolunteerController');
+
+    Route::get('notifications', 'NotificationController@index')->name('notifications.index');
+    Route::get('click_notifications/{notification}', 'NotificationController@clickNotifications')->name('notifications.click');
 
     /**
      * Donated Item Online API 

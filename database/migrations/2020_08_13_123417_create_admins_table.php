@@ -23,6 +23,7 @@ class CreateAdminsTable extends Migration
             $table->integer('office_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('is_main')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
