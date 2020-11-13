@@ -12,14 +12,18 @@ class DoneStoringState extends DonatedItemState
         return DonatedItemStatus::DONE_STORING();
     }
 
-    public function canChangeRequiredRepairState(): bool
+    public function canChangeAssignRepairerState(): bool
     {
-        return $this->donatedItem->is_done_pickingup
-            && $this->donatedItem->is_done_storing;
+        return $this->donatedItem->is_done_pickingup &&
+            $this->donatedItem->is_done_storing &&
+            $this->donatedItem->is_required_repairing;
     }
+
     public function canChangeNotRequiredRepairState(): bool
     {
-        return $this->donatedItem->is_done_storing &&
+        return $this->donatedItem->is_done_pickingup &&
+            $this->donatedItem->is_done_storing &&
+            $this->donatedItem->is_required_repairing &&
             $this->donatedItem->repaired_volunteer_id == null;
     }
 }

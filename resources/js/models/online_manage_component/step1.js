@@ -8,7 +8,7 @@ export default class step1 {
             pickedup_volunteer_id: null
         }
         this.validation = new step1Validation;
-        this.getVolunteerUrl = route("volunteers.get_all_volunteers")
+        this.getVolunteerUrl = route("volunteers.get_driver_volunteers")
         this.placeholder = "Type To Search Volunteer..."
     }
 

@@ -2410,36 +2410,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2501,8 +2471,7 @@ __webpack_require__.r(__webpack_exports__);
         step1: true,
         step2: false,
         step3: false,
-        step4: false,
-        step5: false
+        step4: false
       }
     };
   },
@@ -53181,8 +53150,11 @@ var render = function() {
                       class: {
                         "badge-primary": _vm.steps.step3,
                         "badge-success":
-                          _vm.model.is_done_repairing ||
-                          !_vm.model.is_required_repairing
+                          (_vm.model.is_required_repairing &&
+                            _vm.model.is_done_repairing &&
+                            _vm.model.repaired_volunteer_id != null) ||
+                          (_vm.model.repaired_volunteer_id == null &&
+                            !_vm.model.is_required_repairing)
                       }
                     },
                     [_vm._v("3")]
@@ -53224,7 +53196,7 @@ var render = function() {
                       staticClass: "bs-stepper-circle",
                       class: {
                         "badge-primary": _vm.steps.step4,
-                        "badge-success": _vm.model.is_done_delivering
+                        "badge-success": _vm.model.is_complete
                       }
                     },
                     [_vm._v("4")]
@@ -53236,46 +53208,7 @@ var render = function() {
                       staticClass: "bs-stepper-label",
                       class: { "text-primary": _vm.steps.step4 }
                     },
-                    [_vm._v("Assign Deliver Step")]
-                  )
-                ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "line" }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "step",
-              on: {
-                click: function($event) {
-                  return _vm.changeStep("step5")
-                }
-              }
-            },
-            [
-              _c(
-                "button",
-                { staticClass: "btn step-trigger", attrs: { type: "button" } },
-                [
-                  _c(
-                    "span",
-                    {
-                      staticClass: "bs-stepper-circle",
-                      class: { "badge-primary": _vm.steps.step5 }
-                    },
-                    [_vm._v("5")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "bs-stepper-label",
-                      class: { "text-primary": _vm.steps.step5 }
-                    },
-                    [_vm._v("Receiver Step")]
+                    [_vm._v("Assign Complete Step")]
                   )
                 ]
               )
@@ -53435,6 +53368,35 @@ var render = function() {
             [
               _c("div", { staticClass: "row p-2 rounded" }, [
                 _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      class: {
+                        "has-error":
+                          _vm.step2.validation.transition_error_hasError,
+                        "was-validated": !_vm.step2.validation
+                          .transition_error_hasError
+                      }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "is-invalid",
+                        attrs: { type: "hidden", disabled: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.step2.validation.transition_error_errorMessage
+                            ) +
+                            "\n              "
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
@@ -53705,6 +53667,35 @@ var render = function() {
             [
               _c("div", { staticClass: "row p-2 rounded" }, [
                 _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "form-group",
+                      class: {
+                        "has-error":
+                          _vm.step3.validation.transition_error_hasError,
+                        "was-validated": !_vm.step3.validation
+                          .transition_error_hasError
+                      }
+                    },
+                    [
+                      _c("input", {
+                        staticClass: "is-invalid",
+                        attrs: { type: "hidden", disabled: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(
+                              _vm.step3.validation.transition_error_errorMessage
+                            ) +
+                            "\n              "
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
                   _vm.model.is_required_repairing || _vm.step3.showForm
                     ? _c(
                         "div",
@@ -53898,150 +53889,72 @@ var render = function() {
             { staticClass: "content", class: { active: _vm.steps.step4 } },
             [
               _c("div", { staticClass: "row p-2 rounded" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "form-group",
-                      class: {
-                        "has-error":
-                          _vm.step4.validation.delivered_volunteer_id_hasError,
-                        "was-validated":
-                          _vm.step4.validation
-                            .delivered_volunteer_id_successMessage &&
-                          !_vm.step4.validation.delivered_volunteer_id_hasError
-                      }
-                    },
-                    [
-                      _vm._m(5),
-                      _vm._v(" "),
-                      _c("select2", {
+                _c(
+                  "div",
+                  { staticClass: "col-md-6" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "form-group",
                         class: {
-                          "is-invalid":
-                            _vm.step4.validation.delivered_volunteer_id_hasError
-                        },
-                        attrs: {
-                          url: _vm.step4.getVolunteerUrl,
-                          placeholder: _vm.step4.placeholder,
-                          value: _vm.step4.data.delivered_volunteer_id,
-                          disabled: _vm.model.is_delivering,
-                          "selected-option": _vm.step4.delivered_volunteer
-                        },
-                        on: {
-                          input: function($event) {
-                            return _vm.step4.selectedDeliverVolunteer($event)
-                          }
+                          "has-error":
+                            _vm.step4.validation.transition_error_hasError,
+                          "was-validated": !_vm.step4.validation
+                            .transition_error_hasError
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(
-                              _vm.step4.validation
-                                .delivered_volunteer_id_errorMessage
-                            ) +
-                            "\n              "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "valid-feedback",
-                          staticStyle: { display: "block" }
-                        },
-                        [
+                      },
+                      [
+                        _c("input", {
+                          staticClass: "is-invalid",
+                          attrs: { type: "hidden", disabled: "" }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "invalid-feedback" }, [
                           _vm._v(
                             "\n                " +
                               _vm._s(
                                 _vm.step4.validation
-                                  .delivered_volunteer_id_successMessage
+                                  .transition_error_errorMessage
                               ) +
                               "\n              "
                           )
-                        ]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "row" }, [
-                    !_vm.model.is_delivering
-                      ? _c(
-                          "div",
-                          { staticClass: "col-md-2" },
-                          [
-                            _c("yesno", {
-                              attrs: {
-                                text: "Assign",
-                                addClass: "btn-primary"
-                              },
-                              on: {
-                                confirmed: function($event) {
-                                  return _vm.step4.assignDeliver()
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        )
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    !_vm.model.is_complete
+                      ? _c("yesno", {
+                          attrs: {
+                            text: "Change Complete And Publish",
+                            addClass: "btn-success"
+                          },
+                          on: {
+                            confirmed: function($event) {
+                              return _vm.step4.assignComplete()
+                            }
+                          }
+                        })
                       : _vm._e(),
                     _vm._v(" "),
-                    _vm.model.delivered_volunteer_id != null &&
-                    !_vm.model.is_delivering
-                      ? _c(
-                          "div",
-                          { staticClass: "col-md-5" },
-                          [
-                            _c("yesno", {
-                              attrs: {
-                                text: "Change Delivering State",
-                                addClass: "btn-danger"
-                              },
-                              on: {
-                                confirmed: function($event) {
-                                  return _vm.step4.changeDeliveringState()
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.model.delivered_volunteer_id != null &&
-                    _vm.model.is_delivering &&
-                    !_vm.model.is_done_delivering
-                      ? _c(
-                          "div",
-                          { staticClass: "col-md-5" },
-                          [
-                            _c("yesno", {
-                              attrs: {
-                                text: "Done Delivering",
-                                addClass: "btn-success"
-                              },
-                              on: {
-                                confirmed: function($event) {
-                                  return _vm.step4.changeDoneDeliveringState()
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        )
+                    _vm.model.is_complete
+                      ? _c("yesno", {
+                          attrs: {
+                            text: "Change Incomplete And Undo",
+                            addClass: "btn-danger"
+                          },
+                          on: {
+                            confirmed: function($event) {
+                              return _vm.step4.assignIncomplete()
+                            }
+                          }
+                        })
                       : _vm._e()
-                  ])
-                ])
+                  ],
+                  1
+                )
               ])
             ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "content", class: { active: _vm.steps.step5 } },
-            [_c("p", { staticClass: "text-center" }, [_vm._v("test 5")])]
           )
         ])
       ])
@@ -54092,15 +54005,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", [
       _vm._v("\n                Select Repairer "),
-      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _vm._v("\n                Select Deliver Volunteer "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   }
@@ -73156,7 +73060,7 @@ var step1 = /*#__PURE__*/function () {
       pickedup_volunteer_id: null
     };
     this.validation = new _validations_online_manage_component_step1__WEBPACK_IMPORTED_MODULE_0__["default"]();
-    this.getVolunteerUrl = route("volunteers.get_all_volunteers");
+    this.getVolunteerUrl = route("volunteers.get_driver_volunteers");
     this.placeholder = "Type To Search Volunteer...";
   }
 
@@ -73281,7 +73185,7 @@ var step2 = /*#__PURE__*/function () {
     };
     this.validation = new _validations_online_manage_component_step2__WEBPACK_IMPORTED_MODULE_0__["default"](); // url
 
-    this.getVolunteerUrl = route("volunteers.get_all_volunteers");
+    this.getVolunteerUrl = route("volunteers.get_store_keeper_volunteers");
     this.getStoreUrl = route("stores.auth");
     this.getBoxUrl = route("boxes.auth"); // placeholder
 
@@ -73423,7 +73327,7 @@ var step3 = /*#__PURE__*/function () {
     };
     this.validation = new _validations_online_manage_component_step3__WEBPACK_IMPORTED_MODULE_0__["default"](); // url
 
-    this.getVolunteerUrl = route("volunteers.get_all_volunteers"); // placeholder
+    this.getVolunteerUrl = route("volunteers.get_repairer_volunteers"); // placeholder
 
     this.placeholder = "Type To Search Repairer..."; // confirm condition
 
@@ -73578,30 +73482,20 @@ var step4 = /*#__PURE__*/function () {
 
     _classCallCheck(this, step4);
 
-    this.uuid = uuid; // selected data
-
-    this.delivered_volunteer = null;
-    this.data = {
-      delivered_volunteer_id: null
-    };
-    this.validation = new _validations_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_0__["default"](); // url
-
-    this.getVolunteerUrl = route("volunteers.get_all_volunteers"); // placeholder
-
-    this.placeholder = "Type To Search Deliver Volunteer..."; // confirm condition
-
-    this.showForm = false;
+    this.uuid = uuid;
+    this.validation = new _validations_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_0__["default"]();
   }
 
   _createClass(step4, [{
-    key: "assignDeliver",
-    value: function assignDeliver() {
+    key: "assignComplete",
+    value: function assignComplete() {
       var _this = this;
 
       var self = this;
-      var assignDeliverApi = route("donatedItem.assignDeliver", this.uuid);
+      var assignCompleteApi = route("donatedItem.assignComplete", this.uuid);
       window.dashboard_app.$emit('startLoading');
-      axios.post(assignDeliverApi, this.data).then(function (response) {
+      axios.get(assignCompleteApi).then(function (response) {
+        console.log(response);
         window.dashboard_app.$emit('success', response.data);
         window.dashboard_app.$toasted.show("Saving Success.", {
           icon: "save"
@@ -73618,55 +73512,35 @@ var step4 = /*#__PURE__*/function () {
       });
     }
   }, {
-    key: "changeDeliveringState",
-    value: function changeDeliveringState() {
-      var changeDeliveringStateApi = route("donatedItem.changeDeliveringState", this.uuid);
+    key: "assignIncomplete",
+    value: function assignIncomplete() {
+      var _this2 = this;
+
+      var self = this;
+      var assignIncompleteApi = route("donatedItem.assignIncomplete", this.uuid);
       window.dashboard_app.$emit('startLoading');
-      axios.get(changeDeliveringStateApi).then(function (response) {
+      axios.get(assignIncompleteApi).then(function (response) {
+        console.log(response);
         window.dashboard_app.$emit('success', response.data);
         window.dashboard_app.$toasted.show("Saving Success.", {
           icon: "save"
         });
         window.dashboard_app.$emit('endLoading');
+        _this2.validation = new _validations_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_0__["default"]();
       })["catch"](function (error) {
         window.dashboard_app.$emit('failed');
         window.dashboard_app.$toasted.show("Saving Failed.", {
           icon: "save"
         });
         window.dashboard_app.$emit('endLoading');
+        self.validation = new _validations_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_0__["default"](error.response.data.errors);
       });
-    }
-  }, {
-    key: "changeDoneDeliveringState",
-    value: function changeDoneDeliveringState() {
-      var changeDoneDeliveringStateApi = route("donatedItem.changeDoneDeliveringState", this.uuid);
-      window.dashboard_app.$emit('startLoading');
-      axios.get(changeDoneDeliveringStateApi).then(function (response) {
-        window.dashboard_app.$emit('success', response.data);
-        window.dashboard_app.$toasted.show("Saving Success.", {
-          icon: "save"
-        });
-        window.dashboard_app.$emit('endLoading');
-      })["catch"](function (error) {
-        window.dashboard_app.$emit('failed');
-        window.dashboard_app.$toasted.show("Saving Failed.", {
-          icon: "save"
-        });
-        window.dashboard_app.$emit('endLoading');
-      });
-    }
-  }, {
-    key: "selectedDeliverVolunteer",
-    value: function selectedDeliverVolunteer(event) {
-      this.delivered_volunteer = event;
-      this.data.delivered_volunteer_id = event != null ? event.id : "";
     }
   }, {
     key: "constructData",
     value: function constructData(model) {
       this.uuid = model.uuid;
-      this.delivered_volunteer = model.delivered_volunteer;
-      this.data.delivered_volunteer_id = model.delivered_volunteer_id;
+      this.is_complete = model.is_complete;
     }
   }]);
 
@@ -74261,6 +74135,14 @@ var step2 = /*#__PURE__*/function () {
     _classCallCheck(this, step2);
 
     if (validation != null) {
+      if (validation.transition_error) {
+        this.transition_error_hasError = true;
+        this.transition_error_errorMessage = validation.transition_error[0];
+      } else {
+        this.transition_error_hasError = false;
+        this.transition_error_errorMessage = '';
+      }
+
       if (validation.store_keeper_volunteer_id) {
         this.store_keeper_volunteer_id_hasError = true;
         this.store_keeper_volunteer_id_errorMessage = validation.store_keeper_volunteer_id[0];
@@ -74306,6 +74188,8 @@ var step2 = /*#__PURE__*/function () {
       this.box_id_hasError = false;
       this.box_id_errorMessage = '';
       this.box_id_successMessage = '';
+      this.transition_error_hasError = false;
+      this.transition_error_errorMessage = '';
     }
   }]);
 
@@ -74339,6 +74223,14 @@ var step3 = /*#__PURE__*/function () {
     _classCallCheck(this, step3);
 
     if (validation != null) {
+      if (validation.transition_error) {
+        this.transition_error_hasError = true;
+        this.transition_error_errorMessage = validation.transition_error[0];
+      } else {
+        this.transition_error_hasError = false;
+        this.transition_error_errorMessage = '';
+      }
+
       if (validation.repaired_volunteer_id) {
         this.repaired_volunteer_id_hasError = true;
         this.repaired_volunteer_id_errorMessage = validation.repaired_volunteer_id[0];
@@ -74360,6 +74252,8 @@ var step3 = /*#__PURE__*/function () {
       this.repaired_volunteer_id_hasError = false;
       this.repaired_volunteer_id_errorMessage = '';
       this.repaired_volunteer_id_successMessage = '';
+      this.transition_error_hasError = false;
+      this.transition_error_errorMessage = '';
     }
   }]);
 
@@ -74393,13 +74287,12 @@ var step4 = /*#__PURE__*/function () {
     _classCallCheck(this, step4);
 
     if (validation != null) {
-      if (validation.delivered_volunteer_id) {
-        this.delivered_volunteer_id_hasError = true;
-        this.delivered_volunteer_id_errorMessage = validation.delivered_volunteer_id[0];
-        this.delivered_volunteer_id_successMessage = null;
+      if (validation.transition_error) {
+        this.transition_error_hasError = true;
+        this.transition_error_errorMessage = validation.transition_error[0];
       } else {
-        this.delivered_volunteer_id_hasError = false;
-        this.delivered_volunteer_id_successMessage = 'Good Job.';
+        this.transition_error_hasError = false;
+        this.transition_error_errorMessage = '';
       }
     } else {
       this.clearValidation();
@@ -74411,9 +74304,8 @@ var step4 = /*#__PURE__*/function () {
   _createClass(step4, [{
     key: "clearValidation",
     value: function clearValidation() {
-      this.delivered_volunteer_id_hasError = false;
-      this.delivered_volunteer_id_errorMessage = '';
-      this.delivered_volunteer_id_successMessage = '';
+      this.transition_error_hasError = false;
+      this.transition_error_errorMessage = '';
     }
   }]);
 

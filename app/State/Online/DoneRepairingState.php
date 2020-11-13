@@ -12,7 +12,7 @@ class DoneRepairingState extends DonatedItemState
         return DonatedItemStatus::DONE_REPAIRING();
     }
 
-    public function canChangeAssignedDeliverState(): bool
+    public function canChangeToCompleteState(): bool
     {
         return $this->donatedItem->is_done_pickingup
             && $this->donatedItem->is_done_storing

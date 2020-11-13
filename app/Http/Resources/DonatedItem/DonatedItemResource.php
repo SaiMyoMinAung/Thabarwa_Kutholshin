@@ -42,11 +42,8 @@ class DonatedItemResource extends JsonResource
             'is_repairing' => (bool) $this->is_repairing,
             'is_required_repairing' => (bool) $this->is_required_repairing,
             'is_done_repairing' => (bool) $this->is_done_repairing,
-            // Assign Deliver Step
-            'delivered_volunteer' => new VolunteerSelect2Resource($this->deliveredVolunteer),
-            'delivered_volunteer_id' => $this->delivered_volunteer_id,
-            'is_delivering' => (bool) $this->is_delivering,
-            'is_done_delivering' => (bool) $this->is_done_delivering,
+            // Assign Complete Step
+            'is_complete' => (bool) $this->is_complete,
         ];
     }
 }

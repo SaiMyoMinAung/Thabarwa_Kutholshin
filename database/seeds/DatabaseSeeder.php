@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CenterSeeder::class);
         $this->call(WardSeeder::class);
         $this->call(OfficeSeeder::class);
+        $this->call(StoreSeeder::class);
+        $this->call(BoxSeeder::class);
         $this->call(AdminSeeder::class);
 
         $this->call(VolunteerJobSeeder::class);

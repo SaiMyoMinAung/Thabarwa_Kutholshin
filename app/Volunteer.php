@@ -26,6 +26,6 @@ class Volunteer extends Model
 
     public function office()
     {
-        return $this->belongsTo(Office::class, 'office_id')->withDefault();
+        return $this->belongsTo(Office::class, 'volunteer_id')->withDefault();
     }
 }

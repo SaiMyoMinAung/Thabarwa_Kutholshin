@@ -3,6 +3,13 @@ export default class step2 {
         validation = null
     ) {
         if (validation != null) {
+            if (validation.transition_error) {
+                this.transition_error_hasError = true;
+                this.transition_error_errorMessage = validation.transition_error[0];
+            } else {
+                this.transition_error_hasError = false;
+                this.transition_error_errorMessage = '';
+            }
 
             if (validation.store_keeper_volunteer_id) {
                 this.store_keeper_volunteer_id_hasError = true;
@@ -50,6 +57,9 @@ export default class step2 {
         this.box_id_hasError = false;
         this.box_id_errorMessage = '';
         this.box_id_successMessage = '';
+
+        this.transition_error_hasError = false;
+        this.transition_error_errorMessage = '';
     }
 
 }

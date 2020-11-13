@@ -63,6 +63,14 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
 
     /**
      * Donated Item Online API
+     * Assign Complete Step
+     */
+    Route::get('assign_complete/{donated_item}', 'DonatedItemOnlineController@assignComplete')->name('donatedItem.assignComplete');
+    Route::get('assign_incomplete/{donated_item}', 'DonatedItemOnlineController@assignIncomplete')->name('donatedItem.assignIncomplete');
+
+
+    /**
+     * Donated Item Online API
      * Assign Deliver Step
      */
     Route::post('assign_deliver/{donated_item}', 'DonatedItemOnlineController@assignDeliver')->name('donatedItem.assignDeliver');
@@ -71,6 +79,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
 
     /**For Select2 */
     Route::get('get_all_volunteers', 'VolunteerController@getAllVolunteers')->name('volunteers.get_all_volunteers');
+    Route::get('get_driver_volunteers', 'VolunteerController@getDriverVolunteers')->name('volunteers.get_driver_volunteers');
+    Route::get('get_store_keeper_volunteers', 'VolunteerController@getStoreKeeperVolunteers')->name('volunteers.get_store_keeper_volunteers');
+    Route::get('get_repairer_volunteers', 'VolunteerController@getRepairerVolunteers')->name('volunteers.get_repairer_volunteers');
     Route::get('get_stores_of_auth', 'StoreController@getStoresOfAuth')->name('stores.auth');
     Route::get('get_boxes_of_auth', 'BoxController@getBoxesOfAuth')->name('boxes.auth');
 

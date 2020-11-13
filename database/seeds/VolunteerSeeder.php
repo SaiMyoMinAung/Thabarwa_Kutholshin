@@ -16,29 +16,51 @@ class VolunteerSeeder extends Seeder
     public function run()
     {
         $data = [
-            'name' => VOLUNTEER_ONE,
+            'name' => VOLUNTEER_DRIVER,
             'phone' => '0998989898',
-            'email' => trim(VOLUNTEER_ONE . '@gmail.com'),
+            'email' => trim(VOLUNTEER_DRIVER . '@gmail.com'),
             'password' => bcrypt('password'),
             'state_region_id' => StateRegion::where('name', STATE_REGION_ONE)->first()->id,
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
-
         $volunteer = Volunteer::create($data);
-        $volunteerJob = VolunteerJob::where('name', JOB_ONE)->first()->id;
+        $volunteerJob = VolunteerJob::where('name', JOB_DRIVER)->first()->id;
         $volunteer->volunteerJobs()->toggle([$volunteerJob]);
 
         $data = [
-            'name' => VOLUNTEER_TWO,
+            'name' => VOLUNTEER_STORE_KEEPER,
             'phone' => '0998989891',
-            'email' => trim(VOLUNTEER_TWO . '@gmail.com'),
+            'email' => trim(VOLUNTEER_STORE_KEEPER . '@gmail.com'),
             'password' => bcrypt('password'),
             'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
-            'office_id' => Office::where('name', OFFICE_TWO)->first()->id,
+            'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
-
         $volunteerTwo = Volunteer::create($data);
-        $volunteerJobTwo = VolunteerJob::where('name', JOB_TWO)->first()->id;
+        $volunteerJobTwo = VolunteerJob::where('name', JOB_STORE_KEEPER)->first()->id;
         $volunteerTwo->volunteerJobs()->toggle([$volunteerJobTwo]);
+
+        $data = [
+            'name' => VOLUNTEER_REPAIRER,
+            'phone' => '0998989895',
+            'email' => trim(VOLUNTEER_REPAIRER . '@gmail.com'),
+            'password' => bcrypt('password'),
+            'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
+            'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
+        ];
+        $volunteerThree = Volunteer::create($data);
+        $volunteerJobThree = VolunteerJob::where('name', JOB_REPAIRER)->first()->id;
+        $volunteerThree->volunteerJobs()->toggle([$volunteerJobThree]);
+
+        $data = [
+            'name' => VOLUNTEER_DELIVER,
+            'phone' => '0998989491',
+            'email' => trim(VOLUNTEER_DELIVER . '@gmail.com'),
+            'password' => bcrypt('password'),
+            'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
+            'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
+        ];
+        $volunteerFour = Volunteer::create($data);
+        $volunteerJobFour = VolunteerJob::where('name', JOB_DELIVER)->first()->id;
+        $volunteerFour->volunteerJobs()->toggle([$volunteerJobFour]);
     }
 }

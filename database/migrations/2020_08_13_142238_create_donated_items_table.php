@@ -38,8 +38,6 @@ class CreateDonatedItemsTable extends Migration
             $table->integer('pickedup_volunteer_id')->nullable();
             $table->integer('store_keeper_volunteer_id')->nullable();
             $table->integer('repaired_volunteer_id')->nullable();
-            $table->integer('delivered_volunteer_id')->nullable();
-            $table->integer('received_user_id')->nullable();
 
             $table->integer('status');
             $table->string('state_class');
@@ -49,11 +47,9 @@ class CreateDonatedItemsTable extends Migration
             $table->boolean('is_done_pickingup')->default(0);
             $table->boolean('is_storing')->default(0);
             $table->boolean('is_done_storing')->default(0);
-            $table->boolean('is_required_repairing')->default(0);
+            $table->boolean('is_required_repairing')->default(1);
             $table->boolean('is_repairing')->default(0);
             $table->boolean('is_done_repairing')->default(0);
-            $table->boolean('is_delivering')->default(0);
-            $table->boolean('is_done_delivering')->default(0);
             $table->boolean('is_complete')->default(0);
 
             $table->timestamps();

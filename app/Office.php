@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Store;
+use App\Volunteer;
 use App\StateRegion;
 use App\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
@@ -26,5 +27,10 @@ class Office extends Model
     public function boxes()
     {
         return $this->hasManyThrough(Box::class, Store::class, 'office_id', 'store_id');
+    }
+
+    public function volunteers()
+    {
+        return $this->hasMany(Volunteer::class);
     }
 }

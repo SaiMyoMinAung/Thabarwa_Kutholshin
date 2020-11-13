@@ -7,6 +7,7 @@ use App\Volunteer;
 use App\StateRegion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\VolunteerStoreFormRequest;
 use App\Http\Requests\VolunteerUpdateFormRequest;
 use App\Http\Resources\Select2\VolunteerSelect2ResourceCollection;
@@ -176,6 +177,45 @@ class VolunteerController extends Controller
     public function getAllVolunteers(Request $request)
     {
         $volunteers = Volunteer::with(['state_region', 'office'])->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+
+        return response()->json(new VolunteerSelect2ResourceCollection($volunteers), 200);
+    }
+
+    public function getDriverVolunteers(Request $request)
+    {
+        $volunteers = auth()->user()->office->volunteers()
+            ->where('name', 'like', '%' . $request->q . '%')
+            ->whereHas('volunteerJobs', function (Builder $query) {
+                $query->where('name', JOB_DRIVER);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+
+        return response()->json(new VolunteerSelect2ResourceCollection($volunteers), 200);
+    }
+
+    public function getStoreKeeperVolunteers(Request $request)
+    {
+        $volunteers = auth()->user()->office->volunteers()
+            ->where('name', 'like', '%' . $request->q . '%')
+            ->whereHas('volunteerJobs', function (Builder $query) {
+                $query->where('name', JOB_STORE_KEEPER);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+
+        return response()->json(new VolunteerSelect2ResourceCollection($volunteers), 200);
+    }
+
+    public function getRepairerVolunteers(Request $request)
+    {
+        $volunteers = auth()->user()->office->volunteers()
+            ->where('name', 'like', '%' . $request->q . '%')
+            ->whereHas('volunteerJobs', function (Builder $query) {
+                $query->where('name', JOB_REPAIRER);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(5);
 
         return response()->json(new VolunteerSelect2ResourceCollection($volunteers), 200);
     }

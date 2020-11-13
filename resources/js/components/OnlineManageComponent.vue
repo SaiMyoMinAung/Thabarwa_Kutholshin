@@ -56,7 +56,11 @@
               :class="{
                 'badge-primary': steps.step3,
                 'badge-success':
-                  model.is_done_repairing || !model.is_required_repairing,
+                  (model.is_required_repairing &&
+                    model.is_done_repairing &&
+                    model.repaired_volunteer_id != null) ||
+                  (model.repaired_volunteer_id == null &&
+                    !model.is_required_repairing),
               }"
               >3</span
             >
@@ -74,29 +78,14 @@
               class="bs-stepper-circle"
               :class="{
                 'badge-primary': steps.step4,
-                'badge-success': model.is_done_delivering,
+                'badge-success': model.is_complete,
               }"
               >4</span
             >
             <span
               class="bs-stepper-label"
               :class="{ 'text-primary': steps.step4 }"
-              >Assign Deliver Step</span
-            >
-          </button>
-        </div>
-        <div class="line"></div>
-        <div class="step" @click="changeStep('step5')">
-          <button type="button" class="btn step-trigger">
-            <span
-              class="bs-stepper-circle"
-              :class="{ 'badge-primary': steps.step5 }"
-              >5</span
-            >
-            <span
-              class="bs-stepper-label"
-              :class="{ 'text-primary': steps.step5 }"
-              >Receiver Step</span
+              >Assign Complete Step</span
             >
           </button>
         </div>
@@ -180,6 +169,21 @@
         <div class="content" :class="{ active: steps.step2 }">
           <div class="row p-2 rounded">
             <div class="col-md-6">
+              <!-- start transition error -->
+              <div
+                class="form-group"
+                v-bind:class="{
+                  'has-error': step2.validation.transition_error_hasError,
+                  'was-validated': !step2.validation.transition_error_hasError,
+                }"
+              >
+                <input type="hidden" class="is-invalid" disabled />
+                <div class="invalid-feedback">
+                  {{ step2.validation.transition_error_errorMessage }}
+                </div>
+              </div>
+              <!-- end transition error -->
+
               <!-- start store keeper select box -->
               <div
                 class="form-group"
@@ -327,6 +331,21 @@
         <div class="content" :class="{ active: steps.step3 }">
           <div class="row p-2 rounded">
             <div class="col-md-6">
+              <!-- start transition error -->
+              <div
+                class="form-group"
+                v-bind:class="{
+                  'has-error': step3.validation.transition_error_hasError,
+                  'was-validated': !step3.validation.transition_error_hasError,
+                }"
+              >
+                <input type="hidden" class="is-invalid" disabled />
+                <div class="invalid-feedback">
+                  {{ step3.validation.transition_error_errorMessage }}
+                </div>
+              </div>
+              <!-- end transition error -->
+
               <!-- start repairer select -->
               <div
                 class="form-group"
@@ -438,84 +457,35 @@
         <div class="content" :class="{ active: steps.step4 }">
           <div class="row p-2 rounded">
             <div class="col-md-6">
-              <!-- start delivered volunteer select -->
+              <!-- start transition error -->
               <div
                 class="form-group"
                 v-bind:class="{
-                  'has-error': step4.validation.delivered_volunteer_id_hasError,
-                  'was-validated':
-                    step4.validation.delivered_volunteer_id_successMessage &&
-                    !step4.validation.delivered_volunteer_id_hasError,
+                  'has-error': step4.validation.transition_error_hasError,
+                  'was-validated': !step4.validation.transition_error_hasError,
                 }"
               >
-                <label>
-                  Select Deliver Volunteer <span class="text-danger">*</span>
-                </label>
-
-                <select2
-                  :url="step4.getVolunteerUrl"
-                  :placeholder="step4.placeholder"
-                  :value="step4.data.delivered_volunteer_id"
-                  :disabled="model.is_delivering"
-                  @input="step4.selectedDeliverVolunteer($event)"
-                  :selected-option="step4.delivered_volunteer"
-                  v-bind:class="{
-                    'is-invalid':
-                      step4.validation.delivered_volunteer_id_hasError,
-                  }"
-                ></select2>
-
+                <input type="hidden" class="is-invalid" disabled />
                 <div class="invalid-feedback">
-                  {{ step4.validation.delivered_volunteer_id_errorMessage }}
-                </div>
-                <div class="valid-feedback" style="display: block">
-                  {{ step4.validation.delivered_volunteer_id_successMessage }}
+                  {{ step4.validation.transition_error_errorMessage }}
                 </div>
               </div>
-              <!-- end delivered volunteer select -->
+              <!-- end transition error -->
 
-              <div class="row">
-                <div class="col-md-2" v-if="!model.is_delivering">
-                  <yesno
-                    text="Assign"
-                    addClass="btn-primary"
-                    @confirmed="step4.assignDeliver()"
-                  ></yesno>
-                </div>
-
-                <div
-                  class="col-md-5"
-                  v-if="
-                    model.delivered_volunteer_id != null && !model.is_delivering
-                  "
-                >
-                  <yesno
-                    text="Change Delivering State"
-                    addClass="btn-danger"
-                    @confirmed="step4.changeDeliveringState()"
-                  ></yesno>
-                </div>
-
-                <div
-                  class="col-md-5"
-                  v-if="
-                    model.delivered_volunteer_id != null &&
-                    model.is_delivering &&
-                    !model.is_done_delivering
-                  "
-                >
-                  <yesno
-                    text="Done Delivering"
-                    addClass="btn-success"
-                    @confirmed="step4.changeDoneDeliveringState()"
-                  ></yesno>
-                </div>
-              </div>
+              <yesno
+                v-if="!model.is_complete"
+                text="Change Complete And Publish"
+                addClass="btn-success"
+                @confirmed="step4.assignComplete()"
+              ></yesno>
+              <yesno
+                v-if="model.is_complete"
+                text="Change Incomplete And Undo"
+                addClass="btn-danger"
+                @confirmed="step4.assignIncomplete()"
+              ></yesno>
             </div>
           </div>
-        </div>
-        <div class="content" :class="{ active: steps.step5 }">
-          <p class="text-center">test 5</p>
         </div>
       </div>
     </div>
@@ -590,7 +560,6 @@ export default {
         step2: false,
         step3: false,
         step4: false,
-        step5: false,
       },
     };
   },

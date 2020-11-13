@@ -4,13 +4,12 @@ export default class step4 {
     ) {
         if (validation != null) {
 
-            if (validation.delivered_volunteer_id) {
-                this.delivered_volunteer_id_hasError = true;
-                this.delivered_volunteer_id_errorMessage = validation.delivered_volunteer_id[0];
-                this.delivered_volunteer_id_successMessage = null;
+            if (validation.transition_error) {
+                this.transition_error_hasError = true;
+                this.transition_error_errorMessage = validation.transition_error[0];
             } else {
-                this.delivered_volunteer_id_hasError = false;
-                this.delivered_volunteer_id_successMessage = 'Good Job.';
+                this.transition_error_hasError = false;
+                this.transition_error_errorMessage = '';
             }
 
         } else {
@@ -21,9 +20,8 @@ export default class step4 {
     }
 
     clearValidation() {
-        this.delivered_volunteer_id_hasError = false;
-        this.delivered_volunteer_id_errorMessage = '';
-        this.delivered_volunteer_id_successMessage = '';
+        this.transition_error_hasError = false;
+        this.transition_error_errorMessage = '';
     }
 
 }

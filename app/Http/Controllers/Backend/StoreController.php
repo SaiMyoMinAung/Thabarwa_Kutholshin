@@ -115,7 +115,10 @@ class StoreController extends Controller
 
     public function getStoresOfAuth(Request $request)
     {
-        $stores = auth()->user()->office->stores()->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $stores = auth()->user()->office->stores()
+            ->where('name', 'like', '%' . $request->q . '%')
+            ->orderBy('id', 'desc')
+            ->paginate(5);
 
         return response()->json(new StoreSelect2ResourceCollection($stores), 200);
     }

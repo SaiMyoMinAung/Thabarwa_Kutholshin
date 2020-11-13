@@ -10,7 +10,7 @@ export default class step3 {
         }
         this.validation = new step3Validation;
         // url
-        this.getVolunteerUrl = route("volunteers.get_all_volunteers")
+        this.getVolunteerUrl = route("volunteers.get_repairer_volunteers")
         // placeholder
         this.placeholder = "Type To Search Repairer..."
         // confirm condition

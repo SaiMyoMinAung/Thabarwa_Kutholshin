@@ -14,13 +14,15 @@ class AssignRepairerState extends DonatedItemState
 
     public function canChangeReAssignedRepairerState(): bool
     {
-        return $this->donatedItem->repaired_volunteer_id != null &&
-            $this->donatedItem->is_required_repairing;
+        return $this->donatedItem->repaired_volunteer_id != null
+            && $this->donatedItem->is_required_repairing;
     }
 
     public function canChangeRepairingState(): bool
     {
-        return $this->donatedItem->repaired_volunteer_id != null &&
-            $this->donatedItem->is_required_repairing;
+        return $this->donatedItem->store_keeper_volunteer_id != null
+            && $this->donatedItem->is_done_storing == 0
+            && $this->donatedItem->repaired_volunteer_id != null
+            && $this->donatedItem->is_required_repairing;
     }
 }

@@ -253,7 +253,7 @@ return [
         [
             'text'        => 'Donated Items',
             'url'         => 'backend/donated_items',
-            'active'      => ['backend/donated_items'],
+            'active'      => ['backend/donated_items', 'backend/donated_items/*/manage', 'backend/donated_items/*'],
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',

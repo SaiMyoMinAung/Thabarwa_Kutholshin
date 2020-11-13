@@ -19,7 +19,7 @@ class ConfirmedState extends DonatedItemState
 
     public function canChangeCancelledState(): bool
     {
-        return $this->donatedItem->is_confirmed_by_donor == 1;
+        return $this->donatedItem->is_confirmed_by_donor == 1 && $this->donatedItem->pickedup_volunteer_id == null;
     }
 
     public function canChangeAssignedDriverState(): bool

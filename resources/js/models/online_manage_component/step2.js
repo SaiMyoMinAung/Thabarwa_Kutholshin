@@ -14,7 +14,7 @@ export default class step2 {
         }
         this.validation = new step2Validation;
         // url
-        this.getVolunteerUrl = route("volunteers.get_all_volunteers")
+        this.getVolunteerUrl = route("volunteers.get_store_keeper_volunteers")
         this.getStoreUrl = route("stores.auth")
         this.getBoxUrl = route("boxes.auth")
         // placeholder

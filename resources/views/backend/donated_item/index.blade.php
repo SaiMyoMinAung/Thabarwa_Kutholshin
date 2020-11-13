@@ -21,6 +21,7 @@
     <thead>
         <tr>
             <th></th>
+            <th>Created At</th>
             <th>About Item</th>
             <th>Picked Up At</th>
             <th>Picked Up Info</th>
@@ -45,14 +46,23 @@
             "ajax": {
                 "url": "{{ route('donated_items.index') }}",
             },
+            "columnDefs": [{
+                    "targets": [1],
+                    "visible": false,
+                    "searchable": false
+                },
+            ],
             "order": [
-                [1, 'asc']
+                [1, 'desc']
             ],
             "columns": [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
                     orderable: false,
                     searchable: false
+                },
+                {
+                    "data": "created_at"
                 },
                 {
                     "data": "about_item"

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\City;
-use App\Country;
 use App\DonatedItem;
-use App\StateRegion;
 use Illuminate\Http\Request;
 use App\Status\KindOfItemStatus;
+use App\Status\DonatedItemStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DonationUpdateFormRequest;
 use App\Http\Resources\DonatedItem\DonatedItemResource;
@@ -26,12 +24,13 @@ class DonatedItemController extends Controller
         if ($request->ajax()) {
 
             $columns = array(
-                0 => 'id',
-                1 => 'about_item',
-                2 => 'pickedup_at',
-                3 => 'pickedup_info',
-                4 => 'status',
-                5 => 'kind_of_item',
+                0 => 'index',
+                1 => 'created_at',
+                2 => 'about_item',
+                3 => 'pickedup_at',
+                4 => 'pickedup_info',
+                5 => 'status',
+                6 => 'kind_of_item',
             );
 
             $totalData = DonatedItem::count();
@@ -89,10 +88,11 @@ class DonatedItemController extends Controller
                     $show =  route('donated_items.show', $donated_item->uuid);
 
                     $nestedData['DT_RowIndex'] = $key + 1;
+                    $nestedData['created_at'] = $donated_item->created_at->format('Y/m/d H:i:s');
                     $nestedData['about_item'] = '<a href="' . $show . '">' . $donated_item->about_item . '</a>';
                     $nestedData['pickedup_at'] = $donated_item->pickedup_at->format('d M Y');
                     $nestedData['pickedup_info'] = substr(strip_tags($donated_item->pickedup_info), 0, 50) . "...";
-                    $nestedData['status'] = $donated_item->statusName;
+                    $nestedData['status'] = '<span class="badge badge-success">'.$donated_item->statusName.'</span>';
                     $nestedData['kind_of_item'] = $donated_item->kindOfItemName;
 
                     $data[] = $nestedData;

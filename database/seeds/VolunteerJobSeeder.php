@@ -14,12 +14,20 @@ class VolunteerJobSeeder extends Seeder
     {
         $data = [
             [
-                'name' => JOB_ONE,
-                'description' => JOB_ONE . ' Description'
+                'name' => JOB_DRIVER,
+                'description' => JOB_DRIVER . ' Description'
             ],
             [
-                'name' => JOB_TWO,
-                'description' => JOB_TWO . ' Description'
+                'name' => JOB_STORE_KEEPER,
+                'description' => JOB_STORE_KEEPER . ' Description'
+            ],
+            [
+                'name' => JOB_REPAIRER,
+                'description' => JOB_REPAIRER . ' Description'
+            ],
+            [
+                'name' => JOB_DELIVER,
+                'description' => JOB_DELIVER . ' Description'
             ],
         ];
 

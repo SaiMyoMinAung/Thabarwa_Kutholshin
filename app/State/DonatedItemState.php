@@ -13,4 +13,28 @@ abstract class DonatedItemState
     {
         $this->donatedItem = $donatedItem;
     }
+
+    public function canChangeAssignedStoreKeeperState(): bool
+    {
+        return false;
+    }
+
+    public function canChangeAssignRepairerState(): bool
+    {
+        return false;
+    }
+
+    public function canChangeNotRequiredRepairState(): bool
+    {
+        return false;
+    }
+
+    public function canChangeToCompleteState(): bool
+    {
+        return false;
+    }
+    public function canChangeRequiredRepairState(): bool
+    {
+        return false;
+    }
 }

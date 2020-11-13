@@ -114,7 +114,10 @@ class BoxController extends Controller
 
     public function getBoxesOfAuth(Request $request)
     {
-        $boxes = auth()->user()->office->boxes()->where('boxes.name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $boxes = auth()->user()->office->boxes()
+            ->where('boxes.name', 'like', '%' . $request->q . '%')
+            ->orderBy('id', 'desc')
+            ->paginate(5);
 
         return response()->json(new BoxSelect2ResourceCollection($boxes), 200);
     }
