@@ -19,6 +19,7 @@ class DonatedItemResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
+            'item_unique_id' => $this->item_unique_id,
             'about_item' => $this->about_item,
             'statusName' => $this->statusName,
             // Assign Driver Step

@@ -7,6 +7,7 @@
     ></loading>
     <h4>
       <span class="">{{ model.about_item }}</span>
+      <span class="badge badge-success">{{ model.item_unique_id }}</span>
       <span class="badge badge-primary">{{ model.statusName }}</span>
     </h4>
     <div class="bs-stepper">

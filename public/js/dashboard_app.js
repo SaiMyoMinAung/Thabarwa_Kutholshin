@@ -2410,6 +2410,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -53038,6 +53039,10 @@ var render = function() {
       _vm._v(" "),
       _c("h4", [
         _c("span", {}, [_vm._v(_vm._s(_vm.model.about_item))]),
+        _vm._v(" "),
+        _c("span", { staticClass: "badge badge-success" }, [
+          _vm._v(_vm._s(_vm.model.item_unique_id))
+        ]),
         _vm._v(" "),
         _c("span", { staticClass: "badge badge-primary" }, [
           _vm._v(_vm._s(_vm.model.statusName))

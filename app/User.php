@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use Notifiable, HasUUID;
 
+    public $updatePassword = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -37,4 +39,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Bootable trait for password
+     *
+     * @return void
+     */
+    protected static function bootHasPassword()
+    {
+        static::updating(function ($model) {
+            // Preventing from creating new password in update
+            if (!$model->updatePassword) {
+                $model->password = $model->getOriginal('password');
+            }
+        });
+    }
 }

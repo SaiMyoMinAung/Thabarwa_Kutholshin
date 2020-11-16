@@ -34,13 +34,12 @@ class DonationController extends Controller
 
         $donatedItemData = $request->donatedItemData($donor->id)->all();
         $donatedItem = $this->donatedItem->createRecord($donatedItemData);
-
+        
         try {
             $this->notiRepo->donatedItemNotiToAdmins($donor->uuid, $donatedItem->uuid);
         } catch (Exception $e) {
             report($e);
         }
-
 
         if ($donatedItem) {
             return response()->json(['message' => 'success', 'data' => $donatedItem], 200);

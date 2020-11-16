@@ -22,6 +22,7 @@
         <tr>
             <th></th>
             <th>Created At</th>
+            <th>Item Unique Id</th>
             <th>About Item</th>
             <th>Picked Up At</th>
             <th>Picked Up Info</th>
@@ -63,6 +64,9 @@
                 },
                 {
                     "data": "created_at"
+                },
+                {
+                    "data": "item_unique_id"
                 },
                 {
                     "data": "about_item"

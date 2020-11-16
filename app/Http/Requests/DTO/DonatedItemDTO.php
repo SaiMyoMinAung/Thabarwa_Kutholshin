@@ -8,6 +8,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class DonatedItemDTO extends DataTransferObject
 {
+    // public $item_unique_id;
     public $about_item;
     public $pickedup_at;
     public $pickedup_info;

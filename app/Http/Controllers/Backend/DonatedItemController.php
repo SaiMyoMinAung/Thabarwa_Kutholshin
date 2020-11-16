@@ -26,11 +26,12 @@ class DonatedItemController extends Controller
             $columns = array(
                 0 => 'index',
                 1 => 'created_at',
-                2 => 'about_item',
-                3 => 'pickedup_at',
-                4 => 'pickedup_info',
-                5 => 'status',
-                6 => 'kind_of_item',
+                2 => 'item_unique_id',
+                3 => 'about_item',
+                4 => 'pickedup_at',
+                5 => 'pickedup_info',
+                6 => 'status',
+                7 => 'kind_of_item',
             );
 
             $totalData = DonatedItem::count();
@@ -50,11 +51,13 @@ class DonatedItemController extends Controller
             } else {
                 $search = $request->input('search.value');
 
-                $totalFiltered = DonatedItem::where('about_item', 'LIKE', "%{$search}%")
-                    ->orWhere('pickedup_at', 'LIKE', "%{$search}%")
-                    ->orWhere('pickedup_info', 'LIKE', "%{$search}%");
+                // $totalFiltered = DonatedItem::where('about_item', 'LIKE', "%{$search}%")
+                //     ->orWhere('item_unique_id', 'LIKE', "%{$search}%")
+                //     ->orWhere('pickedup_at', 'LIKE', "%{$search}%")
+                //     ->orWhere('pickedup_info', 'LIKE', "%{$search}%");
 
                 $donated_items =  DonatedItem::where('about_item', 'LIKE', "%{$search}%")
+                    ->orWhere('item_unique_id', 'LIKE', "%{$search}%")
                     ->orWhere('pickedup_at', 'LIKE', "%{$search}%")
                     ->orWhere('pickedup_info', 'LIKE', "%{$search}%");
 
@@ -63,7 +66,7 @@ class DonatedItemController extends Controller
                 if (in_array($status, DonatedItemStatus::keys())) {
                     $search = (string) DonatedItemStatus::values()[$status];
                     $donated_items = $donated_items->orWhere('status', 'LIKE', "%{$search}%");
-                    $totalFiltered = $totalFiltered->orWhere('status', 'LIKE', "%{$search}%");
+                    // $totalFiltered = $totalFiltered->orWhere('status', 'LIKE', "%{$search}%");
                 }
 
                 // add kind of item filter
@@ -71,7 +74,7 @@ class DonatedItemController extends Controller
                 if (in_array($kind_of_item, KindOfItemStatus::keys())) {
                     $search = (string) KindOfItemStatus::values()[$kind_of_item];
                     $donated_items = $donated_items->orWhere('kind_of_item', 'LIKE', "%{$search}%");
-                    $totalFiltered = $totalFiltered->orWhere('kind_of_item', 'LIKE', "%{$search}%");
+                    // $totalFiltered = $totalFiltered->orWhere('kind_of_item', 'LIKE', "%{$search}%");
                 }
 
                 $donated_items = $donated_items->offset($start)
@@ -79,7 +82,8 @@ class DonatedItemController extends Controller
                     ->orderBy($order, $dir)
                     ->get();
 
-                $totalFiltered = $totalFiltered->count();
+                // $totalFiltered = $totalFiltered->count();
+                $totalFiltered = $donated_items->count();
             }
 
             $data = array();
@@ -89,10 +93,11 @@ class DonatedItemController extends Controller
 
                     $nestedData['DT_RowIndex'] = $key + 1;
                     $nestedData['created_at'] = $donated_item->created_at->format('Y/m/d H:i:s');
-                    $nestedData['about_item'] = '<a href="' . $show . '">' . $donated_item->about_item . '</a>';
+                    $nestedData['item_unique_id'] = '<a href="' . $show . '">' . $donated_item->item_unique_id  . '</a>';
+                    $nestedData['about_item'] =  $donated_item->about_item;
                     $nestedData['pickedup_at'] = $donated_item->pickedup_at->format('d M Y');
                     $nestedData['pickedup_info'] = substr(strip_tags($donated_item->pickedup_info), 0, 50) . "...";
-                    $nestedData['status'] = '<span class="badge badge-success">'.$donated_item->statusName.'</span>';
+                    $nestedData['status'] = '<span class="badge badge-success">' . $donated_item->statusName . '</span>';
                     $nestedData['kind_of_item'] = $donated_item->kindOfItemName;
 
                     $data[] = $nestedData;

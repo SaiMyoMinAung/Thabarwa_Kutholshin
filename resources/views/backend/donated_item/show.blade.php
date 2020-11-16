@@ -19,7 +19,7 @@
             <div class="card border border-success">
                 <div class="card-body row">
                     <div class="col-md-6">
-                        <h3>Item Status - <span class="badge badge-success">{{$donatedItem->statusName}}</span></h3>
+                        <h3><span class="badge badge-success">{{$donatedItem->item_unique_id}}</span> - <span class="badge badge-success">{{$donatedItem->statusName}}</span></h3>
 
 
                         <div class="form-group {{ $errors->has('about_item') ? 'has-error' : '' }}">

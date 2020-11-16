@@ -17,10 +17,12 @@ class CitySeeder extends Seeder
             [
                 'name' => CITY_ONE,
                 'state_region_id' => StateRegion::where('name', STATE_REGION_ONE)->first()->id,
+                'is_available' => 1
             ],
             [
                 'name' => CITY_TWO,
                 'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
+                'is_available' => 1
             ]
         ];
 

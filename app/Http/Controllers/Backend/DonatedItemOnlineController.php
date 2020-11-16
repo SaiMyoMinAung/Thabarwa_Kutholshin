@@ -30,10 +30,8 @@ use App\State\Online\Transition\AssignedOrReassignToDeliveringTransition;
 use App\State\Online\Transition\AssignedOrReassignedToPickingUpTransition;
 use App\State\Online\Transition\AssignedOrReassignedToRepairingTransition;
 use App\State\Online\Transition\AssignedDriverToReassignedDriverTransition;
-use App\State\Online\Transition\RequiredRepairToAssignedRepairerTransition;
 use App\State\Online\Transition\AssignedDeliverToReassignedDeliverTransition;
 use App\State\Online\Transition\DonePickingupToAssignedStoreKeeperTransition;
-use App\State\Online\Transition\NotRequiredRepairToAssignedDeliverTransition;
 use App\State\Online\Transition\AssignedRepairerToReassignedRepairerTransition;
 use App\State\Online\Transition\AssignedStoreKeeperToReassignedStoreKeeperTransition;
 
