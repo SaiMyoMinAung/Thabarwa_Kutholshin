@@ -74,7 +74,7 @@
 
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="name">Name <span class="text-danger">*</span></label>
-                            <input name="name" type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" placeholder="Enter Name" value="{{$donatedItem->donor->name}}">
+                            <input name="donor_name" type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" placeholder="Enter Name" value="{{$donatedItem->donor_name}}">
                             @if ($errors->has('name'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('name') }}
@@ -82,7 +82,7 @@
                             @endif
                         </div>
 
-                        <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                        <!-- <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                             <label for="email">Email <span class="text-danger">*</span></label>
                             <input name="email" type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="Enter Email" value="{{$donatedItem->donor->email}}">
                             @if ($errors->has('email'))
@@ -90,11 +90,11 @@
                                 {{ $errors->first('email') }}
                             </div>
                             @endif
-                        </div>
+                        </div> -->
 
                         <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
                             <label for="phone">Phone <span class="text-danger">*</span></label>
-                            <input name="phone" type="text" class="form-control only-number {{ $errors->has('phone') ? 'is-invalid' : '' }}" id="phone" placeholder="Enter Phone" value="{{$donatedItem->donor->phone}}">
+                            <input name="phone" type="text" class="form-control only-number {{ $errors->has('phone') ? 'is-invalid' : '' }}" id="phone" placeholder="Enter Phone" value="{{$donatedItem->phone}}">
                             @if ($errors->has('phone'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('phone') }}

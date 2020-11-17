@@ -36,7 +36,7 @@ class DonationStoreFormRequest extends FormRequest
             'pickedup_at' => 'required|date|after_or_equal:' . date('Y-m-d'),
             'image' => 'nullable|array|max:3',
             'image.*' => 'nullable|mimes:jpeg,png,jpg|max:1024',
-            'email' => 'nullable|email|max:255',
+            // 'email' => 'nullable|email|max:255',
             'remark' => 'nullable|max:255',
             'recaptcha' => new Recaptcha,
             'country_id' => 'nullable|numeric|max:99999999999',
@@ -63,30 +63,22 @@ class DonationStoreFormRequest extends FormRequest
             'image.max' => 'Only Less Than 3 Photos Limited.',
             'image.mimes' => 'Accept Photo Format is jpeg, png, jpg.',
             'image.*.max' => 'Photo Must Be Less Than 1MB.',
-            'email.email' => 'Email Must Be Valid Email.',
-            'email.max' => 'Email Is Too Long!',
+            // 'email.email' => 'Email Must Be Valid Email.',
+            // 'email.max' => 'Email Is Too Long!',
             'remark.max' => 'Remark Is Too Long!',
         ];
     }
 
-    public function userData()
-    {
-        return new UserDTO([
-            'name' => $this->input('name'),
-            'phone' => $this->input('phone'),
-            'email' => $this->input('email'),
-            'password' => bcrypt(rand(8, 9)),
-        ]);
-    }
-
-    public function donatedItemData($donor_id)
+    public function donatedItemData()
     {
         return new DonatedItemDTO([
+            'item_unique_id' => 0,
+            'donor_name' => $this->input('name'),
+            'phone' => $this->input('phone'),
             'about_item' => $this->input('about_item'),
             'pickedup_info' => $this->input('pickedup_address'),
             'pickedup_at' => $this->input('pickedup_at'),
             'remark' => $this->input('remark'),
-            'donated_user_id' => $donor_id,
             'status' => DonatedItemStatus::NEW_STATE(),
             'state_class' => 'App\State\Online\NewState',
             'kind_of_item' => KindOfItemStatus::ONLINE(),

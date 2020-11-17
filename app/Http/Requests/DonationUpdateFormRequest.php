@@ -25,19 +25,15 @@ class DonationUpdateFormRequest extends FormRequest
      */
     public function rules()
     {
-        $donatedItem = $this->route('donated_item');
-        $donorId = $donatedItem->donor->id ?? null;
-
         return [
             'about_item' => 'required|max:255',
-            'name' => 'required|max:255',
-            'phone' => "required|numeric|unique:users,phone,$donorId|max:99999999999",
+            'donor_name' => 'required|max:255',
+            'phone' => "required|numeric|max:99999999999",
             'pickedup_address' => 'required|max:255',
             'state_region_id' => 'nullable|max:9999999',
             'pickedup_at' => 'required|date',
             'image' => 'nullable|array|max:3',
             'image.*' => 'nullable|mimes:jpeg,png,jpg|max:10240',
-            'email' => "nullable|email|unique:users,email,$donorId|max:255",
             'remark' => 'nullable|max:255',
             'country_id' => 'nullable',
             'city_id' => 'nullable',
@@ -50,8 +46,8 @@ class DonationUpdateFormRequest extends FormRequest
         return [
             'about_item.required' => 'Please Fill About Item.',
             'about_item.max' => 'About Item is Too Long!',
-            'name.required' => 'Please Fill Name.',
-            'name.max' => 'Name is Too Long!',
+            'donor_name.required' => 'Please Fill Name.',
+            'donor_name.max' => 'Name is Too Long!',
             'phone.required' => 'Please Fill Phone.',
             'phone.numeric' => 'Phone Must Be Number Only.',
             'phone.max' => 'Phone is Too Long!',
@@ -63,26 +59,16 @@ class DonationUpdateFormRequest extends FormRequest
             'image.max' => 'Only Less Than 3 Photos Limited.',
             'image.mimes' => 'Accept Photo Format is jpeg, png, jpg.',
             'image.*.max' => 'Photo Must Be Less Than 1MB.',
-            'email.email' => 'Email Must Be Valid Email.',
-            'email.max' => 'Email Is Too Long!',
             'remark.max' => 'Remark Is Too Long!',
         ];
-    }
-
-    public function userData()
-    {
-        return new UserUpdateDTO([
-            'name' => $this->input('name'),
-            'phone' => $this->input('phone'),
-            'email' => $this->input('email'),
-            'state_region_id' => $this->input('state_region_id'),
-        ]);
     }
 
     public function donatedItemData()
     {
         return new DonatedItemUpdateDTO([
             'about_item' => $this->input('about_item'),
+            'donor_name' => $this->input('donor_name'),
+            'phone' => $this->input('phone'),
             'pickedup_info' => $this->input('pickedup_address'),
             'pickedup_at' => $this->input('pickedup_at'),
             'remark' => $this->input('remark'),

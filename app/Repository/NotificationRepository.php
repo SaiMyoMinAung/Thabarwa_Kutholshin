@@ -3,35 +3,26 @@
 namespace App\Repository;
 
 use App\Admin;
-use Illuminate\Support\Str;
-use App\Repository\UserRepository;
 use App\Repository\DonatedItemRepository;
-use Illuminate\Support\Facades\Notification;
 use App\Http\Requests\DTO\DonatedItemNotiDTO;
-use App\Jobs\SendDonatedItemNoti;
 use App\Jobs\SendDonatedItemNotiJob;
-use App\Notifications\DonatedItemNotification;
-use Exception;
 
 class NotificationRepository
 {
-    public $userRepo;
     public $donatedItemRepo;
 
-    public function __construct(UserRepository $userRepo, DonatedItemRepository $donatedItemRepo)
+    public function __construct(DonatedItemRepository $donatedItemRepo)
     {
-        $this->userRepo = $userRepo;
         $this->donatedItemRepo = $donatedItemRepo;
     }
-    public function donatedItemNotiToAdmins($donor_uuid, $donated_item_uuid)
+    public function donatedItemNotiToAdmins($donated_item_uuid)
     {
-        $donor = $this->userRepo->findByUUID($donor_uuid);
         $donatedItem = $this->donatedItemRepo->findByUUID($donated_item_uuid);
 
         $notiData = new DonatedItemNotiDTO([
             'url' => route('donated_items.show', $donatedItem->uuid),
-            'name' => $donor->name,
-            'phone' => $donor->phone,
+            'name' => $donatedItem->donor_name,
+            'phone' => $donatedItem->phone,
             'about_item' => $donatedItem->about_item,
         ]);
 

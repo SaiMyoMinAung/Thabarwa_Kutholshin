@@ -15,9 +15,11 @@ class CreateDonatedItemsTable extends Migration
     {
         Schema::create('donated_items', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
-            $table->string('item_unique_id')->unique();
-            $table->string('about_item');
+            $table->char('uuid', 50);
+            $table->char('item_unique_id', 10)->unique();
+            $table->char('about_item', 100);
+            $table->char('donor_name', 100);
+            $table->char('phone', 50);
             $table->date('pickedup_at');
             $table->string('pickedup_info');
             $table->text('remark')->nullable();
@@ -34,13 +36,13 @@ class CreateDonatedItemsTable extends Migration
             $table->integer('store_id')->nullable();
             $table->integer('box_id')->nullable();
 
-            $table->integer('donated_user_id');
+            $table->integer('donated_user_id')->nullable();
             $table->integer('pickedup_volunteer_id')->nullable();
             $table->integer('store_keeper_volunteer_id')->nullable();
             $table->integer('repaired_volunteer_id')->nullable();
 
             $table->integer('status');
-            $table->string('state_class');
+            $table->char('state_class', 50);
 
             $table->boolean('is_confirmed_by_donor')->default(0);
             $table->boolean('is_pickingup')->default(0);

@@ -158,9 +158,6 @@ class DonatedItemController extends Controller
      */
     public function update(DonationUpdateFormRequest $request, DonatedItem $donatedItem)
     {
-        $userData = $request->userData()->all();
-        $donatedItem->donor->update($userData);
-
         if ($request->hasIsConfirmed()) {
             $t = new NewToConfirmedTransition();
             $donatedItem = $t($donatedItem);

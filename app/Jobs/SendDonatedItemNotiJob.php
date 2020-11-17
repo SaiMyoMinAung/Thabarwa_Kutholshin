@@ -8,20 +8,21 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Notification;
+use App\Http\Requests\DTO\DonatedItemNotiDTO;
 use App\Notifications\DonatedItemNotification;
 
 class SendDonatedItemNotiJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $admins;
+    public $admins = [];
     public $notiData;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($admins, $notiData)
+    public function __construct($admins, DonatedItemNotiDTO $notiData)
     {
         $this->admins = $admins;
         $this->notiData = $notiData;

@@ -5,11 +5,26 @@
       :can-cancel="true"
       :is-full-page="fullPage"
     ></loading>
-    <h4>
-      <span class="">{{ model.about_item }}</span>
+    <div class="row">
+      <div class="col-md-4">
+        <h4>{{ model.about_item }}</h4>
+      </div>
+      <div class="col-md-4">
+        <h4>Item Unique Id -
+          <span class="badge badge-success">{{ model.item_unique_id }}</span>
+        </h4>
+      </div>
+      <div class="col-md-4">
+        <h4>Status -
+          <span class="badge badge-primary">{{ model.statusName }}</span>
+        </h4>
+      </div>
+    </div>
+    <!-- <h4>
+      <span class=""></span>
       <span class="badge badge-success">{{ model.item_unique_id }}</span>
       <span class="badge badge-primary">{{ model.statusName }}</span>
-    </h4>
+    </h4> -->
     <div class="bs-stepper">
       <div class="bs-stepper-header">
         <div class="step" @click="changeStep('step1')">

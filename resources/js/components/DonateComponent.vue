@@ -281,7 +281,7 @@
               <!-- end image -->
 
               <!-- start email input -->
-              <b-form-group
+              <!-- <b-form-group
                 id="email"
                 label-cols-sm="3"
                 label-for="email"
@@ -299,7 +299,7 @@
                   placeholder="Fill Email (Optional)"
                   trim
                 ></b-form-input>
-              </b-form-group>
+              </b-form-group> -->
               <!-- end email input -->
 
               <!-- start remark info -->
