@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Volunteer;
+use App\RequestedItem;
 use App\Traits\HasUUID;
 use Illuminate\Support\Str;
 use App\State\DonatedItemState;
@@ -35,13 +36,11 @@ class DonatedItem extends Model
                 $defaultPadLeft = $numlength + 1;
 
                 $count = 0;
-                
             }
 
             $count++;
 
             $item_unique_id = str_pad($count, $defaultPadLeft, "0", STR_PAD_LEFT);
-
         } while (static::where('item_unique_id', $item_unique_id)->exists());
 
         $text = (string) $item_unique_id; // convert into a string
@@ -51,7 +50,6 @@ class DonatedItem extends Model
         $formatted_item_unique_id = implode("-", $arr);  // implode array with comma
 
         $this->attributes['item_unique_id'] = $formatted_item_unique_id;
-
     }
 
     public function getStateAttribute(): DonatedItemState
@@ -72,6 +70,11 @@ class DonatedItem extends Model
     public function getKindOfItemNameAttribute()
     {
         return KindOfItemStatus::search($this->kind_of_item);
+    }
+
+    public function requestedItems()
+    {
+        return $this->hasMany(RequestedItem::class, 'donated_item_id');
     }
 
     public function donor()

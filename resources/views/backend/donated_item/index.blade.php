@@ -28,6 +28,7 @@
             <th>Picked Up Info</th>
             <th>Status</th>
             <th>Kind Of Item</th>
+            <th>Manage Request</th>
         </tr>
     </thead>
     <tbody>
@@ -48,11 +49,10 @@
                 "url": "{{ route('donated_items.index') }}",
             },
             "columnDefs": [{
-                    "targets": [1],
-                    "visible": false,
-                    "searchable": false
-                },
-            ],
+                "targets": [1],
+                "visible": false,
+                "searchable": false
+            }, ],
             "order": [
                 [1, 'desc']
             ],
@@ -82,6 +82,11 @@
                 },
                 {
                     "data": "kind_of_item"
+                },
+                {
+                    "data": "manage_request",
+                    orderable: false,
+                    searchable: false
                 },
             ]
         });

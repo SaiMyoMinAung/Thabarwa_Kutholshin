@@ -7,8 +7,10 @@ use App\Ward;
 use App\StateRegion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\UserStoreFormRequest;
 use App\Http\Requests\UserUpdateFormRequest;
+use App\Http\Resources\Select2\UserSelect2ResourceCollection;
 
 class UserController extends Controller
 {
@@ -165,5 +167,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAllUsers(Request $request)
+    {
+        $users = auth()->user()->stateRegion
+            ->users()
+            ->where('users.name', 'like', '%' . $request->q . '%')
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+
+        return response()->json(new UserSelect2ResourceCollection($users), 200);
     }
 }

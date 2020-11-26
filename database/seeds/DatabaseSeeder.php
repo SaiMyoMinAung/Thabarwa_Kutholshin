@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         $this->call(StoreSeeder::class);
         $this->call(BoxSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(YogiSeeder::class);
+        $this->call(TeamSeeder::class);
 
         $this->call(VolunteerJobSeeder::class);
 

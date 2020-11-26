@@ -70,27 +70,40 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
 
 
     /**
-     * Donated Item Online API
+     * Requested Item API
      * Assign Deliver Step
      */
-    Route::post('assign_deliver/{donated_item}', 'DonatedItemOnlineController@assignDeliver')->name('donatedItem.assignDeliver');
-    Route::get('change_delivering_state/{donated_item}', 'DonatedItemOnlineController@changeDeliveringState')->name('donatedItem.changeDeliveringState');
-    Route::get('change_done_delivering_state/{donated_item}', 'DonatedItemOnlineController@changeDoneDeliveringState')->name('donatedItem.changeDoneDeliveringState');
+    Route::post('assign_deliver/{requested_item}', 'RequestedItemController@assignDeliver')->name('requestedItem.assignDeliver');
+    Route::get('change_delivering_state/{requested_item}', 'RequestedItemController@changeDeliveringState')->name('requestedItem.changeDeliveringState');
+    Route::get('change_done_delivering_state/{requested_item}', 'RequestedItemController@changeDoneDeliveringState')->name('requestedItem.changeDoneDeliveringState');
+    Route::get('change_complete_state/{requested_item}', 'RequestedItemController@changeCompleteState')->name('requestedItem.changeCompleteState');
+    Route::get('change_incomplete_state/{requested_item}', 'RequestedItemController@changeInCompleteState')->name('requestedItem.changeInCompleteState');
+    Route::get('change_cancel_state/{requested_item}', 'RequestedItemController@changeCancelState')->name('requestedItem.changeCancelState');
+    Route::get('recover_requested_item/{requested_item}', 'RequestedItemController@recoverRequestedItem')->name('requestedItem.recoverRequestedItem');
 
     /**For Select2 */
     Route::get('get_all_volunteers', 'VolunteerController@getAllVolunteers')->name('volunteers.get_all_volunteers');
     Route::get('get_driver_volunteers', 'VolunteerController@getDriverVolunteers')->name('volunteers.get_driver_volunteers');
     Route::get('get_store_keeper_volunteers', 'VolunteerController@getStoreKeeperVolunteers')->name('volunteers.get_store_keeper_volunteers');
     Route::get('get_repairer_volunteers', 'VolunteerController@getRepairerVolunteers')->name('volunteers.get_repairer_volunteers');
+    Route::get('get_delivered_volunteers', 'VolunteerController@getDeliveredVolunteers')->name('volunteers.get_delivered_volunteers');
     Route::get('get_stores_of_auth', 'StoreController@getStoresOfAuth')->name('stores.auth');
     Route::get('get_boxes_of_auth', 'BoxController@getBoxesOfAuth')->name('boxes.auth');
+    Route::get('requested_items/fetch_requestable_types', 'RequestedItemController@fetchRequestableTypes')->name('requestable_types.fetch');
+    Route::get('get_all_users', 'UserController@getAllUsers')->name('users.fetch');
+    Route::get('get_all_teams', 'TeamController@getAllTeams')->name('teams.fetch');
+    Route::get('get_all_yogis', 'YogiController@getAllYogis')->name('yogis.fetch');
 
+    /**
+     * Donated Item And Requested Item API
+     */
     Route::get('donated_items/{donated_item}/manage', 'DonatedItemController@manage')->name('donated_items.manage');
-    Route::post('donated_items/{donated_item}/assign_driver', 'DonatedItemController@assignDriver')->name('donated_items.assign_driver');
-    Route::get('donated_items/{donated_item}/arrive_at_office', 'DonatedItemController@arriveAtOffice')->name('donated_items.arrive_at_office');
+    Route::get('donated_items/{donated_item}/requested_items', 'RequestedItemController@index')->name('donated_items.requested_items.index');
+    Route::post('donatd_items/{donated_item}/requested_items', 'RequestedItemController@store')->name('requested_items.store');
+    Route::get('donated_items/{donated_item}/fetch_requested_items', 'RequestedItemController@fetchRequestItems')->name('donated_items.requested_items.fetch');
 
     Route::resource('donated_items', 'DonatedItemController');
-
+    
     Route::get('settings', 'SettingController@index');
     Route::resource('cities', 'CityController');
     Route::resource('countries', 'CountryController');

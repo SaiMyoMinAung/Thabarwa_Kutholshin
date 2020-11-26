@@ -12,7 +12,7 @@ class AssignedOrReassignedToStoringTransition
     {
         if (!$donatedItem->state->canChangeStoringState()) {
             $error = ValidationException::withMessages([
-                'transition_error' => ['Cannot Change To Pickingup State.'],
+                'transition_error' => ['Cannot Change To Storing State.'],
             ]);
             throw $error;
         }

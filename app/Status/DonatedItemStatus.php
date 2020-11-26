@@ -25,6 +25,7 @@ use MyCLabs\Enum\Enum;
  * @method static DonatedItemStatus DONE_REPAIRING()
  * @method static DonatedItemStatus COMPLETE()
  * @method static DonatedItemStatus INCOMPLETE()
+ * @method static DonatedItemStatus NEW_REQUEST()
  * @method static DonatedItemStatus ASSIGNED_DELIVER()
  * @method static DonatedItemStatus REASSIGNED_DELIVER()
  * @method static DonatedItemStatus DELIVERING()
@@ -52,9 +53,10 @@ class DonatedItemStatus extends Enum
     private const DONE_REPAIRING = 16;
     private const COMPLETE = 17;
     private const INCOMPLETE = 18;
-    // Request Status
-    private const ASSIGNED_DELIVER = 19;
-    private const REASSIGNED_DELIVER = 20;
-    private const DELIVERING = 21;
-    private const DONE_DELIVERING = 22;
+    // Requested Item Status
+    private const NEW_REQUEST = 19;
+    private const ASSIGNED_DELIVER = 20;
+    private const REASSIGNED_DELIVER = 21;
+    private const DELIVERING = 22;
+    private const DONE_DELIVERING = 23;
 }

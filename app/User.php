@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Ward;
+use App\StateRegion;
 use App\Traits\HasUUID;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -53,5 +55,10 @@ class User extends Authenticatable
                 $model->password = $model->getOriginal('password');
             }
         });
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id')->withDefault();
     }
 }

@@ -32,6 +32,7 @@ class DonatedItemController extends Controller
                 5 => 'pickedup_info',
                 6 => 'status',
                 7 => 'kind_of_item',
+                8 => 'manage_request'
             );
 
             $totalData = DonatedItem::count();
@@ -90,6 +91,7 @@ class DonatedItemController extends Controller
             if (!empty($donated_items)) {
                 foreach ($donated_items as $key => $donated_item) {
                     $show =  route('donated_items.show', $donated_item->uuid);
+                    $manageRequest = route('donated_items.requested_items.index', $donated_item->uuid);
 
                     $nestedData['DT_RowIndex'] = $key + 1;
                     $nestedData['created_at'] = $donated_item->created_at->format('Y/m/d H:i:s');
@@ -99,6 +101,12 @@ class DonatedItemController extends Controller
                     $nestedData['pickedup_info'] = substr(strip_tags($donated_item->pickedup_info), 0, 50) . "...";
                     $nestedData['status'] = '<span class="badge badge-success">' . $donated_item->statusName . '</span>';
                     $nestedData['kind_of_item'] = $donated_item->kindOfItemName;
+                    if ($donated_item->is_complete) {
+                        $nestedData["manage_request"] = '<a href="' . $manageRequest . '" class="btn btn-success">Manage Requests <span class="badge badge-danger float-right ml-2 mt-1">' . $donated_item->requestedItems->count() . '</span></a>';
+                    } else {
+                        $nestedData["manage_request"] = '-';
+                    }
+
 
                     $data[] = $nestedData;
                 }
@@ -124,7 +132,7 @@ class DonatedItemController extends Controller
      */
     public function create()
     {
-        //
+        return back();
     }
 
     /**
@@ -176,7 +184,7 @@ class DonatedItemController extends Controller
 
     public function manage($uuid)
     {
-        $donatedItem = DonatedItem::with(['pickedupVolunteer'])->where('uuid', $uuid)->first();
+        $donatedItem = DonatedItem::with(['pickedupVolunteer'])->where('uuid', $uuid)->firstOrFail();
 
         if ($donatedItem->is_confirmed_by_donor == 0) {
             return back()->with('danger', 'You Must Confirm To Donor')->withErrors(['is_confirmed' => 'Please Check This!']);

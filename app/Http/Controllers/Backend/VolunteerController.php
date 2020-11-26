@@ -219,4 +219,17 @@ class VolunteerController extends Controller
 
         return response()->json(new VolunteerSelect2ResourceCollection($volunteers), 200);
     }
+
+    public function getDeliveredVolunteers(Request $request)
+    {
+        $volunteers = auth()->user()->office->volunteers()
+            ->where('name', 'like', '%' . $request->q . '%')
+            ->whereHas('volunteerJobs', function (Builder $query) {
+                $query->where('name', JOB_DELIVER);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate(5);
+
+        return response()->json(new VolunteerSelect2ResourceCollection($volunteers), 200);
+    }
 }

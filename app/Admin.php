@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Office;
+use App\StateRegion;
 use App\Traits\HasUUID;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -42,6 +43,11 @@ class Admin extends Authenticatable
     public function office()
     {
         return $this->belongsTo(Office::class, 'office_id')->withDefault();
+    }
+
+    public function stateRegion()
+    {
+        return $this->belongsTo(StateRegion::class, 'state_region_id')->withDefault();
     }
 
     public function getUnreadNotis()

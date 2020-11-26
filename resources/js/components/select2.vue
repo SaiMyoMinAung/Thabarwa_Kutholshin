@@ -133,7 +133,7 @@ export default {
       vm.fetchData();
     }, 350),
     fetchData() {
-      if (this.url == null || this.url == undefined) {
+      if (this.url == null || this.url == undefined || this.url == "") {
         return;
       }
       var self = this;

@@ -32,3 +32,16 @@ const CENTER_TWO = "Center Two";
 
 const WARD_ONE = "Ward One";
 const WARD_TWO = "Ward Two";
+
+const TEST_USER = "Mg Mg test";
+const TEST_USER_EMAIL = "mgmgtest@gmail.com";
+const TEST_USER_PHONE = "097887878787";
+
+const TEST_YOGI = "Ko Yogi";
+const TEST_YOGI_EMAIL = "yogi@gmail.com";
+const TEST_YOGI_PHONE = "097887878787";
+
+const TEAM_ONE = "Team One";
+const TEAM_TWO = "Team Two";
+const TEAM_THREE = "Team Three";
+const TEAM_FOUR = "Team Four";

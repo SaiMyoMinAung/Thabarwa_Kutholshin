@@ -25,6 +25,7 @@ class CreateDonatedItemsTable extends Migration
             $table->text('remark')->nullable();
             $table->timestamp('delivered_at')->nullable();
             $table->string('delivered_info')->nullable();
+            $table->integer('qty')->default(1);
 
             $table->integer('kind_of_item');
             $table->integer('item_type_id')->nullable();
