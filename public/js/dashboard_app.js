@@ -2470,6 +2470,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2705,6 +2706,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_online_manage_component_step4__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/online_manage_component/step4 */ "./resources/js/models/online_manage_component/step4.js");
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-loading-overlay */ "./node_modules/vue-loading-overlay/dist/vue-loading.min.js");
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_6__);
+//
+//
 //
 //
 //
@@ -53912,17 +53915,6 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-3 text-center" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-outline-primary mb-1",
-              on: { click: _vm.createRequest }
-            },
-            [_vm._v("\n        Create Request\n      ")]
-          )
-        ]),
-        _vm._v(" "),
         _c("div", { staticClass: "col-md-3" }, [
           _c("h4", [
             _vm._v("\n        Item Unique Id -\n        "),
@@ -53960,6 +53952,17 @@ var render = function() {
               )
             ])
           ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-3 text-center" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary mb-1",
+              on: { click: _vm.createRequest }
+            },
+            [_vm._v("\n        Create Request\n      ")]
+          )
         ])
       ]),
       _vm._v(" "),
@@ -54184,19 +54187,19 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-default",
-                    on: { click: _vm.cancelCreateRequestItem }
+                    staticClass: "btn btn-success",
+                    on: { click: _vm.saveRequestItem }
                   },
-                  [_vm._v("\n          Cancel\n        ")]
+                  [_vm._v("\n          Create\n        ")]
                 ),
                 _vm._v(" "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-success",
-                    on: { click: _vm.saveRequestItem }
+                    staticClass: "btn btn-default",
+                    on: { click: _vm.cancelCreateRequestItem }
                   },
-                  [_vm._v("\n          Create\n        ")]
+                  [_vm._v("\n          Cancel\n        ")]
                 )
               ])
             ])
@@ -54962,7 +54965,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4" }, [
           _c("h4", [
-            _vm._v("Item Unique Id -\n        "),
+            _vm._v("\n        Item Unique Id -\n        "),
             _c("span", { staticClass: "badge badge-success" }, [
               _vm._v(_vm._s(_vm.model.item_unique_id))
             ])
@@ -54971,7 +54974,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-md-4" }, [
           _c("h4", [
-            _vm._v("Status -\n        "),
+            _vm._v("\n        Status -\n        "),
             _c("span", { staticClass: "badge badge-primary" }, [
               _vm._v(_vm._s(_vm.model.statusName))
             ])

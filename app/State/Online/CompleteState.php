@@ -15,12 +15,14 @@ class CompleteState extends DonatedItemState
     public function canChangeToIncompleteState(): bool
     {
         return ($this->donatedItem->is_done_pickingup
-                && $this->donatedItem->is_done_storing
-                && $this->donatedItem->is_complete)
+            && $this->donatedItem->is_done_storing
+            && $this->donatedItem->is_complete
+            && $this->donatedItem->requestedItems->count() == 0)
             || ($this->donatedItem->is_done_pickingup
                 && $this->donatedItem->is_done_storing
                 && !$this->donatedItem->is_required_repairing
                 && !$this->donatedItem->is_done_repairing
-                && $this->donatedItem->repaired_volunteer_id == null);
+                && $this->donatedItem->repaired_volunteer_id == null
+                && $this->donatedItem->requestedItems->count() == 0);
     }
 }

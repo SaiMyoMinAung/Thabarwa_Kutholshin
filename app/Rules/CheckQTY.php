@@ -30,7 +30,11 @@ class CheckQTY implements Rule
     public function passes($attribute, $value)
     {
         $donatedItem = DonatedItem::where('uuid', $this->uuid)->firstOrFail();
-        $left_item_qty = $donatedItem->qty - $donatedItem->requestedItems->where('status', '!=', RequestedItemStatus::CANCELLED())->sum('qty');
+
+        $requestedItemCount = $donatedItem->requestedItems()->where('status', '!=', RequestedItemStatus::CANCELLED())->get()->sum('qty');
+
+        $left_item_qty = $donatedItem->qty - $requestedItemCount;
+
         return $value <= $left_item_qty;
     }
 

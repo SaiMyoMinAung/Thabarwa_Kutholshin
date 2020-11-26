@@ -66,4 +66,9 @@ class RequestedItem extends Model
     {
         return $this->belongsTo(Volunteer::class, 'delivered_volunteer_id')->withDefault();
     }
+
+    public function donatedItem()
+    {
+        return $this->belongsTo(DonatedItem::class, 'donated_item_id')->withDefault();
+    }
 }

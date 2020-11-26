@@ -101,11 +101,20 @@ class DonatedItemController extends Controller
                     $nestedData['pickedup_info'] = substr(strip_tags($donated_item->pickedup_info), 0, 50) . "...";
                     $nestedData['status'] = '<span class="badge badge-success">' . $donated_item->statusName . '</span>';
                     $nestedData['kind_of_item'] = $donated_item->kindOfItemName;
-                    if ($donated_item->is_complete) {
-                        $nestedData["manage_request"] = '<a href="' . $manageRequest . '" class="btn btn-success">Manage Requests <span class="badge badge-danger float-right ml-2 mt-1">' . $donated_item->requestedItems->count() . '</span></a>';
-                    } else {
-                        $nestedData["manage_request"] = '-';
+
+                    if ($donated_item->is_confirmed_by_donor == 1) {
+                        $nestedData["manage_request"] = '<a class="btn btn-info" href="' . route("donated_items.manage", $donated_item->uuid) . '"><i class="fas fa-tools"></i></a> - ';
                     }
+
+                    if ($donated_item->is_complete) {
+                        $nestedData["manage_request"] .= '<a href="' . $manageRequest . '" class="btn btn-success"><i class="fas fa-receipt"></i> <span class="badge badge-danger float-right ml-2 mt-1">' . $donated_item->requestedItems->count() . '</span></a>';
+                    } else {
+                        $nestedData["manage_request"] .= '';
+                    }
+
+
+
+
 
 
                     $data[] = $nestedData;
@@ -132,7 +141,7 @@ class DonatedItemController extends Controller
      */
     public function create()
     {
-        return back();
+        return back()->with('danger', 'Coming Soon...');
     }
 
     /**

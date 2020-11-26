@@ -12,6 +12,9 @@
 
 @section('content')
 <div class="row">
+    <div class="col-md-12 col-lg-12">
+        <a class="btn btn-secondary" href="{{route('donated_items.index')}}">Back</a>
+    </div>
     <div class="col-md-12 col-lg-12 col-centered">
         <form action="{{route('donated_items.update',$donatedItem->uuid)}}" method="post">
             @csrf
@@ -150,9 +153,7 @@
                         @if($donatedItem->is_confirmed_by_donor == 1 && $donatedItem->pickedup_volunteer_id == null)
                         <input type="submit" class="btn btn-warning" name="is_cancelled" value="Update And Cancel">
                         @endif
-                        @if($donatedItem->is_confirmed_by_donor == 1)
-                        <a class="btn btn-info" href="{{route('donated_items.manage',$donatedItem->uuid)}}">Manage</a>
-                        @endif
+                        <a href="{{route('donated_items.index')}}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>
             </div>

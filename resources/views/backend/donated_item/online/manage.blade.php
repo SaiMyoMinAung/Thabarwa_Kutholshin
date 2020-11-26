@@ -9,9 +9,10 @@
 @section('content')
 
 <div class="row" id="dashboard-app">
-    <online-manage-component
-    :model='@json($donatedItem)'
-    ></online-manage-component>
+    <div class="col-md-12 col-lg-12">
+        <a class="btn btn-secondary" href="{{route('donated_items.index')}}">BacK</a>
+    </div>
+    <online-manage-component :model='@json($donatedItem)'></online-manage-component>
 </div>
 
 @endsection
@@ -31,10 +32,4 @@
     //     linear: false,
     //     animation: true
     // })
-    // var stepper = "{{Request()->stepper}}";
-
-    // if (stepper.length != 0) {
-    //     stepper2.to(stepper);
-    // }
-</script>
-@stop
+    // var stepper = "{{Request()->stepper}}" ; // if (stepper.length !=0) { // stepper2.to(stepper); // } </script> @stop

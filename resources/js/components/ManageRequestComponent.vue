@@ -68,11 +68,6 @@
     <!-- end model -->
     <!--Start Header Section -->
     <div class="row">
-      <div class="col-md-3 text-center">
-        <button class="btn btn-outline-primary mb-1" @click="createRequest">
-          Create Request
-        </button>
-      </div>
       <div class="col-md-3">
         <h4>
           Item Unique Id -
@@ -96,6 +91,11 @@
             {{ model.donated_item.donor_name }}
           </span>
         </h4>
+      </div>
+      <div class="col-md-3 text-center">
+        <button class="btn btn-outline-primary mb-1" @click="createRequest">
+          Create Request
+        </button>
       </div>
     </div>
     <!-- End Header Section -->
@@ -215,11 +215,12 @@
           </div>
           <!-- end qty -->
 
-          <button class="btn btn-default" @click="cancelCreateRequestItem">
-            Cancel
-          </button>
           <button @click="saveRequestItem" class="btn btn-success">
             Create
+          </button>
+          
+          <button class="btn btn-default" @click="cancelCreateRequestItem">
+            Cancel
           </button>
         </div>
       </div>
@@ -641,7 +642,7 @@ export default {
           Object.assign(this.model, response.data);
           this.create_request_item = new CreateRequestItem();
           self.create_request_item.validation = new CreateRequestItemValidation();
-          console.log(this.showTable)
+          console.log(this.showTable);
           this.showTable = true;
           this.showCreate = false;
           window.dashboard_app.$emit("success", response.data);

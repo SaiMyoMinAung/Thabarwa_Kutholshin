@@ -10,17 +10,19 @@
         <h4>{{ model.about_item }}</h4>
       </div>
       <div class="col-md-4">
-        <h4>Item Unique Id -
+        <h4>
+          Item Unique Id -
           <span class="badge badge-success">{{ model.item_unique_id }}</span>
         </h4>
       </div>
       <div class="col-md-4">
-        <h4>Status -
+        <h4>
+          Status -
           <span class="badge badge-primary">{{ model.statusName }}</span>
         </h4>
       </div>
     </div>
-    
+
     <div class="bs-stepper">
       <div class="bs-stepper-header">
         <div class="step" @click="changeStep('step1')">

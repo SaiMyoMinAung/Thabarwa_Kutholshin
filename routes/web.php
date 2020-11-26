@@ -18,8 +18,9 @@ Auth::routes();
 Route::get('/', 'DonationController@index');
 
 Route::post('donation', 'DonationController@save');
+
 /**
- * For Select2 Data
+ * For Select2 Data For Frontend
  */
 Route::get('get_countries_for_select2', 'Select2Controller@getCountries')->name('getCountries');
 Route::get('get_state_regions_for_select2', 'Select2Controller@getStateRegions')->name('getStateRegions');
