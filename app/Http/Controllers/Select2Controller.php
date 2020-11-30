@@ -15,6 +15,17 @@ use App\Http\Resources\CountryResourceCollection;
 
 class Select2Controller extends Controller
 {
+    public function getAutoCompleteData(Request $request)
+    {
+        $data =  [
+            // [
+            //     'name' => 'Some Name',
+            //     "logo" => "https://logo.clearbit.com/flymna.com"
+            // ]
+        ];
+        return response()->json($data, 200);
+    }
+
     public function getCountries(Request $request)
     {
         $countries = Country::where('name', 'like', '%' . $request->q . '%')
@@ -67,5 +78,4 @@ class Select2Controller extends Controller
 
         return response()->json(new CityResource($city), 200);
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\DTO\UserUpdateDTO;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\DTO\DonatedItemUpdateDTO;
 
@@ -27,6 +26,8 @@ class DonationUpdateFormRequest extends FormRequest
     {
         return [
             'about_item' => 'required|max:255',
+            'qty' => 'required|numeric|max:999999',
+            'estimate_cost' => 'required|numeric|max:9999999999',
             'donor_name' => 'required|max:255',
             'phone' => "required|numeric|max:99999999999",
             'pickedup_address' => 'required|max:255',
@@ -46,6 +47,10 @@ class DonationUpdateFormRequest extends FormRequest
         return [
             'about_item.required' => 'Please Fill About Item.',
             'about_item.max' => 'About Item is Too Long!',
+            'qty.required' => 'Please Fill Qty.',
+            'qty.max' => 'Qty is Too Much!',
+            'estimate_cost.required' => 'Please Fill Estimate Cost.',
+            'estimate_cost.max' => 'Estimate Cost is Too Much!',
             'donor_name.required' => 'Please Fill Name.',
             'donor_name.max' => 'Name is Too Long!',
             'phone.required' => 'Please Fill Phone.',
@@ -67,6 +72,8 @@ class DonationUpdateFormRequest extends FormRequest
     {
         return new DonatedItemUpdateDTO([
             'about_item' => $this->input('about_item'),
+            'qty' => $this->input('qty'),
+            'estimate_cost' => $this->input('estimate_cost'),
             'donor_name' => $this->input('donor_name'),
             'phone' => $this->input('phone'),
             'pickedup_info' => $this->input('pickedup_address'),

@@ -3214,6 +3214,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -55887,6 +55894,22 @@ var render = function() {
                             }
                           }
                         })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _vm.model.is_complete
+                      ? _c("yesno", {
+                          attrs: {
+                            text: "Go To Manage Request",
+                            addClass: "btn-success"
+                          },
+                          on: {
+                            confirmed: function($event) {
+                              return _vm.step4.goToMakeRequest()
+                            }
+                          }
+                        })
                       : _vm._e()
                   ],
                   1
@@ -75958,6 +75981,11 @@ var step4 = /*#__PURE__*/function () {
   }
 
   _createClass(step4, [{
+    key: "goToMakeRequest",
+    value: function goToMakeRequest() {
+      window.location.href = route('donated_items.requested_items.index', this.uuid);
+    }
+  }, {
     key: "assignComplete",
     value: function assignComplete() {
       var _this = this;

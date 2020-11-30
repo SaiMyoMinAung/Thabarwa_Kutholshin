@@ -9,6 +9,8 @@ use Spatie\DataTransferObject\DataTransferObject;
 final class DonatedItemUpdateDTO extends DataTransferObject
 {
     public $about_item;
+    public $qty;
+    public $estimate_cost;
     public $donor_name;
     public $phone;
     public $pickedup_at;

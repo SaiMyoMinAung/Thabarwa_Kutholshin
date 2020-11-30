@@ -498,6 +498,13 @@
                 addClass="btn-danger"
                 @confirmed="step4.assignIncomplete()"
               ></yesno>
+              <br />
+              <yesno
+                v-if="model.is_complete"
+                text="Go To Manage Request"
+                addClass="btn-success"
+                @confirmed="step4.goToMakeRequest()"
+              ></yesno>
             </div>
           </div>
         </div>

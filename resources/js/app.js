@@ -3,10 +3,13 @@ require('./bootstrap');
 import Vue from 'vue';
 import { VueReCaptcha } from 'vue-recaptcha-v3'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import { CoolSelectPlugin } from "vue-cool-select";
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 import "bootstrap-vue/dist/bootstrap-vue.css";
+import("vue-cool-select/dist/themes/bootstrap.css");
 
+Vue.use(CoolSelectPlugin);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueReCaptcha, {
@@ -29,6 +32,6 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 
 Vue.component('v-select', vSelect);
 
-const app = new Vue({
+window.app = new Vue({
   el: '#app',
 });

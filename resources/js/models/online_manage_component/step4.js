@@ -6,6 +6,10 @@ export default class step4 {
         this.validation = new step4Validation;
     }
 
+    goToMakeRequest() {
+        window.location.href = route('donated_items.requested_items.index', this.uuid)
+    }
+
     assignComplete() {
         let self = this;
         let assignCompleteApi = route("donatedItem.assignComplete", this.uuid);

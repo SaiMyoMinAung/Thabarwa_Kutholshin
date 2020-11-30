@@ -27,10 +27,30 @@
 
                         <div class="form-group {{ $errors->has('about_item') ? 'has-error' : '' }}">
                             <label for="about_item">About Item <span class="text-danger">*</span></label>
-                            <input name="about_item" id="about_item" type="text" class="form-control {{ $errors->has('about_item') ? 'is-invalid' : '' }}" id="about_item" placeholder="Enter About Item" value="{{$donatedItem->about_item}}">
+                            <input name="about_item" type="text" class="form-control {{ $errors->has('about_item') ? 'is-invalid' : '' }}" id="about_item" placeholder="Enter About Item" value="{{$donatedItem->about_item}}">
                             @if ($errors->has('about_item'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('about_item') }}
+                            </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group {{ $errors->has('qty') ? 'has-error' : '' }}">
+                            <label for="qty">Qty <span class="text-danger">*</span></label>
+                            <input name="qty" id="qty" type="text" class="form-control only-number {{ $errors->has('qty') ? 'is-invalid' : '' }}" placeholder="Enter Qty" value="{{$donatedItem->qty}}">
+                            @if ($errors->has('qty'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('qty') }}
+                            </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group {{ $errors->has('estimate_cost') ? 'has-error' : '' }}">
+                            <label for="estimate_cost">Estimate Cost (MMK)<span class="text-danger">*</span></label>
+                            <input name="estimate_cost" id="estimate_cost" type="text" class="form-control only-number {{ $errors->has('estimate_cost') ? 'is-invalid' : '' }}" placeholder="Enter Estimate Cost" value="{{$donatedItem->estimate_cost}}">
+                            @if ($errors->has('estimate_cost'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('estimate_cost') }}
                             </div>
                             @endif
                         </div>

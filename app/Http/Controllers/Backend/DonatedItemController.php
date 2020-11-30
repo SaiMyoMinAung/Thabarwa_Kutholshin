@@ -101,9 +101,11 @@ class DonatedItemController extends Controller
                     $nestedData['pickedup_info'] = substr(strip_tags($donated_item->pickedup_info), 0, 50) . "...";
                     $nestedData['status'] = '<span class="badge badge-success">' . $donated_item->statusName . '</span>';
                     $nestedData['kind_of_item'] = $donated_item->kindOfItemName;
-
+                    $nestedData["manage_request"] = '';
                     if ($donated_item->is_confirmed_by_donor == 1) {
-                        $nestedData["manage_request"] = '<a class="btn btn-info" href="' . route("donated_items.manage", $donated_item->uuid) . '"><i class="fas fa-tools"></i></a> - ';
+                        $nestedData["manage_request"] .= '<a class="btn btn-info" href="' . route("donated_items.manage", $donated_item->uuid) . '"><i class="fas fa-tools"></i></a> - ';
+                    } else {
+                        $nestedData["manage_request"] .= 'Need To Confirm Donor';
                     }
 
                     if ($donated_item->is_complete) {

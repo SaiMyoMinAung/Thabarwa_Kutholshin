@@ -28,6 +28,7 @@ Route::get('get_cities_for_select2', 'Select2Controller@getCities')->name('getCi
 Route::get('get_autoselect_country', 'Select2Controller@getAutoSelectCountry')->name('getCountry.autoselect');
 Route::get('get_autoselect_state_region', 'Select2Controller@getAutoSelectStateRegion')->name('getStateRegion.autoselect');
 Route::get('get_autoselect_city', 'Select2Controller@getAutoSelectCity')->name('getCity.autoselect');
+Route::get('get_auto_complete_data', 'Select2Controller@getAutoCompleteData');
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace' => 'Backend'], function () {
     Route::get('dashboard', 'DashboardController@index');
@@ -104,7 +105,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::get('donated_items/{donated_item}/fetch_requested_items', 'RequestedItemController@fetchRequestItems')->name('donated_items.requested_items.fetch');
 
     Route::resource('donated_items', 'DonatedItemController');
-    
+
     Route::get('settings', 'SettingController@index');
     Route::resource('cities', 'CityController');
     Route::resource('countries', 'CountryController');

@@ -13,6 +13,22 @@
               id="about-item"
               label-cols-sm="3"
               label-for="name"
+            >
+              <template v-slot:label>
+                About Item
+                <span class="text-danger">*</span>
+              </template>
+              <auto-complete-component
+                @selectedItem="selectedItem($event)"
+              ></auto-complete-component>
+            </b-form-group>
+            <!-- end about item input -->
+
+            <!-- start about item input -->
+            <!-- <b-form-group
+              id="about-item"
+              label-cols-sm="3"
+              label-for="name"
               :state="aboutItemInput.state"
               :valid-feedback="aboutItemInput.successMessage"
               :invalid-feedback="aboutItemInput.errorMessage"
@@ -31,7 +47,7 @@
                 placeholder="Fill About Item"
                 trim
               ></b-form-input>
-            </b-form-group>
+            </b-form-group> -->
             <!-- end about item input -->
 
             <!-- start name input -->
@@ -149,7 +165,7 @@
               :invalid-feedback="location.errorMessage"
             >
               <template v-slot:label>
-                <br>
+                <br />
                 Select Your Location
                 <span class="text-danger">*</span>
               </template>
@@ -339,6 +355,7 @@ import pickedUpAddressInput from "../validations/pickedup_address_input.js";
 import datePickerInput from "../validations/date_picker_input.js";
 import RemarkEditor from "../inputs/RemarkEditor";
 import select2 from "./select2";
+import AutoCompleteComponent from "./AutoCompleteComponent";
 
 export default {
   created() {
@@ -411,6 +428,9 @@ export default {
     showSpinner: false,
   }),
   methods: {
+    selectedItem($event) {
+      this.donation.about_item = $event;
+    },
     async recaptcha() {
       // (optional) Wait until recaptcha has been loaded.
       await this.$recaptchaLoaded();
@@ -489,8 +509,9 @@ export default {
         return;
       }
       if (errors.about_item) {
-        this.aboutItemInput.state = false;
-        this.aboutItemInput.errorMessage = errors.about_item[0];
+        window.app.$emit("aboutItemInputHasError", errors.about_item[0]);
+        // this.aboutItemInput.state = false;
+        // this.aboutItemInput.errorMessage = errors.about_item[0];
       }
       if (errors.name) {
         this.nameInput.state = false;
@@ -601,6 +622,7 @@ export default {
   components: {
     RemarkEditor,
     select2,
+    AutoCompleteComponent,
   },
   computed: {
     countryDisabled() {
