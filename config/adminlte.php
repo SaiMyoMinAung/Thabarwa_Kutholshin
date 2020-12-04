@@ -237,7 +237,13 @@ return [
         //     'topnav' => true,
         // ],
         ['header' => 'Management'],
-        
+        [
+            'text'        => 'Donation Records',
+            'url'         => 'backend/donation_records',
+            'active'      => ['backend/donation_records', 'backend/donation_records/*'],
+            'icon'        => 'fas fa-tasks',
+            'label_color' => 'success',
+        ],
         [
             'text'        => 'Donated Items',
             'url'         => 'backend/donated_items',

@@ -1,5 +1,8 @@
 window._ = require('lodash');
 
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.css';
+import { Burmese } from "flatpickr/dist/l10n/my.js"
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -7,11 +10,28 @@ window._ = require('lodash');
  */
 
 try {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '/' + mm + '/' + dd;
+
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
     window.route = require('./router');
     require('bootstrap');
-} catch (e) {}
+    require('bootstrap-confirmation2');
+    flatpickr('.flatpickr-for-donation-record', {
+        "locale": Burmese,
+        altInput: true,
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+        maxDate: "today",
+        defaultDate: today
+    });
+    
+} catch (e) { }
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

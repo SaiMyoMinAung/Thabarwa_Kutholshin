@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::get('donated_items/{donated_item}/fetch_requested_items', 'RequestedItemController@fetchRequestItems')->name('donated_items.requested_items.fetch');
 
     Route::resource('donated_items', 'DonatedItemController');
+    Route::resource('donation_records', 'DonationRecordController');
 
     Route::get('settings', 'SettingController@index');
     Route::resource('cities', 'CityController');

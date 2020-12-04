@@ -4,6 +4,7 @@ namespace App;
 
 use App\Office;
 use App\StateRegion;
+use App\TypeOfAdmin;
 use App\Traits\HasUUID;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -53,5 +54,10 @@ class Admin extends Authenticatable
     public function getUnreadNotis()
     {
         return $this->unreadNotifications()->orderBy('id', 'desc')->take(5)->get();
+    }
+
+    public function typeOfAdmin()
+    {
+        return $this->belongsTo(TypeOfAdmin::class, 'type_of_admin_id')->withDefault();
     }
 }

@@ -3,6 +3,7 @@
 use App\Admin;
 use App\Office;
 use App\StateRegion;
+use App\TypeOfAdmin;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -15,12 +16,25 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $admin = new Admin();
-        $admin->name = 'Ku Thol Shin';
+        $admin->name = 'Ku Thol Shin (Donated Item Record Admin)';
         $admin->email = 'admin@kutholshin.com';
         $admin->phone = '0977777777';
         $admin->password = bcrypt('123456');
         $admin->state_region_id = StateRegion::where('name', STATE_REGION_ONE)->first()->id;
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
+        $admin->is_super = true;
+        $admin->type_of_admin_id = TypeOfAdmin::where('name', DONATED_ITEM_RECORD_ADMIN)->first()->id;
+        $admin->save();
+
+        $admin = new Admin();
+        $admin->name = 'Ku Thol Shin (Donation Record Admin)';
+        $admin->email = 'admin@kutholshin2.com';
+        $admin->phone = '09799999999';
+        $admin->password = bcrypt('123456');
+        $admin->state_region_id = StateRegion::where('name', STATE_REGION_ONE)->first()->id;
+        $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
+        $admin->is_super = false;
+        $admin->type_of_admin_id = TypeOfAdmin::where('name', DONATION_RECORD_ADMIN)->first()->id;
         $admin->save();
     }
 }

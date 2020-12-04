@@ -38,6 +38,34 @@
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
     @yield('adminlte_css')
+    <style>
+        .select2 {
+            width: 100% !important;
+            border-left: 2px solid blue;
+            border-radius: 5px;
+        }
+
+        .custom-select.is-invalid+.select2 .select2-selection {
+            border-color: #dc3545 !important;
+        }
+
+        .custom-select.is-valid+.select2 .select2-selection {
+            border-color: #28a745 !important;
+        }
+
+        *:focus {
+            outline: 0px;
+        }
+
+        .form-control.flatpickr-custom-style[readonly] {
+            background-color: white;
+            border-left: 2px solid blue;
+            border-radius: 5px;
+            opacity: 1;
+        }
+
+
+    </style>
 
     {{-- Favicon --}}
     @if(config('adminlte.use_ico_only'))
@@ -65,11 +93,14 @@
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
-
+    <form id="delete-form" action="" method="post">
+        @csrf
+        @method('DELETE')
+    </form>
     {{-- Body Content --}}
     @yield('body')
     <script>
-        window.Laravel = {!!json_encode([
+        window.Laravel = {!! json_encode([
                 'csrfToken' => csrf_token(),
                 'baseUrl' => url('/'),
                 'routes' => collect(\Route::getRoutes())->mapWithKeys(function($route) {
@@ -96,7 +127,7 @@
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
 
-    <script>
+    <script>        
         $(".only-number").keydown(function(event) {
             // Allow only backspace and delete
             if ($(this).val().length <= 12 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9) {
@@ -113,26 +144,26 @@
             }
 
         });
-        
-        window.Echo.channel('donated-item-'+'{{auth()->user()->uuid}}')
+
+        window.Echo.channel('donated-item-' + '{{auth()->user()->uuid}}')
             .listen('.Illuminate\\Notifications\\Events\\BroadcastNotificationCreated', function(data) {
                 console.log(data);
-                var name = data.name.substr(0,10)
-                var about_item = data.about_item.substr(0,10)
-                var noti_route = route("notifications.click",data.id)
-                var noti = 
-                `<a href="${noti_route}" class="dropdown-item bg-danger">
+                var name = data.name.substr(0, 10)
+                var about_item = data.about_item.substr(0, 10)
+                var noti_route = route("notifications.click", data.id)
+                var noti =
+                    `<a href="${noti_route}" class="dropdown-item bg-danger">
                 <i class="fas fa-envelope mr-2"></i> ${name} donated ${about_item}
                 </a>
                 <div class="dropdown-divider"></div>`;
-                
+
                 $("#no-new-noti").remove()
                 $('#noti-menu').prepend(noti)
                 var count = $("#noti-badge").data("num") + 1;
-                $("#noti-badge").removeClass("d-none").data('num',count).html(count);
+                $("#noti-badge").removeClass("d-none").data('num', count).html(count);
 
-                var notiTableData = 
-                `
+                var notiTableData =
+                    `
                 <tr class="clickable-row bg-gradient-success" data-href="${noti_route}">
                     <td><i class="fas fa-envelope mr-2"></i></td>
                     <td class="mailbox-name">${name}</td>
@@ -148,7 +179,7 @@
                 $(".clickable-row").click(function() {
                     window.location = $(this).data("href");
                 });
-            
+
             });
     </script>
 </body>

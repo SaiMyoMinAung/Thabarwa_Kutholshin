@@ -45,3 +45,6 @@ const TEAM_ONE = "Team One";
 const TEAM_TWO = "Team Two";
 const TEAM_THREE = "Team Three";
 const TEAM_FOUR = "Team Four";
+
+const DONATION_RECORD_ADMIN = 'Donation Record Admin';
+const DONATED_ITEM_RECORD_ADMIN = 'Donated Item Record Admin';

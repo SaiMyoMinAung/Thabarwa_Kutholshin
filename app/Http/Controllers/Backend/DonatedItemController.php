@@ -114,11 +114,6 @@ class DonatedItemController extends Controller
                         $nestedData["manage_request"] .= '';
                     }
 
-
-
-
-
-
                     $data[] = $nestedData;
                 }
             }
