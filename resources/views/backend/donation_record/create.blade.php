@@ -72,7 +72,7 @@
                                 <select name="center_id" class="form-control select2-center custom-select {{ $errors->has('center_id') ? 'is-invalid' : (old('center_id') && !$errors->has('center_id') ? 'is-valid': '') }}">
                                     <option></option>
                                     @foreach($centers as $center)
-                                    <option value="{{$center->id}}" @if($edit && $donation_record->center_id) selected @endif @if(old('center_id')==$center->id) selected @endif>{{$center->name}}</option>
+                                    <option value="{{$center->id}}" @if($edit && $donation_record->center_id == $center->id) selected @endif @if(old('center_id')==$center->id) selected @endif>{{$center->name}}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('center_id'))
@@ -90,7 +90,7 @@
                                 <select name="kind_of_donation_id" class="form-control select2-kind-of-donation custom-select {{ $errors->has('kind_of_donation_id') ? 'is-invalid' : (old('kind_of_donation_id') && !$errors->has('kind_of_donation_id') ? 'is-valid': '') }}">
                                     <option></option>
                                     @foreach($kindOfDonations as $kindOfDonation)
-                                    <option value="{{$kindOfDonation->id}}" @if($edit && $donation_record->kind_of_donation_id) selected @endif @if(old('kind_of_donation_id')==$kindOfDonation->id) selected @endif>{{$kindOfDonation->name}}</option>
+                                    <option value="{{$kindOfDonation->id}}" @if($edit && $donation_record->kind_of_donation_id == $kindOfDonation->id) selected @endif @if(old('kind_of_donation_id')==$kindOfDonation->id) selected @endif>{{$kindOfDonation->name}}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('kind_of_donation_id'))
@@ -135,7 +135,7 @@
                                 <select name="type_of_money" class="form-control select2-type-of-money custom-select {{ $errors->has('type_of_money') ? 'is-invalid' : (old('type_of_money') && !$errors->has('type_of_money') ? 'is-valid': '') }}">
                                     <option></option>
                                     @foreach($types as $type)
-                                    <option value="{{$type['label']}}" @if($edit && $donation_record->label) selected @endif @if($type['code']==old('type_of_money')) selected @endif>{{$type['symbol']}} ( {{ $type['label']}} )</option>
+                                    <option value="{{$type['label']}}" @if($edit && $donation_record->type_of_money == $type["code"]) selected @endif @if($type['code']==old('type_of_money')) selected @endif>{{$type['symbol']}} ( {{ $type['label']}} )</option>
                                     @endforeach
 
 

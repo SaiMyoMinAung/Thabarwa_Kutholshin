@@ -3,8 +3,8 @@
 namespace App;
 
 use App\KindOfDonation;
-use App\Status\TypeOfMoney;
 use App\Traits\HasUUID;
+use App\Status\TypeOfMoney;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

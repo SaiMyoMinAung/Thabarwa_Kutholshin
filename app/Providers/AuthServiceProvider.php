@@ -25,6 +25,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('can-do-donation-record', function ($user) {
+            return $user->typeOfAdmin->name == DONATION_RECORD_ADMIN;
+        });
+
+        Gate::define('can-do-donated-item-record', function ($user) {
+            return $user->typeOfAdmin->name == DONATED_ITEM_RECORD_ADMIN;
+        });
     }
 }

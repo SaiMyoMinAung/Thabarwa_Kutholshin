@@ -243,13 +243,15 @@ return [
             'active'      => ['backend/donation_records', 'backend/donation_records/*'],
             'icon'        => 'fas fa-tasks',
             'label_color' => 'success',
+            'can' => 'can-do-donation-record',
         ],
         [
             'text'        => 'Donated Items',
             'url'         => 'backend/donated_items',
             'active'      => ['backend/donated_items', 'backend/donated_items/*/manage', 'backend/donated_items/*'],
-            'icon'        => 'fas fa-tasks',
+            'icon'        => 'fas fa-globe ',
             'label_color' => 'success',
+            'can' => 'can-do-donated-item-record',
         ],
         ['header' => 'Settings'],
         [
@@ -257,18 +259,21 @@ return [
             'url'         => 'backend/volunteers',
             'icon'        => 'fas fa-dharmachakra',
             'label_color' => 'success',
+            'can' => 'can-do-donated-item-record',
         ],
         [
             'text'        => 'Users',
             'url'         => 'backend/users',
             'icon'        => 'fas fa-user',
             'label_color' => 'success',
+            'can' => 'can-do-donated-item-record',
         ],
         [
             'text'        => 'Settings',
             'url'         => 'backend/settings',
             'icon'        => 'fas fa-cogs',
             'label_color' => 'success',
+            'can' => 'can-do-donated-item-record',
         ],
 
     ],
