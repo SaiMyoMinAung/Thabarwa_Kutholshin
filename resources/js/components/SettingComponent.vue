@@ -845,7 +845,7 @@
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Open</th>
-              <th scope="col">State Or Region</th>
+              <th scope="col">City</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
@@ -869,7 +869,7 @@
                 <i
                   aria-hidden="true"
                   v-if="
-                    item.stateRegion ? item.stateRegion.is_available == 1 : ''
+                    item.city ? item.city.is_available == 1 : ''
                   "
                   class="material-icons green"
                   >check_circle</i
@@ -877,12 +877,12 @@
                 <i
                   aria-hidden="true"
                   v-else-if="
-                    item.stateRegion ? item.stateRegion.is_available == 0 : ''
+                    item.city ? item.city.is_available == 0 : ''
                   "
                   class="material-icons red"
                   >cancel</i
                 >
-                {{ item.stateRegion ? item.stateRegion.name : "-" }}
+                {{ item.city ? item.city.name : "-" }}
               </td>
               <td style="max-width: 20px">
                 <button
@@ -962,36 +962,36 @@
       >
         <div class="col-md-6 card border border-success">
           <div class="card-body">
-            <!-- start state region select2 -->
+            <!-- start city select2 -->
             <div
               class="form-group"
               v-bind:class="{
-                'has-error': office.validation.state_region_id_hasError,
+                'has-error': office.validation.city_id_hasError,
                 'was-validated':
-                  office.validation.state_region_id_successMessage &&
-                  !office.validation.state_region_id_hasError,
+                  office.validation.city_id_successMessage &&
+                  !office.validation.city_id_hasError,
               }"
             >
               <label for="country-id">
-                Select State Region
+                Select City
                 <span class="text-danger">*</span>
               </label>
               <select2
                 placeholder="Type To Search State Or Region..."
-                :url="stateRegion.model.fetchListUrl"
-                :value="office.model.state_region_id"
-                @input="office.model.stateRegionSelected($event)"
-                :selected-option="office.model.stateRegion"
+                :url="city.model.fetchListUrl"
+                :value="office.model.city_id"
+                @input="office.model.citySelected($event)"
+                :selected-option="office.model.city"
                 v-bind:class="{
-                  'is-invalid': office.validation.state_region_id_hasError,
+                  'is-invalid': office.validation.city_id_hasError,
                 }"
               ></select2>
 
               <div class="invalid-feedback">
-                {{ office.validation.state_region_id_errorMessage }}
+                {{ office.validation.city_id_errorMessage }}
               </div>
               <div class="valid-feedback" style="display: block">
-                {{ office.validation.state_region_id_successMessage }}
+                {{ office.validation.city_id_successMessage }}
               </div>
             </div>
             <!-- end state region select2 -->

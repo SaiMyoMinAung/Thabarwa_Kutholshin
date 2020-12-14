@@ -31,8 +31,7 @@ class UserUpdateFormRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => "nullable|email|unique:users,email,$id|max:255",
             'phone' => "required|numeric|unique:users,phone,$id|max:99999999999",
-            'state_region_id' => 'required|max:9999999',
-            'ward_id' => 'nullable|max:9999999',
+            'city_id' => 'nullable|max:9999999',
         ];
     }
 
@@ -46,7 +45,7 @@ class UserUpdateFormRequest extends FormRequest
             'phone.max' => 'Phone is Too Long!',
             'email.email' => 'Email Must Be Valid Email.',
             'email.max' => 'Email Is Too Long!',
-            'state_region_id.required' => 'Please Select State Region.'
+            'city_id.required' => 'Please Select City.'
         ];
     }
 
@@ -56,9 +55,8 @@ class UserUpdateFormRequest extends FormRequest
             'name' => $this->input('name'),
             'email' => $this->input('email'),
             'phone' => $this->input('phone'),
+            'city_id' => $this->input('city_id'),
             'password' => $this->addPassword(),
-            'state_region_id' => $this->input('state_region_id'),
-            'ward_id' => $this->input('ward_id'),
         ]);
     }
 
@@ -68,7 +66,9 @@ class UserUpdateFormRequest extends FormRequest
         $hash = Hash::make($password);
         if ($this->input('send_email')) {
             // send email
+            return $hash;
+        } else {
+            return $this->user->password;
         }
-        return $hash;
     }
 }

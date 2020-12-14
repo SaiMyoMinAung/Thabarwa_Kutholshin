@@ -2,7 +2,6 @@
 
 use App\Office;
 use App\Volunteer;
-use App\StateRegion;
 use App\VolunteerJob;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +19,6 @@ class VolunteerSeeder extends Seeder
             'phone' => '0998989898',
             'email' => trim(VOLUNTEER_DRIVER . '@gmail.com'),
             'password' => bcrypt('password'),
-            'state_region_id' => StateRegion::where('name', STATE_REGION_ONE)->first()->id,
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
         $volunteer = Volunteer::create($data);
@@ -32,7 +30,6 @@ class VolunteerSeeder extends Seeder
             'phone' => '0998989891',
             'email' => trim(VOLUNTEER_STORE_KEEPER . '@gmail.com'),
             'password' => bcrypt('password'),
-            'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
         $volunteerTwo = Volunteer::create($data);
@@ -44,7 +41,6 @@ class VolunteerSeeder extends Seeder
             'phone' => '0998989895',
             'email' => trim(VOLUNTEER_REPAIRER . '@gmail.com'),
             'password' => bcrypt('password'),
-            'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
         $volunteerThree = Volunteer::create($data);
@@ -56,7 +52,6 @@ class VolunteerSeeder extends Seeder
             'phone' => '0998989491',
             'email' => trim(VOLUNTEER_DELIVER . '@gmail.com'),
             'password' => bcrypt('password'),
-            'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
         $volunteerFour = Volunteer::create($data);

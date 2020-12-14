@@ -15,7 +15,7 @@ class CreateDonationRecordsTable extends Migration
     {
         Schema::create('donation_records', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid');
+            $table->string('uuid')->unique();
             $table->char('sr_no', 100);
             $table->char('certificate_no', 50);
             $table->char('main_donor_name', 50);

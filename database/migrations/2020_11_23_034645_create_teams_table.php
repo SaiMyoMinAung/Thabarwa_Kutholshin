@@ -15,9 +15,11 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
+            $table->string('uuid')->unique();
             $table->string('name');
-            $table->char('phone', 20);
-            $table->char('email', 50);
+            $table->char('phone', 20)->unique();
+            $table->char('email', 50)->unique()->nullable();
+            $table->text('note')->nullable();
             $table->integer('center_id');
             $table->boolean('is_available');
             $table->timestamps();

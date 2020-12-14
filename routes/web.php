@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::group(['middleware' => 'donated.item.record.admintype'], function () {
         Route::resource('users', 'UserController');
         Route::resource('volunteers', 'VolunteerController');
+        Route::resource('teams', 'TeamController');
+        Route::resource('yogis', 'YogiController');
 
         Route::get('notifications', 'NotificationController@index')->name('notifications.index');
         Route::get('click_notifications/{notification}', 'NotificationController@clickNotifications')->name('notifications.click');

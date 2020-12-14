@@ -2,17 +2,18 @@
 
 namespace App;
 
+use App\City;
 use App\Office;
-use App\StateRegion;
 use App\TypeOfAdmin;
 use App\Traits\HasUUID;
 use Illuminate\Notifications\Notifiable;
+use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-    use Notifiable, HasUUID;
+    use Notifiable, HasUUID, BelongsToThrough;
 
     /**
      * The attributes that are mass assignable.
@@ -46,9 +47,9 @@ class Admin extends Authenticatable
         return $this->belongsTo(Office::class, 'office_id')->withDefault();
     }
 
-    public function stateRegion()
+    public function city()
     {
-        return $this->belongsTo(StateRegion::class, 'state_region_id')->withDefault();
+        return $this->belongsToThrough(City::class, [Office::class]);
     }
 
     public function getUnreadNotis()

@@ -12,6 +12,6 @@ final class UserDTO extends DataTransferObject
     public $email;
     public $password;
     public $phone;
-    public $state_region_id;
-    public $ward_id;
+    public $city_id;
+    public $is_special_donor;
 }

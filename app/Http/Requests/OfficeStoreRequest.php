@@ -24,7 +24,7 @@ class OfficeStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'state_region_id' => 'required|numeric|max:99999999',
+            'city_id' => 'required|numeric|max:99999999',
             'name' => 'required|max:255|unique:offices,name',
             'address' => 'required|max:255',
             'is_open' => 'required|numeric|max:1'

@@ -28,10 +28,10 @@ class VolunteerStoreFormRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'email' => "required|email|unique:volunteers|max:255",
+            'email' => "nullable|email|unique:volunteers|max:255",
             'phone' => "required|numeric|unique:volunteers|max:99999999999",
-            'state_region_id' => 'required|max:9999999',
             'office_id' => 'required|max:9999999',
+            'volunteer_job_id' => 'required',
         ];
     }
 
@@ -45,7 +45,6 @@ class VolunteerStoreFormRequest extends FormRequest
             'phone.max' => 'Phone is Too Long!',
             'email.email' => 'Email Must Be Valid Email.',
             'email.max' => 'Email Is Too Long!',
-            'state_region_id.required' => 'Please Select State Region.',
             'office_id.required' => 'Please Select Office.'
         ];
     }
@@ -57,9 +56,13 @@ class VolunteerStoreFormRequest extends FormRequest
             'email' => $this->input('email'),
             'phone' => $this->input('phone'),
             'password' => $this->addPassword(),
-            'state_region_id' => $this->input('state_region_id'),
             'office_id' => $this->input('office_id'),
         ]);
+    }
+
+    public function volunteerJobData()
+    {
+        return $this->input('volunteer_job_id');
     }
 
     public function addPassword()

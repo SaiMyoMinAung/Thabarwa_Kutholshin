@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Ward;
-use App\StateRegion;
 use App\Traits\HasUUID;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -21,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'state_region_id'
+        'name', 'email', 'password', 'phone', 'city_id', 'is_special_user'
     ];
 
     /**
@@ -41,21 +39,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    /**
-     * Bootable trait for password
-     *
-     * @return void
-     */
-    protected static function bootHasPassword()
-    {
-        static::updating(function ($model) {
-            // Preventing from creating new password in update
-            if (!$model->updatePassword) {
-                $model->password = $model->getOriginal('password');
-            }
-        });
-    }
 
     public function city()
     {

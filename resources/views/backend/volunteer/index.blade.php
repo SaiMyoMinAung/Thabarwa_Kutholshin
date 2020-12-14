@@ -23,7 +23,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>State Region</th>
             <th>Office</th>
             <th>Options</th>
         </tr>
@@ -36,7 +35,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>State Region</th>
             <th>Office</th>
             <th>Options</th>
         </tr>
@@ -49,19 +47,29 @@
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
 <script>
     $(document).ready(function() {
-        $('#userTable').DataTable({
+
+        let dataTable = $('#userTable').DataTable({
+            createdRow: function(row, data, dataIndex) {
+                let uuid = localStorage.getItem('volunteer_edit_uuid')
+
+                if (uuid != null && data.uuid == uuid) {
+                    $(row).addClass('bg-info');
+                    localStorage.removeItem('volunteer_edit_uuid')
+                }
+
+            },
+            "bStateSave": true,
             "processing": true,
             "serverSide": true,
             "ajax": {
                 "url": "{{ route('volunteers.index') }}",
             },
             "order": [
-                [1, 'asc']
+                [0, 'desc']
             ],
             "columns": [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
-                    orderable: false,
                     searchable: false
                 },
                 {
@@ -74,9 +82,6 @@
                     "data": "phone"
                 },
                 {
-                    "data": "state_region"
-                },
-                {
                     "data": "office"
                 },
                 {
@@ -86,6 +91,53 @@
                 }
             ]
         });
+
+        dataTable.on('draw', function() {
+
+            $('[data-toggle=confirmation]').confirmation({
+                rootSelector: '[data-toggle=confirmation]',
+                // other options
+                onConfirm: function(value) {
+                    let href = $(this).data('href')
+
+                    $('#delete-form').attr('action', href)
+                    document.getElementById("delete-form").submit();
+                },
+                buttons: [{
+                        class: 'btn btn-xs btn-danger pl-3 pr-3',
+                        label: 'Yes',
+                        value: 'Delete'
+                    },
+                    {
+                        class: 'btn btn-xs btn-secondary pl-2 pr-2',
+                        label: 'Cancel',
+                        cancel: true
+                    }
+                ]
+            });
+
+            $('[data-toggle=editconfirmation]').confirmation({
+                rootSelector: '[data-toggle=editconfirmation]',
+                // other options
+                onConfirm: function(value) {
+                    let href = $(this).data('href')
+                    let uuid = $(this).data('uuid')
+                    localStorage.setItem('volunteer_edit_uuid', uuid);
+                    window.location.href = href
+                },
+                buttons: [{
+                        class: 'btn btn-xs btn-danger pl-3 pr-3',
+                        label: 'Yes',
+                        value: 'Delete'
+                    },
+                    {
+                        class: 'btn btn-xs btn-secondary pl-2 pr-2',
+                        label: 'Cancel',
+                        cancel: true
+                    }
+                ]
+            });
+        })
     });
 </script>
 @stop

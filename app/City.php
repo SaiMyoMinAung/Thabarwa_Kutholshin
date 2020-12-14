@@ -12,4 +12,9 @@ class City extends Model
     {
         return $this->belongsTo(StateRegion::class, 'state_region_id');
     }
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('is_available', 1)->orderBy('id', 'desc');
+    }
 }

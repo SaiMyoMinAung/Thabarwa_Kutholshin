@@ -15,7 +15,7 @@ class CreateDonatedItemsTable extends Migration
     {
         Schema::create('donated_items', function (Blueprint $table) {
             $table->id();
-            $table->char('uuid', 50);
+            $table->char('uuid', 50)->unique();
             $table->char('item_unique_id', 10)->unique();
             $table->char('about_item', 100);
             $table->char('donor_name', 100);

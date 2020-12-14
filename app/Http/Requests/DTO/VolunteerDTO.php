@@ -12,6 +12,5 @@ final class VolunteerDTO extends DataTransferObject
     public $email;
     public $password;
     public $phone;
-    public $state_region_id;
     public $office_id;
 }

@@ -48,3 +48,4 @@ const TEAM_FOUR = "Team Four";
 
 const DONATION_RECORD_ADMIN = 'Donation Record Admin';
 const DONATED_ITEM_RECORD_ADMIN = 'Donated Item Record Admin';
+const SETTING = 'Setting';

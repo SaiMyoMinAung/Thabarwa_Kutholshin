@@ -52,11 +52,6 @@ class DonatedItemController extends Controller
             } else {
                 $search = $request->input('search.value');
 
-                // $totalFiltered = DonatedItem::where('about_item', 'LIKE', "%{$search}%")
-                //     ->orWhere('item_unique_id', 'LIKE', "%{$search}%")
-                //     ->orWhere('pickedup_at', 'LIKE', "%{$search}%")
-                //     ->orWhere('pickedup_info', 'LIKE', "%{$search}%");
-
                 $donated_items =  DonatedItem::where('about_item', 'LIKE', "%{$search}%")
                     ->orWhere('item_unique_id', 'LIKE', "%{$search}%")
                     ->orWhere('pickedup_at', 'LIKE', "%{$search}%")

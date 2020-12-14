@@ -1,7 +1,7 @@
 <?php
 
+use App\City;
 use App\Office;
-use App\StateRegion;
 use Illuminate\Database\Seeder;
 
 class OfficeSeeder extends Seeder
@@ -18,15 +18,15 @@ class OfficeSeeder extends Seeder
                 'name' => OFFICE_ONE,
                 'uuid' => rand(0, 100000),
                 'address' => 'Address One',
-                'state_region_id' => StateRegion::where('name', STATE_REGION_ONE)->first()->id,
-                'is_open' => 1,
+                'city_id' => City::where('name', CITY_ONE)->first()->id,
+                'is_open' => true,
             ],
             [
                 'name' => OFFICE_TWO,
                 'uuid' => rand(0, 100000),
                 'address' => 'Address Two',
-                'state_region_id' => StateRegion::where('name', STATE_REGION_TWO)->first()->id,
-                'is_open' => 1,
+                'city_id' => City::where('name', CITY_TWO)->first()->id,
+                'is_open' => true,
             ],
 
         ];

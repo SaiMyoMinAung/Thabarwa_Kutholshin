@@ -30,8 +30,7 @@ class UserStoreFormRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => "nullable|email|unique:users|max:255",
             'phone' => "required|numeric|unique:users|max:99999999999",
-            'state_region_id' => 'required|max:9999999',
-            'ward_id' => 'nullable|max:9999999',
+            'city_id' => 'required|max:9999999'
         ];
     }
 
@@ -45,7 +44,7 @@ class UserStoreFormRequest extends FormRequest
             'phone.max' => 'Phone is Too Long!',
             'email.email' => 'Email Must Be Valid Email.',
             'email.max' => 'Email Is Too Long!',
-            'state_region_id.required' => 'Please Select State Region.'
+            'city_id.required' => 'Please Select City.'
         ];
     }
 
@@ -56,8 +55,7 @@ class UserStoreFormRequest extends FormRequest
             'email' => $this->input('email'),
             'phone' => $this->input('phone'),
             'password' => $this->addPassword(),
-            'state_region_id' => $this->input('state_region_id'),
-            'ward_id' => $this->input('ward_id'),
+            'city_id' => $this->input('city_id'),
         ]);
     }
 

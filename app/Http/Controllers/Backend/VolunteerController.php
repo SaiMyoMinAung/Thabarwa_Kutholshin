@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Office;
 use App\Volunteer;
-use App\StateRegion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\VolunteerStoreFormRequest;
 use App\Http\Requests\VolunteerUpdateFormRequest;
 use App\Http\Resources\Select2\VolunteerSelect2ResourceCollection;
+use App\ViewModels\VolunteerViewModel;
 
 class VolunteerController extends Controller
 {
@@ -28,53 +27,70 @@ class VolunteerController extends Controller
                 1 => 'name',
                 2 => 'email',
                 3 => 'phone',
+                4 => 'office',
+                5 => 'option',
             );
 
             $totalData = Volunteer::count();
 
-            $totalFiltered = $totalData;
-
             $limit = $request->input('length');
             $start = $request->input('start');
-            $order = $columns[$request->input('order.0.column')];
-            $dir = $request->input('order.0.dir');
 
-            if (empty($request->input('search.value'))) {
-                $volunteers = Volunteer::offset($start)
-                    ->limit($limit)
-                    ->orderBy($order, $dir)
-                    ->get();
-            } else {
+            $volunteers = Volunteer::query();
+
+            if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
 
-                $volunteers =  Volunteer::where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('email', 'LIKE', "%{$search}%")
-                    ->orWhere('phone', 'LIKE', "%{$search}%")
-                    ->offset($start)
-                    ->limit($limit)
-                    ->orderBy($order, $dir)
-                    ->get();
-
-                $totalFiltered = Volunteer::where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('email', 'LIKE', "%{$search}%")
-                    ->orWhere('phone', 'LIKE', "%{$search}%")
-                    ->count();
+                $volunteers->where('volunteers.name', 'LIKE', "%{$search}%")
+                    ->orWhere('volunteers.email', 'LIKE', "%{$search}%")
+                    ->orWhere('volunteers.phone', 'LIKE', "%{$search}%")
+                    ->orWhereHas('city', function (Builder $query) use ($search) {
+                        $query->where('cities.name', 'LIKE', "%{$search}%");
+                    })
+                    ->orWhereHas('office', function (Builder $query) use ($search) {
+                        $query->where('offices.name', 'LIKE', "%{$search}%");
+                    });
             }
 
-            $data = array();
+            // sorting
+            $dir = $request->input('order.0.dir');
+            $order = $columns[$request->input('order.0.column')];
+            $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
+
+            if ($order == 'office') {
+                $volunteers->select('volunteers.*')->join('offices', 'volunteers.office_id', '=', 'offices.id')
+                    ->orderBy('offices.name', $dir);
+            } else {
+                $volunteers->orderBy($order, $dir);
+            }
+
+            // Add Data Filter By City
+            $volunteers->whereHas('city', function (Builder $query) {
+                $query->where('cities.id', auth()->user()->city->id);
+            });
+
+            // Run The Query
+            $volunteers = $volunteers->offset($start)
+                ->limit($limit)
+                ->get();
+
+            $totalFiltered = $volunteers->count();
+
+            $data = [];
             if (!empty($volunteers)) {
                 foreach ($volunteers as $key => $volunteer) {
-                    $show =  route('volunteers.show', $volunteer->uuid);
+
                     $edit =  route('volunteers.edit', $volunteer->uuid);
+                    $delete = route('volunteers.destroy', $volunteer->uuid);
 
                     $nestedData['DT_RowIndex'] = $key + 1;
+                    $nestedData['uuid'] = $volunteer->uuid;
                     $nestedData['name'] = $volunteer->name;
                     $nestedData['email'] = $volunteer->email ?? '-';
                     $nestedData['phone'] = $volunteer->phone;
-                    $nestedData['state_region'] = $volunteer->state_region->name ?? '-';
-                    $nestedData['office'] = $volunteer->office->name ?? '-';
-                    $nestedData['options'] = "&emsp;<a href='{$show}' title='SHOW' ><i class='fa fa-fw fa-eye'></i></a>
-                              &emsp;<a href='{$edit}' title='EDIT' ><i class='fa fa-fw fa-edit'></i></a>";
+                    $nestedData['office'] = $volunteer->office->name . ' (' . $volunteer->city->name . ')'  ?? '-';
+                    $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$volunteer->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
+                    $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
                     $data[] = $nestedData;
                 }
             }
@@ -99,9 +115,9 @@ class VolunteerController extends Controller
      */
     public function create()
     {
-        $stateRegions = StateRegion::all();
-        $offices = Office::all();
-        return view('backend.volunteer.create', compact('stateRegions', 'offices'));
+        $viewModel = new VolunteerViewModel();
+
+        return view('backend.volunteer.create', $viewModel);
     }
 
     /**
@@ -114,8 +130,14 @@ class VolunteerController extends Controller
     {
         $data = $request->volunteerData()->all();
 
-        Volunteer::create($data);
+        $jobData = $request->volunteerJobData();
+        
+        $volunteer = Volunteer::create($data);
 
+        $volunteer = $volunteer->fresh();
+
+        $volunteer->volunteerJobs()->sync($jobData);
+        
         return redirect(route('volunteers.index'))->with('success', 'Create Volunteer Successful.');
     }
 
@@ -138,11 +160,9 @@ class VolunteerController extends Controller
      */
     public function edit(Volunteer $volunteer)
     {
-        $stateRegions = StateRegion::all();
+        $viewModel = new VolunteerViewModel($volunteer, true);
 
-        $offices = Office::all();
-
-        return view('backend.volunteer.edit', compact('volunteer', 'stateRegions', 'offices'));
+        return view('backend.volunteer.create', $viewModel);
     }
 
     /**
@@ -156,7 +176,11 @@ class VolunteerController extends Controller
     {
         $data = $request->volunteerData()->all();
 
+        $jobData = $request->volunteerJobData();
+
         $volunteer->update($data);
+
+        $volunteer->volunteerJobs()->sync($jobData);
 
         return redirect(route('volunteers.index'))->with('success', 'Update Volunteer Successful.');
     }
@@ -169,9 +193,9 @@ class VolunteerController extends Controller
      */
     public function destroy(Volunteer $volunteer)
     {
-        // $volunteer->delete();
+        $volunteer->delete();
 
-        // return back()->with('success', 'Delete Volunteer Successful.');
+        return back()->with('success', 'Delete Volunteer Successful.');
     }
 
     public function getAllVolunteers(Request $request)

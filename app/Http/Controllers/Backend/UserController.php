@@ -6,6 +6,7 @@ use App\User;
 use App\Ward;
 use App\StateRegion;
 use Illuminate\Http\Request;
+use App\ViewModels\UserModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\UserStoreFormRequest;
@@ -24,10 +25,11 @@ class UserController extends Controller
         if ($request->ajax()) {
 
             $columns = array(
-                0 => 'id',
+                0 => 'DT_RowIndex',
                 1 => 'name',
                 2 => 'email',
                 3 => 'phone',
+                4 => 'city'
             );
 
             $totalData = User::count();
@@ -37,43 +39,52 @@ class UserController extends Controller
             $limit = $request->input('length');
             $start = $request->input('start');
             $order = $columns[$request->input('order.0.column')];
+            $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
             $dir = $request->input('order.0.dir');
 
-            if (empty($request->input('search.value'))) {
-                $users = User::offset($start)
-                    ->limit($limit)
-                    ->orderBy($order, $dir)
-                    ->get();
-            } else {
+            $users = User::query();
+
+            if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
 
-                $users =  User::where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('email', 'LIKE', "%{$search}%")
-                    ->orWhere('phone', 'LIKE', "%{$search}%")
-                    ->offset($start)
-                    ->limit($limit)
-                    ->orderBy($order, $dir)
-                    ->get();
-
-                $totalFiltered = User::where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('email', 'LIKE', "%{$search}%")
-                    ->orWhere('phone', 'LIKE', "%{$search}%")
-                    ->count();
+                $users->where('users.name', 'LIKE', "%{$search}%")
+                    ->orWhere('users.email', 'LIKE', "%{$search}%")
+                    ->orWhere('users.phone', 'LIKE', "%{$search}%")
+                    ->orWhereHas('city', function (Builder $query) use ($search) {
+                        $query->where('cities.name', 'LIKE', "%{$search}%");
+                    });
             }
+
+            $totalFiltered = $users->count();
+
+            // sorting
+            if ($order == 'city') {
+                $users->select('users.*')->join('cities', 'users.city_id', '=', 'cities.id')
+                    ->orderBy('cities.name', $dir);
+            } else {
+                $users->orderBy($order, $dir);
+            }
+
+            $users = $users->offset($start)
+                ->limit($limit)
+                ->get();
 
             $data = array();
             if (!empty($users)) {
                 foreach ($users as $key => $user) {
                     $show =  route('users.show', $user->uuid);
                     $edit =  route('users.edit', $user->uuid);
+                    $delete = route('users.destroy', $user->uuid);
 
                     $nestedData['DT_RowIndex'] = $key + 1;
                     $nestedData['name'] = $user->name;
                     $nestedData['email'] = $user->email ?? '-';
                     $nestedData['phone'] = $user->phone;
+                    $nestedData['city'] = $user->city->name ?? '-';
                     // $nestedData['phone'] = substr(strip_tags($user->phone), 0, 50) . "...";
-                    $nestedData['options'] = "&emsp;<a href='{$show}' title='SHOW' ><i class='fa fa-fw fa-eye'></i></a>
-                              &emsp;<a href='{$edit}' title='EDIT' ><i class='fa fa-fw fa-edit'></i></a>";
+                    $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$user->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
+                    $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    $nestedData['uuid'] = $user->uuid;
                     $data[] = $nestedData;
                 }
             }
@@ -98,9 +109,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        $wards = Ward::all();
-        $stateRegions = StateRegion::all();
-        return view('backend.user.create', compact('wards', 'stateRegions'));
+        $userModel = new UserModel();
+
+        return view('backend.user.create', $userModel);
     }
 
     /**
@@ -137,9 +148,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $wards = Ward::all();
-        $stateRegions = StateRegion::all();
-        return view('backend.user.edit', compact('wards', 'stateRegions', 'user'));
+        $userModel = new UserModel($user, true);
+
+        return view('backend.user.create', $userModel);
     }
 
     /**
@@ -166,14 +177,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return back()->with('danger', 'Cannot Delete User');
     }
 
     public function getAllUsers(Request $request)
     {
-        $users = auth()->user()->stateRegion
-            ->users()
-            ->where('users.name', 'like', '%' . $request->q . '%')
+        $city_id = auth()->user()->city->id;
+
+        $users = User::where('users.name', 'like', '%' . $request->q . '%')
+            ->where('city_id', $city_id)
             ->orderBy('id', 'desc')
             ->paginate(5);
 

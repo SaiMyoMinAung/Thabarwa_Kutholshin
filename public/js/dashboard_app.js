@@ -60937,8 +60937,8 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("td", { staticStyle: { "max-width": "20px" } }, [
-                        (item.stateRegion
-                        ? item.stateRegion.is_available == 1
+                        (item.city
+                        ? item.city.is_available == 1
                         : "")
                           ? _c(
                               "i",
@@ -60948,8 +60948,8 @@ var render = function() {
                               },
                               [_vm._v("check_circle")]
                             )
-                          : (item.stateRegion
-                            ? item.stateRegion.is_available == 0
+                          : (item.city
+                            ? item.city.is_available == 0
                             : "")
                           ? _c(
                               "i",
@@ -60962,9 +60962,7 @@ var render = function() {
                           : _vm._e(),
                         _vm._v(
                           "\n              " +
-                            _vm._s(
-                              item.stateRegion ? item.stateRegion.name : "-"
-                            ) +
+                            _vm._s(item.city ? item.city.name : "-") +
                             "\n            "
                         )
                       ]),
@@ -61127,11 +61125,10 @@ var render = function() {
                   {
                     staticClass: "form-group",
                     class: {
-                      "has-error":
-                        _vm.office.validation.state_region_id_hasError,
+                      "has-error": _vm.office.validation.city_id_hasError,
                       "was-validated":
-                        _vm.office.validation.state_region_id_successMessage &&
-                        !_vm.office.validation.state_region_id_hasError
+                        _vm.office.validation.city_id_successMessage &&
+                        !_vm.office.validation.city_id_hasError
                     }
                   },
                   [
@@ -61139,18 +61136,17 @@ var render = function() {
                     _vm._v(" "),
                     _c("select2", {
                       class: {
-                        "is-invalid":
-                          _vm.office.validation.state_region_id_hasError
+                        "is-invalid": _vm.office.validation.city_id_hasError
                       },
                       attrs: {
                         placeholder: "Type To Search State Or Region...",
-                        url: _vm.stateRegion.model.fetchListUrl,
-                        value: _vm.office.model.state_region_id,
-                        "selected-option": _vm.office.model.stateRegion
+                        url: _vm.city.model.fetchListUrl,
+                        value: _vm.office.model.city_id,
+                        "selected-option": _vm.office.model.city
                       },
                       on: {
                         input: function($event) {
-                          return _vm.office.model.stateRegionSelected($event)
+                          return _vm.office.model.citySelected($event)
                         }
                       }
                     }),
@@ -61158,9 +61154,7 @@ var render = function() {
                     _c("div", { staticClass: "invalid-feedback" }, [
                       _vm._v(
                         "\n              " +
-                          _vm._s(
-                            _vm.office.validation.state_region_id_errorMessage
-                          ) +
+                          _vm._s(_vm.office.validation.city_id_errorMessage) +
                           "\n            "
                       )
                     ]),
@@ -61175,8 +61169,7 @@ var render = function() {
                         _vm._v(
                           "\n              " +
                             _vm._s(
-                              _vm.office.validation
-                                .state_region_id_successMessage
+                              _vm.office.validation.city_id_successMessage
                             ) +
                             "\n            "
                         )
@@ -64349,7 +64342,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Open")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("State Or Region")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("City")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
         _vm._v(" "),
@@ -64362,7 +64355,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "country-id" } }, [
-      _vm._v("\n              Select State Region\n              "),
+      _vm._v("\n              Select City\n              "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -78876,8 +78869,8 @@ var office = /*#__PURE__*/function (_base) {
     _this = _super.call(this, route('offices.index'));
     _this.name = '';
     _this.address = '';
-    _this.state_region_id = '';
-    _this.stateRegion = null;
+    _this.city_id = '';
+    _this.city = null;
     _this.is_open = 0;
     _this.listHrefId = "office-list";
     _this.createHrefId = "office-list-create";
@@ -78889,7 +78882,7 @@ var office = /*#__PURE__*/function (_base) {
     value: function editRecord(index) {
       _get(_getPrototypeOf(office.prototype), "edit", this).call(this, index);
 
-      this.state_region_id = this.stateRegion ? this.stateRegion.id : '';
+      this.city_id = this.city ? this.city.id : '';
     }
   }, {
     key: "clearData",
@@ -78897,16 +78890,16 @@ var office = /*#__PURE__*/function (_base) {
       _get(_getPrototypeOf(office.prototype), "clearData", this).call(this);
 
       this.is_open = 0;
-      this.state_region_id = '';
-      this.stateRegion = null;
+      this.city_id = '';
+      this.city = null;
       this.name = '';
       this.address = '';
     }
   }, {
-    key: "stateRegionSelected",
-    value: function stateRegionSelected($event) {
-      this.stateRegion = $event;
-      this.state_region_id = $event != null ? $event.id : "";
+    key: "citySelected",
+    value: function citySelected($event) {
+      this.city = $event;
+      this.city_id = $event != null ? $event.id : "";
     }
   }, {
     key: "updateOffice",
@@ -78916,7 +78909,7 @@ var office = /*#__PURE__*/function (_base) {
         name: this.name,
         address: this.address,
         is_open: this.is_open,
-        state_region_id: this.state_region_id,
+        city_id: this.city_id,
         _method: "PUT"
       };
 
@@ -78929,7 +78922,7 @@ var office = /*#__PURE__*/function (_base) {
         name: this.name,
         address: this.address,
         is_open: this.is_open,
-        state_region_id: this.state_region_id
+        city_id: this.city_id
       };
       var url = route('offices.store');
 
@@ -80584,13 +80577,13 @@ var office = /*#__PURE__*/function () {
         this.is_available_successMessage = 'Good Job.';
       }
 
-      if (validation.state_region_id) {
-        this.state_region_id_hasError = true;
-        this.state_region_id_errorMessage = validation.state_region_id;
-        this.state_region_id_successMessage = null;
+      if (validation.city_id) {
+        this.city_id_hasError = true;
+        this.city_id_errorMessage = validation.city_id;
+        this.city_id_successMessage = null;
       } else {
-        this.state_region_id_hasError = false;
-        this.state_region_id_successMessage = 'Good Job.';
+        this.city_id_hasError = false;
+        this.city_id_successMessage = 'Good Job.';
       }
     } else {
       this.clearValidation();
@@ -80608,9 +80601,9 @@ var office = /*#__PURE__*/function () {
       this.is_available_hasError = false;
       this.is_available_errorMessage = '';
       this.is_available_successMessage = '';
-      this.state_region_id_hasError = false;
-      this.state_region_id_errorMessage = '';
-      this.state_region_id_successMessage = '';
+      this.city_id_hasError = false;
+      this.city_id_errorMessage = '';
+      this.city_id_successMessage = '';
     }
   }, {
     key: "validateName",

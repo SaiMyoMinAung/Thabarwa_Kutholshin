@@ -68,7 +68,8 @@
                 let uuid = localStorage.getItem('donated_record_uuid')
                 
                 if (uuid != null && data.uuid == uuid) {
-                    $(row).addClass('bg-primary');
+                    $(row).addClass('bg-info');
+                    localStorage.removeItem('donated_record_uuid')
                 }
 
             },

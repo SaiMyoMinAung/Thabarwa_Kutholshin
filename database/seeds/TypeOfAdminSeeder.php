@@ -18,6 +18,9 @@ class TypeOfAdminSeeder extends Seeder
             ],
             [
                 'name' => DONATION_RECORD_ADMIN,
+            ],
+            [
+                'name' => SETTING
             ]
         ];
 

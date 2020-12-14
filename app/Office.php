@@ -2,9 +2,10 @@
 
 namespace App;
 
+use App\City;
+use App\Admin;
 use App\Store;
 use App\Volunteer;
-use App\StateRegion;
 use App\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,9 +15,9 @@ class Office extends Model
 
     protected $guarded = [];
 
-    public function stateRegion()
+    public function city()
     {
-        return $this->belongsTo(StateRegion::class, 'state_region_id');
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     public function stores()
@@ -32,5 +33,17 @@ class Office extends Model
     public function volunteers()
     {
         return $this->hasMany(Volunteer::class);
+    }
+
+    public function admins()
+    {
+        return $this->hasMany(Admin::class, 'office_id');
+    }
+
+    public static function canDoOffices()
+    {
+        $auth_admin_city_id =  auth()->user()->city->id;
+
+        return self::where('city_id', $auth_admin_city_id)->where('is_open', 1);
     }
 }

@@ -39,12 +39,6 @@
     {{-- Custom Stylesheets (post AdminLTE) --}}
     @yield('adminlte_css')
     <style>
-        .select2 {
-            width: 100% !important;
-            border-left: 2px solid blue;
-            border-radius: 5px;
-        }
-
         .custom-select.is-invalid+.select2 .select2-selection {
             border-color: #dc3545 !important;
         }
@@ -52,6 +46,7 @@
         .custom-select.is-valid+.select2 .select2-selection {
             border-color: #28a745 !important;
         }
+
 
         *:focus {
             outline: 0px;
@@ -63,8 +58,6 @@
             border-radius: 5px;
             opacity: 1;
         }
-
-
     </style>
 
     {{-- Favicon --}}
@@ -104,7 +97,7 @@
                 'csrfToken' => csrf_token(),
                 'baseUrl' => url('/'),
                 'routes' => collect(\Route::getRoutes())->mapWithKeys(function($route) {
-                    return [$route->getName() => $route->uri()];
+                    return [$route->getName()=>$route->uri()];
                 })
             ]) !!};
     </script>
@@ -127,7 +120,7 @@
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
 
-    <script>        
+    <script>
         $(".only-number").keydown(function(event) {
             // Allow only backspace and delete
             if ($(this).val().length <= 12 || event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9) {
