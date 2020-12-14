@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'donation.record.admintype' => \App\Http\Middleware\DonationRecordAdminType::class,
         'donated.item.record.admintype' => \App\Http\Middleware\DonatedItemRecordAdminType::class,
+        'setting.admintype' => \App\Http\Middleware\SettingAdminType::class,
     ];
 }

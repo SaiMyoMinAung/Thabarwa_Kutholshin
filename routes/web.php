@@ -39,15 +39,35 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
     Route::get('dashboard', 'DashboardController@index');
 
     /**
+     * Setting Admin Type
+     * Can Access Those Route
+     * 
+     */
+    Route::group(['middleware' => 'setting.admintype'], function () {
+        Route::resource('users', 'UserController');
+        Route::resource('volunteers', 'VolunteerController');
+        Route::resource('teams', 'TeamController');
+        Route::resource('yogis', 'YogiController');
+
+        Route::get('settings', 'SettingController@index');
+        Route::resource('cities', 'CityController');
+        Route::resource('countries', 'CountryController');
+        Route::resource('state_regions', 'StateRegionController');
+        Route::resource('offices', 'OfficeController');
+        Route::resource('stores', 'StoreController');
+        Route::resource('boxes', 'BoxController');
+        Route::resource('centers', 'CenterController');
+        Route::resource('wards', 'WardController');
+        Route::resource('volunteer_jobs', 'VolunteerJobController');
+    });
+
+    /**
      * Donated Item Record Admin Type
      * Can Access Those Route
      * 
      */
     Route::group(['middleware' => 'donated.item.record.admintype'], function () {
-        Route::resource('users', 'UserController');
-        Route::resource('volunteers', 'VolunteerController');
-        Route::resource('teams', 'TeamController');
-        Route::resource('yogis', 'YogiController');
+
 
         Route::get('notifications', 'NotificationController@index')->name('notifications.index');
         Route::get('click_notifications/{notification}', 'NotificationController@clickNotifications')->name('notifications.click');
@@ -119,17 +139,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
         Route::get('donated_items/{donated_item}/fetch_requested_items', 'RequestedItemController@fetchRequestItems')->name('donated_items.requested_items.fetch');
 
         Route::resource('donated_items', 'DonatedItemController');
-
-        Route::get('settings', 'SettingController@index');
-        Route::resource('cities', 'CityController');
-        Route::resource('countries', 'CountryController');
-        Route::resource('state_regions', 'StateRegionController');
-        Route::resource('offices', 'OfficeController');
-        Route::resource('stores', 'StoreController');
-        Route::resource('boxes', 'BoxController');
-        Route::resource('centers', 'CenterController');
-        Route::resource('wards', 'WardController');
-        Route::resource('volunteer_jobs', 'VolunteerJobController');
     });
 
     /**

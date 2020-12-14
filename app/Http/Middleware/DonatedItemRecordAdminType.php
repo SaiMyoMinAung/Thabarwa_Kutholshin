@@ -16,9 +16,9 @@ class DonatedItemRecordAdminType
     public function handle($request, Closure $next)
     {
         $type = auth()->user()->typeOfAdmin;
-        
+
         if ($type && $type->name != DONATED_ITEM_RECORD_ADMIN) {
-            return redirect('login');
+            return redirect(route('admin.login'));
         }
 
         return $next($request);
