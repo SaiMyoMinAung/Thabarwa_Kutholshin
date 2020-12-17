@@ -28,6 +28,8 @@ class CreateDonatedItemsTable extends Migration
             $table->integer('qty')->default(1);
             $table->integer('estimate_cost')->default(0);
 
+            $table->integer('office_id')->nullable();
+
             $table->integer('kind_of_item');
             $table->integer('item_type_id')->nullable();
 

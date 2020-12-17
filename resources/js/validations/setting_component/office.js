@@ -22,13 +22,13 @@ export default class office {
                 this.is_available_successMessage = 'Good Job.';
             }
 
-            if(validation.city_id){
-                this.city_id_hasError = true;
-                this.city_id_errorMessage = validation.city_id;
-                this.city_id_successMessage = null;
+            if(validation.center_id){
+                this.center_id_hasError = true;
+                this.center_id_errorMessage = validation.center_id;
+                this.center_id_successMessage = null;
             } else {
-                this.city_id_hasError = false;
-                this.city_id_successMessage = 'Good Job.';
+                this.center_id_hasError = false;
+                this.center_id_successMessage = 'Good Job.';
             }
 
         } else {
@@ -47,9 +47,9 @@ export default class office {
         this.is_available_errorMessage = '';
         this.is_available_successMessage = '';
 
-        this.city_id_hasError = false;
-        this.city_id_errorMessage = '';
-        this.city_id_successMessage = '';
+        this.center_id_hasError = false;
+        this.center_id_errorMessage = '';
+        this.center_id_successMessage = '';
     }
 
     validateName($event) {

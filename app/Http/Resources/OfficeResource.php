@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\CityResource;
+use App\Http\Resources\CenterResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OfficeResource extends JsonResource
@@ -21,7 +21,7 @@ class OfficeResource extends JsonResource
             'name' => $this->name,
             'address' => $this->address,
             'is_open' => $this->is_open,
-            'city' => new CityResource($this->city),
+            'center' => new CenterResource($this->center),
         ];
     }
 }

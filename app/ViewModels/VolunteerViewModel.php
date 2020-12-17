@@ -29,7 +29,7 @@ class VolunteerViewModel extends ViewModel
 
     public function offices(): Collection
     {
-        return Office::canDoOffices()->get();
+        return Office::all();
     }
 
     public function jobs(): Collection

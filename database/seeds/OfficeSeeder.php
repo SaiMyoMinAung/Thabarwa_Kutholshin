@@ -1,6 +1,6 @@
 <?php
 
-use App\City;
+use App\Center;
 use App\Office;
 use Illuminate\Database\Seeder;
 
@@ -18,14 +18,14 @@ class OfficeSeeder extends Seeder
                 'name' => OFFICE_ONE,
                 'uuid' => rand(0, 100000),
                 'address' => 'Address One',
-                'city_id' => City::where('name', CITY_ONE)->first()->id,
+                'center_id' => Center::where('name', CENTER_ONE)->first()->id,
                 'is_open' => true,
             ],
             [
                 'name' => OFFICE_TWO,
                 'uuid' => rand(0, 100000),
                 'address' => 'Address Two',
-                'city_id' => City::where('name', CITY_TWO)->first()->id,
+                'center_id' => Center::where('name', CENTER_TWO)->first()->id,
                 'is_open' => true,
             ],
 

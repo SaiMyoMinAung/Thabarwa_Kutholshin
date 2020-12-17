@@ -88,7 +88,7 @@ class DonationUpdateFormRequest extends FormRequest
 
     public function officeId()
     {
-        return $this->input('office_id');
+        return $this->input('office_id') ?? null;
     }
 
     public function hasIsConfirmed()

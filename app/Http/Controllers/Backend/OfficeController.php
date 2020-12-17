@@ -20,7 +20,7 @@ class OfficeController extends Controller
      */
     public function index(Request $request)
     {
-        $offices = Office::with('city')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $offices = Office::with('center')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new OfficeResourceCollection($offices), 200);
     }

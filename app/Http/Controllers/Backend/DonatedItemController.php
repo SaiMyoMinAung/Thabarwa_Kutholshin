@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Exception;
 use App\Office;
 use App\DonatedItem;
 use Illuminate\Http\Request;
-use App\Status\KindOfItemStatus;
-use App\Status\DonatedItemStatus;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\Eloquent\Builder;
+use App\Repository\NotificationRepository;
 use App\Http\Requests\DonationUpdateFormRequest;
 use App\Http\Resources\DonatedItem\DonatedItemResource;
 use App\State\Online\Transition\NewToConfirmedTransition;
@@ -16,6 +15,12 @@ use App\State\Online\Transition\ConfirmedToCancelledTransition;
 
 class DonatedItemController extends Controller
 {
+    public $notiRepo;
+
+    public function __construct(NotificationRepository $notiRepo)
+    {
+        $this->notiRepo = $notiRepo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -71,12 +76,13 @@ class DonatedItemController extends Controller
                 // if (in_array($kind_of_item, KindOfItemStatus::keys())) {
                 //     $search = (string) KindOfItemStatus::values()[$kind_of_item];
                 //     $donated_items = $donated_items->orWhere('kind_of_item', 'LIKE', "%{$search}%");
-                // }    
+                // }  
             }
 
-            $donated_items->whereHas('offices', function (Builder $query) {
-                $query->where('offices.id', auth()->user()->office->id);
-            });
+            if (!auth()->user()->is_super) {
+                $donated_items->where('office_id', auth()->user()->office->id);
+            }
+
 
             $donated_items = $donated_items->offset($start)
                 ->limit($limit)
@@ -147,11 +153,9 @@ class DonatedItemController extends Controller
      */
     public function show(DonatedItem $donatedItem)
     {
-        $latestOffice = $donatedItem->offices()->first();
-
         $offices = Office::orderBy('id', 'desc')->get();
 
-        return view('backend.donated_item.show', compact('donatedItem', 'latestOffice', 'offices'));
+        return view('backend.donated_item.show', compact('donatedItem', 'offices'));
     }
 
     /**
@@ -187,8 +191,13 @@ class DonatedItemController extends Controller
         $donatedItemData = $request->donatedItemData()->all();
         $donatedItem->update($donatedItemData);
 
-        if ($donatedItem->offices()->first()->id != $request->officeId()) {
-            $donatedItem->offices()->attach($request->officeId());
+        $officeId = $request->officeId();
+        if ($officeId != $donatedItem->office_id) {
+            try {
+                $this->notiRepo->donatedItemNotiToAdmins($donatedItem->uuid, $officeId);
+            } catch (Exception $e) {
+                report($e);
+            }
         }
 
         return back()->with('success', 'Donated Item Update Successful.');

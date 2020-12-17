@@ -47,8 +47,8 @@ class VolunteerController extends Controller
                     ->orWhereHas('city', function (Builder $query) use ($search) {
                         $query->where('cities.name', 'LIKE', "%{$search}%");
                     })
-                    ->orWhereHas('office', function (Builder $query) use ($search) {
-                        $query->where('offices.name', 'LIKE', "%{$search}%");
+                    ->orWhereHas('center', function (Builder $query) use ($search) {
+                        $query->where('centers.name', 'LIKE', "%{$search}%");
                     });
             }
 
@@ -64,10 +64,8 @@ class VolunteerController extends Controller
                 $volunteers->orderBy($order, $dir);
             }
 
-            // Add Data Filter By City
-            $volunteers->whereHas('city', function (Builder $query) {
-                $query->where('cities.id', auth()->user()->city->id);
-            });
+            // Add Data Filter By Center
+            // Need to Develop
 
             // Run The Query
             $volunteers = $volunteers->offset($start)
@@ -88,7 +86,7 @@ class VolunteerController extends Controller
                     $nestedData['name'] = $volunteer->name;
                     $nestedData['email'] = $volunteer->email ?? '-';
                     $nestedData['phone'] = $volunteer->phone;
-                    $nestedData['office'] = $volunteer->office->name . ' (' . $volunteer->city->name . ')'  ?? '-';
+                    $nestedData['office'] = $volunteer->office->name . ' (' . $volunteer->center->name . ')'  ?? '-';
                     $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$volunteer->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
                     $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
                     $data[] = $nestedData;
@@ -131,13 +129,13 @@ class VolunteerController extends Controller
         $data = $request->volunteerData()->all();
 
         $jobData = $request->volunteerJobData();
-        
+
         $volunteer = Volunteer::create($data);
 
         $volunteer = $volunteer->fresh();
 
         $volunteer->volunteerJobs()->sync($jobData);
-        
+
         return redirect(route('volunteers.index'))->with('success', 'Create Volunteer Successful.');
     }
 

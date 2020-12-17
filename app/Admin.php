@@ -55,7 +55,7 @@ class Admin extends Authenticatable
 
     public function stateRegion()
     {
-        return $this->belongsToThrough(StateRegion::class, [City::class, Office::class]);
+        return $this->belongsToThrough(StateRegion::class, [City::class, Center::class, Office::class]);
     }
 
     public function getUnreadNotis()

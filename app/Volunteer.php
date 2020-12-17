@@ -24,8 +24,8 @@ class Volunteer extends Model
         return $this->belongsTo(Office::class, 'office_id')->withDefault();
     }
 
-    public function city()
+    public function center()
     {
-        return $this->belongsToThrough(City::class, [Office::class]);
+        return $this->belongsToThrough(Center::class, [Office::class]);
     }
 }

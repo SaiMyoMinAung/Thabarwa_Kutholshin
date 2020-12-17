@@ -5,8 +5,8 @@ export default class office extends base {
         super(route('offices.index'));
         this.name = '';
         this.address = '';
-        this.city_id = '';
-        this.city = null;
+        this.center_id = '';
+        this.center = null;
         this.is_open = 0;
         this.listHrefId = "office-list";
         this.createHrefId = "office-list-create";
@@ -14,21 +14,21 @@ export default class office extends base {
 
     editRecord(index) {
         super.edit(index);
-        this.city_id = this.city ? this.city.id :'';
+        this.center_id = this.center ? this.center.id :'';
     }
 
     clearData() {
         super.clearData()
         this.is_open = 0;
-        this.city_id = '';
-        this.city = null;
+        this.center_id = '';
+        this.center = null;
         this.name = '';
         this.address = '';
     }
 
-    citySelected($event) {
-        this.city = $event;
-        this.city_id = ($event != null) ? $event.id : "";
+    centerSelected($event) {
+        this.center = $event;
+        this.center_id = ($event != null) ? $event.id : "";
     }
 
     updateOffice() {
@@ -37,7 +37,7 @@ export default class office extends base {
             name:this.name,
             address:this.address,
             is_open:this.is_open,
-            city_id:this.city_id,
+            center_id:this.center_id,
             _method:"PUT"
         };
         super.update(url, data)
@@ -48,7 +48,7 @@ export default class office extends base {
             name:this.name,
             address:this.address,
             is_open:this.is_open,
-            city_id:this.city_id,
+            center_id:this.center_id,
         };
         var url = route('offices.store');
         super.save(url, data);

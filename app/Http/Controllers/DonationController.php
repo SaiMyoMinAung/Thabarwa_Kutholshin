@@ -32,7 +32,6 @@ class DonationController extends Controller
         try {
             $this->notiRepo->donatedItemNotiToAdmins($donatedItem->uuid);
         } catch (Exception $e) {
-
             report($e);
         }
 

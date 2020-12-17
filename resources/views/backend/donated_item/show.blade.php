@@ -159,7 +159,7 @@
                             <select name="office_id" class="form-control office-select2 {{ $errors->has('office_id') ? 'is-invalid' : '' }}">
                                 <option></option>
                                 @foreach($offices as $office)
-                                <option value="{{$office->id}}" @if($office->id == $latestOffice->id) selected @endif>{{$office->name}} ({{$office->city->name}})</option>
+                                <option value="{{$office->id}}" @if($office->id == $donatedItem->office_id) selected @endif>{{$office->name}} ({{$office->center->name}})</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('office_id'))
@@ -170,11 +170,11 @@
                         </div>
 
                         <div class="form-group">
-                            <ul>
+                            <ol>
                                 @foreach($donatedItem->offices as $office)
-                                <li>Assigned To {{$office->name}}({{$office->city->name}})</li>
+                                <li>Assigned To {{$office->name}}({{$office->center->name}})</li>
                                 @endforeach
-                            </ul>
+                            </ol>
                         </div>
 
                     </div>
