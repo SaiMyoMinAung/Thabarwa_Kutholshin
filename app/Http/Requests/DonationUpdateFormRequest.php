@@ -38,7 +38,8 @@ class DonationUpdateFormRequest extends FormRequest
             'remark' => 'nullable|max:255',
             'country_id' => 'nullable',
             'city_id' => 'nullable',
-            'state_region_id' => 'nullable'
+            'state_region_id' => 'nullable',
+            'office_id' => 'required|numeric'
         ];
     }
 
@@ -83,6 +84,11 @@ class DonationUpdateFormRequest extends FormRequest
             'city_id' => $this->input('city_id'),
             'state_region_id' => $this->input('state_region_id'),
         ]);
+    }
+
+    public function officeId()
+    {
+        return $this->input('office_id');
     }
 
     public function hasIsConfirmed()

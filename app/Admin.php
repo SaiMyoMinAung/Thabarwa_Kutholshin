@@ -4,6 +4,7 @@ namespace App;
 
 use App\City;
 use App\Office;
+use App\StateRegion;
 use App\TypeOfAdmin;
 use App\Traits\HasUUID;
 use Illuminate\Notifications\Notifiable;
@@ -50,6 +51,11 @@ class Admin extends Authenticatable
     public function city()
     {
         return $this->belongsToThrough(City::class, [Office::class]);
+    }
+
+    public function stateRegion()
+    {
+        return $this->belongsToThrough(StateRegion::class, [City::class, Office::class]);
     }
 
     public function getUnreadNotis()

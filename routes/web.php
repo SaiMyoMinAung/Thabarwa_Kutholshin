@@ -35,7 +35,16 @@ Route::get('get_autoselect_state_region', 'Select2Controller@getAutoSelectStateR
 Route::get('get_autoselect_city', 'Select2Controller@getAutoSelectCity')->name('getCity.autoselect');
 Route::get('get_auto_complete_data', 'Select2Controller@getAutoCompleteData');
 
+
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace' => 'Backend'], function () {
+
+    /**
+     * Notification Route
+     */
+    Route::get('notifications', 'NotificationController@index')->name('notifications.index');
+    Route::get('click_notifications/{notification}', 'NotificationController@clickNotifications')->name('notifications.click');
+
+
     Route::get('dashboard', 'DashboardController@index');
 
     /**
@@ -67,10 +76,6 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'backend', 'namespace'
      * 
      */
     Route::group(['middleware' => 'donated.item.record.admintype'], function () {
-
-
-        Route::get('notifications', 'NotificationController@index')->name('notifications.index');
-        Route::get('click_notifications/{notification}', 'NotificationController@clickNotifications')->name('notifications.click');
 
         /**
          * Donated Item Online API 

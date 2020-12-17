@@ -3,9 +3,10 @@
 namespace App\Repository;
 
 use App\Admin;
-use App\Repository\DonatedItemRepository;
-use App\Http\Requests\DTO\DonatedItemNotiDTO;
 use App\Jobs\SendDonatedItemNotiJob;
+use App\Repository\DonatedItemRepository;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Requests\DTO\DonatedItemNotiDTO;
 
 class NotificationRepository
 {
@@ -28,15 +29,21 @@ class NotificationRepository
 
         $admins = $this->filterAdmins($donatedItem->state_region_id);
 
+        if ($admins->first()) {
+            $donatedItem->offices()->attach($admins->first()->office->id);
+        }
+
         SendDonatedItemNotiJob::dispatch($admins, $notiData);
     }
 
     public function filterAdmins($state_region_id)
     {
-        $admins = Admin::where('state_region_id', $state_region_id)->get();
+        $admins = Admin::where('is_regional_admin', 1)->whereHas('stateRegion', function (Builder $query) use ($state_region_id) {
+            $query->where('state_regions.id', $state_region_id);
+        })->get();
 
         if ($admins->count() === 0) {
-            $admins = Admin::where('is_main', 1)->get();
+            $admins = Admin::where('is_super', 1)->get();
         }
 
         return $admins;

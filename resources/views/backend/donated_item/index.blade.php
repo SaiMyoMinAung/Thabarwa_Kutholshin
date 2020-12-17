@@ -72,16 +72,21 @@
                     "data": "about_item"
                 },
                 {
-                    "data": "pickedup_at"
+                    "data": "pickedup_at",
+                    searchable: false
                 },
                 {
                     "data": "pickedup_info"
                 },
                 {
-                    "data": "status"
+                    "data": "status",
+                    orderable: false,
+                    searchable: false
                 },
                 {
-                    "data": "kind_of_item"
+                    "data": "kind_of_item",
+                    orderable: false,
+                    searchable: false
                 },
                 {
                     "data": "manage_request",

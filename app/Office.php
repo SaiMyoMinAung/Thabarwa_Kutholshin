@@ -17,7 +17,7 @@ class Office extends Model
 
     public function city()
     {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->belongsTo(City::class, 'city_id')->withDefault();
     }
 
     public function stores()

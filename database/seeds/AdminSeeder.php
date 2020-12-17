@@ -21,6 +21,7 @@ class AdminSeeder extends Seeder
         $admin->password = bcrypt('123456');
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
         $admin->is_super = true;
+        $admin->is_regional_admin = true;
         $admin->type_of_admin_id = TypeOfAdmin::where('name', DONATED_ITEM_RECORD_ADMIN)->first()->id;
         $admin->save();
 
@@ -31,6 +32,7 @@ class AdminSeeder extends Seeder
         $admin->password = bcrypt('123456');
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
         $admin->is_super = false;
+        $admin->is_regional_admin = false;
         $admin->type_of_admin_id = TypeOfAdmin::where('name', DONATION_RECORD_ADMIN)->first()->id;
         $admin->save();
 
@@ -41,6 +43,7 @@ class AdminSeeder extends Seeder
         $admin->password = bcrypt('123456');
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
         $admin->is_super = false;
+        $admin->is_regional_admin = false;
         $admin->type_of_admin_id = TypeOfAdmin::where('name', SETTING)->first()->id;
         $admin->save();
     }

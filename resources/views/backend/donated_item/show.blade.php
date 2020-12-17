@@ -105,16 +105,6 @@
                             @endif
                         </div>
 
-                        <!-- <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                            <label for="email">Email <span class="text-danger">*</span></label>
-                            <input name="email" type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" placeholder="Enter Email" value="{{$donatedItem->donor->email}}">
-                            @if ($errors->has('email'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('email') }}
-                            </div>
-                            @endif
-                        </div> -->
-
                         <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
                             <label for="phone">Phone <span class="text-danger">*</span></label>
                             <input name="phone" type="text" class="form-control only-number {{ $errors->has('phone') ? 'is-invalid' : '' }}" id="phone" placeholder="Enter Phone" value="{{$donatedItem->phone}}">
@@ -162,6 +152,29 @@
                                 {{ $errors->first('city_id') }}
                             </div>
                             @endif
+                        </div>
+
+                        <div class="form-group {{ $errors->has('office_id') ? 'has-error' : '' }}">
+                            <label for="office">Office </label>
+                            <select name="office_id" class="form-control office-select2 {{ $errors->has('office_id') ? 'is-invalid' : '' }}">
+                                <option></option>
+                                @foreach($offices as $office)
+                                <option value="{{$office->id}}" @if($office->id == $latestOffice->id) selected @endif>{{$office->name}} ({{$office->city->name}})</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('office_id'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('office_id') }}
+                            </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <ul>
+                                @foreach($donatedItem->offices as $office)
+                                <li>Assigned To {{$office->name}}({{$office->city->name}})</li>
+                                @endforeach
+                            </ul>
                         </div>
 
                     </div>
@@ -233,6 +246,11 @@
 
         $('.city-select2').select2({
             placeholder: "Select City",
+            allowClear: true
+        })
+
+        $('.office-select2').select2({
+            placeholder: "Select Office",
             allowClear: true
         })
 

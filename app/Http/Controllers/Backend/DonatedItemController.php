@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Office;
 use App\DonatedItem;
 use Illuminate\Http\Request;
 use App\Status\KindOfItemStatus;
 use App\Status\DonatedItemStatus;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\DonationUpdateFormRequest;
 use App\Http\Resources\DonatedItem\DonatedItemResource;
 use App\State\Online\Transition\NewToConfirmedTransition;
@@ -44,43 +46,44 @@ class DonatedItemController extends Controller
             $order = $columns[$request->input('order.0.column')];
             $dir = $request->input('order.0.dir');
 
-            if (empty($request->input('search.value'))) {
-                $donated_items = DonatedItem::offset($start)
-                    ->limit($limit)
-                    ->orderBy($order, $dir)
-                    ->get();
-            } else {
+            $donated_items = DonatedItem::query();
+
+            if (!empty($request->input('search.value'))) {
+
                 $search = $request->input('search.value');
 
-                $donated_items =  DonatedItem::where('about_item', 'LIKE', "%{$search}%")
-                    ->orWhere('item_unique_id', 'LIKE', "%{$search}%")
-                    ->orWhere('pickedup_at', 'LIKE', "%{$search}%")
-                    ->orWhere('pickedup_info', 'LIKE', "%{$search}%");
+                $donated_items =  $donated_items->where(function ($q) use ($search) {
+                    return $q->where('about_item', 'LIKE', "%{$search}%")
+                        ->orWhere('item_unique_id', 'LIKE', "%{$search}%")
+                        ->orWhere('pickedup_info', 'LIKE', "%{$search}%");
+                });
+
 
                 // add status filter query
-                $status = strtoupper($request->input('search.value'));
-                if (in_array($status, DonatedItemStatus::keys())) {
-                    $search = (string) DonatedItemStatus::values()[$status];
-                    $donated_items = $donated_items->orWhere('status', 'LIKE', "%{$search}%");
-                    // $totalFiltered = $totalFiltered->orWhere('status', 'LIKE', "%{$search}%");
-                }
+                // $status = strtoupper($request->input('search.value'));
+                // if (in_array($status, DonatedItemStatus::keys())) {
+                //     $search = (string) DonatedItemStatus::values()[$status];
+                //     $donated_items = $donated_items->orWhere('status', 'LIKE', "%{$search}%");
+                // }
 
                 // add kind of item filter
-                $kind_of_item = strtoupper($request->input('search.value'));
-                if (in_array($kind_of_item, KindOfItemStatus::keys())) {
-                    $search = (string) KindOfItemStatus::values()[$kind_of_item];
-                    $donated_items = $donated_items->orWhere('kind_of_item', 'LIKE', "%{$search}%");
-                    // $totalFiltered = $totalFiltered->orWhere('kind_of_item', 'LIKE', "%{$search}%");
-                }
-
-                $donated_items = $donated_items->offset($start)
-                    ->limit($limit)
-                    ->orderBy($order, $dir)
-                    ->get();
-
-                // $totalFiltered = $totalFiltered->count();
-                $totalFiltered = $donated_items->count();
+                // $kind_of_item = strtoupper($request->input('search.value'));
+                // if (in_array($kind_of_item, KindOfItemStatus::keys())) {
+                //     $search = (string) KindOfItemStatus::values()[$kind_of_item];
+                //     $donated_items = $donated_items->orWhere('kind_of_item', 'LIKE', "%{$search}%");
+                // }    
             }
+
+            $donated_items->whereHas('offices', function (Builder $query) {
+                $query->where('offices.id', auth()->user()->office->id);
+            });
+
+            $donated_items = $donated_items->offset($start)
+                ->limit($limit)
+                ->orderBy($order, $dir)
+                ->get();
+
+            $totalFiltered = $donated_items->count();
 
             $data = array();
             if (!empty($donated_items)) {
@@ -144,7 +147,11 @@ class DonatedItemController extends Controller
      */
     public function show(DonatedItem $donatedItem)
     {
-        return view('backend.donated_item.show', compact('donatedItem'));
+        $latestOffice = $donatedItem->offices()->first();
+
+        $offices = Office::orderBy('id', 'desc')->get();
+
+        return view('backend.donated_item.show', compact('donatedItem', 'latestOffice', 'offices'));
     }
 
     /**
@@ -179,6 +186,10 @@ class DonatedItemController extends Controller
 
         $donatedItemData = $request->donatedItemData()->all();
         $donatedItem->update($donatedItemData);
+
+        if ($donatedItem->offices()->first()->id != $request->officeId()) {
+            $donatedItem->offices()->attach($request->officeId());
+        }
 
         return back()->with('success', 'Donated Item Update Successful.');
     }

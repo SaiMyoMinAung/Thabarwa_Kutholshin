@@ -126,4 +126,10 @@ class DonatedItem extends Model
     {
         return $this->belongsTo(StateRegion::class, 'state_region_id')->withDefault();
     }
+
+    public function offices()
+    {
+        return $this->belongsToMany(Office::class, 'donated_item_offices')->withTimestamps()
+            ->orderBy('donated_item_offices.id', 'desc');
+    }
 }
