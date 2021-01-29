@@ -4,6 +4,7 @@ namespace App;
 
 use App\City;
 use App\Team;
+use App\Ward;
 use Illuminate\Database\Eloquent\Model;
 
 class Center extends Model
@@ -18,6 +19,11 @@ class Center extends Model
     public function teams()
     {
         return $this->hasMany(Team::class, 'center_id');
+    }
+
+    public function wards()
+    {
+        return $this->hasMany(Ward::class, 'center_id');
     }
 
     public static function canDoCenters()

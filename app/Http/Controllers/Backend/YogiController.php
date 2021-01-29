@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\YogiStoreFormRequest;
 use App\Http\Requests\YogiUpdateFormRequest;
+use App\Http\Resources\DonatedItemManageRequest\YogiResource;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Resources\Select2\YogiSelect2ResourceCollection;
 use App\ViewModels\YogiViewModel;
@@ -101,9 +102,11 @@ class YogiController extends Controller
 
     public function getAllYogis(Request $request)
     {
-        $yogis = auth()->user()->stateRegion
-            ->yogis()
-            ->where('yogis.name', 'like', '%' . $request->q . '%')
+        $center_id = auth()->user()->center->id;
+
+        $yogis = Yogi::whereHas('ward', function (Builder $query) use ($center_id) {
+            return $query->where('wards.center_id', $center_id);
+        })->where('yogis.name', 'like', '%' . $request->q . '%')
             ->orderBy('id', 'desc')
             ->paginate(5);
 
@@ -132,7 +135,11 @@ class YogiController extends Controller
     {
         $yogiData = $request->yogiData()->all();
 
-        Yogi::create($yogiData);
+        $yogi = Yogi::create($yogiData);
+
+        if (request()->ajax()) {
+            return response()->json(new YogiResource($yogi), 200);
+        }
 
         return redirect(route('yogis.index'))->with('success', 'Create Yogi Successful.');
     }

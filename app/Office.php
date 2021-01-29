@@ -7,6 +7,7 @@ use App\Store;
 use App\Center;
 use App\Volunteer;
 use App\Traits\HasUUID;
+use App\InternalDonatedItem;
 use Illuminate\Database\Eloquent\Model;
 
 class Office extends Model
@@ -38,5 +39,10 @@ class Office extends Model
     public function admins()
     {
         return $this->hasMany(Admin::class, 'office_id');
+    }
+
+    public function internalDonatedItems()
+    {
+        return $this->hasMany(InternalDonatedItem::class, 'office_id');
     }
 }

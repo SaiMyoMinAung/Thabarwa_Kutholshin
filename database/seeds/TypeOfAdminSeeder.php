@@ -17,6 +17,9 @@ class TypeOfAdminSeeder extends Seeder
                 'name' => DONATED_ITEM_RECORD_ADMIN,
             ],
             [
+                'name' => INTERNAL_DONATED_ITEM_RECORD_ADMIN,
+            ],
+            [
                 'name' => DONATION_RECORD_ADMIN,
             ],
             [

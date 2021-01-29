@@ -108,6 +108,9 @@ export default {
       // this.options.push(this.selectedOption);
       // }
     },
+    url: function (val) {
+      this.url = val;
+    },
   },
   methods: {
     userSelected($event) {
@@ -154,6 +157,13 @@ export default {
   },
   created() {
     this.fetchData();
+
+    this.$root.$on("clearSelect2Options", (data) => {
+      
+      if (data.placeholder === this.placeholder) {
+        this.options = [];
+      }
+    });
   },
 };
 </script>

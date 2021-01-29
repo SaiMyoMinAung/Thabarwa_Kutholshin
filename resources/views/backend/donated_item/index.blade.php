@@ -11,7 +11,6 @@
     <div>
         <h1>Donated Item list</h1>
     </div>
-    <a href="{{route('donated_items.create')}}" class="btn btn-success">Create Donated Item</a>
 </div>
 
 @stop

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\TeamStoreFormRequest;
 use App\Http\Requests\TeamUpdateFormRequest;
+use App\Http\Resources\DonatedItemManageRequest\TeamResource;
 use App\Http\Resources\Select2\TeamSelect2ResourceCollection;
 
 class TeamController extends Controller
@@ -139,7 +140,11 @@ class TeamController extends Controller
     {
         $data = $request->teamData()->all();
 
-        Team::create($data);
+        $team = Team::create($data);
+
+        if (Request()->ajax()) {
+            return response()->json(new TeamResource($team), 200);
+        }
 
         return redirect(route('teams.index'))->with('success', 'Create Team Successful.');
     }

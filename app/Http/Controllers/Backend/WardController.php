@@ -10,6 +10,7 @@ use App\Http\Resources\WardResource;
 use App\Http\Requests\WardStoreRequest;
 use App\Http\Requests\WardUpdateRequest;
 use App\Http\Resources\WardResourceCollection;
+use App\Http\Resources\Select2\WardSelect2ResourceCollection;
 
 class WardController extends Controller
 {
@@ -109,5 +110,12 @@ class WardController extends Controller
             report($e);
             return response()->json(['message' => 'fail'], 500);
         }
+    }
+
+    public function getAllWards(Request $request)
+    {
+        $wards = auth()->user()->center->wards()->paginate(5);
+
+        return response()->json(new WardSelect2ResourceCollection($wards), 200);
     }
 }

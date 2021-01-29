@@ -254,6 +254,30 @@ return [
             'label_color' => 'success',
             'can' => 'can-do-donated-item-record',
         ],
+        [
+            'text'        => 'Internal Donated Items',
+            'url'         => 'backend/internal_donated_items',
+            'active'      => ['backend/internal_donated_items', 'backend/internal_donated_items/*'],
+            'icon'        => 'fas fa-list-alt',
+            'label_color' => 'success',
+            'can' => 'can-do-internal-donated-item-record'
+        ],
+        [
+            'text'        => 'Contribution Lists',
+            'url'         => 'backend/contributions',
+            'active'      => ['backend/contributions', 'backend/contributions/*'],
+            'icon'        => 'fas fa-truck',
+            'label_color' => 'success',
+            'can' => 'can-do-internal-donated-item-record'
+        ],
+        [
+            'text'        => 'Received Contribution Lists',
+            'url'         => 'backend/received-contributions',
+            'active'      => ['backend/received-contributions', 'backend/received-contributions/*'],
+            'icon'        => 'fas fa-truck',
+            'label_color' => 'success',
+            'can' => 'can-do-internal-donated-item-record'
+        ],
         ['header' => 'Settings', 'can' => 'can-do-setting'],
         [
             'text'        => 'Volunteers',

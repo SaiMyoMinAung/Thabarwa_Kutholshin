@@ -6,6 +6,7 @@ use Exception;
 use App\Office;
 use App\DonatedItem;
 use Illuminate\Http\Request;
+use App\Status\KindOfItemStatus;
 use App\Http\Controllers\Controller;
 use App\Repository\NotificationRepository;
 use App\Http\Requests\DonationUpdateFormRequest;

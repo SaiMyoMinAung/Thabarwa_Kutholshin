@@ -48,4 +48,9 @@ const TEAM_FOUR = "Team Four";
 
 const DONATION_RECORD_ADMIN = 'Donation Record Admin';
 const DONATED_ITEM_RECORD_ADMIN = 'Donated Item Record Admin';
+const INTERNAL_DONATED_ITEM_RECORD_ADMIN = 'Internal Donated Item Record Admin';
 const SETTING = 'Setting';
+
+const ITEM_TYPE_ONE = "Coffee";
+const ITEM_TYPE_TWO = "Biscuit";
+const ITEM_TYPE_THREE = "Soft Drink";

@@ -50,7 +50,12 @@ class Admin extends Authenticatable
 
     public function city()
     {
-        return $this->belongsToThrough(City::class, [Office::class]);
+        return $this->belongsToThrough(City::class, [Center::class, Office::class]);
+    }
+
+    public function center()
+    {
+        return $this->belongsToThrough(Center::class, [Office::class]);
     }
 
     public function stateRegion()

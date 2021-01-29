@@ -33,8 +33,13 @@ class AuthServiceProvider extends ServiceProvider
             return $user->typeOfAdmin->name == DONATED_ITEM_RECORD_ADMIN;
         });
 
+        Gate::define('can-do-internal-donated-item-record', function ($user) {
+            return $user->typeOfAdmin->name == INTERNAL_DONATED_ITEM_RECORD_ADMIN;
+        });
+        
         Gate::define('can-do-setting', function ($user) {
             return $user->typeOfAdmin->name == SETTING;
         });
+
     }
 }

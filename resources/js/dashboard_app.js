@@ -24,6 +24,7 @@ Vue.use(Toasted, {
 Vue.component('setting-component', require('./components/SettingComponent.vue').default);
 Vue.component('online-manage-component', require('./components/OnlineManageComponent.vue').default);
 Vue.component('manage-request', require('./components/ManageRequestComponent.vue').default);
+Vue.component('internal-donated-item-component', require('./components/InternalDonatedItemComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('v-select', vSelect);
 

@@ -46,7 +46,27 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapInternalDonatedItemRoutes();
         //
+    }
+
+    /**
+     * Define the "internal donated item" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    public function mapInternalDonatedItemRoutes()
+    {
+        Route::group(
+            [
+                'middleware' => ['web', 'auth:admin'],
+                'prefix' => 'backend',
+                'namespace' => $this->namespace . '\Backend'
+            ],
+            base_path('routes/backend.php')
+        );
     }
 
     /**

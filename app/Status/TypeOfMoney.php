@@ -50,7 +50,7 @@ class TypeOfMoney extends Enum
 
     ];
 
-    public static function advanceSerach($search)
+    public static function advanceSearch($search)
     {
         $types = self::toArray();
         $found = [];

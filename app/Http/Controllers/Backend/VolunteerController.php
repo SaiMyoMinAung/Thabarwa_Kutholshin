@@ -196,6 +196,7 @@ class VolunteerController extends Controller
         return back()->with('success', 'Delete Volunteer Successful.');
     }
 
+    // need
     public function getAllVolunteers(Request $request)
     {
         $volunteers = Volunteer::with(['state_region', 'office'])->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);

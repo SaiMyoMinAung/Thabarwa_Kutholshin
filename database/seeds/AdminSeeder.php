@@ -48,14 +48,25 @@ class AdminSeeder extends Seeder
         $admin->save();
 
         $admin = new Admin();
-        $admin->name = 'Admin Office Two (Donated Item Record Admin)';
+        $admin->name = 'Admin Office Two (Internal Donated Item Record Admin)';
         $admin->email = 'admin@officeTwo.com';
-        $admin->phone = '0977774444';
+        $admin->phone = '0977774455';
         $admin->password = bcrypt('123456');
         $admin->office_id = Office::where('name', OFFICE_TWO)->first()->id;
         $admin->is_super = false;
-        $admin->is_regional_admin = true;
-        $admin->type_of_admin_id = TypeOfAdmin::where('name', DONATED_ITEM_RECORD_ADMIN)->first()->id;
+        $admin->is_regional_admin = false;
+        $admin->type_of_admin_id = TypeOfAdmin::where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->first()->id;
+        $admin->save();
+
+        $admin = new Admin();
+        $admin->name = 'Admin Office One (Internal Donated Item Record Admin)';
+        $admin->email = 'admin@officeOne.com';
+        $admin->phone = '0977714455';
+        $admin->password = bcrypt('123456');
+        $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
+        $admin->is_super = false;
+        $admin->is_regional_admin = false;
+        $admin->type_of_admin_id = TypeOfAdmin::where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->first()->id;
         $admin->save();
     }
 }

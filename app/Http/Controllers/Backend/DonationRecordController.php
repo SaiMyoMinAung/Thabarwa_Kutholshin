@@ -204,7 +204,7 @@ class DonationRecordController extends Controller
 
             $typeOfMoney = TypeOfMoney::toArray();
             foreach ($typeOfMoney["TYPE"] as $type) {
-                $code = TypeOfMoney::advanceSerach($type["label"])["code"];
+                $code = TypeOfMoney::advanceSearch($type["label"])["code"];
                 array_push(
                     $searchPanes['options']['type_of_money'],
                     [

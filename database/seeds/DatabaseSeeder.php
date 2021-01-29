@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(VolunteerJobSeeder::class);
 
         $this->call(VolunteerSeeder::class);
+        $this->call(ItemTypeSeeder::class);
     }
 }
