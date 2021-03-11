@@ -10,11 +10,12 @@ use App\Traits\HasUUID;
 use Illuminate\Notifications\Notifiable;
 use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-    use Notifiable, HasUUID, BelongsToThrough;
+    use Notifiable, HasUUID, BelongsToThrough, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +23,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone'
+        'name', 'email', 'password', 'phone', 'type_of_admin_id', 'office_id'
     ];
 
     /**

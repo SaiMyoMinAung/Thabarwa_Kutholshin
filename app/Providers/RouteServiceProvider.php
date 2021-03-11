@@ -61,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group(
             [
-                'middleware' => ['web', 'auth:admin'],
+                'middleware' => ['web', 'auth:admin', 'check.first.time.login'],
                 'prefix' => 'backend',
                 'namespace' => $this->namespace . '\Backend'
             ],

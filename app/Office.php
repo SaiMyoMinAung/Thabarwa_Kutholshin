@@ -45,4 +45,9 @@ class Office extends Model
     {
         return $this->hasMany(InternalDonatedItem::class, 'office_id');
     }
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('is_open', 1)->orderBy('id', 'desc');
+    }
 }

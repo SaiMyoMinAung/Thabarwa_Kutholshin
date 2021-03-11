@@ -17,14 +17,16 @@ class CreateAdminsTable extends Migration
             $table->id();
             $table->string('uuid')->unique();
             $table->string('name');
-            $table->string('phone')->unique();
-            $table->string('email')->unique();
+            $table->string('phone')->nullable()->unique();
+            $table->string('email')->nullable()->unique();
             $table->integer('office_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('is_regional_admin')->default(0);
             $table->boolean('is_super')->default(0);
             $table->integer('type_of_admin_id');
+            $table->integer('first_time_login')->default(1);
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

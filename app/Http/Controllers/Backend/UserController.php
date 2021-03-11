@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\User;
-use App\Ward;
-use App\StateRegion;
 use Illuminate\Http\Request;
 use App\ViewModels\UserModel;
 use App\Http\Controllers\Controller;

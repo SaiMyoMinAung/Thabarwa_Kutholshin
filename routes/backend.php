@@ -71,8 +71,8 @@ Route::get('get_all_item_types', 'ItemTypeController@getAllItemTypes')->name('it
 
 Route::group(['middleware' => 'setting.admintype'], function () {
 
-
     Route::get('settings', 'SettingController@index');
+    Route::resource('admins', 'AdminController');
     Route::resource('cities', 'CityController');
     Route::resource('countries', 'CountryController');
     Route::resource('state_regions', 'StateRegionController');

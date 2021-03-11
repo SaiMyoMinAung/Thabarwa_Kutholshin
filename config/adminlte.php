@@ -280,6 +280,14 @@ return [
         ],
         ['header' => 'Settings', 'can' => 'can-do-setting'],
         [
+            'text'        => 'Admins',
+            'url'         => 'backend/admins',
+            'icon'        => 'fas fa-user-tie',
+            'active'      => ['backend/admins', 'backend/admins/*/edit', 'backend/admins/create'],
+            'label_color' => 'success',
+            'can' => 'can-do-setting',
+        ],
+        [
             'text'        => 'Volunteers',
             'url'         => 'backend/volunteers',
             'icon'        => 'fas fa-people-carry',

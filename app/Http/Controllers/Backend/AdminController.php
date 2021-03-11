@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\AuthAdminInformationResource;
+use App\Admin;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Mail\AdminInviteMail;
+use App\ViewModels\AdminModel;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\AdminStoreFormRequest;
+use App\Http\Requests\AdminUpdateFormRequest;
 
 class AdminController extends Controller
 {
@@ -13,9 +19,93 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->ajax()) {
+
+            $columns = array(
+                0 => 'DT_RowIndex',
+                1 => 'name',
+                2 => 'email',
+                3 => 'phone',
+                4 => 'office',
+                5 => 'type'
+            );
+
+            $totalData = Admin::count();
+
+            $totalFiltered = $totalData;
+
+            $limit = $request->input('length');
+            $start = $request->input('start');
+            $order = $columns[$request->input('order.0.column')];
+            $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
+            $dir = $request->input('order.0.dir');
+
+            $admins = Admin::query();
+
+            if (!empty($request->input('search.value'))) {
+                $search = $request->input('search.value');
+
+                $admins->where('admins.name', 'LIKE', "%{$search}%")
+                    ->orWhere('admins.email', 'LIKE', "%{$search}%")
+                    ->orWhere('admins.phone', 'LIKE', "%{$search}%")
+                    ->orWhereHas('office', function (Builder $query) use ($search) {
+                        $query->where('offices.name', 'LIKE', "%{$search}%");
+                    });
+            }
+
+            $totalFiltered = $admins->count();
+
+            // sorting
+            if ($order == 'office') {
+                $admins->select('admins.*')->join('offices', 'admins.office_id', '=', 'offices.id')
+                    ->orderBy('offices.name', $dir);
+            } else if ($order == 'type') {
+                $admins->select('admins.*')->join('type_of_admins', 'admins.type_of_admin_id', '=', 'type_of_admins.id')
+                    ->orderBy('type_of_admins.name', $dir);
+            } else {
+                $admins->orderBy($order, $dir);
+            }
+
+
+
+            $admins = $admins->offset($start)
+                ->limit($limit)
+                ->get();
+
+            $data = array();
+            if (!empty($admins)) {
+                foreach ($admins as $key => $admin) {
+                    $show =  route('admins.show', $admin->uuid);
+                    $edit =  route('admins.edit', $admin->uuid);
+                    $delete = route('admins.destroy', $admin->uuid);
+
+                    $nestedData['DT_RowIndex'] = $key + 1;
+                    $nestedData['name'] = $admin->name;
+                    $nestedData['email'] = $admin->email ?? '-';
+                    $nestedData['phone'] = $admin->phone;
+                    $nestedData['office'] = $admin->office->name ?? '-';
+                    $nestedData['type'] = $admin->typeOfAdmin->name ?? '-';
+                    // $nestedData['phone'] = substr(strip_tags($admin->phone), 0, 50) . "...";
+                    $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$admin->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
+                    $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    $nestedData['uuid'] = $admin->uuid;
+                    $data[] = $nestedData;
+                }
+            }
+
+            $json_data = array(
+                "draw"            => intval($request->input('draw')),
+                "recordsTotal"    => intval($totalData),
+                "recordsFiltered" => intval($totalFiltered),
+                "data"            => $data
+            );
+
+            return $json_data;
+        }
+
+        return view('backend.admin.index');
     }
 
     /**
@@ -25,7 +115,9 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $adminModel = new AdminModel();
+
+        return view('backend.admin.create', $adminModel);
     }
 
     /**
@@ -34,9 +126,16 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminStoreFormRequest $request)
     {
-        //
+        $data = $request->adminData()->all();
+
+        $admin = Admin::create($data);
+
+        $password = $request->getPassword();
+        Mail::to($admin->email)->send(new AdminInviteMail($admin, $password));
+
+        return redirect(route('admins.index'))->with('success', 'Create Admin Successful');
     }
 
     /**
@@ -56,9 +155,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Admin $admin)
     {
-        //
+        $adminModel = new AdminModel($admin, true);
+
+        return view('backend.admin.create', $adminModel);
     }
 
     /**
@@ -68,9 +169,13 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminUpdateFormRequest $request, Admin $admin)
     {
-        //
+        $data = $request->adminData()->all();
+
+        $admin->update($data);
+
+        return redirect(route('admins.index'))->with('success', 'Update Admin Successful.');
     }
 
     /**
@@ -79,15 +184,13 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Admin $admin)
     {
-        //
-    }
+        $admin->email = NULL;
+        $admin->phone = NULL;
+        $admin->deleted_at = Carbon::now();
+        $admin->save();
 
-    public function information()
-    {
-        $admin = auth()->user();
-
-        return response()->json(new AuthAdminInformationResource($admin), 200);
+        return back()->with('success', 'Delete Admin Successful.');
     }
 }
