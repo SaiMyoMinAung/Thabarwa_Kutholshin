@@ -1,5 +1,5 @@
 export default class base {
-    constructor(fetchListUrl = ''){
+    constructor(fetchListUrl = '') {
         this.fetchListUrl = fetchListUrl;
         this.fetchList();
         this.editIndex = null;
@@ -11,10 +11,11 @@ export default class base {
         this.isUpdateSuccess = false;
         this.isUpdateFail = '';
         this.isDeleteSuccess = '';
+        this.isRestoreSuccess = '';
         this.isDeleteFail = '';
         this.isLoading = false;
         this.list = {
-            data : []
+            data: []
         };
         this.offset = 10;
         this.page = 1;
@@ -26,8 +27,8 @@ export default class base {
         }
 
         axios
-          .get(this.fetchListUrl + '?page=' + page)
-          .then(response => (this.list = response.data));
+            .get(this.fetchListUrl + '?page=' + page)
+            .then(response => (this.list = response.data));
     }
 
     /**
@@ -73,7 +74,7 @@ export default class base {
     save(url, data) {
         var self = this;
         this.resetIsCondition()
-        
+
         axios.post(url, data)
             .then(response => {
                 this.createSuccessful(response.data);
@@ -92,7 +93,7 @@ export default class base {
     update(url, data) {
         self = this;
         this.resetIsCondition();
-        
+
         axios.post(url, data)
             .then(response => {
                 this.updateSuccessful(response.data)
@@ -106,30 +107,37 @@ export default class base {
     delete(url, index) {
         var self = this;
         this.resetIsCondition()
-        
-        axios.delete(url)
-          .then( response => {
-              if(response.status === 200){
-                this.list.data.splice(index, 1);
-                this.isLoading = false;
-                this.isDeleteSuccess = true;
 
-                if(this.list.data.length === 0){
-                    this.fetchList(this.page)
-                    if(this.list.data.length === 0){
-                        this.fetchList(this.page + 1);
-                        if(this.list.data.length === 0){
-                            this.fetchList(this.page - 1);
+        axios.delete(url)
+            .then(response => {
+                if (response.status === 200) {
+
+                    this.isLoading = false;
+
+                    console.log(this.list.data[index])
+                    if (this.list.data[index].deleted_at === null) {
+                        this.isDeleteSuccess = true;
+                    } else {
+                        this.isRestoreSuccess = true;
+                    }
+                    // this.list.data.splice(index, 1);
+
+                    if (this.list.data.length === 0) {
+                        this.fetchList(this.page)
+                        if (this.list.data.length === 0) {
+                            this.fetchList(this.page + 1);
+                            if (this.list.data.length === 0) {
+                                this.fetchList(this.page - 1);
+                            }
                         }
                     }
-                }
 
-              }
-          })
-          .catch(function (error) {
+                }
+            })
+            .catch(function (error) {
                 self.isLoading = false
                 self.isDeleteFail = true;
-          })
+            })
     }
 
     /**
@@ -152,7 +160,7 @@ export default class base {
         this.isCreateFail = true;
         this.validation = error;
     }
-    
+
     /**
      * Do When Upate Success
      * @param {axio response} responseData 
@@ -192,6 +200,7 @@ export default class base {
     resetIsCondition() {
         this.isLoading = true
         this.isDeleteSuccess = false;
+        this.isRestoreSuccess = false;
         this.isDeleteFail = false;
         this.isCreateSuccess = false;
         this.isCreateFail = false;

@@ -25,6 +25,6 @@ class YogiViewModel extends ViewModel
 
     public function wards(): Collection
     {
-        return Ward::with('center')->get();
+        return Ward::withTrashed()->with('center')->get();
     }
 }

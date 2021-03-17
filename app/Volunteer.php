@@ -6,11 +6,12 @@ use App\Office;
 use App\VolunteerJob;
 use App\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Znck\Eloquent\Traits\BelongsToThrough;
 
 class Volunteer extends Model
 {
-    use HasUUID, BelongsToThrough;
+    use HasUUID, BelongsToThrough, SoftDeletes;
 
     protected $guarded = [];
 
@@ -21,13 +22,11 @@ class Volunteer extends Model
 
     public function office()
     {
-        return $this->belongsTo(Office::class, 'office_id')->withDefault();
+        return $this->belongsTo(Office::class, 'office_id')->withTrashed()->withDefault();
     }
 
     public function center()
     {
-        return $this->belongsToThrough(Center::class, [Office::class]);
+        return $this->belongsToThrough(Center::class, [Office::class])->withTrashed()->withDefault();
     }
-
-    
 }

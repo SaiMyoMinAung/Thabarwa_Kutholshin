@@ -20,6 +20,7 @@ class CityResource extends JsonResource
             'name' => $this->name,
             'is_available' => $this->is_available,
             'stateRegion' => new StateRegionResource($this->stateRegion),
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

@@ -20,6 +20,7 @@ class CenterResource extends JsonResource
             'name' => $this->name,
             'is_available' => $this->is_available,
             'city' => new CityResource($this->city),
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

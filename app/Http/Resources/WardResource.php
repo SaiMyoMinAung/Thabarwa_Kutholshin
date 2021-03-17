@@ -20,6 +20,7 @@ class WardResource extends JsonResource
             'name' => $this->name,
             'is_available' => $this->is_available,
             'center' => new CenterResource($this->center),
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

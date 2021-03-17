@@ -21,7 +21,7 @@ class BoxController extends Controller
      */
     public function index(Request $request)
     {
-        $boxes = Box::with('store')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $boxes = Box::withTrashed()->with('store')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new BoxResourceCollection($boxes), 200);
     }
@@ -104,7 +104,11 @@ class BoxController extends Controller
     public function destroy(Box $box)
     {
         try {
-            $box->delete();
+            if ($box->trashed()) {
+                $box->restore();
+            } else {
+                $box->delete();
+            }
             return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             report($e);

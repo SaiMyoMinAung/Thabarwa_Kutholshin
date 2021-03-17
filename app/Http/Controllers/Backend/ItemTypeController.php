@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Exception;
 use App\ItemType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ItemTypeResource;
+use App\Http\Requests\ItemTypeStoreRequest;
+use App\Http\Requests\ItemTypeUpdateRequest;
+use App\Http\Resources\ItemTypeResourceCollection;
 use App\Http\Resources\Select2\ItemTypeSelect2ResourceCollection;
 
 class ItemTypeController extends Controller
@@ -14,9 +19,11 @@ class ItemTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $itemTypes = ItemType::withTrashed()->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+
+        return response()->json(new ItemTypeResourceCollection($itemTypes), 200);
     }
 
     /**
@@ -35,16 +42,15 @@ class ItemTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ItemTypeStoreRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required|unique:item_types'
-        ]);
-
-        $itemType = ItemType::create($request->all());
-
-        if ($request->ajax()) {
-            return response()->json($itemType, 200);
+        try {
+            $validated_data = $request->validated();
+            $itemType = ItemType::create($validated_data);
+            return response()->json(new ItemTypeResource($itemType), 201);
+        } catch (Exception $e) {
+            report($e);
+            return response()->json(['message' => 'fail'], 500);
         }
     }
 
@@ -77,9 +83,16 @@ class ItemTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ItemTypeUpdateRequest $request, ItemType $itemType)
     {
-        //
+        try {
+            $validated_data = $request->validated();
+            $itemType->update($validated_data);
+            return response()->json(new ItemTypeResource($itemType), 200);
+        } catch (Exception $e) {
+            report($e);
+            return response()->json(['message' => 'fail'], 500);
+        }
     }
 
     /**
@@ -88,9 +101,20 @@ class ItemTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ItemType $itemType)
     {
-        //
+        try {
+            if ($itemType->trashed()) {
+                $itemType->restore();
+            } else {
+                $itemType->delete();
+            }
+
+            return response()->json(['message' => 'success'], 200);
+        } catch (Exception $e) {
+            report($e);
+            return response()->json(['message' => 'fail'], 500);
+        }
     }
 
     public function getAllItemTypes()

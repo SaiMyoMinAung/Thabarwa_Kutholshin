@@ -22,6 +22,7 @@ class CreateTeamsTable extends Migration
             $table->text('note')->nullable();
             $table->integer('center_id');
             $table->boolean('is_available');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

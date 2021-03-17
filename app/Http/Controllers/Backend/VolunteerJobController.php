@@ -20,9 +20,9 @@ class VolunteerJobController extends Controller
      */
     public function index(Request $request)
     {
-        $wards = VolunteerJob::where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $volunteerJobs = VolunteerJob::withTrashed()->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
-        return response()->json(new VolunteerJobResourceCollection($wards), 200);
+        return response()->json(new VolunteerJobResourceCollection($volunteerJobs), 200);
     }
 
     /**
@@ -45,8 +45,8 @@ class VolunteerJobController extends Controller
     {
         try {
             $validated_data = $request->validated();
-            $ward = VolunteerJob::create($validated_data);
-            return response()->json(new VolunteerJobResource($ward), 201);
+            $volunteerJobs = VolunteerJob::create($validated_data);
+            return response()->json(new VolunteerJobResource($volunteerJobs), 201);
         } catch (Exception $e) {
             report($e);
             return response()->json(['message' => 'fail'], 500);
@@ -103,7 +103,12 @@ class VolunteerJobController extends Controller
     public function destroy(VolunteerJob $volunteerJob)
     {
         try {
-            $volunteerJob->delete();
+            if ($volunteerJob->trashed()) {
+                $volunteerJob->restore();
+            } else {
+                $volunteerJob->delete();
+            }
+
             return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             report($e);

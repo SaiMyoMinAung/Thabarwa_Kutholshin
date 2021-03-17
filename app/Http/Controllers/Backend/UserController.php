@@ -30,7 +30,7 @@ class UserController extends Controller
                 4 => 'city'
             );
 
-            $totalData = User::count();
+            $totalData = User::withTrashed()->count();
 
             $totalFiltered = $totalData;
 
@@ -40,7 +40,7 @@ class UserController extends Controller
             $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
             $dir = $request->input('order.0.dir');
 
-            $users = User::query();
+            $users = User::query()->withTrashed();
 
             if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
@@ -173,9 +173,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        return back()->with('danger', 'Cannot Delete User');
+        if ($user->trashed()) {
+            $user->restore();
+            return back()->with('success', 'Restore User Successful');
+        } else {
+            $user->delete();
+            return back()->with('success', 'Delete User Successful');
+        }
     }
 
     public function getAllUsers(Request $request)

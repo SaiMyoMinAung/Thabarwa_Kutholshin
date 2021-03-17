@@ -20,7 +20,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::with('stateRegion')->orderBy('id', 'desc')->paginate(5);
+        $cities = City::withTrashed()->with('stateRegion')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new CityResourceCollection($cities), 200);
     }
@@ -102,7 +102,11 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         try {
-            $city->delete();
+            if ($city->trashed()) {
+                $city->restore();
+            } else {
+                $city->delete();
+            }
             return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             report($e);

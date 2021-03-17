@@ -46,22 +46,22 @@ class Admin extends Authenticatable
 
     public function office()
     {
-        return $this->belongsTo(Office::class, 'office_id')->withDefault();
+        return $this->belongsTo(Office::class, 'office_id')->withTrashed()->withDefault();
     }
 
     public function city()
     {
-        return $this->belongsToThrough(City::class, [Center::class, Office::class]);
+        return $this->belongsToThrough(City::class, [Center::class, Office::class])->withTrashed()->withDefault();
     }
 
     public function center()
     {
-        return $this->belongsToThrough(Center::class, [Office::class]);
+        return $this->belongsToThrough(Center::class, [Office::class])->withTrashed()->withDefault();
     }
 
     public function stateRegion()
     {
-        return $this->belongsToThrough(StateRegion::class, [City::class, Center::class, Office::class]);
+        return $this->belongsToThrough(StateRegion::class, [City::class, Center::class, Office::class])->withTrashed()->withDefault();
     }
 
     public function getUnreadNotis()

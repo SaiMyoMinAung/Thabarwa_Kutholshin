@@ -82,6 +82,7 @@ Route::group(['middleware' => 'setting.admintype'], function () {
     Route::resource('centers', 'CenterController');
     Route::resource('wards', 'WardController');
     Route::resource('volunteer_jobs', 'VolunteerJobController');
+    Route::resource('item_types', 'ItemTypeController');
 });
 
 /**

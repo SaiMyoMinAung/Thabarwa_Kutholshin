@@ -19,6 +19,6 @@ class TeamModel extends ViewModel
 
     public function centers()
     {
-        return Center::available()->get();
+        return Center::withTrashed()->available()->get();
     }
 }

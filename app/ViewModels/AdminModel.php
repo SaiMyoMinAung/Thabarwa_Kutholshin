@@ -25,6 +25,6 @@ class AdminModel extends ViewModel
 
     public function offices()
     {
-        return Office::available()->get();
+        return Office::withTrashed()->available()->get();
     }
 }

@@ -18,6 +18,7 @@ class CreateWardsTable extends Migration
             $table->string('name');
             $table->boolean('is_available')->default(0);
             $table->integer('center_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

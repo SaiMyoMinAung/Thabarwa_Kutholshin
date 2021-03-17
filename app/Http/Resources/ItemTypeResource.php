@@ -17,6 +17,7 @@ class ItemTypeResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'deleted_at' => $this->deleted_at
         ];
     }
 }

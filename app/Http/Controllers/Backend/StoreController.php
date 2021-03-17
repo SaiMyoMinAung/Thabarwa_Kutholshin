@@ -21,7 +21,7 @@ class StoreController extends Controller
      */
     public function index(Request $request)
     {
-        $stores = Store::with('office')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $stores = Store::withTrashed()->with('office')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new StoreResourceCollection($stores), 200);
     }
@@ -104,7 +104,11 @@ class StoreController extends Controller
     public function destroy(Store $store)
     {
         try {
-            $store->delete();
+            if ($store->trashed()) {
+                $store->restore();
+            } else {
+                $store->delete();
+            }
             return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             report($e);

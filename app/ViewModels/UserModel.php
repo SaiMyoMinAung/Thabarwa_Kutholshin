@@ -19,6 +19,6 @@ class UserModel extends ViewModel
 
     public function cities()
     {
-        return City::available()->get();
+        return City::withTrashed()->available()->get();
     }
 }

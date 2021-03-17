@@ -31,12 +31,12 @@ class YogiController extends Controller
                 4 => 'option',
             );
 
-            $totalData = Yogi::count();
+            $totalData = Yogi::withTrashed()->count();
 
             $limit = $request->input('length');
             $start = $request->input('start');
 
-            $yogis = Yogi::query();
+            $yogis = Yogi::query()->withTrashed();
 
             if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
@@ -70,19 +70,23 @@ class YogiController extends Controller
 
             $data = [];
             if (!empty($yogis)) {
-                foreach ($yogis as $key => $volunteer) {
+                foreach ($yogis as $key => $yogi) {
 
-                    $edit =  route('yogis.edit', $volunteer->uuid);
-                    $delete = route('yogis.destroy', $volunteer->uuid);
+                    $edit =  route('yogis.edit', $yogi->uuid);
+                    $delete = route('yogis.destroy', $yogi->uuid);
 
                     $nestedData['DT_RowIndex'] = $key + 1;
-                    $nestedData['uuid'] = $volunteer->uuid;
-                    $nestedData['name'] = $volunteer->name;
-                    $nestedData['phone'] = $volunteer->phone ?? '-';
-                    $nestedData['ward'] = $volunteer->ward->name . ' (' . $volunteer->ward->center->name . ')'  ?? '-';
-                    $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$volunteer->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
-                    $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
-                    $nestedData['created_at'] = $volunteer->created_at;
+                    $nestedData['uuid'] = $yogi->uuid;
+                    $nestedData['name'] = $yogi->name;
+                    $nestedData['phone'] = $yogi->phone ?? '-';
+                    $nestedData['ward'] = $yogi->ward->name . ' (' . $yogi->ward->center->name . ')'  ?? '-';
+                    $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$yogi->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
+                    if ($yogi->trashed()) {
+                        $nestedData['options'] .= "<a class='btn btn-default text-green' data-toggle='confirmation' data-href=$delete><i class='fas fa-recycle'></i></a>";
+                    } else {
+                        $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    }
+                    $nestedData['created_at'] = $yogi->created_at;
                     $data[] = $nestedData;
                 }
             }
@@ -192,8 +196,12 @@ class YogiController extends Controller
      */
     public function destroy(Yogi $yogi)
     {
-        $yogi->delete();
-
-        return back()->with('success', 'Delete Yogi Successful');
+        if ($yogi->trashed()) {
+            $yogi->restore();
+            return back()->with('success', 'Restore Yogi Successful');
+        } else {
+            $yogi->delete();
+            return back()->with('success', 'Delete Yogi Successful');
+        }
     }
 }

@@ -2,8 +2,23 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Box;
+use App\City;
+use App\Team;
+use App\Ward;
+use App\Yogi;
+use App\Admin;
+use App\Store;
+use App\Center;
+use App\Office;
+use App\Country;
+use App\ItemType;
+use App\Volunteer;
+use App\StateRegion;
+use App\VolunteerJob;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -33,6 +48,70 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        $this->app['router']->bind('item_type', function ($value) {
+            return ItemType::withTrashed()->where('id', $value)->first();
+        });
+
+        $this->app['router']->bind('volunteer_job', function ($value) {
+            return VolunteerJob::withTrashed()->where('id', $value)->first();
+        });
+
+        $this->app['router']->bind('ward', function ($value) {
+            return Ward::withTrashed()->where('id', $value)->first();
+        });
+
+        $this->app['router']->bind('center', function ($value) {
+            return Center::withTrashed()->where('id', $value)->first();
+        });
+
+        $this->app['router']->bind('city', function ($value) {
+            return City::withTrashed()->where('id', $value)->first();
+        });
+
+        $this->app['router']->bind('state_region', function ($value) {
+            return StateRegion::withTrashed()->where('id', $value)->first();
+        });
+
+        $this->app['router']->bind('country', function ($value) {
+            return Country::withTrashed()->where('id', $value)->first();
+        });
+
+        $this->app['router']->bind('box', function ($value) {
+            return Box::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('store', function ($value) {
+            return Store::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('box', function ($value) {
+            return Box::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('office', function ($value) {
+            return Office::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('admin', function ($value) {
+            return Admin::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('volunteer', function ($value) {
+            return Volunteer::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('team', function ($value) {
+            return Team::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('yogi', function ($value) {
+            return Yogi::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('user', function ($value) {
+            return User::withTrashed()->where('uuid', $value)->first();
+        });
     }
 
     /**

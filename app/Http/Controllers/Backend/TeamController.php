@@ -32,7 +32,7 @@ class TeamController extends Controller
                 5 => 'option'
             );
 
-            $totalData = Team::count();
+            $totalData = Team::withTrashed()->count();
 
             $limit = $request->input('length');
             $start = $request->input('start');
@@ -40,7 +40,7 @@ class TeamController extends Controller
             $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
             $dir = $request->input('order.0.dir');
 
-            $teams = Team::query();
+            $teams = Team::query()->withTrashed();
 
             if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
@@ -89,9 +89,13 @@ class TeamController extends Controller
                     $nestedData['name'] = $team->name;
                     $nestedData['email'] = $team->email ?? '-';
                     $nestedData['phone'] = $team->phone;
-                    $nestedData['office'] = $team->center->name . ' (' . $team->city->name . ')'  ?? '-';
+                    $nestedData['office'] = $team->center->name . ' (' . $team->center->city->name . ')'  ?? '-';
                     $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$team->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
-                    $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    if ($team->trashed()) {
+                        $nestedData['options'] .= "<a class='btn btn-default text-green' data-toggle='confirmation' data-href=$delete><i class='fas fa-recycle'></i></a>";
+                    } else {
+                        $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    }
                     $data[] = $nestedData;
                 }
             }
@@ -197,8 +201,12 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        $team->delete();
-
-        return back()->with('success', 'Delete Team Successful.');
+        if ($team->trashed()) {
+            $team->restore();
+            return back()->with('success', 'Restore Team Successful.');
+        } else {
+            $team->delete();
+            return back()->with('success', 'Delete Team Successful.');
+        }
     }
 }

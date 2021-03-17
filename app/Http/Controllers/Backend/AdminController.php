@@ -32,7 +32,7 @@ class AdminController extends Controller
                 5 => 'type'
             );
 
-            $totalData = Admin::count();
+            $totalData = Admin::withTrashed()->count();
 
             $totalFiltered = $totalData;
 
@@ -42,7 +42,7 @@ class AdminController extends Controller
             $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
             $dir = $request->input('order.0.dir');
 
-            $admins = Admin::query();
+            $admins = Admin::query()->withTrashed();
 
             if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
@@ -89,7 +89,12 @@ class AdminController extends Controller
                     $nestedData['type'] = $admin->typeOfAdmin->name ?? '-';
                     // $nestedData['phone'] = substr(strip_tags($admin->phone), 0, 50) . "...";
                     $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$admin->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
-                    $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    if ($admin->trashed()) {
+                        $nestedData['options'] .= "<a class='btn btn-default text-green' data-toggle='confirmation' data-href=$delete><i class='fas fa-recycle'></i></a>";
+                    } else {
+                        $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    }
+
                     $nestedData['uuid'] = $admin->uuid;
                     $data[] = $nestedData;
                 }
@@ -186,11 +191,12 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        $admin->email = NULL;
-        $admin->phone = NULL;
-        $admin->deleted_at = Carbon::now();
-        $admin->save();
-
-        return back()->with('success', 'Delete Admin Successful.');
+        if ($admin->trashed()) {
+            $admin->restore();
+            return back()->with('success', 'Restore Admin Successful.');
+        } else {
+            $admin->delete();
+            return back()->with('success', 'Delete Admin Successful.');
+        }
     }
 }

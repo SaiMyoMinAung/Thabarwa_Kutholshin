@@ -20,6 +20,7 @@ class CreateBoxesTable extends Migration
             $table->string('box_number');
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

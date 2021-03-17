@@ -20,7 +20,7 @@ class OfficeController extends Controller
      */
     public function index(Request $request)
     {
-        $offices = Office::with('center')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $offices = Office::withTrashed()->with('center')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new OfficeResourceCollection($offices), 200);
     }
@@ -103,7 +103,12 @@ class OfficeController extends Controller
     public function destroy(Office $office)
     {
         try {
-            $office->delete();
+            if ($office->trashed()) {
+                $office->restore();
+            } else {
+                $office->delete();
+            }
+
             return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             report($e);

@@ -22,6 +22,7 @@ class CreateYogisTable extends Migration
             $table->boolean('warden_id')->default(false);
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

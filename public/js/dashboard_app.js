@@ -4869,7 +4869,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_box_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../models/box.js */ "./resources/js/models/box.js");
 /* harmony import */ var _validations_setting_component_volunteer_job_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../validations/setting_component/volunteer_job.js */ "./resources/js/validations/setting_component/volunteer_job.js");
 /* harmony import */ var _models_volunteer_job_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../models/volunteer_job.js */ "./resources/js/models/volunteer_job.js");
-/* harmony import */ var _select2__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./select2 */ "./resources/js/components/select2.vue");
+/* harmony import */ var _validations_setting_component_item_type_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../validations/setting_component/item_type.js */ "./resources/js/validations/setting_component/item_type.js");
+/* harmony import */ var _models_item_type_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../models/item_type.js */ "./resources/js/models/item_type.js");
+/* harmony import */ var _select2__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./select2 */ "./resources/js/components/select2.vue");
 //
 //
 //
@@ -7419,6 +7421,251 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
@@ -7480,30 +7727,37 @@ __webpack_require__.r(__webpack_exports__);
       volunteerJob: {
         validation: new _validations_setting_component_volunteer_job_js__WEBPACK_IMPORTED_MODULE_18__["default"](),
         model: new _models_volunteer_job_js__WEBPACK_IMPORTED_MODULE_19__["default"]()
+      },
+      itemType: {
+        validation: new _validations_setting_component_item_type_js__WEBPACK_IMPORTED_MODULE_20__["default"](),
+        model: new _models_item_type_js__WEBPACK_IMPORTED_MODULE_21__["default"]()
       }
     };
   },
   computed: {
     isLoadingWatch: function isLoadingWatch() {
-      return this.city.model.isLoading || this.country.model.isLoading || this.stateRegion.model.isLoading || this.office.model.isLoading || this.store.model.isLoading || this.box.model.isLoading || this.center.model.isLoading || this.ward.model.isLoading || this.volunteerJob.model.isLoading;
+      return this.city.model.isLoading || this.country.model.isLoading || this.stateRegion.model.isLoading || this.office.model.isLoading || this.store.model.isLoading || this.box.model.isLoading || this.center.model.isLoading || this.ward.model.isLoading || this.volunteerJob.model.isLoading || this.itemType.model.isLoading;
     },
     isCreateSuccessWatch: function isCreateSuccessWatch() {
-      return this.city.model.isCreateSuccess || this.country.model.isCreateSuccess || this.stateRegion.model.isCreateSuccess || this.office.model.isCreateSuccess || this.store.model.isCreateSuccess || this.box.model.isCreateSuccess || this.center.model.isCreateSuccess || this.ward.model.isCreateSuccess || this.volunteerJob.model.isCreateSuccess;
+      return this.city.model.isCreateSuccess || this.country.model.isCreateSuccess || this.stateRegion.model.isCreateSuccess || this.office.model.isCreateSuccess || this.store.model.isCreateSuccess || this.box.model.isCreateSuccess || this.center.model.isCreateSuccess || this.ward.model.isCreateSuccess || this.volunteerJob.model.isCreateSuccess || this.itemType.model.isCreateSuccess;
     },
     isCreateFailWatch: function isCreateFailWatch() {
-      return this.city.model.isCreateFail || this.country.model.isCreateFail || this.stateRegion.model.isCreateFail || this.office.model.isCreateFail || this.store.model.isCreateFail || this.box.model.isCreateFail || this.center.model.isCreateFail || this.ward.model.isCreateFail || this.volunteerJob.model.isCreateFail;
+      return this.city.model.isCreateFail || this.country.model.isCreateFail || this.stateRegion.model.isCreateFail || this.office.model.isCreateFail || this.store.model.isCreateFail || this.box.model.isCreateFail || this.center.model.isCreateFail || this.ward.model.isCreateFail || this.volunteerJob.model.isCreateFail || this.itemType.model.isCreateFail;
     },
     isUpdateSuccessWatch: function isUpdateSuccessWatch() {
-      return this.city.model.isUpdateSuccess || this.country.model.isUpdateSuccess || this.stateRegion.model.isUpdateSuccess || this.office.model.isUpdateSuccess || this.store.model.isUpdateSuccess || this.box.model.isUpdateSuccess || this.center.model.isUpdateSuccess || this.ward.model.isUpdateSuccess || this.volunteerJob.model.isUpdateSuccess;
+      return this.city.model.isUpdateSuccess || this.country.model.isUpdateSuccess || this.stateRegion.model.isUpdateSuccess || this.office.model.isUpdateSuccess || this.store.model.isUpdateSuccess || this.box.model.isUpdateSuccess || this.center.model.isUpdateSuccess || this.ward.model.isUpdateSuccess || this.volunteerJob.model.isUpdateSuccess || this.itemType.model.isUpdateSuccess;
     },
     isUpdateFailWatch: function isUpdateFailWatch() {
-      return this.city.model.isUpdateFail || this.country.model.isUpdateFail || this.stateRegion.model.isUpdateFail || this.office.model.isUpdateFail || this.store.model.isUpdateFail || this.box.model.isUpdateFail || this.center.model.isUpdateFail || this.ward.model.isUpdateFail || this.volunteerJob.model.isUpdateFail;
+      return this.city.model.isUpdateFail || this.country.model.isUpdateFail || this.stateRegion.model.isUpdateFail || this.office.model.isUpdateFail || this.store.model.isUpdateFail || this.box.model.isUpdateFail || this.center.model.isUpdateFail || this.ward.model.isUpdateFail || this.volunteerJob.model.isUpdateFail || this.itemType.model.isUpdateFail;
     },
     isDeleteSuccessWatch: function isDeleteSuccessWatch() {
-      return this.city.model.isDeleteSuccess || this.country.model.isDeleteSuccess || this.stateRegion.model.isDeleteSuccess || this.office.model.isDeleteSuccess || this.store.model.isDeleteSuccess || this.box.model.isDeleteSuccess || this.center.model.isDeleteSuccess || this.ward.model.isDeleteSuccess || this.volunteerJob.model.isDeleteSuccess;
+      return this.city.model.isDeleteSuccess || this.country.model.isDeleteSuccess || this.stateRegion.model.isDeleteSuccess || this.office.model.isDeleteSuccess || this.store.model.isDeleteSuccess || this.box.model.isDeleteSuccess || this.center.model.isDeleteSuccess || this.ward.model.isDeleteSuccess || this.volunteerJob.model.isDeleteSuccess || this.itemType.model.isDeleteSuccess;
+    },
+    isRestoreSuccessWatch: function isRestoreSuccessWatch() {
+      return this.city.model.isRestoreSuccess || this.country.model.isRestoreSuccess || this.stateRegion.model.isRestoreSuccess || this.office.model.isRestoreSuccess || this.store.model.isRestoreSuccess || this.box.model.isRestoreSuccess || this.center.model.isRestoreSuccess || this.ward.model.isRestoreSuccess || this.volunteerJob.model.isRestoreSuccess || this.itemType.model.isRestoreSuccess;
     },
     isDeleteFailWatch: function isDeleteFailWatch() {
-      return this.city.model.isDeleteFail || this.country.model.isDeleteFail || this.stateRegion.model.isDeleteFail || this.office.model.isDeleteFail || this.store.model.isDeleteFail || this.box.model.isDeleteFail || this.center.model.isDeleteFail || this.ward.model.isDeleteFail || this.volunteerJob.model.isDeleteFail;
+      return this.city.model.isDeleteFail || this.country.model.isDeleteFail || this.stateRegion.model.isDeleteFail || this.office.model.isDeleteFail || this.store.model.isDeleteFail || this.box.model.isDeleteFail || this.center.model.isDeleteFail || this.ward.model.isDeleteFail || this.volunteerJob.model.isDeleteFail || this.itemType.model.isDeleteFail;
     }
   },
   watch: {
@@ -7548,6 +7802,14 @@ __webpack_require__.r(__webpack_exports__);
         this.fetchListAndResetCondition();
       }
     },
+    isRestoreSuccessWatch: function isRestoreSuccessWatch(newisRestoreSuccess, oldisRestoreSuccess) {
+      if (newisRestoreSuccess) {
+        this.$toasted.show("Restore Success.", {
+          icon: "delete"
+        });
+        this.fetchListAndResetCondition();
+      }
+    },
     isDeleteFailWatch: function isDeleteFailWatch(newisDeleteFail, oldisDeleteFail) {
       if (newisDeleteFail) {
         this.$toasted.show("Delete Fail.", {
@@ -7581,11 +7843,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     "volunteerJob.model.validation": function volunteerJobModelValidation(newValidation, oldValidation) {
       this.volunteerJob.validation = new _validations_setting_component_volunteer_job_js__WEBPACK_IMPORTED_MODULE_18__["default"](newValidation);
+    },
+    "itemType.model.validation": function itemTypeModelValidation(newValidation, oldValidation) {
+      this.itemType.validation = new _validations_setting_component_item_type_js__WEBPACK_IMPORTED_MODULE_20__["default"](newValidation);
     }
   },
   components: {
     Loading: vue_loading_overlay__WEBPACK_IMPORTED_MODULE_0___default.a,
-    select2: _select2__WEBPACK_IMPORTED_MODULE_20__["default"]
+    select2: _select2__WEBPACK_IMPORTED_MODULE_22__["default"]
   },
   methods: {
     getCityResult: function getCityResult(page) {
@@ -7624,6 +7889,10 @@ __webpack_require__.r(__webpack_exports__);
       this.volunteerJob.model.page = page;
       this.volunteerJob.model.fetchList(page);
     },
+    getItemTypeResult: function getItemTypeResult(page) {
+      this.itemType.model.page = page;
+      this.itemType.model.fetchList(page);
+    },
     fetchListAndResetCondition: function fetchListAndResetCondition() {
       this.stateRegion.model.fetchList(this.stateRegion.model.page);
       this.city.model.fetchList(this.city.model.page);
@@ -7634,6 +7903,7 @@ __webpack_require__.r(__webpack_exports__);
       this.center.model.fetchList(this.center.model.page);
       this.ward.model.fetchList(this.ward.model.page);
       this.volunteerJob.model.fetchList(this.volunteerJob.model.page);
+      this.itemType.model.fetchList(this.itemType.model.page);
       this.stateRegion.model.isCreateSuccess = false;
       this.city.model.isCreateSuccess = false;
       this.office.model.isCreateSuccess = false;
@@ -7643,6 +7913,7 @@ __webpack_require__.r(__webpack_exports__);
       this.center.model.isCreateSuccess = false;
       this.ward.model.isCreateSuccess = false;
       this.volunteerJob.model.isCreateSuccess = false;
+      this.itemType.model.isCreateSuccess = false;
       this.stateRegion.model.isUpdateSuccess = false;
       this.city.model.isUpdateSuccess = false;
       this.office.model.isUpdateSuccess = false;
@@ -7652,6 +7923,7 @@ __webpack_require__.r(__webpack_exports__);
       this.center.model.isUpdateSuccess = false;
       this.ward.model.isUpdateSuccess = false;
       this.volunteerJob.model.isUpdateSuccess = false;
+      this.itemType.model.isUpdateSuccess = false;
       this.stateRegion.model.isDeleteSuccess = false;
       this.city.model.isDeleteSuccess = false;
       this.office.model.isDeleteSuccess = false;
@@ -7661,6 +7933,17 @@ __webpack_require__.r(__webpack_exports__);
       this.center.model.isDeleteSuccess = false;
       this.ward.model.isDeleteSuccess = false;
       this.volunteerJob.model.isDeleteSuccess = false;
+      this.itemType.model.isDeleteSuccess = false;
+      this.stateRegion.model.isRestoreSuccess = false;
+      this.city.model.isRestoreSuccess = false;
+      this.office.model.isRestoreSuccess = false;
+      this.country.model.isRestoreSuccess = false;
+      this.store.model.isRestoreSuccess = false;
+      this.box.model.isRestoreSuccess = false;
+      this.center.model.isRestoreSuccess = false;
+      this.ward.model.isRestoreSuccess = false;
+      this.volunteerJob.model.isRestoreSuccess = false;
+      this.itemType.model.isRestoreSuccess = false;
       this.$forceUpdate();
     }
   },
@@ -63770,6 +64053,72 @@ var render = function() {
                 )
               ])
             ]
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "badge badge-info" }, [_vm._v("1")]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "nav-item dropdown",
+              staticStyle: { "min-width": "150px" },
+              attrs: { role: "presentation" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link dropdown-toggle item-type-setting",
+                  attrs: {
+                    "data-toggle": "dropdown",
+                    href: "#",
+                    role: "button",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false"
+                  }
+                },
+                [_vm._v("Item Type")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-menu" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "item-type-tab",
+                      "data-toggle": "tab",
+                      href: "#item-type-list",
+                      role: "tab",
+                      "aria-controls": "item-type-list",
+                      "aria-selected": "false"
+                    }
+                  },
+                  [_vm._v("Item Type")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "dropdown-item",
+                    attrs: {
+                      id: "item-type-create-tab",
+                      href: "#item-type-list-create",
+                      "data-toggle": "tab",
+                      role: "tab",
+                      "aria-controls": "item-type-list-create",
+                      "aria-selected": "false"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.itemType.model.clearData()
+                      }
+                    }
+                  },
+                  [_vm._v("Create Item Type")]
+                )
+              ])
+            ]
           )
         ]
       ),
@@ -63885,7 +64234,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -63894,7 +64247,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -64203,6 +64564,315 @@ var render = function() {
           {
             staticClass: "tab-pane fade show",
             attrs: {
+              id: "item-type-list",
+              role: "tabpanel",
+              "aria-labelledby": "item-type-list-tab"
+            }
+          },
+          [
+            _c(
+              "table",
+              {
+                staticClass: "table table-hover table-dark",
+                attrs: { cellpadding: "0", cellspacing: "0" }
+              },
+              [
+                _vm._m(4),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.itemType.model.list.data, function(item, index) {
+                    return _c("tr", { key: item.id }, [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(index + 1))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _vm._v(_vm._s(item.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-outline-warning",
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target":
+                                "#edit-collapse-item-type-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "editCollapseExample"
+                            }
+                          },
+                          [_vm._v("\n                Edit\n              ")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "edit-collapse-item-type-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.itemType.model.editRecord(index)
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target":
+                                    "#edit-collapse-item-type-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "editCollapseExample"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticStyle: { "max-width": "20px" } }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
+                            attrs: {
+                              type: "button",
+                              "data-toggle": "collapse",
+                              "data-target": "#collapse-item-type-" + item.id,
+                              "aria-expanded": "false",
+                              "aria-controls": "collapseExample"
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "collapse p-1",
+                            attrs: { id: "collapse-item-type-" + item.id }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-outline-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.itemType.model.deleteItemType(
+                                      item.id,
+                                      index
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  Yes\n                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-default",
+                                attrs: {
+                                  "data-toggle": "collapse",
+                                  "data-target":
+                                    "#collapse-item-type-" + item.id,
+                                  "aria-expanded": "false",
+                                  "aria-controls": "collapseExample"
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  No\n                "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("pagination", {
+              attrs: { data: _vm.itemType.model.list, align: "center" },
+              on: { "pagination-change-page": _vm.getItemTypeResult }
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade show",
+            attrs: {
+              id: "item-type-list-create",
+              role: "tabpanel",
+              "aria-labelledby": "item-type-list-create-tab"
+            }
+          },
+          [
+            _c("div", { staticClass: "col-md-6 card border border-success" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    class: {
+                      "has-error": _vm.itemType.validation.name_hasError,
+                      "was-validated":
+                        _vm.itemType.validation.validation != null &&
+                        !_vm.itemType.validation.name_hasError
+                    }
+                  },
+                  [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.itemType.model.name,
+                          expression: "itemType.model.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      class: {
+                        "is-invalid": _vm.itemType.validation.name_hasError
+                      },
+                      attrs: {
+                        id: "item_type_name",
+                        type: "text",
+                        placeholder: "Item Type Name"
+                      },
+                      domProps: { value: _vm.itemType.model.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.itemType.model,
+                            "name",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "invalid-feedback" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.itemType.validation.name_errorMessage) +
+                          "\n            "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "valid-feedback" }, [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(_vm.itemType.validation.name_successMessage) +
+                          "\n            "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm.itemType.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.itemType.model.updateItemType()
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Update\n          ")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.itemType.model.isEdit
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-default",
+                        on: {
+                          click: function($event) {
+                            return _vm.itemType.model.goToList()
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Cancel\n          ")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        on: {
+                          click: function($event) {
+                            return _vm.itemType.model.saveItemType()
+                          }
+                        }
+                      },
+                      [_vm._v("\n            Create\n          ")]
+                    )
+              ])
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-pane fade show",
+            attrs: {
               id: "store-list",
               role: "tabpanel",
               "aria-labelledby": "store-list-tab"
@@ -64216,7 +64886,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(4),
+                _vm._m(6),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -64327,7 +64997,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -64336,7 +65010,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -64426,7 +65108,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(5),
+                    _vm._m(7),
                     _vm._v(" "),
                     _c("select2", {
                       class: {
@@ -64485,7 +65167,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(6),
+                    _vm._m(8),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64546,7 +65228,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(7),
+                    _vm._m(9),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -64666,7 +65348,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(8),
+                _vm._m(10),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -64797,7 +65479,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -64806,7 +65492,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -64896,7 +65590,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(9),
+                    _vm._m(11),
                     _vm._v(" "),
                     _c("select2", {
                       class: {
@@ -64955,7 +65649,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(10),
+                    _vm._m(12),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65020,7 +65714,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(11),
+                    _vm._m(13),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65137,7 +65831,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(12),
+                      _vm._m(14),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -65220,7 +65914,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(13),
+                    _vm._m(15),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65339,7 +66033,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(14),
+                      _vm._m(16),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -65417,7 +66111,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(15),
+                _vm._m(17),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -65518,7 +66212,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -65527,7 +66225,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -65618,7 +66324,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(16),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("select2", {
                       class: {
@@ -65681,7 +66387,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(17),
+                    _vm._m(19),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65748,7 +66454,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(18),
+                    _vm._m(20),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -65876,7 +66582,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(19),
+                      _vm._m(21),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -65955,7 +66661,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(20),
+                _vm._m(22),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -66094,7 +66800,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -66104,7 +66814,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -66195,7 +66913,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(21),
+                    _vm._m(23),
                     _vm._v(" "),
                     _c("select2", {
                       class: {
@@ -66257,7 +66975,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(22),
+                    _vm._m(24),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -66371,7 +67089,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(23),
+                      _vm._m(25),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -66449,7 +67167,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(24),
+                _vm._m(26),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -66581,7 +67299,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -66590,7 +67312,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -66680,7 +67410,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(25),
+                    _vm._m(27),
                     _vm._v(" "),
                     _c("select2", {
                       class: {
@@ -66739,7 +67469,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(26),
+                    _vm._m(28),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -66857,7 +67587,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(27),
+                      _vm._m(29),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -66935,7 +67665,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(28),
+                _vm._m(30),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -67065,7 +67795,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -67074,7 +67808,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -67164,7 +67906,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(29),
+                    _vm._m(31),
                     _vm._v(" "),
                     _c("select2", {
                       class: {
@@ -67223,7 +67965,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(30),
+                    _vm._m(32),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -67337,7 +68079,7 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _vm._m(31),
+                      _vm._m(33),
                       _vm._v(" "),
                       _c("div", { staticClass: "invalid-feedback" }, [
                         _vm._v(
@@ -67415,7 +68157,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(32),
+                _vm._m(34),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -67545,7 +68287,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -67554,7 +68300,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -67644,7 +68398,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(33),
+                    _vm._m(35),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -67714,7 +68468,7 @@ var render = function() {
                     }
                   },
                   [
-                    _vm._m(34),
+                    _vm._m(36),
                     _vm._v(" "),
                     _c("textarea", {
                       directives: [
@@ -67833,7 +68587,7 @@ var render = function() {
                 attrs: { cellpadding: "0", cellspacing: "0" }
               },
               [
-                _vm._m(35),
+                _vm._m(37),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -67921,7 +68675,11 @@ var render = function() {
                         _c(
                           "button",
                           {
-                            staticClass: "btn btn-outline-danger",
+                            staticClass: "btn",
+                            class: {
+                              "btn-outline-danger": item.deleted_at == null,
+                              "btn-outline-success": item.deleted_at != null
+                            },
                             attrs: {
                               type: "button",
                               "data-toggle": "collapse",
@@ -67930,7 +68688,15 @@ var render = function() {
                               "aria-controls": "collapseExample"
                             }
                           },
-                          [_vm._v("\n                Delete\n              ")]
+                          [
+                            _vm._v(
+                              "\n                " +
+                                _vm._s(
+                                  item.deleted_at == null ? "Delete" : "Restore"
+                                ) +
+                                "\n              "
+                            )
+                          ]
                         ),
                         _vm._v(" "),
                         _c(
@@ -68012,7 +68778,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Box Number")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Office")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Store")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
         _vm._v(" "),
@@ -68044,6 +68810,31 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "box_number" } }, [
       _vm._v("\n              Box Number\n              "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Edit")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Delete")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "item_type_name" } }, [
+      _vm._v("\n              Item Type Name\n              "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -81700,6 +82491,7 @@ var base = /*#__PURE__*/function () {
     this.isUpdateSuccess = false;
     this.isUpdateFail = '';
     this.isDeleteSuccess = '';
+    this.isRestoreSuccess = '';
     this.isDeleteFail = '';
     this.isLoading = false;
     this.list = {
@@ -81813,10 +82605,15 @@ var base = /*#__PURE__*/function () {
       this.resetIsCondition();
       axios["delete"](url).then(function (response) {
         if (response.status === 200) {
-          _this4.list.data.splice(index, 1);
-
           _this4.isLoading = false;
-          _this4.isDeleteSuccess = true;
+          console.log(_this4.list.data[index]);
+
+          if (_this4.list.data[index].deleted_at === null) {
+            _this4.isDeleteSuccess = true;
+          } else {
+            _this4.isRestoreSuccess = true;
+          } // this.list.data.splice(index, 1);
+
 
           if (_this4.list.data.length === 0) {
             _this4.fetchList(_this4.page);
@@ -81907,6 +82704,7 @@ var base = /*#__PURE__*/function () {
     value: function resetIsCondition() {
       this.isLoading = true;
       this.isDeleteSuccess = false;
+      this.isRestoreSuccess = false;
       this.isDeleteFail = false;
       this.isCreateSuccess = false;
       this.isCreateFail = false;
@@ -82030,8 +82828,8 @@ var box = /*#__PURE__*/function (_base) {
       _get(_getPrototypeOf(box.prototype), "save", this).call(this, url, data);
     }
   }, {
-    key: "deleteOffice",
-    value: function deleteOffice(id, index) {
+    key: "deleteBox",
+    value: function deleteBox(id, index) {
       var url = route('boxes.destroy', id);
 
       _get(_getPrototypeOf(box.prototype), "delete", this).call(this, url, index);
@@ -82913,6 +83711,111 @@ var InternalDonatedItem = /*#__PURE__*/function () {
 
   return InternalDonatedItem;
 }();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/item_type.js":
+/*!******************************************!*\
+  !*** ./resources/js/models/item_type.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ItemType; });
+/* harmony import */ var _base_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./base.js */ "./resources/js/models/base.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ItemType = /*#__PURE__*/function (_base) {
+  _inherits(ItemType, _base);
+
+  var _super = _createSuper(ItemType);
+
+  function ItemType() {
+    var _this;
+
+    _classCallCheck(this, ItemType);
+
+    _this = _super.call(this, route('item_types.index'));
+    _this.name = '';
+    _this.listHrefId = "item-type-list";
+    _this.createHrefId = "item-type-list-create";
+    return _this;
+  }
+
+  _createClass(ItemType, [{
+    key: "editRecord",
+    value: function editRecord(index) {
+      _get(_getPrototypeOf(ItemType.prototype), "edit", this).call(this, index);
+    }
+  }, {
+    key: "clearData",
+    value: function clearData() {
+      _get(_getPrototypeOf(ItemType.prototype), "clearData", this).call(this);
+
+      this.name = '';
+    }
+  }, {
+    key: "updateItemType",
+    value: function updateItemType() {
+      var url = route('item_types.update', this.id);
+      var data = {
+        name: this.name,
+        _method: "PUT"
+      };
+
+      _get(_getPrototypeOf(ItemType.prototype), "update", this).call(this, url, data);
+    }
+  }, {
+    key: "saveItemType",
+    value: function saveItemType() {
+      var data = {
+        name: this.name
+      };
+      var url = route('item_types.store');
+
+      _get(_getPrototypeOf(ItemType.prototype), "save", this).call(this, url, data);
+    }
+  }, {
+    key: "deleteItemType",
+    value: function deleteItemType(id, index) {
+      var url = route('item_types.destroy', id);
+
+      _get(_getPrototypeOf(ItemType.prototype), "delete", this).call(this, url, index);
+    }
+  }]);
+
+  return ItemType;
+}(_base_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 
@@ -85094,6 +85997,63 @@ var country = /*#__PURE__*/function () {
   }]);
 
   return country;
+}();
+
+
+
+/***/ }),
+
+/***/ "./resources/js/validations/setting_component/item_type.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/validations/setting_component/item_type.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ItemType; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var ItemType = /*#__PURE__*/function () {
+  function ItemType() {
+    var validation = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+    _classCallCheck(this, ItemType);
+
+    if (validation != null) {
+      if (validation.name) {
+        this.name_hasError = true;
+        this.name_errorMessage = validation.name;
+        this.name_successMessage = null;
+      } else {
+        this.name_hasError = false;
+        this.name_successMessage = 'Good Name.';
+      }
+    } else {
+      this.clearValidation();
+    }
+
+    this.maxlength = 20;
+  }
+
+  _createClass(ItemType, [{
+    key: "clearValidation",
+    value: function clearValidation() {
+      this.name_hasError = false;
+      this.name_errorMessage = '';
+      this.name_successMessage = '';
+    }
+  }, {
+    key: "validateName",
+    value: function validateName($event) {}
+  }]);
+
+  return ItemType;
 }();
 
 

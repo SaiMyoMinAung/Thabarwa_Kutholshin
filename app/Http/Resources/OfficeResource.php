@@ -22,6 +22,7 @@ class OfficeResource extends JsonResource
             'address' => $this->address,
             'is_open' => $this->is_open,
             'center' => new CenterResource($this->center),
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

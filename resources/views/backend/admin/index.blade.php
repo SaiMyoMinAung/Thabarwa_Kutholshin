@@ -25,7 +25,7 @@
             <th>Phone</th>
             <th>Office</th>
             <th>Type</th>
-            <th>Options</th>
+            <th style="min-width: 105px;">Options</th>
         </tr>
     </thead>
     <tbody>

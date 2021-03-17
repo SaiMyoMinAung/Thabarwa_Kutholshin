@@ -21,6 +21,7 @@ class BoxResource extends JsonResource
             'name' => $this->name,
             'box_number' => $this->box_number,
             'store' => new StoreResource($this->store),
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

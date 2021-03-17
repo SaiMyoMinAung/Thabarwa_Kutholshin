@@ -6,14 +6,17 @@ use App\City;
 use App\Team;
 use App\Ward;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Center extends Model
 {
+    use SoftDeletes;
+
     protected $guarded = [];
 
     public function city()
     {
-        return $this->belongsTo(City::class, 'city_id')->withDefault();
+        return $this->belongsTo(City::class, 'city_id')->withTrashed()->withDefault();
     }
 
     public function teams()

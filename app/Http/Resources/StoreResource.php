@@ -21,6 +21,7 @@ class StoreResource extends JsonResource
             'name' => $this->name,
             'store_number' => $this->store_number,
             'office' => new OfficeResource($this->office),
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

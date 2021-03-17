@@ -20,7 +20,7 @@ class CenterController extends Controller
      */
     public function index(Request $request)
     {
-        $centers = Center::with('city')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $centers = Center::withTrashed()->with('city')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new CenterResourceCollection($centers), 200);
     }
@@ -103,7 +103,11 @@ class CenterController extends Controller
     public function destroy(Center $center)
     {
         try {
-            $center->delete();
+            if ($center->trashed()) {
+                $center->restore();
+            } else {
+                $center->delete();
+            }
             return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             report($e);

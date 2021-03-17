@@ -18,6 +18,7 @@ class CountryResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'is_available' => $this->is_available,
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

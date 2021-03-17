@@ -6,16 +6,18 @@ use App\Team;
 use App\Center;
 use App\Country;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class StateRegion extends Model
 {
-    use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
+    use HasRelationships, SoftDeletes;
 
     protected $guarded = [];
 
     public function country()
     {
-        return $this->belongsTo(Country::class, 'country_id');
+        return $this->belongsTo(Country::class, 'country_id')->withTrashed()->withDefault();
     }
 
     public function centers()

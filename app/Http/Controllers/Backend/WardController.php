@@ -21,7 +21,7 @@ class WardController extends Controller
      */
     public function index(Request $request)
     {
-        $wards = Ward::with('center')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $wards = Ward::withTrashed()->with('center')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new WardResourceCollection($wards), 200);
     }
@@ -104,7 +104,12 @@ class WardController extends Controller
     public function destroy(Ward $ward)
     {
         try {
-            $ward->delete();
+            if ($ward->trashed()) {
+                $ward->restore();
+            } else {
+                $ward->delete();
+            }
+
             return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             report($e);

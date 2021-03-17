@@ -20,6 +20,7 @@ class CreateOfficesTable extends Migration
             $table->string('address');
             $table->boolean('is_open')->default(0);
             $table->integer('center_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

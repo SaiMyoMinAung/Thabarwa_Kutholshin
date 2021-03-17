@@ -20,6 +20,7 @@ class CreateStoresTable extends Migration
             $table->integer('store_number');
             $table->unsignedBigInteger('office_id');
             $table->foreign('office_id')->references('id')->on('offices')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

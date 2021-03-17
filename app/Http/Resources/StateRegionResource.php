@@ -21,6 +21,7 @@ class StateRegionResource extends JsonResource
             'code' => $this->code,
             'is_available' => $this->is_available,
             'country' => new CountryResource($this->country),
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

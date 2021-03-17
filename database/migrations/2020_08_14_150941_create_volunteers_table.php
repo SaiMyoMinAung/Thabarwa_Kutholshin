@@ -23,6 +23,7 @@ class CreateVolunteersTable extends Migration
             $table->string('password');
             $table->integer('office_id');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

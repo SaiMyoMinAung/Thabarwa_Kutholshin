@@ -18,6 +18,7 @@ class CreateCentersTable extends Migration
             $table->string('name');
             $table->boolean('is_available')->default(0);
             $table->integer('city_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

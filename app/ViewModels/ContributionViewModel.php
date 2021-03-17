@@ -37,6 +37,6 @@ class ContributionViewModel extends ViewModel
 
     public function receiveOffices()
     {
-        return Office::orderBy('id', 'desc')->where('id', '!=', auth()->user()->office_id)->get();
+        return Office::withTrashed()->orderBy('id', 'desc')->where('id', '!=', auth()->user()->office_id)->get();
     }
 }

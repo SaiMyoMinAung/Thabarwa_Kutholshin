@@ -20,7 +20,7 @@ class StateRegionController extends Controller
      */
     public function index(Request $request)
     {
-        $stateRegions = StateRegion::with('country')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $stateRegions = StateRegion::withTrashed()->with('country')->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new StateRegionResourceCollection($stateRegions), 200);
     }
@@ -103,7 +103,11 @@ class StateRegionController extends Controller
     public function destroy(StateRegion $stateRegion)
     {
         try {
-            $stateRegion->delete();
+            if ($stateRegion->trashed()) {
+                $stateRegion->restore();
+            } else {
+                $stateRegion->delete();
+            }
             return response()->json(new StateRegionResource($stateRegion), 200);
         } catch (Exception $e) {
             report($e);

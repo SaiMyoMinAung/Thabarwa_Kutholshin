@@ -9,16 +9,17 @@ use App\Volunteer;
 use App\Traits\HasUUID;
 use App\InternalDonatedItem;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Office extends Model
 {
-    use HasUUID;
+    use HasUUID, SoftDeletes;
 
     protected $guarded = [];
 
     public function center()
     {
-        return $this->belongsTo(Center::class, 'center_id')->withDefault();
+        return $this->belongsTo(Center::class, 'center_id')->withTrashed()->withDefault();
     }
 
     public function stores()

@@ -19,6 +19,7 @@ class CreateStateRegionsTable extends Migration
             $table->string('code')->unique();
             $table->boolean('is_available')->default(0);
             $table->integer('country_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

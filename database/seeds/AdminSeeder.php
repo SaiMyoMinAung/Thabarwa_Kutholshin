@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
     {
         $admin = new Admin();
         $admin->name = 'Ku Thol Shin (Donated Item Record Admin)';
-        $admin->email = 'admin@kutholshin.com';
+        $admin->email = 'saimyominaung2110@gmail.com';
         $admin->phone = '0977777777';
         $admin->password = bcrypt('123456');
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;

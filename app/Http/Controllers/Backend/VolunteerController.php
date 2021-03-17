@@ -31,12 +31,12 @@ class VolunteerController extends Controller
                 5 => 'option',
             );
 
-            $totalData = Volunteer::count();
+            $totalData = Volunteer::withTrashed()->count();
 
             $limit = $request->input('length');
             $start = $request->input('start');
 
-            $volunteers = Volunteer::query();
+            $volunteers = Volunteer::query()->withTrashed();
 
             if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
@@ -88,7 +88,11 @@ class VolunteerController extends Controller
                     $nestedData['phone'] = $volunteer->phone;
                     $nestedData['office'] = $volunteer->office->name . ' (' . $volunteer->center->name . ')'  ?? '-';
                     $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$volunteer->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
-                    $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    if ($volunteer->trashed()) {
+                        $nestedData['options'] .= "<a class='btn btn-default text-green' data-toggle='confirmation' data-href=$delete><i class='fas fa-recycle'></i></a>";
+                    } else {
+                        $nestedData['options'] .= "<a class='btn btn-default text-danger' data-toggle='confirmation' data-href=$delete><i class='fas fa-trash'></i></a>";
+                    }
                     $data[] = $nestedData;
                 }
             }
@@ -191,9 +195,13 @@ class VolunteerController extends Controller
      */
     public function destroy(Volunteer $volunteer)
     {
-        $volunteer->delete();
-
-        return back()->with('success', 'Delete Volunteer Successful.');
+        if ($volunteer->trashed()) {
+            $volunteer->restore();
+            return back()->with('success', 'Restore Volunteer Successful.');
+        } else {
+            $volunteer->delete();
+            return back()->with('success', 'Delete Volunteer Successful.');
+        }
     }
 
     // need

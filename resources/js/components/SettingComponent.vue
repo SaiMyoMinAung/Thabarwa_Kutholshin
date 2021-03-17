@@ -357,6 +357,45 @@
           >
         </div>
       </li>
+      <span class="badge badge-info">1</span>
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
+        <a
+          class="nav-link dropdown-toggle item-type-setting"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Item Type</a
+        >
+        <div class="dropdown-menu">
+          <a
+            class="dropdown-item"
+            id="item-type-tab"
+            data-toggle="tab"
+            href="#item-type-list"
+            role="tab"
+            aria-controls="item-type-list"
+            aria-selected="false"
+            >Item Type</a
+          >
+          <a
+            class="dropdown-item"
+            id="item-type-create-tab"
+            href="#item-type-list-create"
+            data-toggle="tab"
+            role="tab"
+            aria-controls="item-type-list-create"
+            aria-selected="false"
+            @click="itemType.model.clearData()"
+            >Create Item Type</a
+          >
+        </div>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <!-- start box -->
@@ -376,7 +415,7 @@
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Box Number</th>
-              <th scope="col">Office</th>
+              <th scope="col">Store</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
@@ -420,14 +459,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-box-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div :id="`collapse-box-${item.id}`" class="collapse p-1">
                   <button
@@ -584,6 +627,174 @@
       </div>
       <!-- end box -->
 
+      <!-- start item type -->
+      <div
+        class="tab-pane fade show"
+        id="item-type-list"
+        role="tabpanel"
+        aria-labelledby="item-type-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(item, index) in itemType.model.list.data"
+              :key="item.id"
+            >
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-item-type-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >
+                  Edit
+                </button>
+                <div
+                  :id="`edit-collapse-item-type-${item.id}`"
+                  class="collapse p-1"
+                >
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="itemType.model.editRecord(index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-item-type-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-item-type-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
+                </button>
+                <div :id="`collapse-item-type-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="itemType.model.deleteItemType(item.id, index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-item-type-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="itemType.model.list"
+          align="center"
+          v-on:pagination-change-page="getItemTypeResult"
+        ></pagination>
+      </div>
+      <div
+        class="tab-pane fade show"
+        id="item-type-list-create"
+        role="tabpanel"
+        aria-labelledby="item-type-list-create-tab"
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            <!-- start item type name -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': itemType.validation.name_hasError,
+                'was-validated':
+                  itemType.validation.validation != null &&
+                  !itemType.validation.name_hasError,
+              }"
+            >
+              <label for="item_type_name">
+                Item Type Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="item_type_name"
+                type="text"
+                class="form-control"
+                placeholder="Item Type Name"
+                v-model="itemType.model.name"
+                v-bind:class="{
+                  'is-invalid': itemType.validation.name_hasError,
+                }"
+              />
+              <div class="invalid-feedback">
+                {{ itemType.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ itemType.validation.name_successMessage }}
+              </div>
+            </div>
+            <!-- end item type name -->
+
+            <button
+              v-if="itemType.model.isEdit"
+              @click="itemType.model.updateItemType()"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              v-if="itemType.model.isEdit"
+              @click="itemType.model.goToList()"
+              class="btn btn-default"
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="itemType.model.saveItemType()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- end item type -->
+
       <!-- start store -->
       <div
         class="tab-pane fade show"
@@ -660,14 +871,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-store-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div :id="`collapse-store-${item.id}`" class="collapse p-1">
                   <button
@@ -914,14 +1129,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-office-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div :id="`collapse-office-${item.id}`" class="collapse p-1">
                   <button
@@ -1275,14 +1494,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-country-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div :id="`collapse-country-${item.id}`" class="collapse p-1">
                   <button
@@ -1563,14 +1786,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-state-region-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div
                   :id="`collapse-state-region-${item.id}`"
@@ -1817,14 +2044,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div :id="`collapse-${item.id}`" class="collapse p-1">
                   <button
@@ -2064,14 +2295,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div :id="`collapse-${item.id}`" class="collapse p-1">
                   <button
@@ -2311,14 +2546,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div :id="`collapse-${item.id}`" class="collapse p-1">
                   <button
@@ -2504,14 +2743,18 @@
               </td>
               <td style="max-width: 20px">
                 <button
-                  class="btn btn-outline-danger"
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
                   type="button"
                   data-toggle="collapse"
                   :data-target="`#collapse-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
-                  Delete
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
                 <div :id="`collapse-${item.id}`" class="collapse p-1">
                   <button
@@ -2568,6 +2811,8 @@ import boxValidation from "../validations/setting_component/box.js";
 import boxModel from "../models/box.js";
 import volunteerJobValidation from "../validations/setting_component/volunteer_job.js";
 import volunteerJobModel from "../models/volunteer_job.js";
+import itemTypeValidation from "../validations/setting_component/item_type.js";
+import itemTypeModel from "../models/item_type.js";
 import select2 from "./select2";
 
 export default {
@@ -2610,6 +2855,10 @@ export default {
       validation: new volunteerJobValidation(),
       model: new volunteerJobModel(),
     },
+    itemType: {
+      validation: new itemTypeValidation(),
+      model: new itemTypeModel(),
+    },
   }),
   computed: {
     isLoadingWatch() {
@@ -2622,7 +2871,8 @@ export default {
         this.box.model.isLoading ||
         this.center.model.isLoading ||
         this.ward.model.isLoading ||
-        this.volunteerJob.model.isLoading
+        this.volunteerJob.model.isLoading ||
+        this.itemType.model.isLoading
       );
     },
     isCreateSuccessWatch() {
@@ -2635,7 +2885,8 @@ export default {
         this.box.model.isCreateSuccess ||
         this.center.model.isCreateSuccess ||
         this.ward.model.isCreateSuccess ||
-        this.volunteerJob.model.isCreateSuccess
+        this.volunteerJob.model.isCreateSuccess ||
+        this.itemType.model.isCreateSuccess
       );
     },
     isCreateFailWatch() {
@@ -2648,7 +2899,8 @@ export default {
         this.box.model.isCreateFail ||
         this.center.model.isCreateFail ||
         this.ward.model.isCreateFail ||
-        this.volunteerJob.model.isCreateFail
+        this.volunteerJob.model.isCreateFail ||
+        this.itemType.model.isCreateFail
       );
     },
     isUpdateSuccessWatch() {
@@ -2661,7 +2913,8 @@ export default {
         this.box.model.isUpdateSuccess ||
         this.center.model.isUpdateSuccess ||
         this.ward.model.isUpdateSuccess ||
-        this.volunteerJob.model.isUpdateSuccess
+        this.volunteerJob.model.isUpdateSuccess ||
+        this.itemType.model.isUpdateSuccess
       );
     },
     isUpdateFailWatch() {
@@ -2674,7 +2927,8 @@ export default {
         this.box.model.isUpdateFail ||
         this.center.model.isUpdateFail ||
         this.ward.model.isUpdateFail ||
-        this.volunteerJob.model.isUpdateFail
+        this.volunteerJob.model.isUpdateFail ||
+        this.itemType.model.isUpdateFail
       );
     },
     isDeleteSuccessWatch() {
@@ -2687,7 +2941,22 @@ export default {
         this.box.model.isDeleteSuccess ||
         this.center.model.isDeleteSuccess ||
         this.ward.model.isDeleteSuccess ||
-        this.volunteerJob.model.isDeleteSuccess
+        this.volunteerJob.model.isDeleteSuccess ||
+        this.itemType.model.isDeleteSuccess
+      );
+    },
+    isRestoreSuccessWatch() {
+      return (
+        this.city.model.isRestoreSuccess ||
+        this.country.model.isRestoreSuccess ||
+        this.stateRegion.model.isRestoreSuccess ||
+        this.office.model.isRestoreSuccess ||
+        this.store.model.isRestoreSuccess ||
+        this.box.model.isRestoreSuccess ||
+        this.center.model.isRestoreSuccess ||
+        this.ward.model.isRestoreSuccess ||
+        this.volunteerJob.model.isRestoreSuccess ||
+        this.itemType.model.isRestoreSuccess
       );
     },
     isDeleteFailWatch() {
@@ -2700,7 +2969,8 @@ export default {
         this.box.model.isDeleteFail ||
         this.center.model.isDeleteFail ||
         this.ward.model.isDeleteFail ||
-        this.volunteerJob.model.isDeleteFail
+        this.volunteerJob.model.isDeleteFail ||
+        this.itemType.model.isDeleteFail
       );
     },
   },
@@ -2736,6 +3006,12 @@ export default {
         this.fetchListAndResetCondition();
       }
     },
+    isRestoreSuccessWatch: function (newisRestoreSuccess, oldisRestoreSuccess) {
+      if (newisRestoreSuccess) {
+        this.$toasted.show("Restore Success.", { icon: "delete" });
+        this.fetchListAndResetCondition();
+      }
+    },
     isDeleteFailWatch: function (newisDeleteFail, oldisDeleteFail) {
       if (newisDeleteFail) {
         this.$toasted.show("Delete Fail.", { icon: "delete" });
@@ -2767,6 +3043,9 @@ export default {
     },
     "volunteerJob.model.validation": function (newValidation, oldValidation) {
       this.volunteerJob.validation = new volunteerJobValidation(newValidation);
+    },
+    "itemType.model.validation": function (newValidation, oldValidation) {
+      this.itemType.validation = new itemTypeValidation(newValidation);
     },
   },
   components: {
@@ -2810,6 +3089,10 @@ export default {
       this.volunteerJob.model.page = page;
       this.volunteerJob.model.fetchList(page);
     },
+    getItemTypeResult(page) {
+      this.itemType.model.page = page;
+      this.itemType.model.fetchList(page);
+    },
     fetchListAndResetCondition() {
       this.stateRegion.model.fetchList(this.stateRegion.model.page);
       this.city.model.fetchList(this.city.model.page);
@@ -2820,6 +3103,7 @@ export default {
       this.center.model.fetchList(this.center.model.page);
       this.ward.model.fetchList(this.ward.model.page);
       this.volunteerJob.model.fetchList(this.volunteerJob.model.page);
+      this.itemType.model.fetchList(this.itemType.model.page);
 
       this.stateRegion.model.isCreateSuccess = false;
       this.city.model.isCreateSuccess = false;
@@ -2830,6 +3114,7 @@ export default {
       this.center.model.isCreateSuccess = false;
       this.ward.model.isCreateSuccess = false;
       this.volunteerJob.model.isCreateSuccess = false;
+      this.itemType.model.isCreateSuccess = false;
 
       this.stateRegion.model.isUpdateSuccess = false;
       this.city.model.isUpdateSuccess = false;
@@ -2840,6 +3125,7 @@ export default {
       this.center.model.isUpdateSuccess = false;
       this.ward.model.isUpdateSuccess = false;
       this.volunteerJob.model.isUpdateSuccess = false;
+      this.itemType.model.isUpdateSuccess = false;
 
       this.stateRegion.model.isDeleteSuccess = false;
       this.city.model.isDeleteSuccess = false;
@@ -2850,6 +3136,18 @@ export default {
       this.center.model.isDeleteSuccess = false;
       this.ward.model.isDeleteSuccess = false;
       this.volunteerJob.model.isDeleteSuccess = false;
+      this.itemType.model.isDeleteSuccess = false;
+
+      this.stateRegion.model.isRestoreSuccess = false;
+      this.city.model.isRestoreSuccess = false;
+      this.office.model.isRestoreSuccess = false;
+      this.country.model.isRestoreSuccess = false;
+      this.store.model.isRestoreSuccess = false;
+      this.box.model.isRestoreSuccess = false;
+      this.center.model.isRestoreSuccess = false;
+      this.ward.model.isRestoreSuccess = false;
+      this.volunteerJob.model.isRestoreSuccess = false;
+      this.itemType.model.isRestoreSuccess = false;
 
       this.$forceUpdate();
     },

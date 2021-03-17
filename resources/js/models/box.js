@@ -50,7 +50,7 @@ export default class box extends base {
         super.save(url, data);
     }
 
-    deleteOffice(id, index) {
+    deleteBox(id, index) {
         var url = route('boxes.destroy', id);
         super.delete(url, index)
     }

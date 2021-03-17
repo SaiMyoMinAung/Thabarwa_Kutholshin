@@ -29,12 +29,12 @@ class VolunteerViewModel extends ViewModel
 
     public function offices(): Collection
     {
-        return Office::all();
+        return Office::withTrashed()->get();
     }
 
     public function jobs(): Collection
     {
-        return VolunteerJob::all();
+        return VolunteerJob::withTrashed()->get();
     }
 
     public function selectedJobs()

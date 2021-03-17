@@ -20,7 +20,7 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-        $countries = Country::where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
+        $countries = Country::withTrashed()->where('name', 'like', '%' . $request->q . '%')->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new CountryResourceCollection($countries), 200);
     }
@@ -51,7 +51,6 @@ class CountryController extends Controller
             report($e);
             return response()->json(['message' => 'fail'], 500);
         }
-        
     }
 
     /**
@@ -104,7 +103,11 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         try {
-            $country->delete();
+            if ($country->trashed()) {
+                $country->restore();
+            } else {
+                $country->delete();
+            }
             return response()->json(['message' => 'success'], 200);
         } catch (Exception $e) {
             report($e);
