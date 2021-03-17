@@ -26,20 +26,19 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('can-do-donation-record', function ($user) {
-            return $user->typeOfAdmin->name == DONATION_RECORD_ADMIN;
+            return $user->typeOfAdmins->where('name', DONATION_RECORD_ADMIN)->count() > 0;
         });
 
         Gate::define('can-do-donated-item-record', function ($user) {
-            return $user->typeOfAdmin->name == DONATED_ITEM_RECORD_ADMIN;
+            return $user->typeOfAdmins->where('name', DONATED_ITEM_RECORD_ADMIN)->count() > 0;
         });
 
         Gate::define('can-do-internal-donated-item-record', function ($user) {
-            return $user->typeOfAdmin->name == INTERNAL_DONATED_ITEM_RECORD_ADMIN;
-        });
-        
-        Gate::define('can-do-setting', function ($user) {
-            return $user->typeOfAdmin->name == SETTING;
+            return $user->typeOfAdmins->where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->count() > 0;
         });
 
+        Gate::define('can-do-setting', function ($user) {
+            return $user->typeOfAdmins->where('name', SETTING)->count() > 0;
+        });
     }
 }

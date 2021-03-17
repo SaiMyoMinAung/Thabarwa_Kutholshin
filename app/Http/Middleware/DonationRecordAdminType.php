@@ -15,9 +15,9 @@ class DonationRecordAdminType
      */
     public function handle($request, Closure $next)
     {
-        $type = auth()->user()->typeOfAdmin;
-        
-        if ($type && $type->name != DONATION_RECORD_ADMIN) {
+        $type = auth()->user()->typeOfAdmins;
+
+        if ($type->where('name', DONATION_RECORD_ADMIN)->count() == 0) {
             return redirect(route('admin.login'));
         }
 

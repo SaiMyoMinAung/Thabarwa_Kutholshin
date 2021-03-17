@@ -15,9 +15,9 @@ class InternalDonatedItemRecordAdminType
      */
     public function handle($request, Closure $next)
     {
-        $type = auth()->user()->typeOfAdmin;
+        $type = auth()->user()->typeOfAdmins;
 
-        if ($type && $type->name != INTERNAL_DONATED_ITEM_RECORD_ADMIN) {
+        if ($type->where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->count() == 0) {
             return redirect(route('admin.login'));
         }
 

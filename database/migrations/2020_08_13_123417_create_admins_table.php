@@ -24,7 +24,6 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->boolean('is_regional_admin')->default(0);
             $table->boolean('is_super')->default(0);
-            $table->integer('type_of_admin_id');
             $table->integer('first_time_login')->default(1);
             $table->softDeletes();
             $table->rememberToken();

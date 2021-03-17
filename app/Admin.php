@@ -69,8 +69,8 @@ class Admin extends Authenticatable
         return $this->unreadNotifications()->orderBy('id', 'desc')->take(5)->get();
     }
 
-    public function typeOfAdmin()
+    public function typeOfAdmins()
     {
-        return $this->belongsTo(TypeOfAdmin::class, 'type_of_admin_id')->withDefault();
+        return $this->belongsToMany(TypeOfAdmin::class, 'admin_has_type_of_admins', 'admin_id', 'type_of_admin_id');
     }
 }

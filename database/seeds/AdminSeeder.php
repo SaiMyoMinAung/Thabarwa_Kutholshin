@@ -22,8 +22,10 @@ class AdminSeeder extends Seeder
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
         $admin->is_super = true;
         $admin->is_regional_admin = true;
-        $admin->type_of_admin_id = TypeOfAdmin::where('name', DONATED_ITEM_RECORD_ADMIN)->first()->id;
         $admin->save();
+
+        $type_of_admin_ids = TypeOfAdmin::whereIn('name', [DONATED_ITEM_RECORD_ADMIN, DONATION_RECORD_ADMIN, SETTING, INTERNAL_DONATED_ITEM_RECORD_ADMIN])->pluck('id');
+        $admin->typeOfAdmins()->sync($type_of_admin_ids);
 
         $admin = new Admin();
         $admin->name = 'Ku Thol Shin (Donation Record Admin)';
@@ -33,8 +35,10 @@ class AdminSeeder extends Seeder
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
         $admin->is_super = false;
         $admin->is_regional_admin = false;
-        $admin->type_of_admin_id = TypeOfAdmin::where('name', DONATION_RECORD_ADMIN)->first()->id;
         $admin->save();
+
+        $type_of_admin_ids = TypeOfAdmin::where('name', DONATION_RECORD_ADMIN)->pluck('id');
+        $admin->typeOfAdmins()->sync($type_of_admin_ids);
 
         $admin = new Admin();
         $admin->name = 'Ku Thol Shin (Setting Admin)';
@@ -44,8 +48,10 @@ class AdminSeeder extends Seeder
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
         $admin->is_super = false;
         $admin->is_regional_admin = false;
-        $admin->type_of_admin_id = TypeOfAdmin::where('name', SETTING)->first()->id;
         $admin->save();
+
+        $type_of_admin_ids = TypeOfAdmin::where('name', SETTING)->pluck('id');
+        $admin->typeOfAdmins()->sync($type_of_admin_ids);
 
         $admin = new Admin();
         $admin->name = 'Admin Office Two (Internal Donated Item Record Admin)';
@@ -55,8 +61,10 @@ class AdminSeeder extends Seeder
         $admin->office_id = Office::where('name', OFFICE_TWO)->first()->id;
         $admin->is_super = false;
         $admin->is_regional_admin = false;
-        $admin->type_of_admin_id = TypeOfAdmin::where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->first()->id;
         $admin->save();
+
+        $type_of_admin_ids = TypeOfAdmin::where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->pluck('id');
+        $admin->typeOfAdmins()->sync($type_of_admin_ids);
 
         $admin = new Admin();
         $admin->name = 'Admin Office One (Internal Donated Item Record Admin)';
@@ -66,7 +74,9 @@ class AdminSeeder extends Seeder
         $admin->office_id = Office::where('name', OFFICE_ONE)->first()->id;
         $admin->is_super = false;
         $admin->is_regional_admin = false;
-        $admin->type_of_admin_id = TypeOfAdmin::where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->first()->id;
         $admin->save();
+
+        $type_of_admin_ids = TypeOfAdmin::where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->pluck('id');
+        $admin->typeOfAdmins()->sync($type_of_admin_ids);
     }
 }
