@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use App\Http\Requests\DTO\AdminDTO;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class AdminUpdateFormRequest extends FormRequest
 {
@@ -16,6 +17,13 @@ class AdminUpdateFormRequest extends FormRequest
      */
     public function authorize()
     {
+        if ($this->admin->is_super) {
+            $error = ValidationException::withMessages([
+                'super_error' => ['Cannot Update Super Admin'],
+            ]);
+            throw $error;
+        }
+
         return true;
     }
 
@@ -27,7 +35,7 @@ class AdminUpdateFormRequest extends FormRequest
     public function rules()
     {
         $id = $this->admin->id;
-        
+
         return [
             'name' => 'required|max:255',
             'email' => "required|email|unique:admins,email,$id|max:255",

@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\AdminStoreFormRequest;
 use App\Http\Requests\AdminUpdateFormRequest;
+use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
@@ -32,7 +33,7 @@ class AdminController extends Controller
                 5 => 'type'
             );
 
-            $totalData = Admin::withTrashed()->count();
+            $totalData = Admin::withTrashed()->where('is_super', 0)->count();
 
             $totalFiltered = $totalData;
 
@@ -42,7 +43,7 @@ class AdminController extends Controller
             $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
             $dir = $request->input('order.0.dir');
 
-            $admins = Admin::query()->withTrashed();
+            $admins = Admin::query()->withTrashed()->where('is_super', 0);
 
             if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
@@ -191,6 +192,13 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
+        if ($admin->is_super) {
+            $error = ValidationException::withMessages([
+                'super_error' => ['Cannot Delete Super Admin'],
+            ]);
+            throw $error;
+        }
+
         if ($admin->trashed()) {
             $admin->restore();
             return back()->with('success', 'Restore Admin Successful.');

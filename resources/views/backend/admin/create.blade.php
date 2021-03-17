@@ -15,6 +15,12 @@
 
 @section('content')
 <div class="row">
+    @if($errors->has('super_error'))
+    <div class="col-md-12 alert alert-danger">
+        {{ $errors->first('super_error') }}
+    </div>
+    @endif
+
     <div class="col-md-12 col-lg-12 col-centered">
         <form action="{{ $edit ? route('admins.update',$admin->uuid) : route('admins.store')}}" method="post">
             @if($edit)
