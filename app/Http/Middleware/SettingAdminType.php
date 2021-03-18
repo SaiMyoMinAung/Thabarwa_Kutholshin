@@ -16,8 +16,11 @@ class SettingAdminType
     public function handle($request, Closure $next)
     {
         $type = auth()->user()->typeOfAdmins;
-        
-        if ($type->where('name', SETTING)->count() == 0) {
+
+        if (
+            $type->where('name', SETTING)->count() == 0
+            && !auth()->user()->is_super
+        ) {
             return redirect(route('admin.login'));
         }
 

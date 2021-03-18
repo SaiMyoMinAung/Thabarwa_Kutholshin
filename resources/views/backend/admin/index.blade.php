@@ -92,7 +92,9 @@
                     "data": "office"
                 },
                 {
-                    "data": "type"
+                    "data": "type",
+                    orderable: false,
+                    searchable: false
                 },
                 {
                     "data": "options",

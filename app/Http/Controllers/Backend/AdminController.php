@@ -30,7 +30,6 @@ class AdminController extends Controller
                 2 => 'email',
                 3 => 'phone',
                 4 => 'office',
-                5 => 'type'
             );
 
             $totalData = Admin::withTrashed()->where('is_super', 0)->count();
@@ -62,10 +61,7 @@ class AdminController extends Controller
             if ($order == 'office') {
                 $admins->select('admins.*')->join('offices', 'admins.office_id', '=', 'offices.id')
                     ->orderBy('offices.name', $dir);
-            } else if ($order == 'type') {
-                $admins->select('admins.*')->join('type_of_admins', 'admins.type_of_admin_id', '=', 'type_of_admins.id')
-                    ->orderBy('type_of_admins.name', $dir);
-            } else {
+            }else {
                 $admins->orderBy($order, $dir);
             }
 
@@ -87,7 +83,10 @@ class AdminController extends Controller
                     $nestedData['email'] = $admin->email ?? '-';
                     $nestedData['phone'] = $admin->phone;
                     $nestedData['office'] = $admin->office->name ?? '-';
-                    $nestedData['type'] = $admin->typeOfAdmin->name ?? '-';
+                    $nestedData['type'] = '';
+                    foreach ($admin->typeOfAdmins as $type) {
+                        $nestedData['type'] .= '<span class="badge badge-success">' . $type->name . '</span>';
+                    }
                     // $nestedData['phone'] = substr(strip_tags($admin->phone), 0, 50) . "...";
                     $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$admin->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
                     if ($admin->trashed()) {

@@ -17,7 +17,10 @@ class DonatedItemRecordAdminType
     {
         $type = auth()->user()->typeOfAdmins;
 
-        if ($type->where('name', DONATED_ITEM_RECORD_ADMIN)->count() == 0) {
+        if (
+            $type->where('name', DONATED_ITEM_RECORD_ADMIN)->count() == 0
+            && !auth()->user()->is_super
+        ) {
             return redirect(route('admin.login'));
         }
 

@@ -24,9 +24,6 @@ class AdminSeeder extends Seeder
         $admin->is_regional_admin = true;
         $admin->save();
 
-        $type_of_admin_ids = TypeOfAdmin::whereIn('name', [DONATED_ITEM_RECORD_ADMIN, DONATION_RECORD_ADMIN, SETTING, INTERNAL_DONATED_ITEM_RECORD_ADMIN])->pluck('id');
-        $admin->typeOfAdmins()->sync($type_of_admin_ids);
-
         $admin = new Admin();
         $admin->name = 'Ku Thol Shin (Donation Record Admin)';
         $admin->email = 'admin@kutholshin2.com';
