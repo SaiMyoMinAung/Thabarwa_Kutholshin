@@ -86,7 +86,7 @@ class DonationRecordController extends Controller
 
             if (!empty($request->searchPanes["type_of_money"])) {
                 $type_of_money =  $request->input('searchPanes.type_of_money')[0];
-                $code = TypeOfMoney::advanceSerach($type_of_money)["code"];
+                $code = TypeOfMoney::advanceSearch($type_of_money)["code"];
                 $donation_records->where('type_of_money', $code);
             }
 
@@ -120,7 +120,7 @@ class DonationRecordController extends Controller
                     $nestedData['main_donor_name'] = Str::limit($donation_record->main_donor_name, 15, '...');
                     $nestedData['donor'] = Str::limit($donation_record->donor, 15, '...');
                     $nestedData['date_of_donation'] = $donation_record->date_of_donation;
-                    $nestedData['cash'] = ' <span class="badge badge-success">' . TypeOfMoney::advanceSerach($donation_record->type_of_money)["symbol"] . '</span> ' . $donation_record->formatedCash;
+                    $nestedData['cash'] = ' <span class="badge badge-success">' . TypeOfMoney::advanceSearch($donation_record->type_of_money)["symbol"] . '</span> ' . $donation_record->formatedCash;
                     $nestedData['kind_of_donation'] = $donation_record->kindOfDonation->name;
                     $nestedData['donation_material'] = Str::limit($donation_record->donation_material, 15, '...');
                     $nestedData['options'] = '<a class="btn btn-default text-primary" data-uuid="' . $donation_record->uuid . '" data-toggle="editconfirmation" data-href="' . route('donation_records.edit', $donation_record->uuid) . '"><i class="fas fa-edit"></i></a> - ';

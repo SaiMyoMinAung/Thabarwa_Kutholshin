@@ -81,7 +81,7 @@ class ContributionController extends Controller
                     $nestedData['items'] = '';
                     if ($contribution->internalDonatedItems()->count() > 0) {
                         foreach ($contribution->internalDonatedItems as $item) {
-                            $nestedData['items'] .= "<span class='badge badge-success'>$item->item_unique_id</span>";
+                            $nestedData['items'] .= "<span class='badge badge-success'>$item->item_unique_id</span> ";
                         }
                     }
                     $confirmedCount = $contribution->internalDonatedItems()->wherePivot('is_confirmed', 1)->count();

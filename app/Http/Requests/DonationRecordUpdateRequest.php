@@ -44,7 +44,7 @@ class DonationRecordUpdateRequest extends FormRequest
 
     public function donationRecordData()
     {
-        $type = TypeOfMoney::advanceSerach($this->input('type_of_money'));
+        $type = TypeOfMoney::advanceSearch($this->input('type_of_money'));
         
         return new DonationRecordDTO([
             'date_of_donation' => $this->input('date_of_donation'),

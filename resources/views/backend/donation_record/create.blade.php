@@ -131,11 +131,11 @@
                         <div class="col-md-3 col-sm-3">
                             <!-- Type Of Money -->
                             <div class="form-group {{ $errors->has('type_of_money') ? 'has-error' : '' }}">
-                                <label for="type_of_money">Type Of Money <span class="text-danger">*</span></label>
+                                <label for="type_of_money">Type Of Money {{old('type_of_money')}}<span class="text-danger">*</span></label>
                                 <select name="type_of_money" class="form-control select2-type-of-money custom-select {{ $errors->has('type_of_money') ? 'is-invalid' : (old('type_of_money') && !$errors->has('type_of_money') ? 'is-valid': '') }}">
                                     <option></option>
                                     @foreach($types as $type)
-                                    <option value="{{$type['label']}}" @if($edit && $donation_record->type_of_money == $type["code"]) selected @endif @if($type['code']==old('type_of_money')) selected @endif>{{$type['symbol']}} ( {{ $type['label']}} )</option>
+                                    <option value="{{$type['label']}}" @if($edit && $donation_record->type_of_money == $type["code"]) selected @endif @if($type['label']==old('type_of_money')) selected @endif>{{$type['symbol']}} ( {{ $type['label']}} )</option>
                                     @endforeach
 
 

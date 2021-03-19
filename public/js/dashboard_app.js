@@ -1908,6 +1908,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _select2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./select2 */ "./resources/js/components/select2.vue");
 //
 //
 //
@@ -2066,7 +2067,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    select2: _select2__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       data: {
@@ -2077,6 +2111,8 @@ __webpack_require__.r(__webpack_exports__);
         center_id: ""
       },
       submited: false,
+      fetchCenter: route("centers.index"),
+      selectedCenter: {},
       validation: {
         name_hasError: false,
         name_errorMessage: "",
@@ -2124,12 +2160,17 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         // window.dashboard_app.$emit('failed')
         console.log(error.response);
+        self.clearValidation();
         self.constructValidation(error.response.data.errors);
         window.dashboard_app.$toasted.show("Saving Failed.", {
           icon: "save"
         });
         window.dashboard_app.$emit("endLoading");
       });
+    },
+    selectedCenterBox: function selectedCenterBox(event) {
+      this.selectedCenter = event;
+      this.data.center_id = event != null ? event.id : "";
     },
     clearValidation: function clearValidation() {
       this.validation.name_hasError = false;
@@ -2144,35 +2185,43 @@ __webpack_require__.r(__webpack_exports__);
       this.validation.note_hasError = false;
       this.validation.note_errorMessage = "";
       this.validation.note_successMessage = "";
+      this.validation.center_id_hasError = false;
+      this.validation.center_id_errorMessage = "";
+      this.validation.center_id_successMessage = "";
     },
     constructValidation: function constructValidation(validation) {
       if (validation.name) {
         this.validation.name_hasError = true;
         this.validation.name_errorMessage = validation.name[0];
+      } else {
         this.validation.name_successMessage = "Good Job";
       }
 
       if (validation.email) {
         this.validation.email_hasError = true;
         this.validation.email_errorMessage = validation.email[0];
+      } else {
         this.validation.email_successMessage = "Good Job";
       }
 
       if (validation.phone) {
         this.validation.phone_hasError = true;
         this.validation.phone_errorMessage = validation.phone[0];
+      } else {
         this.validation.phone_successMessage = "Good Job";
       }
 
       if (validation.note) {
         this.validation.note_hasError = true;
         this.validation.note_errorMessage = validation.note[0];
+      } else {
         this.validation.note_successMessage = "Good Job";
       }
 
       if (validation.center_id) {
         this.validation.center_id_hasError = true;
         this.validation.center_id_errorMessage = validation.center_id[0];
+      } else {
         this.validation.center_id_successMessage = "Good Job";
       }
     },
@@ -2181,6 +2230,8 @@ __webpack_require__.r(__webpack_exports__);
       this.data.email = "";
       this.data.phone = "";
       this.data.note = "";
+      this.data.center_id = "";
+      this.selectedCenter = {};
       this.submited = false;
     }
   }
@@ -2309,7 +2360,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(url, this.data).then(function (response) {
         _this.clearValidation();
 
-        _this.name = "";
+        _this.clearData();
+
         window.dashboard_app.$emit("success", response.data);
         window.dashboard_app.$toasted.show("Saving Success.", {
           icon: "save"
@@ -2331,6 +2383,10 @@ __webpack_require__.r(__webpack_exports__);
         });
         window.dashboard_app.$emit("endLoading");
       });
+    },
+    clearData: function clearData() {
+      this.data.name = "";
+      this.submited = false;
     }
   }
 });
@@ -59252,6 +59308,54 @@ var render = function() {
                     : _vm._e()
                 ]),
                 _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("select2", {
+                      class: {
+                        "is-invalid": _vm.validation.center_id_hasError,
+                        "is-valid":
+                          _vm.submited && !_vm.validation.center_id_hasError
+                      },
+                      attrs: {
+                        url: _vm.fetchCenter,
+                        placeholder: "Select Center",
+                        value: null,
+                        "selected-option": _vm.selectedCenter
+                      },
+                      on: {
+                        input: function($event) {
+                          return _vm.selectedCenterBox($event)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.validation.center_id_hasError
+                      ? _c("div", { staticClass: "invalid-feedback" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm.validation.center_id_errorMessage) +
+                              "\n            "
+                          )
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.validation.center_id_hasError && _vm.submited
+                      ? _c("div", { staticClass: "valid-feedback" }, [
+                          _vm._v(
+                            "\n              " +
+                              _vm._s(_vm.validation.center_id_successMessage) +
+                              "\n            "
+                          )
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                ),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Note")]),
                   _vm._v(" "),
@@ -59377,6 +59481,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "team_phone" } }, [
       _vm._v("Team Phone "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "unit" } }, [
+      _vm._v("Select Center "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   }

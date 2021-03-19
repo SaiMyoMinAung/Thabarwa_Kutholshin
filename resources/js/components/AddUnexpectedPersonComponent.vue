@@ -112,7 +112,7 @@ export default {
         .post(url, this.data)
         .then((response) => {
           this.clearValidation();
-          this.name = "";
+          this.clearData();
 
           window.dashboard_app.$emit("success", response.data);
           window.dashboard_app.$toasted.show("Saving Success.", {
@@ -135,6 +135,10 @@ export default {
           });
           window.dashboard_app.$emit("endLoading");
         });
+    },
+    clearData() {
+      this.data.name = "";
+      this.submited = false;
     },
   },
 };

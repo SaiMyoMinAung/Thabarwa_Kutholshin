@@ -222,7 +222,7 @@ class InternalDonatedItemController extends Controller
             $internalDonatedItem->delete();
 
             return back()->with('success', 'Internal Donated Item Delete Successful.');
-        }else{
+        } else {
             return back()->with('danger', 'Internal Donated Item Cannot Be Delete.');
         }
     }
@@ -231,6 +231,7 @@ class InternalDonatedItemController extends Controller
     {
         $internalDonatedItems = auth()->user()->office->internalDonatedItems()
             ->available()
+            ->confirmed()
             ->filterByHistory()
             ->filterByOffice()
             ->where('item_unique_id', 'LIKE', "%$request->q%")

@@ -113,6 +113,35 @@
               </div>
             </div>
             <div class="form-group">
+              <label for="unit"
+                >Select Center <span class="text-danger">*</span></label
+              >
+              <select2
+                :url="fetchCenter"
+                placeholder="Select Center"
+                :value="null"
+                @input="selectedCenterBox($event)"
+                :selected-option="selectedCenter"
+                v-bind:class="{
+                  'is-invalid': validation.center_id_hasError,
+                  'is-valid': submited && !validation.center_id_hasError,
+                }"
+              ></select2>
+              <div
+                class="invalid-feedback"
+                v-if="validation.center_id_hasError"
+              >
+                {{ validation.center_id_errorMessage }}
+              </div>
+
+              <div
+                class="valid-feedback"
+                v-if="!validation.center_id_hasError && submited"
+              >
+                {{ validation.center_id_successMessage }}
+              </div>
+            </div>
+            <div class="form-group">
               <label>Note</label>
               <textarea
                 name="note"
@@ -157,7 +186,11 @@
 </template>
 
 <script>
+import select2 from "./select2";
 export default {
+  components: {
+    select2,
+  },
   data: function () {
     return {
       data: {
@@ -168,6 +201,8 @@ export default {
         center_id: "",
       },
       submited: false,
+      fetchCenter: route("centers.index"),
+      selectedCenter: {},
       validation: {
         name_hasError: false,
         name_errorMessage: "",
@@ -220,6 +255,7 @@ export default {
         .catch(function (error) {
           // window.dashboard_app.$emit('failed')
           console.log(error.response);
+          self.clearValidation();
           self.constructValidation(error.response.data.errors);
 
           window.dashboard_app.$toasted.show("Saving Failed.", {
@@ -227,6 +263,10 @@ export default {
           });
           window.dashboard_app.$emit("endLoading");
         });
+    },
+    selectedCenterBox(event) {
+      this.selectedCenter = event;
+      this.data.center_id = event != null ? event.id : "";
     },
     clearValidation() {
       this.validation.name_hasError = false;
@@ -244,31 +284,40 @@ export default {
       this.validation.note_hasError = false;
       this.validation.note_errorMessage = "";
       this.validation.note_successMessage = "";
+
+      this.validation.center_id_hasError = false;
+      this.validation.center_id_errorMessage = "";
+      this.validation.center_id_successMessage = "";
     },
     constructValidation(validation) {
       if (validation.name) {
         this.validation.name_hasError = true;
         this.validation.name_errorMessage = validation.name[0];
+      } else {
         this.validation.name_successMessage = "Good Job";
       }
       if (validation.email) {
         this.validation.email_hasError = true;
         this.validation.email_errorMessage = validation.email[0];
+      } else {
         this.validation.email_successMessage = "Good Job";
       }
       if (validation.phone) {
         this.validation.phone_hasError = true;
         this.validation.phone_errorMessage = validation.phone[0];
+      } else {
         this.validation.phone_successMessage = "Good Job";
       }
       if (validation.note) {
         this.validation.note_hasError = true;
         this.validation.note_errorMessage = validation.note[0];
+      } else {
         this.validation.note_successMessage = "Good Job";
       }
       if (validation.center_id) {
         this.validation.center_id_hasError = true;
         this.validation.center_id_errorMessage = validation.center_id[0];
+      } else {
         this.validation.center_id_successMessage = "Good Job";
       }
     },
@@ -277,6 +326,8 @@ export default {
       this.data.email = "";
       this.data.phone = "";
       this.data.note = "";
+      this.data.center_id = "";
+      this.selectedCenter = {};
       this.submited = false;
     },
   },

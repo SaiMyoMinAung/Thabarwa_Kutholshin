@@ -77,6 +77,11 @@ class InternalDonatedItem extends Model
             ->where('status', InternalDonatedItemStatus::advanceSearch('Available')["code"]);
     }
 
+    public function scopeConfirmed($query)
+    {
+        return $query->where('is_confirmed', 1);
+    }
+
     public function scopeFilterByHistory($query)
     {
         return $query->doesntHave('histories')->orWhereHas('histories', function ($q) {
