@@ -9,6 +9,7 @@ use App\Mail\AdminInviteMail;
 use App\ViewModels\AdminModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\AdminStoreFormRequest;
 use App\Http\Requests\AdminUpdateFormRequest;
 use Illuminate\Validation\ValidationException;
@@ -61,7 +62,7 @@ class AdminController extends Controller
             if ($order == 'office') {
                 $admins->select('admins.*')->join('offices', 'admins.office_id', '=', 'offices.id')
                     ->orderBy('offices.name', $dir);
-            }else {
+            } else {
                 $admins->orderBy($order, $dir);
             }
 
@@ -85,7 +86,7 @@ class AdminController extends Controller
                     $nestedData['office'] = $admin->office->name ?? '-';
                     $nestedData['type'] = '';
                     foreach ($admin->typeOfAdmins as $type) {
-                        $nestedData['type'] .= '<span class="badge badge-success">' . $type->name . '</span>';
+                        $nestedData['type'] .= '<span class="badge badge-success">' . $type->name . '</span> ';
                     }
                     // $nestedData['phone'] = substr(strip_tags($admin->phone), 0, 50) . "...";
                     $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$admin->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
@@ -137,6 +138,8 @@ class AdminController extends Controller
 
         $admin = Admin::create($data);
 
+        $admin->typeOfAdmins()->sync($request->typeOfAdminId());
+
         $password = $request->getPassword();
         Mail::to($admin->email)->send(new AdminInviteMail($admin, $password));
 
@@ -163,7 +166,7 @@ class AdminController extends Controller
     public function edit(Admin $admin)
     {
         $adminModel = new AdminModel($admin, true);
-
+        
         return view('backend.admin.create', $adminModel);
     }
 
@@ -179,6 +182,8 @@ class AdminController extends Controller
         $data = $request->adminData()->all();
 
         $admin->update($data);
+
+        $admin->typeOfAdmins()->sync($request->typeOfAdminId());
 
         return redirect(route('admins.index'))->with('success', 'Update Admin Successful.');
     }

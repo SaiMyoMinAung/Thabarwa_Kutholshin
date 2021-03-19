@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Support\Str;
 use App\Http\Requests\DTO\AdminDTO;
-use App\Mail\AdminInviteMail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -34,7 +33,7 @@ class AdminStoreFormRequest extends FormRequest
             'email' => "required|email|unique:admins|max:255",
             'phone' => "required|numeric|unique:admins|max:99999999999",
             'office_id' => "required|numeric",
-            'type_of_admin_id' => 'required|max:9999999'
+            'type_of_admin_id' => 'required|array'
         ];
     }
 
@@ -61,8 +60,12 @@ class AdminStoreFormRequest extends FormRequest
             'phone' => $this->input('phone'),
             'password' => $this->addPassword(),
             'office_id' => $this->input('office_id'),
-            'type_of_admin_id' => $this->input('type_of_admin_id'),
         ]);
+    }
+
+    public function typeOfAdminId()
+    {
+        return $this->input('type_of_admin_id');
     }
 
     public function addPassword()

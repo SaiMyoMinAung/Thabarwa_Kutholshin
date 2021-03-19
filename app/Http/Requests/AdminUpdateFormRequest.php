@@ -41,7 +41,7 @@ class AdminUpdateFormRequest extends FormRequest
             'email' => "required|email|unique:admins,email,$id|max:255",
             'phone' => "required|numeric|unique:admins,phone,$id|max:99999999999",
             'office_id' => "required|numeric",
-            'type_of_admin_id' => 'required|max:9999999'
+            'type_of_admin_id' => 'required|array'
         ];
     }
 
@@ -66,19 +66,13 @@ class AdminUpdateFormRequest extends FormRequest
             'name' => $this->input('name'),
             'email' => $this->input('email'),
             'phone' => $this->input('phone'),
-            'password' => $this->addPassword(),
+            'password' => $this->admin->password,
             'office_id' => $this->input('office_id'),
-            'type_of_admin_id' => $this->input('type_of_admin_id'),
         ]);
     }
 
-    public function addPassword()
+    public function typeOfAdminId()
     {
-        $password = Str::random(8);
-        $hash = Hash::make($password);
-        if ($this->input('send_email')) {
-            // send email
-        }
-        return $hash;
+        return $this->input('type_of_admin_id');
     }
 }

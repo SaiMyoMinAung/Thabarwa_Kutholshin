@@ -61,10 +61,10 @@
 
                         <div class="form-group {{ $errors->has('type_of_admin_id') ? 'has-error' : '' }}">
                             <label for="type_of_admin">Select Type Of Admin <span class="text-danger">*</span></label>
-                            <select name="type_of_admin_id" id="type_of_admin" class="form-control custom-select {{ $errors->has('type_of_admin_id') ? 'is-invalid' : (old('type_of_admin_id') && !$errors->has('type_of_admin_id') ? 'is-valid': '') }}">
+                            <select name="type_of_admin_id[]" id="type_of_admin" class="form-control custom-select {{ $errors->has('type_of_admin_id') ? 'is-invalid' : (old('type_of_admin_id') && !$errors->has('type_of_admin_id') ? 'is-valid': '') }}" multiple>
                                 <option></option>
                                 @foreach($typeOfAdmins as $type)
-                                <option value="{{$type->id}}" @if($edit && $admin->type_of_admin_id == $type->id) selected @endif @if(old('type_of_admin_id') == $type->id) selected @endif>{{$type->name}}</option>
+                                <option value="{{$type->id}}" @if($edit && in_array($type->id, $selectedTypeOfAdminId)) selected @endif @if(old('type_of_admin_id') == $type->id) selected @endif>{{$type->name}}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('type_of_admin_id'))

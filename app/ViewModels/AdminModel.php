@@ -23,6 +23,11 @@ class AdminModel extends ViewModel
         return TypeOfAdmin::orderBy('id', 'desc')->get();
     }
 
+    public function selectedTypeOfAdminId()
+    {
+        return $this->admin ? $this->admin->typeOfAdmins->pluck('id')->toArray() : null;
+    }
+
     public function offices()
     {
         return Office::withTrashed()->available()->get();
