@@ -236,8 +236,6 @@ return [
         //     'search' => true,
         //     'topnav' => true,
         // ],
-        ['header' => 'Donation Record Management', 'can' => 'can-do-donation-record',],
-        ['header' => 'Donated Item Management', 'can' => 'can-do-donated-item-record',],
         [
             'text'        => 'Donation Records',
             'url'         => 'backend/donation_records',
@@ -285,7 +283,7 @@ return [
             'icon'        => 'fas fa-user-tie',
             'active'      => ['backend/admins', 'backend/admins/*/edit', 'backend/admins/create'],
             'label_color' => 'success',
-            'can' => 'can-do-setting',
+            'can' => 'super-admin',
         ],
         [
             'text'        => 'Volunteers',

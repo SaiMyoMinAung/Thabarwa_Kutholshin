@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'donated.item.record.admintype' => \App\Http\Middleware\DonatedItemRecordAdminType::class,
         'internal.donated.item.record.admintype' => \App\Http\Middleware\InternalDonatedItemRecordAdminType::class,
         'setting.admintype' => \App\Http\Middleware\SettingAdminType::class,
+        'super.admin' => \App\Http\Middleware\SuperAdmin::class,
         'check.first.time.login' => \App\Http\Middleware\CheckFirstTimeLogin::class,
     ];
 }

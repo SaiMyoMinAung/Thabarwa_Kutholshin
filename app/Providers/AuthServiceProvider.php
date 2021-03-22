@@ -44,5 +44,9 @@ class AuthServiceProvider extends ServiceProvider
             return $user->typeOfAdmins->where('name', SETTING)->count() > 0
                 || $user->is_super;
         });
+
+        Gate::define('super-admin', function ($user) {
+            return $user->is_super;
+        });
     }
 }

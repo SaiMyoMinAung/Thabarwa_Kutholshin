@@ -72,7 +72,6 @@ Route::get('get_all_item_types', 'ItemTypeController@getAllItemTypes')->name('it
 Route::group(['middleware' => 'setting.admintype'], function () {
 
     Route::get('settings', 'SettingController@index');
-    Route::resource('admins', 'AdminController');
     Route::resource('cities', 'CityController');
     Route::resource('countries', 'CountryController');
     Route::resource('state_regions', 'StateRegionController');
@@ -83,6 +82,14 @@ Route::group(['middleware' => 'setting.admintype'], function () {
     Route::resource('wards', 'WardController');
     Route::resource('volunteer_jobs', 'VolunteerJobController');
     Route::resource('item_types', 'ItemTypeController');
+});
+
+/**
+ * Create Admin
+ * Can Access Super Admin Only
+ */
+Route::group(['middleware' => 'super.admin'], function () {
+    Route::resource('admins', 'AdminController');
 });
 
 /**
