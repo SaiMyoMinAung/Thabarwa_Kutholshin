@@ -16,11 +16,6 @@
 @stop
 
 @section('content')
-@if($errors->has('super_error'))
-<div class="col-md-12 alert alert-danger">
-    {{ $errors->first('super_error') }}
-</div>
-@endif
 <table id="adminTable" class="table table-bordered" style="width:100%">
     <thead>
         <tr>

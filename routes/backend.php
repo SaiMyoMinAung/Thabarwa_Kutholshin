@@ -12,6 +12,8 @@ Route::get('click_notifications/{notification}', 'NotificationController@clickNo
 Route::get('auth_admin_information', 'AdminController@information')->name('auth.admin.information');
 
 Route::get('dashboard', 'DashboardController@index');
+Route::get('my-profile', 'ProfileController@profile')->name('profile');
+Route::post('my-profile/{admin}', 'ProfileController@update')->name('profile.update');
 
 /**
  * Internal Donated Item Record Admin Type

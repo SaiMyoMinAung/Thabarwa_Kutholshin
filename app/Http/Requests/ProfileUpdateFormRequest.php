@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\DTO\AdminDTO;
+use App\Http\Requests\DTO\ProfileDTO;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
-class AdminUpdateFormRequest extends FormRequest
+class ProfileUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,9 +15,9 @@ class AdminUpdateFormRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->admin->is_super) {
+        if ($this->admin->uuid != auth()->user()->uuid) {
             $error = ValidationException::withMessages([
-                'super_error' => ['Cannot Update Super Admin'],
+                'profile_error' => ['Cannot Update Other Admin Profile'],
             ]);
             throw $error;
         }
@@ -38,8 +38,6 @@ class AdminUpdateFormRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => "required|email|unique:admins,email,$id|max:255",
             'phone' => "required|numeric|unique:admins,phone,$id|max:99999999999",
-            'office_id' => "required|numeric",
-            'type_of_admin_id' => 'required|array'
         ];
     }
 
@@ -53,24 +51,15 @@ class AdminUpdateFormRequest extends FormRequest
             'phone.max' => 'Phone is Too Long!',
             'email.email' => 'Email Must Be Valid Email.',
             'email.max' => 'Email Is Too Long!',
-            'office_id.required' => 'Please Select Office.',
-            'type_of_admin_id.required' => 'Please Select Type Of Admin.',
         ];
     }
 
-    public function adminData()
+    public function profileData()
     {
-        return new AdminDTO([
+        return new ProfileDTO([
             'name' => $this->input('name'),
             'email' => $this->input('email'),
-            'phone' => $this->input('phone'),
-            'password' => $this->admin->password,
-            'office_id' => $this->input('office_id'),
+            'phone' => $this->input('phone')
         ]);
-    }
-
-    public function typeOfAdminId()
-    {
-        return $this->input('type_of_admin_id');
     }
 }
