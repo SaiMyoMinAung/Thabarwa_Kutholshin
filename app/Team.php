@@ -18,4 +18,10 @@ class Team extends Model
     {
         return $this->belongsTo(Center::class, 'center_id')->withTrashed()->withDefault();
     }
+
+    // It only work for whereHas query
+    public function city()
+    {
+        return $this->belongsToThrough(City::class, [Center::class]);
+    }
 }

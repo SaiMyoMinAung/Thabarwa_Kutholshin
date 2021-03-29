@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\AdminStoreFormRequest;
 use App\Http\Requests\AdminUpdateFormRequest;
+use App\Office;
+use App\TypeOfAdmin;
 use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
@@ -45,6 +47,7 @@ class AdminController extends Controller
 
             $admins = Admin::query()->withTrashed()->where('is_super', 0);
 
+            // start search query
             if (!empty($request->input('search.value'))) {
                 $search = $request->input('search.value');
 
@@ -55,18 +58,69 @@ class AdminController extends Controller
                         $query->where('offices.name', 'LIKE', "%{$search}%");
                     });
             }
+            // end search query            
 
-            $totalFiltered = $admins->count();
-
-            // sorting
+            // start sorting
             if ($order == 'office') {
                 $admins->select('admins.*')->join('offices', 'admins.office_id', '=', 'offices.id')
                     ->orderBy('offices.name', $dir);
             } else {
                 $admins->orderBy($order, $dir);
             }
+            // end sorting
 
+            // start search panes query
+            if (!empty($request->searchPanes["office"])) {
+                $name =  $request->input('searchPanes.office')[0];
+                $admins->whereHas('office', function (Builder $query) use ($name) {
+                    $query->where('name', $name);
+                });
+            }
 
+            if (!empty($request->searchPanes["type"])) {
+                $name =  $request->input('searchPanes.type')[0];
+                $admins->whereHas('typeOfAdmins', function (Builder $query) use ($name) {
+                    $query->where('name', $name);
+                });
+            }
+            // end search panes query
+
+            // Start Search Pane Data
+            $searchPanes = [
+                'options' => [
+                    "office" => [],
+                    "type" => [],
+                ]
+            ];
+
+            $offices = Office::withTrashed()->get();
+
+            foreach ($offices as $office) {
+                array_push(
+                    $searchPanes['options']['office'],
+                    [
+                        "label" => $office->name,
+                        "total" => $office->admins()->where('is_super', 0)->count(),
+                        "value" => $office->name,
+                    ]
+                );
+            }
+
+            $typeOfAdmins = TypeOfAdmin::get();
+
+            foreach ($typeOfAdmins as $typeOfAdmin) {
+                array_push(
+                    $searchPanes['options']['type'],
+                    [
+                        "label" => $typeOfAdmin->name,
+                        "total" => $typeOfAdmin->admins()->where('is_super', 0)->count(),
+                        "value" => $typeOfAdmin->name,
+                    ]
+                );
+            }
+            // End Search Pane Data
+
+            $totalFiltered = $admins->count();
 
             $admins = $admins->offset($start)
                 ->limit($limit)
@@ -105,7 +159,8 @@ class AdminController extends Controller
                 "draw"            => intval($request->input('draw')),
                 "recordsTotal"    => intval($totalData),
                 "recordsFiltered" => intval($totalFiltered),
-                "data"            => $data
+                "data"            => $data,
+                "searchPanes" => $searchPanes,
             );
 
             return $json_data;
@@ -166,7 +221,7 @@ class AdminController extends Controller
     public function edit(Admin $admin)
     {
         $adminModel = new AdminModel($admin, true);
-        
+
         return view('backend.admin.create', $adminModel);
     }
 

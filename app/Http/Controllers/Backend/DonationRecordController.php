@@ -50,6 +50,7 @@ class DonationRecordController extends Controller
 
             $donation_records = DonationRecord::query();
 
+            // start search query
             if (!empty($request->input('search.value'))) {
 
                 $search = $request->input('search.value');
@@ -65,7 +66,9 @@ class DonationRecordController extends Controller
                         $query->where('name', 'LIKE', "%{$search}%");
                     });
             }
+            // end search query
 
+            // start search panes
             if (!empty($request->searchPanes["kind_of_donation"])) {
                 $name =  $request->input('searchPanes.kind_of_donation')[0];
                 $donation_records->whereHas('kindOfDonation', function (Builder $query) use ($name) {
@@ -89,8 +92,9 @@ class DonationRecordController extends Controller
                 $code = TypeOfMoney::advanceSearch($type_of_money)["code"];
                 $donation_records->where('type_of_money', $code);
             }
+            // end search panes
 
-            // sorting
+            // start sorting
             $dir = $request->input('order.0.dir');
 
             if ($order == 'kind_of_donation') {
@@ -99,14 +103,14 @@ class DonationRecordController extends Controller
             } else {
                 $donation_records->orderBy($order, $dir);
             }
+            // end sorting
 
+            $totalFiltered = $donation_records->count();
 
             // Run The Query
             $donation_records = $donation_records->offset($start)
                 ->limit($limit)
                 ->get();
-
-            $totalFiltered = $donation_records->count();
 
             $data = array();
             if (!empty($donation_records)) {
@@ -145,7 +149,7 @@ class DonationRecordController extends Controller
                         ],
                         [
                             "label" => '၁ထောင် နှင့် ၁သောင်း ကြား',
-                            "total" => DonationRecord::whereBetween('donation_cash', [1000, 100000])->count(),
+                            "total" => DonationRecord::whereBetween('donation_cash', [1000, 10000])->count(),
                             "value" => '1000-10000',
                         ],
                         [

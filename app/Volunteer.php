@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\City;
+use App\Center;
 use App\Office;
 use App\VolunteerJob;
 use App\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Znck\Eloquent\Traits\BelongsToThrough;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Volunteer extends Model
 {
@@ -29,4 +31,5 @@ class Volunteer extends Model
     {
         return $this->belongsToThrough(Center::class, [Office::class])->withTrashed()->withDefault();
     }
+
 }

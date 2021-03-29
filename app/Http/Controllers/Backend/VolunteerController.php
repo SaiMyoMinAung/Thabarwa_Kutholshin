@@ -44,8 +44,8 @@ class VolunteerController extends Controller
                 $volunteers->where('volunteers.name', 'LIKE', "%{$search}%")
                     ->orWhere('volunteers.email', 'LIKE', "%{$search}%")
                     ->orWhere('volunteers.phone', 'LIKE', "%{$search}%")
-                    ->orWhereHas('city', function (Builder $query) use ($search) {
-                        $query->where('cities.name', 'LIKE', "%{$search}%");
+                    ->orWhereHas('office', function (Builder $query) use ($search) {
+                        $query->where('offices.name', 'LIKE', "%{$search}%");
                     })
                     ->orWhereHas('center', function (Builder $query) use ($search) {
                         $query->where('centers.name', 'LIKE', "%{$search}%");
@@ -67,12 +67,12 @@ class VolunteerController extends Controller
             // Add Data Filter By Center
             // Need to Develop
 
+            $totalFiltered = $volunteers->count();
+
             // Run The Query
             $volunteers = $volunteers->offset($start)
                 ->limit($limit)
                 ->get();
-
-            $totalFiltered = $volunteers->count();
 
             $data = [];
             if (!empty($volunteers)) {
