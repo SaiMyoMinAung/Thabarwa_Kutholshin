@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\DTO\InternalRequestedItemDTO;
 use App\Rules\CheckLeftItem;
+use Carbon\Carbon;
 
 class InternalRequestedItemsStoreFormRequest extends FormRequest
 {
@@ -50,6 +51,7 @@ class InternalRequestedItemsStoreFormRequest extends FormRequest
         }
 
         return new InternalRequestedItemDTO([
+            'date' => Carbon::now(),
             'requestable_type' => $type,
             'requestable_id' => $this->input('requestable_id'),
             'package_qty' => $this->input('request_package_qty'),

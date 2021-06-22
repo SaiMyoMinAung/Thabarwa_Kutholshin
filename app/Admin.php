@@ -7,10 +7,11 @@ use App\Office;
 use App\StateRegion;
 use App\TypeOfAdmin;
 use App\Traits\HasUUID;
+use App\InternalRequestedItem;
 use Illuminate\Notifications\Notifiable;
 use Znck\Eloquent\Traits\BelongsToThrough;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
@@ -72,5 +73,10 @@ class Admin extends Authenticatable
     public function typeOfAdmins()
     {
         return $this->belongsToMany(TypeOfAdmin::class, 'admin_has_type_of_admins', 'admin_id', 'type_of_admin_id');
+    }
+
+    public function internalRequestedItems()
+    {
+        return $this->hasMany(InternalRequestedItem::class, 'admin_id');
     }
 }

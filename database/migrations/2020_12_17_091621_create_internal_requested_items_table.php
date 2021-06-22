@@ -16,6 +16,7 @@ class CreateInternalRequestedItemsTable extends Migration
         Schema::create('internal_requested_items', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
+            $table->date('date');
             $table->integer('internal_donated_item_id');
             $table->integer('package_qty')->default(1);
             $table->integer('socket_qty')->default(1);

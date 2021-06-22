@@ -14,6 +14,7 @@ Route::get('auth_admin_information', 'AdminController@information')->name('auth.
 Route::get('dashboard', 'DashboardController@index');
 Route::get('my-profile', 'ProfileController@profile')->name('profile');
 Route::post('my-profile/{admin}', 'ProfileController@update')->name('profile.update');
+Route::get('search', 'SearchController@index')->name('search.index');
 
 /**
  * Internal Donated Item Record Admin Type
@@ -39,6 +40,8 @@ Route::group(['middleware' => 'internal.donated.item.record.admintype'], functio
     Route::get('received-contributions/{contribution}/items', 'ReceivedContributionController@contributionItemsIndex')->name('received_contributions.items.index');
     Route::get('received-contributions/{contribution}/internal_donated_items/{internal_donated_item}/accept', 'ReceivedContributionController@contributionItemsAccept')->name('contribution.items.accept');
     Route::get('received-contributions/{contribution}/show', 'ReceivedContributionController@show')->name('received_contributions.show');
+
+    Route::get('search/internal_requests', 'SearchController@searchInternalRequests')->name('search.internal.requests');
 });
 
 /**

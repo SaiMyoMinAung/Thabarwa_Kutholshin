@@ -237,6 +237,12 @@ return [
         //     'topnav' => true,
         // ],
         [
+            'text'        => 'Search',
+            'url'         => 'backend/search',
+            'icon'        => 'fas fa-tasks',
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'Donation Records',
             'url'         => 'backend/donation_records',
             'active'      => ['backend/donation_records', 'backend/donation_records/*'],

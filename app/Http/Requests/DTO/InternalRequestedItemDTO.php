@@ -8,6 +8,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class InternalRequestedItemDTO extends DataTransferObject
 {
+    public $date;
     public $requestable_type;
     public $requestable_id;
     public $package_qty;
