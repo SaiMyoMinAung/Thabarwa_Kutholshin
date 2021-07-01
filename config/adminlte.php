@@ -239,7 +239,7 @@ return [
         [
             'text'        => 'Search',
             'url'         => 'backend/search',
-            'icon'        => 'fas fa-tasks',
+            'icon'        => 'fas fa-search',
             'label_color' => 'success',
         ],
         [
@@ -254,15 +254,15 @@ return [
             'text'        => 'Donated Items',
             'url'         => 'backend/donated_items',
             'active'      => ['backend/donated_items', 'backend/donated_items/*/manage', 'backend/donated_items/*'],
-            'icon'        => 'fas fa-globe ',
+            'icon'        => 'fas fa-globe',
             'label_color' => 'success',
             'can' => 'can-do-donated-item-record',
         ],
         [
-            'text'        => 'Internal Donated Items',
+            'text'        => 'Store',
             'url'         => 'backend/internal_donated_items',
             'active'      => ['backend/internal_donated_items', 'backend/internal_donated_items/*'],
-            'icon'        => 'fas fa-list-alt',
+            'icon'        => 'fas fa-store',
             'label_color' => 'success',
             'can' => 'can-do-internal-donated-item-record'
         ],

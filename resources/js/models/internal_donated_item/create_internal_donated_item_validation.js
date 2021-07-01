@@ -4,13 +4,22 @@ export default class CreateInternalDonatedItemValidation {
     ) {
         if (validation != null) {
 
-            if (validation.name) {
-                this.name_hasError = true;
-                this.name_errorMessage = validation.name[0];
-                this.name_successMessage = null;
+            if (validation.alms_round_id) {
+                this.alms_round_id_hasError = true;
+                this.alms_round_id_errorMessage = validation.alms_round_id[0];
+                this.alms_round_id_successMessage = null;
             } else {
-                this.name_hasError = false;
-                this.name_successMessage = 'Good Job.';
+                this.alms_round_id_hasError = false;
+                this.alms_round_id_successMessage = 'Good Job.';
+            }
+
+            if (validation.unit_id) {
+                this.unit_id_hasError = true;
+                this.unit_id_errorMessage = validation.unit_id[0];
+                this.unit_id_successMessage = null;
+            } else {
+                this.unit_id_hasError = false;
+                this.unit_id_successMessage = 'Good Job.';
             }
 
             if (validation.package_qty) {
@@ -40,15 +49,6 @@ export default class CreateInternalDonatedItemValidation {
                 this.socket_per_package_successMessage = 'Good Job.';
             }
 
-            if (validation.unit) {
-                this.unit_hasError = true;
-                this.unit_errorMessage = validation.unit[0];
-                this.unit_successMessage = null;
-            } else {
-                this.unit_hasError = false;
-                this.unit_successMessage = 'Good Job.';
-            }
-
             if (validation.item_type_id) {
                 this.item_type_id_hasError = true;
                 this.item_type_id_errorMessage = validation.item_type_id[0];
@@ -56,6 +56,15 @@ export default class CreateInternalDonatedItemValidation {
             } else {
                 this.item_type_id_hasError = false;
                 this.item_type_id_successMessage = 'Good Job.';
+            }
+
+            if (validation.item_sub_type_id) {
+                this.item_sub_type_id_hasError = true;
+                this.item_sub_type_id_errorMessage = validation.item_sub_type_id[0];
+                this.item_sub_type_id_successMessage = null;
+            } else {
+                this.item_sub_type_id_hasError = false;
+                this.item_sub_type_id_successMessage = 'Good Job.';
             }
 
             if (validation.remark) {

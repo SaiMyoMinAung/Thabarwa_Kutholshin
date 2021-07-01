@@ -12,9 +12,9 @@
 @section('content_header')
 <div class="mb-3 d-flex justify-content-between">
     <div>
-        <h1>Internal Donated Item list</h1>
+        <h1>Store list</h1>
     </div>
-    <a href="{{route('internal_donated_items.create')}}" class="btn btn-success">Input Item</a>
+    <a href="{{route('internal_donated_items.create')}}" class="btn btn-success">Add New Item To Store</a>
 </div>
 
 @stop
@@ -25,9 +25,10 @@
         <tr>
             <th></th>
             <th>Item Unique Id</th>
-            <th>Name</th>
-            <th>QTY</th>
             <th>Item Type</th>
+            <th>Item Sub Type</th>
+            <th>QTY</th>
+            <th>Alms Round</th>
             <th>Status</th>
             <th>Option</th>
         </tr>
@@ -81,13 +82,16 @@
                     "data": "item_unique_id"
                 },
                 {
-                    "data": "name"
+                    "data": "item_type"
+                },
+                {
+                    "data": "item_sub_type"
                 },
                 {
                     "data": "qty"
                 },
                 {
-                    "data": "item_type"
+                    "data": "alms_round"
                 },
                 {
                     "data": "status"

@@ -13,17 +13,22 @@ class ItemTypeSeeder extends Seeder
     public function run()
     {
         $data = [
-            [    
-                'name' => ITEM_TYPE_ONE,
+            [
+                'type' => ['name' => ITEM_TYPE_ONE],
+                'sub' => ITEM_SUB_TYPE_ONE
             ],
-            [    
-                'name' => ITEM_TYPE_TWO,
+            [
+                'type' => ['name' => ITEM_TYPE_TWO],
+                'sub' => ITEM_SUB_TYPE_TWO
             ],
-            [    
-                'name' => ITEM_TYPE_THREE,
+            [
+                'type' => ['name' => ITEM_TYPE_THREE],
+                'sub' => ITEM_SUB_TYPE_THREE
             ],
         ];
-
-        ItemType::insert($data);
+        foreach ($data as $d) {
+            $type = ItemType::create($d['type']);
+            $type->itemSubTypes()->createMany($d['sub']);
+        }
     }
 }

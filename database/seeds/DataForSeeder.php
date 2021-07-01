@@ -27,8 +27,8 @@ const JOB_STORE_KEEPER = "Store Keeper";
 const JOB_REPAIRER = "Repairer";
 const JOB_DELIVER = "Deliver";
 
-const CENTER_ONE = "Center One";
-const CENTER_TWO = "Center Two";
+const CENTER_ONE = "Thanlyin Center";
+const CENTER_TWO = "PyinOoLyin Center";
 
 const WARD_ONE = "Ward One";
 const WARD_TWO = "Ward Two";
@@ -54,3 +54,24 @@ const SETTING = 'Setting';
 const ITEM_TYPE_ONE = "Coffee";
 const ITEM_TYPE_TWO = "Biscuit";
 const ITEM_TYPE_THREE = "Soft Drink";
+
+const ITEM_SUB_TYPE_ONE = [
+    ['name' => 'Premier Coffee'],
+    ['name' => 'Super Coffee'],
+    ['name' => 'GoldRoast Coffee']
+];
+
+const ITEM_SUB_TYPE_TWO = [
+    ['name' => 'Taw Win Biscuit'],
+    ['name' => 'Shwe Biscuit'],
+    ['name' => 'YaTar Biscuit'],
+];
+
+const ITEM_SUB_TYPE_THREE = [
+    ['name' => 'Royal-D'],
+    ['name' => 'Shark'],
+    ['name' => 'Max +']
+];
+
+const ALMS_ROUND_ONE = 'ကျောက်မြောင်း တန်းဆွမ်း';
+const ALMS_ROUND_TWO = 'သာကေတ တန်းဆွမ်း'; 

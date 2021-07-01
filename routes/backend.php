@@ -29,6 +29,7 @@ Route::group(['middleware' => 'internal.donated.item.record.admintype'], functio
     Route::resource('internal_donated_items/{internal_donated_item}/internal_requested_items', 'InternalRequestedItemController');
     Route::resource('unexpected_persons', 'UnexpectedPersonController');
     Route::resource('item_types', 'ItemTypeController');
+    Route::resource('item_sub_types', 'ItemSubTypeController');
 
     Route::resource('contributions', 'ContributionController');
     Route::get('contributions/{contribution}/items', 'ContributionController@contributionItemsIndex')->name('contribution.items.index');
@@ -72,6 +73,8 @@ Route::get('get_all_wards', 'WardController@getAllWards')->name('wards.fetch');
 Route::get('get_all_unexpected_persons', 'UnexpectedPersonController@getAllUnexpectedPersons')->name('unexpected_persons.fetch');
 Route::get('get_all_units', 'UnitController@getAllUnits')->name('units.fetch');
 Route::get('get_all_item_types', 'ItemTypeController@getAllItemTypes')->name('item_types.fetch');
+Route::get('get_all_alms_round', 'AlmsRoundController@getAllAlmsRound')->name('alms_round.fetch');
+Route::get('get_all_item_sub_types/{item_type_id?}', 'ItemSubTypeController@getAllItemSubTypes')->name('item_sub_types.fetch');
 
 
 Route::group(['middleware' => 'setting.admintype'], function () {

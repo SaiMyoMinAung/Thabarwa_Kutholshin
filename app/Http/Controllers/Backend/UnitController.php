@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Status\Unit;
+use App\Unit;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Select2\UnitSelect2ResourceCollection;
 
 class UnitController extends Controller
 {
     public function getAllUnits()
     {
-        $units = collect(Unit::UNIT())->map(function ($item) {
-            return [
-                'id' => $item['code'],
-                'name' => $item['label'] . '(' . $item['symbol'] . ')'
-            ];
-        });
+        $units = Unit::query();
 
-        $response = [];
-        $response["data"] = $units;
-        $response['current_page'] = 1;
-        $response['prev_page_url'] = "";
-        $response['next_page_url'] = "";
+        $data = $units->orderBy('id', 'desc')->paginate(5);
 
-        return response()->json($response, 200);
+        return response()->json(new UnitSelect2ResourceCollection($data), 200);
     }
 }

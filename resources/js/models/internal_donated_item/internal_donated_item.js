@@ -6,12 +6,13 @@ export default class InternalDonatedItem {
         this.data = {
             uuid: "",
             item_unique_id: "",
-            name: "",
+            alms_round_id: "",
+            item_type_id: "",
+            item_sub_type_id: "",
             package_qty: "",
             socket_qty: "",
             socket_per_package: "",
-            unit: "",
-            item_type_id: "",
+            unit_id: "",
             remark: "",
             is_confirmed: false,
             status: "",
@@ -33,13 +34,19 @@ export default class InternalDonatedItem {
         this.InternalDonatedItemSubmited = false;
         this.InternalDonatedItemValidation = new InternalDonatedItemValidation();
         // selected
+        this.selectedAlmsRound = null;
         this.selectedItemType = null;
+        this.selectedItemSubType = null;
         this.selectedUnit = null;
         this.selectedRequestableType = null;
         this.selectedRequestableTypeId = null;
+        // fetch 
+        this.itemSubTypeFetch = 0;
         // route
         this.fetchUnit = route('units.fetch');
         this.fetchItemType = route('item_types.fetch');
+        this.fetchAlmsRound = route('alms_round.fetch');
+        this.fetchItemSubType = "";
         if (internal_donated_item != undefined || internal_donated_item != null) {
             this.constructData(internal_donated_item)
         }
@@ -58,19 +65,22 @@ export default class InternalDonatedItem {
 
         this.data.uuid = internal_donated_item.uuid;
         this.data.item_unique_id = internal_donated_item.item_unique_id;
-        this.data.name = internal_donated_item.name;
+        this.data.alms_round_id = internal_donated_item.alms_round_id;
+        this.data.item_type_id = internal_donated_item.item_type_id;
+        this.data.item_sub_type_id = internal_donated_item.item_sub_type_id;
         this.data.package_qty = internal_donated_item.package_qty;
         this.data.socket_qty = internal_donated_item.socket_qty;
         this.data.socket_per_package = internal_donated_item.socket_per_package;
-        this.data.unit = internal_donated_item.unit;
-        this.data.item_type_id = internal_donated_item.item_type_id;
+        this.data.unit_id = internal_donated_item.unit_id;
         this.data.remark = internal_donated_item.remark;
         this.data.is_confirmed = internal_donated_item.is_confirmed;
         this.data.status = internal_donated_item.status;
 
         this.InternalDonatedItemSubmited = false;
 
+        this.selectedAlmsRound = internal_donated_item.selectedAlmsRound;
         this.selectedItemType = internal_donated_item.selectedItemType;
+        this.selectedItemSubType = internal_donated_item.selectedItemSubType;
         this.selectedUnit = internal_donated_item.selectedUnit;
 
     }
@@ -204,7 +214,7 @@ export default class InternalDonatedItem {
                 window.dashboard_app.$emit('endLoading');
                 // do toast
                 window.dashboard_app.$toasted.show("Saving Success.", { icon: "save" });
-                window.history.pushState({}, '', route('internal_donated_items.edit',this.data.uuid));
+                window.history.pushState({}, '', route('internal_donated_items.edit', this.data.uuid));
 
             })
             .catch(function (error) {
@@ -248,12 +258,26 @@ export default class InternalDonatedItem {
 
     selectedUnitBox(event) {
         this.selectedUnit = event;
-        this.data.unit = event != null ? event.id : "";
+        this.data.unit_id = event != null ? event.id : "";
     }
 
     selectedItemTypeBox(event) {
         this.selectedItemType = event;
         this.data.item_type_id = event != null ? event.id : "";
+        this.fetchItemSubType = route('item_sub_types.fetch') + this.data.item_type_id;
+        this.data.item_sub_type_id = "";
+        this.selectedItemSubType = null;
+        this.itemSubTypeFetch++;
+    }
+
+    selectedItemSubTypeBox(event) {
+        this.selectedItemSubType = event;
+        this.data.item_sub_type_id = event != null ? event.id : "";
+    }
+
+    selectedAlmsRoundBox(event) {
+        this.selectedAlmsRound = event;
+        this.data.alms_round_id = event != null ? event.id : "";
     }
 
     selectedRequestableTypeBox(event) {

@@ -10,7 +10,7 @@
         <a
           :href="InternalDonatedItemModel.internalDonatedItemCreateUrl"
           class="btn btn-success"
-          >Input Item</a
+          >Add New Item To Store</a
         >
       </div>
       <div class="col-md-3">
@@ -21,7 +21,7 @@
           ><i class="fas fa-table"></i> Show Table</a
         >
       </div>
-      <div class="col-md-6" v-if="edit">
+      <!-- <div class="col-md-6" v-if="edit">
         <div class="float-left mr-1">
           <add-unexpected-person-component />
         </div>
@@ -31,72 +31,287 @@
         <div class="float-left mr-1">
           <add-yogi-component />
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="col-md-6 col-lg-6 col-centered">
       <div class="card border border-success" style="min-height: 550px">
         <div class="card-body row">
-          <div class="col-md-12" v-if="edit">
+          <div class="col-md-9" v-if="edit">
             <h3>
-              <span class="badge badge-success">
+              <span
+                v-bind:class="{
+                  'badge badge-danger':
+                    InternalDonatedItemModel.data.status === 'Lost',
+                  'badge badge-success':
+                    InternalDonatedItemModel.data.status === 'Available',
+                }"
+              >
                 {{ InternalDonatedItemModel.data.item_unique_id }}
               </span>
-
-              <span class="badge badge-success">
-                - {{ InternalDonatedItemModel.data.status }}
+              -
+              <span
+                v-bind:class="{
+                  'badge badge-danger':
+                    InternalDonatedItemModel.data.status === 'Lost',
+                  'badge badge-success':
+                    InternalDonatedItemModel.data.status === 'Available',
+                }"
+              >
+                {{ InternalDonatedItemModel.data.status }}
               </span>
             </h3>
           </div>
+          <div class="col-md-3">
+            <div class="" v-if="showRequestControl">
+              <div
+                class="form-group"
+                v-if="InternalDonatedItemModel.data.status != 'Complete'"
+              >
+                <div
+                  class="
+                    custom-control
+                    custom-switch
+                    custom-switch-off-danger
+                    custom-switch-on-success
+                  "
+                >
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="is_left_item"
+                    :checked="
+                      InternalDonatedItemModel.data.status == 'Available'
+                        ? true
+                        : false
+                    "
+                    @click="InternalDonatedItemModel.controlAvailable()"
+                  />
+                  <label class="custom-control-label" for="is_left_item">{{
+                    InternalDonatedItemModel.data.status
+                  }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="col-md-12">
-            <div class="form-group">
-              <label for="name"
-                >Item Name <span class="text-danger">*</span></label
-              >
-              <input
-                name="name"
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="Enter Name"
-                v-model="InternalDonatedItemModel.data.name"
-                :disabled="disabled"
-                v-bind:class="{
-                  'is-invalid':
-                    InternalDonatedItemModel.InternalDonatedItemValidation
-                      .name_hasError,
-                  'is-valid':
-                    InternalDonatedItemModel.InternalDonatedItemSubmited &&
-                    !InternalDonatedItemModel.InternalDonatedItemValidation
-                      .name_hasError,
-                }"
-              />
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="almsRound"
+                    >Alms Round <span class="text-danger">*</span></label
+                  >
+                  <select2
+                    :url="InternalDonatedItemModel.fetchAlmsRound"
+                    placeholder="Select Alms Round"
+                    :value="InternalDonatedItemModel.data.alms_round_id"
+                    @input="
+                      InternalDonatedItemModel.selectedAlmsRoundBox($event)
+                    "
+                    :selected-option="
+                      InternalDonatedItemModel.selectedAlmsRound
+                    "
+                    :disabled="disabled"
+                    v-bind:class="{
+                      'is-invalid':
+                        InternalDonatedItemModel.InternalDonatedItemValidation
+                          .alms_round_id_hasError,
+                      'is-valid':
+                        InternalDonatedItemModel.InternalDonatedItemSubmited &&
+                        !InternalDonatedItemModel.InternalDonatedItemValidation
+                          .alms_round_id_hasError,
+                    }"
+                  ></select2>
+                  <div
+                    class="invalid-feedback"
+                    v-if="
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .alms_round_id_hasError
+                    "
+                  >
+                    {{
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .alms_round_id_errorMessage
+                    }}
+                  </div>
 
-              <div
-                class="invalid-feedback"
-                v-if="
-                  InternalDonatedItemModel.InternalDonatedItemValidation
-                    .name_hasError
-                "
-              >
-                {{
-                  InternalDonatedItemModel.InternalDonatedItemValidation
-                    .name_errorMessage
-                }}
+                  <div
+                    class="valid-feedback"
+                    v-if="
+                      !InternalDonatedItemModel.InternalDonatedItemValidation
+                        .alms_round_id_hasError &&
+                      InternalDonatedItemModel.InternalDonatedItemSubmited
+                    "
+                  >
+                    {{
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .alms_round_id_successMessage
+                    }}
+                  </div>
+                </div>
               </div>
+            </div>
 
-              <div
-                class="valid-feedback"
-                v-if="
-                  !InternalDonatedItemModel.InternalDonatedItemValidation
-                    .name_hasError &&
-                  InternalDonatedItemModel.InternalDonatedItemSubmited
-                "
-              >
-                {{
-                  InternalDonatedItemModel.InternalDonatedItemValidation
-                    .name_successMessage
-                }}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="item_type"
+                    >Item Type <span class="text-danger">*</span></label
+                  >
+                  <select2
+                    :url="InternalDonatedItemModel.fetchItemType"
+                    placeholder="Select Item Type"
+                    :value="InternalDonatedItemModel.data.item_type"
+                    @input="
+                      InternalDonatedItemModel.selectedItemTypeBox($event)
+                    "
+                    :selected-option="InternalDonatedItemModel.selectedItemType"
+                    :disabled="disabled"
+                    v-bind:class="{
+                      'is-invalid':
+                        InternalDonatedItemModel.InternalDonatedItemValidation
+                          .item_type_id_hasError,
+                      'is-valid':
+                        InternalDonatedItemModel.InternalDonatedItemSubmited &&
+                        !InternalDonatedItemModel.InternalDonatedItemValidation
+                          .item_type_id_hasError,
+                    }"
+                  ></select2>
+                  <div
+                    class="invalid-feedback"
+                    v-if="
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .item_type_id_hasError
+                    "
+                  >
+                    {{
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .item_type_id_errorMessage
+                    }}
+                  </div>
+
+                  <div
+                    class="valid-feedback"
+                    v-if="
+                      !InternalDonatedItemModel.InternalDonatedItemValidation
+                        .item_type_id_hasError &&
+                      InternalDonatedItemModel.InternalDonatedItemSubmited
+                    "
+                  >
+                    {{
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .item_type_id_successMessage
+                    }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="itemSubType"
+                    >Item Sub Type <span class="text-danger">*</span></label
+                  >
+                  <select2
+                    :url="InternalDonatedItemModel.fetchItemSubType"
+                    placeholder="Select Item Sub Type"
+                    :value="InternalDonatedItemModel.data.item_sub_type_id"
+                    @input="
+                      InternalDonatedItemModel.selectedItemSubTypeBox($event)
+                    "
+                    :selected-option="
+                      InternalDonatedItemModel.selectedItemSubType
+                    "
+                    :disabled="itemSubTypeDisabled"
+                    :fetch="InternalDonatedItemModel.itemSubTypeFetch"
+                    v-bind:class="{
+                      'is-invalid':
+                        InternalDonatedItemModel.InternalDonatedItemValidation
+                          .item_sub_type_id_hasError,
+                      'is-valid':
+                        InternalDonatedItemModel.InternalDonatedItemSubmited &&
+                        !InternalDonatedItemModel.InternalDonatedItemValidation
+                          .item_sub_type_id_hasError,
+                    }"
+                  ></select2>
+                  <div
+                    class="invalid-feedback"
+                    v-if="
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .item_sub_type_id_hasError
+                    "
+                  >
+                    {{
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .item_sub_type_id_errorMessage
+                    }}
+                  </div>
+
+                  <div
+                    class="valid-feedback"
+                    v-if="
+                      !InternalDonatedItemModel.InternalDonatedItemValidation
+                        .item_sub_type_id_hasError &&
+                      InternalDonatedItemModel.InternalDonatedItemSubmited
+                    "
+                  >
+                    {{
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .item_sub_type_id_successMessage
+                    }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="unit"
+                    >Unit <span class="text-danger">*</span></label
+                  >
+                  <select2
+                    :url="InternalDonatedItemModel.fetchUnit"
+                    placeholder="Select Unit"
+                    :value="InternalDonatedItemModel.data.unit_id"
+                    @input="InternalDonatedItemModel.selectedUnitBox($event)"
+                    :selected-option="InternalDonatedItemModel.selectedUnit"
+                    :disabled="disabled"
+                    v-bind:class="{
+                      'is-invalid':
+                        InternalDonatedItemModel.InternalDonatedItemValidation
+                          .unit_id_hasError,
+                      'is-valid':
+                        InternalDonatedItemModel.InternalDonatedItemSubmited &&
+                        !InternalDonatedItemModel.InternalDonatedItemValidation
+                          .unit_id_hasError,
+                    }"
+                  ></select2>
+                  <div
+                    class="invalid-feedback"
+                    v-if="
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .unit_id_hasError
+                    "
+                  >
+                    {{
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .unit_id_errorMessage
+                    }}
+                  </div>
+
+                  <div
+                    class="valid-feedback"
+                    v-if="
+                      !InternalDonatedItemModel.InternalDonatedItemValidation
+                        .unit_id_hasError &&
+                      InternalDonatedItemModel.InternalDonatedItemSubmited
+                    "
+                  >
+                    {{
+                      InternalDonatedItemModel.InternalDonatedItemValidation
+                        .unit_id_successMessage
+                    }}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -257,111 +472,6 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="unit"
-                    >Unit <span class="text-danger">*</span></label
-                  >
-                  <select2
-                    :url="InternalDonatedItemModel.fetchUnit"
-                    placeholder="Select Unit"
-                    :value="InternalDonatedItemModel.data.unit"
-                    @input="InternalDonatedItemModel.selectedUnitBox($event)"
-                    :selected-option="InternalDonatedItemModel.selectedUnit"
-                    :disabled="disabled"
-                    v-bind:class="{
-                      'is-invalid':
-                        InternalDonatedItemModel.InternalDonatedItemValidation
-                          .unit_hasError,
-                      'is-valid':
-                        InternalDonatedItemModel.InternalDonatedItemSubmited &&
-                        !InternalDonatedItemModel.InternalDonatedItemValidation
-                          .unit_hasError,
-                    }"
-                  ></select2>
-                  <div
-                    class="invalid-feedback"
-                    v-if="
-                      InternalDonatedItemModel.InternalDonatedItemValidation
-                        .unit_hasError
-                    "
-                  >
-                    {{
-                      InternalDonatedItemModel.InternalDonatedItemValidation
-                        .unit_errorMessage
-                    }}
-                  </div>
-
-                  <div
-                    class="valid-feedback"
-                    v-if="
-                      !InternalDonatedItemModel.InternalDonatedItemValidation
-                        .unit_hasError &&
-                      InternalDonatedItemModel.InternalDonatedItemSubmited
-                    "
-                  >
-                    {{
-                      InternalDonatedItemModel.InternalDonatedItemValidation
-                        .unit_successMessage
-                    }}
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="unit"
-                    >Item Type <span class="text-danger">*</span></label
-                  >
-                  <select2
-                    :url="InternalDonatedItemModel.fetchItemType"
-                    placeholder="Select Item Type"
-                    :value="InternalDonatedItemModel.data.item_type"
-                    @input="
-                      InternalDonatedItemModel.selectedItemTypeBox($event)
-                    "
-                    :selected-option="InternalDonatedItemModel.selectedItemType"
-                    :disabled="disabled"
-                    v-bind:class="{
-                      'is-invalid':
-                        InternalDonatedItemModel.InternalDonatedItemValidation
-                          .item_type_id_hasError,
-                      'is-valid':
-                        InternalDonatedItemModel.InternalDonatedItemSubmited &&
-                        !InternalDonatedItemModel.InternalDonatedItemValidation
-                          .item_type_id_hasError,
-                    }"
-                  ></select2>
-                  <div
-                    class="invalid-feedback"
-                    v-if="
-                      InternalDonatedItemModel.InternalDonatedItemValidation
-                        .item_type_id_hasError
-                    "
-                  >
-                    {{
-                      InternalDonatedItemModel.InternalDonatedItemValidation
-                        .item_type_id_errorMessage
-                    }}
-                  </div>
-
-                  <div
-                    class="valid-feedback"
-                    v-if="
-                      !InternalDonatedItemModel.InternalDonatedItemValidation
-                        .item_type_id_hasError &&
-                      InternalDonatedItemModel.InternalDonatedItemSubmited
-                    "
-                  >
-                    {{
-                      InternalDonatedItemModel.InternalDonatedItemValidation
-                        .item_type_id_successMessage
-                    }}
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div class="form-group">
               <label>Remark <span class="text-danger">*</span></label>
               <textarea
@@ -441,7 +551,8 @@
       </div>
     </div>
 
-    <div class="col-md-6 col-lg-6 col-centered" v-if="showRequestControl">
+    <!-- Request Form -->
+    <!-- <div class="col-md-6 col-lg-6 col-centered" v-if="showRequestControl">
       <div class="card border border-success" style="min-height: 550px">
         <div class="card-body row">
           <div class="col-md-12">
@@ -451,7 +562,12 @@
             >
               <label>Request Control</label>
               <div
-                class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success"
+                class="
+                  custom-control
+                  custom-switch
+                  custom-switch-off-danger
+                  custom-switch-on-success
+                "
               >
                 <input
                   type="checkbox"
@@ -695,9 +811,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="col-md-12">
+    <!-- <div class="col-md-12">
       <div
         class="tab-pane fade show"
         id="box-list"
@@ -771,7 +887,7 @@
           "
         ></pagination>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -779,17 +895,17 @@
 import InternalDonatedItem from "../models/internal_donated_item/internal_donated_item";
 import select2 from "./select2";
 import Loading from "vue-loading-overlay";
-import AddUnexpectedPersonComponent from "./AddUnexpectedPersonComponent.vue";
-import AddTeamComponent from "./AddTeamComponent.vue";
-import AddYogiComponent from "./AddYogiComponent.vue";
+// import AddUnexpectedPersonComponent from "./AddUnexpectedPersonComponent.vue";
+// import AddTeamComponent from "./AddTeamComponent.vue";
+// import AddYogiComponent from "./AddYogiComponent.vue";
 
 export default {
   components: {
     select2,
     Loading,
-    AddUnexpectedPersonComponent,
-    AddTeamComponent,
-    AddYogiComponent,
+    // AddUnexpectedPersonComponent,
+    // AddTeamComponent,
+    // AddYogiComponent,
   },
   props: {
     internal_donated_item: { type: Object, default: () => ({}) },
@@ -813,6 +929,12 @@ export default {
     disabled() {
       return this.InternalDonatedItemModel.data.is_confirmed;
     },
+    itemSubTypeDisabled() {
+      return (
+        this.InternalDonatedItemModel.data.is_confirmed ||
+        this.InternalDonatedItemModel.data.item_type_id === ""
+      );
+    },
     showRequestControl() {
       return (
         this.InternalDonatedItemModel.data.is_confirmed &&
@@ -834,6 +956,14 @@ export default {
     });
 
     this.InternalDonatedItemModel.getRequestResult();
+
+    if (this.InternalDonatedItemModel.data.item_type_id !== "") {
+      this.InternalDonatedItemModel.fetchItemSubType =
+        route("item_sub_types.fetch") +
+        this.InternalDonatedItemModel.data.item_type_id;
+      this.InternalDonatedItemModel.itemSubTypeFetch++;
+      console.log(this.InternalDonatedItemModel.data.item_type_id);
+    }
   },
 };
 </script>

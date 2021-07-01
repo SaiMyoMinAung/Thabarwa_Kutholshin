@@ -27,10 +27,11 @@ class InternalDonatedItemController extends Controller
             $columns = array(
                 0 => 'DT_RowIndex',
                 1 => 'item_unique_id',
-                2 => 'name',
-                3 => 'qty',
-                4 => 'item_type',
-                5 => 'status'
+                2 => 'item_type',
+                3 => 'item_sub_type',
+                4 => 'qty',
+                5 => 'alms_round',
+                6 => 'status'
             );
 
             $totalData = InternalDonatedItem::count();
@@ -53,8 +54,7 @@ class InternalDonatedItemController extends Controller
                 $search = $request->input('search.value');
 
                 $donated_items =  $donated_items->where(function ($q) use ($search) {
-                    return $q->where('name', 'LIKE', "%{$search}%")
-                        ->orWhere('item_unique_id', 'LIKE', "%{$search}%")
+                    return $q->where('item_unique_id', 'LIKE', "%{$search}%")
                         ->orWhereHas('itemType', function (Builder $query) use ($search) {
                             $query->where('item_types.name', 'LIKE', "%{$search}%");
                         });
@@ -190,9 +190,10 @@ class InternalDonatedItemController extends Controller
                     $nestedData['DT_RowIndex'] = $key + 1;
                     $nestedData['uuid'] = $donated_item->uuid;
                     $nestedData['item_unique_id'] = $donated_item->item_unique_id;
-                    $nestedData['name'] =  $donated_item->name;
-                    $nestedData['qty'] = $donated_item->package_qty . 'p | ' . $donated_item->socket_qty . 's ( per ' . $donated_item->socket_per_package . ' )';
                     $nestedData['item_type'] = $donated_item->itemType->name;
+                    $nestedData['item_sub_type'] = $donated_item->itemSubType->name;
+                    $nestedData['qty'] = $donated_item->package_qty . 'p | ' . $donated_item->socket_qty . 's ( per ' . $donated_item->socket_per_package . ' )';
+                    $nestedData['alms_round'] = $donated_item->almsRound->name;
 
                     $nestedData['status'] = '<span class="' . InternalDonatedItemStatus::advanceSearch(($donated_item->status))["class"] . '">' . InternalDonatedItemStatus::advanceSearch(($donated_item->status))["label"] . '</span> ';
 

@@ -30,5 +30,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(VolunteerSeeder::class);
         $this->call(ItemTypeSeeder::class);
+        $this->call(UnitSeeder::class);
+        $this->call(AlmsRoundSeeder::class);
     }
 }

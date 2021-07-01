@@ -8,7 +8,6 @@ use App\InternalRequestedItem;
 use App\Traits\HasItemUniqueId;
 use Illuminate\Database\Eloquent\Model;
 use App\Status\InternalDonatedItemStatus;
-use Illuminate\Database\Eloquent\Builder;
 
 class InternalDonatedItem extends Model
 {
@@ -20,9 +19,24 @@ class InternalDonatedItem extends Model
 
     protected $guarded = [];
 
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id')->withDefault();
+    }
+
+    public function almsRound()
+    {
+        return $this->belongsTo(AlmsRound::class, 'alms_round_id')->withDefault();
+    }
+
     public function itemType()
     {
         return $this->belongsTo(ItemType::class, 'item_type_id')->withDefault();
+    }
+
+    public function itemSubType()
+    {
+        return $this->belongsTo(ItemSubType::class, 'item_sub_type_id')->withDefault();
     }
 
     public function internalRequestedItems()
