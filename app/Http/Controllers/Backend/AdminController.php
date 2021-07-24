@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\AdminStoreFormRequest;
 use App\Http\Requests\AdminUpdateFormRequest;
+use App\Http\Resources\AdminResource;
 use App\Office;
 use App\TypeOfAdmin;
 use Illuminate\Validation\ValidationException;
@@ -265,5 +266,12 @@ class AdminController extends Controller
             $admin->delete();
             return back()->with('success', 'Delete Admin Successful.');
         }
+    }
+
+    public function information()
+    {
+        $admin = Admin::find(auth()->user()->id);
+
+        return response()->json(new AdminResource($admin), 200);
     }
 }

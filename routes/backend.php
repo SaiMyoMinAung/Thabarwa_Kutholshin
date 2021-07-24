@@ -26,10 +26,13 @@ Route::group(['middleware' => 'internal.donated.item.record.admintype'], functio
     Route::get('get_internal_donated_items', 'InternalDonatedItemController@getInternalDonatedItems')->name('get.internalDonatedItems');
     Route::get('internal_donated_items/control_available/{internal_donated_item}', 'InternalDonatedItemController@controlAvailableOrLost')->name('control.available');
 
+    Route::resource('share_internal_donated_items', 'ShareInternalDonatedItemController');
+
     Route::resource('internal_donated_items/{internal_donated_item}/internal_requested_items', 'InternalRequestedItemController');
     Route::resource('unexpected_persons', 'UnexpectedPersonController');
     Route::resource('item_types', 'ItemTypeController');
     Route::resource('item_sub_types', 'ItemSubTypeController');
+    Route::get('get_store_list', 'ItemTypeController@getStoreList')->name('get.store.list');
 
     Route::resource('contributions', 'ContributionController');
     Route::get('contributions/{contribution}/items', 'ContributionController@contributionItemsIndex')->name('contribution.items.index');
@@ -41,8 +44,6 @@ Route::group(['middleware' => 'internal.donated.item.record.admintype'], functio
     Route::get('received-contributions/{contribution}/items', 'ReceivedContributionController@contributionItemsIndex')->name('received_contributions.items.index');
     Route::get('received-contributions/{contribution}/internal_donated_items/{internal_donated_item}/accept', 'ReceivedContributionController@contributionItemsAccept')->name('contribution.items.accept');
     Route::get('received-contributions/{contribution}/show', 'ReceivedContributionController@show')->name('received_contributions.show');
-
-    Route::get('search/internal_requests', 'SearchController@searchInternalRequests')->name('search.internal.requests');
 });
 
 /**

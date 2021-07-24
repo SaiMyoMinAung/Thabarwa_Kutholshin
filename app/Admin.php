@@ -75,8 +75,8 @@ class Admin extends Authenticatable
         return $this->belongsToMany(TypeOfAdmin::class, 'admin_has_type_of_admins', 'admin_id', 'type_of_admin_id');
     }
 
-    public function internalRequestedItems()
+    public function shareInternalDonatedItems()
     {
-        return $this->hasMany(InternalRequestedItem::class, 'admin_id');
+        return $this->hasMany(ShareInternalDonatedItem::class, 'admin_id');
     }
 }

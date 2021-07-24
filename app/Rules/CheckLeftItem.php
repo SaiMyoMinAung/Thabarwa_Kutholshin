@@ -2,13 +2,12 @@
 
 namespace App\Rules;
 
-use App\InternalDonatedItem;
+use App\ItemSubType;
 use Illuminate\Contracts\Validation\Rule;
 
 class CheckLeftItem implements Rule
 {
-    public $internalDonatedItem;
-    public $request_package_qty;
+    public $itemSubType;
     public $request_socket_qty;
 
     /**
@@ -16,10 +15,9 @@ class CheckLeftItem implements Rule
      *
      * @return void
      */
-    public function __construct(InternalDonatedItem $internalDonatedItem, $request_package_qty, $request_socket_qty)
+    public function __construct($item_sub_type_id, $request_socket_qty)
     {
-        $this->internalDonatedItem = $internalDonatedItem;
-        $this->request_package_qty = $request_package_qty;
+        $this->itemSubType = ItemSubType::find($item_sub_type_id);
         $this->request_socket_qty = $request_socket_qty;
     }
 
@@ -32,8 +30,8 @@ class CheckLeftItem implements Rule
      */
     public function passes($attribute, $value)
     {
-        $leftSocket = $this->internalDonatedItem->left_sockets;
-        $requestedSocket = ($this->internalDonatedItem->socket_per_package * $this->request_package_qty) + $this->request_socket_qty;
+        $leftSocket = $this->itemSubType->left_sockets;
+        $requestedSocket = $this->request_socket_qty;
 
         if ($requestedSocket == 0) {
             return false;
@@ -53,6 +51,6 @@ class CheckLeftItem implements Rule
      */
     public function message()
     {
-        return 'Cannot Request This Amount.';
+        return 'Cannot Request This Quantity.';
     }
 }

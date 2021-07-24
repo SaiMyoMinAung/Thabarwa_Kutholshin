@@ -6,6 +6,7 @@ import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
+import VirtualList from 'vue-virtual-scroll-list'
 
 Vue.use(Toasted, {
   iconPack: 'material-icons',
@@ -25,8 +26,10 @@ Vue.component('setting-component', require('./components/SettingComponent.vue').
 Vue.component('online-manage-component', require('./components/OnlineManageComponent.vue').default);
 Vue.component('manage-request', require('./components/ManageRequestComponent.vue').default);
 Vue.component('internal-donated-item-component', require('./components/InternalDonatedItemComponent.vue').default);
+Vue.component('share-internal-donated-item-component', require('./components/ShareInternalDonatedItemComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('v-select', vSelect);
+Vue.component('virtual-list', VirtualList)
 
 window.dashboard_app = new Vue({
   el: '#dashboard-app'

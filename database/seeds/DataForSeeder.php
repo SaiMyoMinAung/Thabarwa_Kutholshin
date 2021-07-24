@@ -54,6 +54,10 @@ const SETTING = 'Setting';
 const ITEM_TYPE_ONE = "Coffee";
 const ITEM_TYPE_TWO = "Biscuit";
 const ITEM_TYPE_THREE = "Soft Drink";
+const ITEM_TYPE_FOUR = "Banana";
+const ITEM_TYPE_FIVE = "Water Bottle";
+const ITEM_TYPE_SIX = "Bar Soap";
+const ITEM_TYPE_SEVEN = "Detergent";
 
 const ITEM_SUB_TYPE_ONE = [
     ['name' => 'Premier Coffee'],
@@ -72,6 +76,31 @@ const ITEM_SUB_TYPE_THREE = [
     ['name' => 'Shark'],
     ['name' => 'Max +']
 ];
+
+const ITEM_SUB_TYPE_FOUR = [
+    ['name' => 'Phee Gyan'],
+    ['name' => 'Thee Mwe'],
+    ['name' => 'Ya Khine']
+];
+
+const ITEM_SUB_TYPE_FIVE = [
+    ['name' => 'Yaza Water'],
+    ['name' => 'Alpine Water'],
+    ['name' => 'Clean Water']
+];
+
+const ITEM_SUB_TYPE_SIX = [
+    ['name' => 'Leather Bar Soap'],
+    ['name' => 'Rose Bar Soap'],
+    ['name' => 'Shwe War Bar Soap']
+];
+
+const ITEM_SUB_TYPE_SEVEN = [
+    ['name' => 'Thai Detergent'],
+    ['name' => 'That Tar Detergent'],
+    ['name' => 'E-Lan Detergent']
+];
+
 
 const ALMS_ROUND_ONE = 'ကျောက်မြောင်း တန်းဆွမ်း';
 const ALMS_ROUND_TWO = 'သာကေတ တန်းဆွမ်း'; 

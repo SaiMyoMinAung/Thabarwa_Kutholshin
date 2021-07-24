@@ -1,4 +1,4 @@
-import InternalDonatedItemValidation from "./create_internal_donated_item_validation";
+import InternalDonatedItemValidation from "../../validations/internal_donated_item_component/create_internal_donated_item_validation";
 
 export default class InternalDonatedItem {
     constructor(internal_donated_item) {
@@ -17,29 +17,20 @@ export default class InternalDonatedItem {
             is_confirmed: false,
             status: "",
         };
-        this.requestData = {
-            requestable_type: "",
-            requestable_id: "",
-            request_package_qty: "",
-            request_socket_qty: ""
-        };
 
         // url
-        this.getRequestableTypeUrl = route('requestable_types.fetch');
-        this.getRequestableTypeIdUrl = "";
         this.internalDonatedItemIndexUrl = route('internal_donated_items.index');
         this.internalDonatedItemCreateUrl = route('internal_donated_items.create');
 
-        this.InternalRequestedItemSubmited = false;
         this.InternalDonatedItemSubmited = false;
         this.InternalDonatedItemValidation = new InternalDonatedItemValidation();
+
         // selected
         this.selectedAlmsRound = null;
         this.selectedItemType = null;
         this.selectedItemSubType = null;
         this.selectedUnit = null;
-        this.selectedRequestableType = null;
-        this.selectedRequestableTypeId = null;
+
         // fetch 
         this.itemSubTypeFetch = 0;
         // route
@@ -51,15 +42,6 @@ export default class InternalDonatedItem {
             this.constructData(internal_donated_item)
         }
 
-    }
-    blankRequestData() {
-        this.requestData.requestable_type = "";
-        this.requestData.requestable_id = "";
-        this.requestData.request_package_qty = "";
-        this.requestData.request_socket_qty = "";
-        this.selectedRequestableType = null;
-        this.selectedRequestableTypeId = null;
-        this.InternalRequestedItemSubmited = false;
     }
     constructData(internal_donated_item) {
 
@@ -85,49 +67,6 @@ export default class InternalDonatedItem {
 
     }
 
-    deleteRequest(uuid) {
-        let url = route('internal_requested_items.destroy', this.data.uuid) + uuid
-
-        window.dashboard_app.$emit('startLoading');
-
-        axios.delete(url)
-            .then(response => {
-                console.log(response)
-                this.InternalDonatedItemValidation = new InternalDonatedItemValidation()
-                this.getRequestResult()
-                window.dashboard_app.$toasted.show("Delete Success.", { icon: "save" });
-                window.dashboard_app.$emit('endLoading');
-            })
-            .catch(function (error) {
-                window.dashboard_app.$toasted.show("Delete Failed.", { icon: "save" });
-                window.dashboard_app.$emit('endLoading');
-            });
-    }
-
-    getRequestResult() {
-        if (this.data.uuid === "") {
-            return false;
-        }
-        let url = route('internal_requested_items.index', this.data.uuid)
-        axios.get(url)
-            .then(response => {
-                console.log(response)
-                // construct with new data
-                this.listOfRequest = response.data;
-                // do loading
-                window.dashboard_app.$emit('endLoading');
-
-            })
-            .catch(function (error) {
-                // do toast
-                window.dashboard_app.$toasted.show("Saving Failed.", { icon: "save" });
-                // do loading
-                window.dashboard_app.$emit('endLoading');
-            });
-
-    }
-
-
     confirmAndSaveItem() {
         this.data.is_confirmed = true;
         this.saveItem()
@@ -136,37 +75,6 @@ export default class InternalDonatedItem {
     updateAndConfirm() {
         this.data.is_confirmed = true;
         this.updateItem()
-    }
-
-    saveRequest() {
-
-        this.InternalRequestedItemSubmited = true;
-        let self = this;
-
-        let url = route('internal_requested_items.store', this.data.uuid)
-
-        window.dashboard_app.$emit('startLoading');
-
-        axios.post(url, this.requestData)
-            .then(response => {
-                console.log(response)
-                this.InternalDonatedItemValidation = new InternalDonatedItemValidation()
-                this.blankRequestData();
-                this.getRequestResult()
-                // construct with new data
-                this.constructData(response.data);
-                window.dashboard_app.$emit('success', response.data)
-                window.dashboard_app.$toasted.show("Saving Success.", { icon: "save" });
-                window.dashboard_app.$emit('endLoading');
-            })
-            .catch(function (error) {
-                // window.dashboard_app.$emit('failed')
-                console.log(error.response)
-                self.InternalDonatedItemValidation = new InternalDonatedItemValidation(error.response.data.errors)
-                window.dashboard_app.$toasted.show("Saving Failed.", { icon: "save" });
-                window.dashboard_app.$emit('endLoading');
-            });
-
     }
 
     controlAvailable() {
@@ -193,6 +101,7 @@ export default class InternalDonatedItem {
                 window.dashboard_app.$emit('endLoading');
             });
     }
+
     updateItem() {
         let self = this;
         let data = this.data;
@@ -228,6 +137,7 @@ export default class InternalDonatedItem {
             });
 
     }
+
     saveItem() {
         this.InternalDonatedItemSubmited = true;
         var self = this;
@@ -278,28 +188,6 @@ export default class InternalDonatedItem {
     selectedAlmsRoundBox(event) {
         this.selectedAlmsRound = event;
         this.data.alms_round_id = event != null ? event.id : "";
-    }
-
-    selectedRequestableTypeBox(event) {
-        this.selectedRequestableType = event;
-        this.requestData.requestable_type = event != null ? event.id : "";
-
-        if (event.id === "TEAM") {
-            this.getRequestableTypeIdUrl = route('teams.fetch');
-        } else if (event.id === "USER") {
-            this.getRequestableTypeIdUrl = route('users.fetch');
-        } else if (event.id === "YOGI") {
-            this.getRequestableTypeIdUrl = route('yogis.fetch');
-        } else if (event.id === "UNEXPECTED_PERSON") {
-            this.getRequestableTypeIdUrl = route('unexpected_persons.fetch');
-        }
-
-        window.dashboard_app.$emit('clearSelect2Options', { placeholder: 'Select Requestable Person' });
-    }
-
-    selectedRequestableTypeIdBox(event) {
-        this.selectedRequestableTypeId = event;
-        this.requestData.requestable_id = event != null ? event.id : "";
     }
 
 }

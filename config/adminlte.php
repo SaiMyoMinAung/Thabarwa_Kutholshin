@@ -236,12 +236,7 @@ return [
         //     'search' => true,
         //     'topnav' => true,
         // ],
-        [
-            'text'        => 'Search',
-            'url'         => 'backend/search',
-            'icon'        => 'fas fa-search',
-            'label_color' => 'success',
-        ],
+        
         [
             'text'        => 'Donation Records',
             'url'         => 'backend/donation_records',
@@ -263,6 +258,14 @@ return [
             'url'         => 'backend/internal_donated_items',
             'active'      => ['backend/internal_donated_items', 'backend/internal_donated_items/*'],
             'icon'        => 'fas fa-store',
+            'label_color' => 'success',
+            'can' => 'can-do-internal-donated-item-record'
+        ],
+        [
+            'text'        => 'Share Stored Item',
+            'url'         => 'backend/share_internal_donated_items',
+            'active'      => ['backend/share_internal_donated_items', 'backend/share_internal_donated_items/*'],
+            'icon'        => 'fas fa-hand-holding',
             'label_color' => 'success',
             'can' => 'can-do-internal-donated-item-record'
         ],

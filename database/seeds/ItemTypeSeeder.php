@@ -25,6 +25,22 @@ class ItemTypeSeeder extends Seeder
                 'type' => ['name' => ITEM_TYPE_THREE],
                 'sub' => ITEM_SUB_TYPE_THREE
             ],
+            [
+                'type' => ['name' => ITEM_TYPE_FOUR],
+                'sub' => ITEM_SUB_TYPE_FOUR
+            ],
+            [
+                'type' => ['name' => ITEM_TYPE_FIVE],
+                'sub' => ITEM_SUB_TYPE_FIVE
+            ],
+            [
+                'type' => ['name' => ITEM_TYPE_SIX],
+                'sub' => ITEM_SUB_TYPE_SIX
+            ],
+            [
+                'type' => ['name' => ITEM_TYPE_SEVEN],
+                'sub' => ITEM_SUB_TYPE_SEVEN
+            ],
         ];
         foreach ($data as $d) {
             $type = ItemType::create($d['type']);

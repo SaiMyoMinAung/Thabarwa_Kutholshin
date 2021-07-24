@@ -133,6 +133,7 @@ export default {
     search: _.debounce((loading, search, vm) => {
       vm.q = search;
       vm.loading = true;
+      vm.page = 1;
       vm.fetchData();
     }, 350),
     fetchData() {
@@ -159,7 +160,6 @@ export default {
     this.fetchData();
 
     this.$root.$on("clearSelect2Options", (data) => {
-      
       if (data.placeholder === this.placeholder) {
         this.options = [];
       }

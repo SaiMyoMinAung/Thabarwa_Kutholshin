@@ -33,7 +33,12 @@ class InternalDonatedItemStatus extends Enum
         ],
 
     ];
-
+    /**
+     * Search Type
+     *
+     * @param [code or label] $search
+     * @return array
+     */
     public static function advanceSearch($search)
     {
         $types = self::toArray();

@@ -39,11 +39,6 @@ class InternalDonatedItem extends Model
         return $this->belongsTo(ItemSubType::class, 'item_sub_type_id')->withDefault();
     }
 
-    public function internalRequestedItems()
-    {
-        return $this->hasMany(InternalRequestedItem::class, 'internal_donated_item_id');
-    }
-
     public function getLatestHistory()
     {
         return $this->hasOne(ContributionInternalDonatedItemHistory::class, 'internal_donated_item_id')->orderBy('id', 'desc');
@@ -57,32 +52,6 @@ class InternalDonatedItem extends Model
     public function contributions()
     {
         return $this->belongsToMany(Contribution::class, 'contribution_internal_donated_item_histories')->withPivot('is_accepted', 'is_confirmed');
-    }
-
-    public function getLeftSocketsAttribute()
-    {
-        $orginalTotal = ($this->package_qty * $this->socket_per_package) + $this->socket_qty;
-        $requestedSocket = 0;
-        if ($this->internalRequestedItems->count() > 0) {
-            foreach ($this->internalRequestedItems as $request) {
-                $requestedSocket += ($request->package_qty * $this->socket_per_package) + $request->socket_qty;
-            }
-        }
-
-        return $orginalTotal - $requestedSocket;
-    }
-
-    public function changeCompleteStatus()
-    {
-        $totalSockets = ($this->package_qty * $this->socket_per_package) + $this->socket_qty;
-
-        $requestedSockets = $this->internalRequestedItems()->get()->sum(function ($item) {
-            return ($item->package_qty * $this->socket_per_package) + $item->socket_qty;
-        });
-
-        if ($totalSockets == $requestedSockets) {
-            $this->update(['status' => InternalDonatedItemStatus::advanceSearch('Complete')["code"]]);
-        }
     }
 
     public function scopeAvailable($query)

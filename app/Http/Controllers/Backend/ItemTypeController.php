@@ -7,6 +7,7 @@ use App\ItemType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemTypeResource;
+use App\Status\InternalDonatedItemStatus;
 use App\Http\Requests\ItemTypeStoreRequest;
 use App\Http\Requests\ItemTypeUpdateRequest;
 use App\Http\Resources\ItemTypeResourceCollection;
@@ -117,10 +118,75 @@ class ItemTypeController extends Controller
         }
     }
 
-    public function getAllItemTypes()
+    public function getAllItemTypes(Request $request)
     {
-        $itemTypes = ItemType::orderBy('id', 'desc')->paginate(5);
+        $itemTypes = ItemType::where('name', 'LIKE', '%' . $request->q . '%')
+            ->orderBy('id', 'desc')
+            ->paginate(5);
 
         return response()->json(new ItemTypeSelect2ResourceCollection($itemTypes), 200);
+    }
+
+    public function getStoreList()
+    {
+        // expected format
+        // $data = [
+        //     [
+        //         'item_type' => 'Biscuit',
+        //         'count' => 2,
+        //         'item_sub_type' => [
+        //             [
+        //                 'name' => 'Shwe Biscuit',
+        //                 'count' => '3'
+        //             ],
+        //             [
+        //                 'name' => 'Mya Biscuit',
+        //                 'count' => '4'
+        //             ]
+        //         ]
+        //     ]
+        // ];
+
+        $office_id = auth()->user()->office->id;
+        $available_status = InternalDonatedItemStatus::AVAILABLE()->getValue();
+        $available_code = InternalDonatedItemStatus::advanceSearch($available_status);
+
+        $storeList = ItemType::withCount(['internalDonatedItems' => function ($q) use ($office_id, $available_code) {
+            $q->where('office_id', $office_id)->where('status', $available_code['code']);
+        }])->with(['itemSubTypes' => function ($q) use ($office_id, $available_code) {
+            $q->with([
+                'sharedInternalDonatedItems',
+                'internalDonatedItems' => function ($q) use ($office_id, $available_code) {
+                    $q->where('office_id', $office_id)->where('status', $available_code['code']);
+                }
+            ]);
+        }])->get()->map(function ($item, $key) {
+
+            $storeList =  [
+                'item_type' => $item->name,
+                'count' => $item->internal_donated_items_count
+            ];
+
+            $itemSub = [];
+            foreach ($item->itemSubTypes as $key => $itemSubType) {
+
+                $sharedSockets = $itemSubType->sharedInternalDonatedItems->sum(function ($item) {
+                    return $item->socket_qty;
+                });
+
+                $itemSub[$key] = [
+                    'name' => $itemSubType->name,
+                    'count' => $itemSubType->internalDonatedItems->sum(function ($item) {
+                        return ($item->package_qty * $item->socket_per_package) + $item->socket_qty;
+                    }) - $sharedSockets
+                ];
+            }
+
+            $storeList['item_sub_type'] = $itemSub;
+
+            return $storeList;
+        });
+
+        return response()->json($storeList, 200);
     }
 }
