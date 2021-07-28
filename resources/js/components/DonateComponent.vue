@@ -3,8 +3,9 @@
     <b-card-group deck>
       <b-card
         border-variant="primary"
-        header="Fill Donation Information"
-        header-text-variant="black"
+        header="Social Distancing Donation"
+        header-text-variant="white"
+        header-class="text-center bg-info h2"
       >
         <b-overlay :show="showSpinner" rounded="sm">
           <b-card-body>
