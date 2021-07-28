@@ -63,30 +63,101 @@ class InternalDonatedItemController extends Controller
             }
 
             // start search panes query
-            if (!empty($request->searchPanes["item_type"])) {
-                $name =  $request->input('searchPanes.item_type')[0];
-                $donated_items->whereHas('itemType', function (Builder $query) use ($name) {
-                    $query->where('name', $name);
-                });
-            }
+            // if (!empty($request->searchPanes["item_type"])) {
+            //     $name =  $request->input('searchPanes.item_type')[0];
+            //     $donated_items->whereHas('itemType', function (Builder $query) use ($name) {
+            //         $query->where('name', $name);
+            //     });
+            // }
 
-            if (!empty($request->searchPanes["status"])) {
-                $name =  $request->input('searchPanes.status')[0];
-                if ($name == "Confirmed") {
-                    $donated_items->where('is_confirmed', 1);
-                } else if ($name == "Unconfirmed") {
-                    $donated_items->where('is_confirmed', 0);
-                } else {
-                    $donated_items->where('status', $name);
-                }
-            }
+            // if (!empty($request->searchPanes["status"])) {
+            //     $name =  $request->input('searchPanes.status')[0];
+            //     if ($name == "Confirmed") {
+            //         $donated_items->where('is_confirmed', 1);
+            //     } else if ($name == "Unconfirmed") {
+            //         $donated_items->where('is_confirmed', 0);
+            //     } else {
+            //         $donated_items->where('status', $name);
+            //     }
+            // }
 
-            if (!empty($request->searchPanes["qty"])) {
-                $qty =  $request->input('searchPanes.qty')[0];
-                $qty = explode("-", $qty);
-                $donated_items->whereBetween('package_qty', $qty);
-            }
+            // if (!empty($request->searchPanes["qty"])) {
+            //     $qty =  $request->input('searchPanes.qty')[0];
+            //     $qty = explode("-", $qty);
+            //     $donated_items->whereBetween('package_qty', $qty);
+            // }
             // end search panes query
+
+            // Start Search Pane Data
+            // $searchPanes = [
+            //     'options' => [
+            //         "item_type" => [],
+            //         "status" => [
+            //             [
+            //                 "label" => "Confirmed",
+            //                 "total" => InternalDonatedItem::where('is_confirmed', 1)->count(),
+            //                 "value" => "Confirmed"
+            //             ],
+            //             [
+            //                 "label" => "Unconfirmed",
+            //                 "total" => InternalDonatedItem::where('is_confirmed', 0)->count(),
+            //                 "value" => "Unconfirmed"
+            //             ]
+            //         ],
+            //         "qty" => [
+            //             [
+            //                 "label" => "1 pkg - 5 pkg",
+            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [1, 5])->count(),
+            //                 "value" => "1-5"
+            //             ],
+            //             [
+            //                 "label" => "5 pkg - 10 pkg",
+            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [5, 10])->count(),
+            //                 "value" => "5-10"
+            //             ],
+            //             [
+            //                 "label" => "10 pkg - 20 pkg",
+            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [10, 20])->count(),
+            //                 "value" => "10-20"
+            //             ],
+            //             [
+            //                 "label" => "20 pkg - 30 pkg",
+            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [20, 30])->count(),
+            //                 "value" => "20-30"
+            //             ],
+            //             [
+            //                 "label" => "30 pkg - 40 pkg",
+            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [30, 40])->count(),
+            //                 "value" => "30-40"
+            //             ],
+            //         ]
+            //     ]
+            // ];
+
+            // $itemTypes = ItemType::all();
+
+            // foreach ($itemTypes as $itemType) {
+            //     array_push(
+            //         $searchPanes['options']['item_type'],
+            //         [
+            //             "label" => $itemType->name,
+            //             "total" => $itemType->internalDonatedItems()->count(),
+            //             "value" => $itemType->name,
+            //         ]
+            //     );
+            // }
+
+            // foreach (collect(InternalDonatedItemStatus::TYPE()) as $type) {
+            //     array_push(
+            //         $searchPanes['options']['status'],
+            //         [
+            //             "label" => $type['label'],
+            //             "total" => InternalDonatedItem::where('status', $type['code'])->count(),
+            //             "value" => $type['code'],
+            //         ]
+            //     );
+            // }
+            // end search pane
 
             // start sorting
             if ($order === 'qty') {
@@ -104,76 +175,6 @@ class InternalDonatedItemController extends Controller
 
             //Filter Query
             $donated_items->filterByOffice();
-
-            // Start Search Pane Data
-            $searchPanes = [
-                'options' => [
-                    "item_type" => [],
-                    "status" => [
-                        [
-                            "label" => "Confirmed",
-                            "total" => InternalDonatedItem::where('is_confirmed', 1)->count(),
-                            "value" => "Confirmed"
-                        ],
-                        [
-                            "label" => "Unconfirmed",
-                            "total" => InternalDonatedItem::where('is_confirmed', 0)->count(),
-                            "value" => "Unconfirmed"
-                        ]
-                    ],
-                    "qty" => [
-                        [
-                            "label" => "1 pkg - 5 pkg",
-                            "total" => InternalDonatedItem::whereBetween('package_qty', [1, 5])->count(),
-                            "value" => "1-5"
-                        ],
-                        [
-                            "label" => "5 pkg - 10 pkg",
-                            "total" => InternalDonatedItem::whereBetween('package_qty', [5, 10])->count(),
-                            "value" => "5-10"
-                        ],
-                        [
-                            "label" => "10 pkg - 20 pkg",
-                            "total" => InternalDonatedItem::whereBetween('package_qty', [10, 20])->count(),
-                            "value" => "10-20"
-                        ],
-                        [
-                            "label" => "20 pkg - 30 pkg",
-                            "total" => InternalDonatedItem::whereBetween('package_qty', [20, 30])->count(),
-                            "value" => "20-30"
-                        ],
-                        [
-                            "label" => "30 pkg - 40 pkg",
-                            "total" => InternalDonatedItem::whereBetween('package_qty', [30, 40])->count(),
-                            "value" => "30-40"
-                        ],
-                    ]
-                ]
-            ];
-
-            $itemTypes = ItemType::all();
-
-            foreach ($itemTypes as $itemType) {
-                array_push(
-                    $searchPanes['options']['item_type'],
-                    [
-                        "label" => $itemType->name,
-                        "total" => $itemType->internalDonatedItems()->count(),
-                        "value" => $itemType->name,
-                    ]
-                );
-            }
-
-            foreach (collect(InternalDonatedItemStatus::TYPE()) as $type) {
-                array_push(
-                    $searchPanes['options']['status'],
-                    [
-                        "label" => $type['label'],
-                        "total" => InternalDonatedItem::where('status', $type['code'])->count(),
-                        "value" => $type['code'],
-                    ]
-                );
-            }
 
             $totalFiltered = $donated_items->count();
 
@@ -225,7 +226,6 @@ class InternalDonatedItemController extends Controller
                 "recordsTotal"    => intval($totalData),
                 "recordsFiltered" => intval($totalFiltered),
                 "data"            => $data,
-                "searchPanes" => $searchPanes,
             );
 
             return $json_data;

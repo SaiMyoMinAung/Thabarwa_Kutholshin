@@ -359,14 +359,14 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="socket_qty"
-                    >Socket Qty <span class="text-danger">*</span></label
+                    >Sacket Qty <span class="text-danger">*</span></label
                   >
                   <input
                     name="socket_qty"
                     id="socket_qty"
                     type="text"
                     class="form-control only-number"
-                    placeholder="Enter Socket Qty"
+                    placeholder="Enter Sacket Qty"
                     v-model="InternalDonatedItemModel.data.socket_qty"
                     :disabled="disabled"
                     v-bind:class="{
@@ -410,7 +410,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="socket_per_package"
-                    >Socket Per Package
+                    >Sacket Per Package
                     <span class="text-danger">*</span></label
                   >
                   <input

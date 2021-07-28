@@ -12,16 +12,20 @@ class DonationController extends Controller
     public $donatedItem;
     public $notiRepo;
 
+    public function __construct(DonatedItemRepository $donatedItem, NotificationRepository $notiRepo)
+    {
+        $this->donatedItem = $donatedItem;
+        $this->notiRepo = $notiRepo;
+    }
     public function index()
     {
         return redirect()->route('admin.login');
         return view('donate.donate');
     }
 
-    public function __construct(DonatedItemRepository $donatedItem, NotificationRepository $notiRepo)
+    public function donate()
     {
-        $this->donatedItem = $donatedItem;
-        $this->notiRepo = $notiRepo;
+        return view('donate.donate');
     }
 
     public function save(DonationStoreFormRequest $request)

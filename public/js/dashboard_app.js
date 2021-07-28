@@ -8183,6 +8183,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -8192,7 +8193,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    this.getStoreList();
+    this.getStoreList(this.share_internal_donated_item);
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$root.$on("successfulSaveShare", function (data) {
+      _this.getStoreList(data);
+    });
   },
   components: {
     select2: _select2__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -8229,8 +8237,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    getStoreList: function getStoreList() {
-      var _this = this;
+    getStoreList: function getStoreList(responseData) {
+      var _this2 = this;
 
       var url = route("get.store.list");
       axios.get(url).then(function (response) {
@@ -8246,13 +8254,18 @@ __webpack_require__.r(__webpack_exports__);
           data[i] = response.data[i];
         }
 
-        console.log(data);
-        _this.listOfStore.itemlist = data;
+        _this2.listOfStore.itemlist = data;
+
+        if (responseData != null || responseData != undefined) {
+          _this2.doScroll(responseData.selectedItemType.name);
+
+          _this2.doItemSubTypeSelected(responseData.selectedItemSubType.name);
+        }
       })["catch"](function (error) {
         console.log(error.response);
       });
     },
-    doScroll: function doScroll(event) {
+    doScroll: function doScroll(name) {
       var itemCount = 0;
       var itemList = this.listOfStore.itemlist;
 
@@ -8261,33 +8274,33 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       for (var _i = 0; _i < itemList.length; _i++) {
-        if (event != null && event.name === itemList[_i].item_type) {
+        if (name != null && name === itemList[_i].item_type) {
           itemList[_i].active = true;
           break;
         } else {
-          itemCount += 1;
-          itemCount += itemList[_i]["item_sub_type"].length;
-          console.log(itemCount);
+          itemCount += 1; // itemCount += itemList[i]["item_sub_type"].length;
         }
       }
 
-      document.getElementsByClassName("list")[0].scroll({
-        top: 0,
-        left: 0
-      });
-      document.getElementsByClassName("list")[0].scroll({
-        top: itemCount * 35,
-        left: 0,
-        behavior: "smooth"
-      });
+      this.$refs.virtualList.scrollToIndex(0); // document.getElementsByClassName("list")[0].scroll({
+      //   top: 0,
+      //   left: 0,
+      // });
+
+      this.$refs.virtualList.scrollToIndex(itemCount); // document.getElementsByClassName("list")[0].scroll({
+      //   top: itemCount * 35,
+      //   left: 0,
+      //   behavior: "smooth",
+      // });
+
       this.doItemSubTypeSelected();
     },
-    doItemSubTypeSelected: function doItemSubTypeSelected(event) {
+    doItemSubTypeSelected: function doItemSubTypeSelected(name) {
       var itemList = this.listOfStore.itemlist;
 
       for (var i = 0; i < itemList.length; i++) {
         for (var a = 0; a < itemList[i].item_sub_type.length; a++) {
-          if (event != null && itemList[i].item_sub_type[a].name === event.name) {
+          if (name != null && itemList[i].item_sub_type[a].name === name) {
             itemList[i].item_sub_type[a].active = true;
           } else {
             itemList[i].item_sub_type[a].active = false;
@@ -60899,7 +60912,7 @@ var render = function() {
                           name: "socket_qty",
                           id: "socket_qty",
                           type: "text",
-                          placeholder: "Enter Socket Qty",
+                          placeholder: "Enter Sacket Qty",
                           disabled: _vm.disabled
                         },
                         domProps: {
@@ -61223,7 +61236,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "socket_qty" } }, [
-      _vm._v("Socket Qty "),
+      _vm._v("Sacket Qty "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -61232,7 +61245,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "socket_per_package" } }, [
-      _vm._v("Socket Per Package\n                  "),
+      _vm._v("Sacket Per Package\n                  "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -69400,7 +69413,7 @@ var render = function() {
                     _vm.ShareInternalDonatedItemModel.selectedItemTypeBox(
                       $event
                     )
-                    _vm.doScroll($event)
+                    _vm.doScroll($event.name)
                   }
                 }
               }),
@@ -69475,7 +69488,7 @@ var render = function() {
                     _vm.ShareInternalDonatedItemModel.selectedItemSubTypeBox(
                       $event
                     )
-                    _vm.doItemSubTypeSelected($event)
+                    _vm.doItemSubTypeSelected($event.name)
                   }
                 }
               }),
@@ -69768,6 +69781,7 @@ var render = function() {
         { staticClass: "col-sm-6 col-md-6" },
         [
           _c("virtual-list", {
+            ref: "virtualList",
             staticClass: "list",
             staticStyle: { height: "450px", "overflow-y": "auto" },
             attrs: {
@@ -85314,8 +85328,10 @@ var ShareInternalDonatedItem = /*#__PURE__*/function () {
         _this.ShareInternalDonatedItemSubmited = false;
         _this.ShareInternalDonatedItemValidation = new _validations_internal_donated_item_component_create_share_internal_donated_item_validation__WEBPACK_IMPORTED_MODULE_0__["default"](); // construct with new data
 
-        _this.constructData(response.data);
+        _this.constructData(response.data); // To Reload The Store List
 
+
+        window.dashboard_app.$emit('successfulSaveShare', response.data);
         window.dashboard_app.$emit('success', response.data);
         window.dashboard_app.$toasted.show("Saving Success.", {
           icon: "save"
@@ -85328,6 +85344,45 @@ var ShareInternalDonatedItem = /*#__PURE__*/function () {
         window.dashboard_app.$toasted.show("Saving Failed.", {
           icon: "save"
         });
+        window.dashboard_app.$emit('endLoading');
+      });
+    }
+  }, {
+    key: "updateShare",
+    value: function updateShare() {
+      var _this2 = this;
+
+      var self = this;
+      var data = this.data;
+      data['_method'] = 'PATCH';
+      var url = route('share_internal_donated_items.update', this.data.uuid);
+      window.dashboard_app.$emit('startLoading');
+      axios.post(url, this.data).then(function (response) {
+        // clear validation
+        _this2.ShareInternalDonatedItemValidation = new _validations_internal_donated_item_component_create_share_internal_donated_item_validation__WEBPACK_IMPORTED_MODULE_0__["default"](); // construct with new data
+
+        _this2.constructData(response.data); // To Reload The Store List
+
+
+        window.dashboard_app.$emit('successfulSaveShare', response.data); // send event
+
+        window.dashboard_app.$emit('success', response.data); // do loading
+
+        window.dashboard_app.$emit('endLoading'); // do toast
+
+        window.dashboard_app.$toasted.show("Saving Success.", {
+          icon: "save"
+        });
+        window.history.pushState({}, '', route('share_internal_donated_items.edit', _this2.data.uuid));
+      })["catch"](function (error) {
+        // window.dashboard_app.$emit('failed')
+        console.log(error.response);
+        self.ShareInternalDonatedItemValidation = new _validations_internal_donated_item_component_create_share_internal_donated_item_validation__WEBPACK_IMPORTED_MODULE_0__["default"](error.response.data.errors); // do toast
+
+        window.dashboard_app.$toasted.show("Saving Failed.", {
+          icon: "save"
+        }); // do loading
+
         window.dashboard_app.$emit('endLoading');
       });
     }

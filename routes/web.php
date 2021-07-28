@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], fu
 });
 
 Route::get('/', 'DonationController@index');
+Route::get('/donate', 'DonationController@donate');
 
 Route::post('donation', 'DonationController@save');
 

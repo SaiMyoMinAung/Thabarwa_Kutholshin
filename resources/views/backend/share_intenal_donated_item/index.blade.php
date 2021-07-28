@@ -26,9 +26,9 @@
             <th>Date</th>
             <th style="max-width: 200px;">Item Type Name</th>
             <th style="max-width: 200px;">Item Sub Type Name</th>
-            <th>Package</th>
-            <th>Socket</th>
+            <th>Sacket</th>
             <th style="max-width: 200px;">By Admin</th>
+            <th>Option</th>
         </tr>
     </thead>
     <tbody>
@@ -43,6 +43,15 @@
     $(document).ready(function() {
 
         let dataTable = $('#shareInternalDonatedItemTable').DataTable({
+            createdRow: function(row, data, dataIndex) {
+                let uuid = localStorage.getItem('share_internal_donateditem_uuid')
+
+                if (uuid != null && data.uuid == uuid) {
+                    $(row).addClass('bg-info');
+                    localStorage.removeItem('share_internal_donateditem_uuid')
+                }
+
+            },
             "bStateSave": true,
             "processing": true,
             "serverSide": true,
@@ -67,15 +76,60 @@
                     "data": "item_sub_type"
                 },
                 {
-                    "data": "package"
-                },
-                {
                     "data": "socket"
                 },
                 {
                     "data": "by_admin",
                 },
+                {
+                    "data": "option",
+                },
             ]
+        });
+
+        dataTable.on('draw', function() {
+            $('[data-toggle=confirmation]').confirmation({
+                rootSelector: '[data-toggle=confirmation]',
+                // other options
+                onConfirm: function(value) {
+                    let href = $(this).data('href')
+                    console.log(href)
+                    $('#delete-form').attr('action', href)
+                    document.getElementById("delete-form").submit();
+                },
+                buttons: [{
+                        class: 'btn btn-xs btn-danger pl-3 pr-3',
+                        label: 'Yes',
+                        value: 'Delete'
+                    },
+                    {
+                        class: 'btn btn-xs btn-secondary pl-2 pr-2',
+                        label: 'Cancel',
+                        cancel: true
+                    }
+                ]
+            });
+            $('[data-toggle=editconfirmation]').confirmation({
+                rootSelector: '[data-toggle=editconfirmation]',
+                // other options
+                onConfirm: function(value) {
+                    let href = $(this).data('href')
+                    let uuid = $(this).data('uuid')
+                    localStorage.setItem('internal_donateditem_uuid', uuid);
+                    window.location.href = href
+                },
+                buttons: [{
+                        class: 'btn btn-xs btn-danger pl-3 pr-3',
+                        label: 'Yes',
+                        value: 'Delete'
+                    },
+                    {
+                        class: 'btn btn-xs btn-secondary pl-2 pr-2',
+                        label: 'Cancel',
+                        cancel: true
+                    }
+                ]
+            });
         });
 
     });

@@ -48,7 +48,7 @@
             :value="ShareInternalDonatedItemModel.data.item_type"
             @input="
               ShareInternalDonatedItemModel.selectedItemTypeBox($event);
-              doScroll($event);
+              doScroll($event.name);
             "
             :selected-option="ShareInternalDonatedItemModel.selectedItemType"
             v-bind:class="{
@@ -101,7 +101,7 @@
             :value="ShareInternalDonatedItemModel.data.item_sub_type_id"
             @input="
               ShareInternalDonatedItemModel.selectedItemSubTypeBox($event);
-              doItemSubTypeSelected($event);
+              doItemSubTypeSelected($event.name);
             "
             :selected-option="ShareInternalDonatedItemModel.selectedItemSubType"
             :disabled="itemSubTypeDisabled"
@@ -330,6 +330,7 @@
         :data-sources="listOfStore.itemlist"
         :data-component="listOfStore.component"
         :estimate-size="50"
+        ref="virtualList"
       />
     </div>
   </div>
@@ -345,8 +346,13 @@ import AddYogiComponent from "./AddYogiComponent.vue";
 import ItemOfStore from "./ItemOfStore.vue";
 
 export default {
-  mounted() {
-    this.getStoreList();
+  mounted: function () {
+    this.getStoreList(this.share_internal_donated_item);
+  },
+  created() {
+    this.$root.$on("successfulSaveShare", (data) => {
+      this.getStoreList(data);
+    });
   },
   components: {
     select2,
@@ -380,7 +386,7 @@ export default {
     },
   },
   methods: {
-    getStoreList() {
+    getStoreList(responseData) {
       let url = route("get.store.list");
       axios
         .get(url)
@@ -394,14 +400,19 @@ export default {
             }
             data[i] = response.data[i];
           }
-          console.log(data);
+
           this.listOfStore.itemlist = data;
+
+          if (responseData != null || responseData != undefined) {
+            this.doScroll(responseData.selectedItemType.name);
+            this.doItemSubTypeSelected(responseData.selectedItemSubType.name);
+          }
         })
         .catch(function (error) {
           console.log(error.response);
         });
     },
-    doScroll(event) {
+    doScroll(name) {
       let itemCount = 0;
 
       let itemList = this.listOfStore.itemlist;
@@ -411,38 +422,38 @@ export default {
       }
 
       for (let i = 0; i < itemList.length; i++) {
-        if (event != null && event.name === itemList[i].item_type) {
+        if (name != null && name === itemList[i].item_type) {
           itemList[i].active = true;
           break;
         } else {
           itemCount += 1;
-          itemCount += itemList[i]["item_sub_type"].length;
-          console.log(itemCount);
+          // itemCount += itemList[i]["item_sub_type"].length;
         }
       }
 
-      document.getElementsByClassName("list")[0].scroll({
-        top: 0,
-        left: 0,
-      });
+      this.$refs.virtualList.scrollToIndex(0);
 
-      document.getElementsByClassName("list")[0].scroll({
-        top: itemCount * 35,
-        left: 0,
-        behavior: "smooth",
-      });
+      // document.getElementsByClassName("list")[0].scroll({
+      //   top: 0,
+      //   left: 0,
+      // });
+
+      this.$refs.virtualList.scrollToIndex(itemCount);
+
+      // document.getElementsByClassName("list")[0].scroll({
+      //   top: itemCount * 35,
+      //   left: 0,
+      //   behavior: "smooth",
+      // });
 
       this.doItemSubTypeSelected();
     },
-    doItemSubTypeSelected(event) {
+    doItemSubTypeSelected(name) {
       let itemList = this.listOfStore.itemlist;
 
       for (let i = 0; i < itemList.length; i++) {
         for (let a = 0; a < itemList[i].item_sub_type.length; a++) {
-          if (
-            event != null &&
-            itemList[i].item_sub_type[a].name === event.name
-          ) {
+          if (name != null && itemList[i].item_sub_type[a].name === name) {
             itemList[i].item_sub_type[a].active = true;
           } else {
             itemList[i].item_sub_type[a].active = false;

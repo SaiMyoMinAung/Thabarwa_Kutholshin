@@ -26,9 +26,8 @@ class ShareInternalDonatedItemController extends Controller
                 1 => 'date',
                 2 => 'item_type_name',
                 3 => 'item_sub_type_name',
-                4 => 'package_qty',
-                5 => 'socket_qty',
-                6 => 'by_admin'
+                4 => 'socket_qty',
+                5 => 'by_admin'
             );
 
             $totalData = ShareInternalDonatedItem::count();
@@ -75,16 +74,16 @@ class ShareInternalDonatedItemController extends Controller
             $data = array();
             if (!empty($share_internal_requests)) {
                 foreach ($share_internal_requests as $key => $share_internal_request) {
-
+                    $editLink = route('share_internal_donated_items.edit', $share_internal_request->uuid);
                     $nestedData['DT_RowIndex'] = $key + 1;
                     $nestedData['uuid'] = $share_internal_request->uuid;
-                    $nestedData['date'] = $share_internal_request->date;
+                    $nestedData['date'] = "<a href='$editLink'>$share_internal_request->date</a>";
                     $nestedData['item_type'] =  $share_internal_request->itemType->name;
                     $nestedData['item_sub_type'] =  $share_internal_request->itemSubType->name;
-                    $nestedData['package'] = $share_internal_request->package_qty;
                     $nestedData['socket'] = $share_internal_request->socket_qty;
                     $nestedData['by_admin'] = $share_internal_request->admin->name;
-
+                    $nestedData['option'] = '<a class="btn btn-default text-primary" data-uuid="' . $share_internal_request->uuid . '" data-toggle="editconfirmation" data-href="' . route('share_internal_donated_items.edit', $share_internal_request->uuid) . '"><i class="fas fa-edit"></i></a> - ';
+                    $nestedData['option'] .= '<a class="btn btn-default text-danger" data-toggle="confirmation" data-href="' . route('share_internal_donated_items.destroy', $share_internal_request->uuid) . '"><i class="fas fa-trash"></i></a>';
                     $data[] = $nestedData;
                 }
             }
@@ -148,9 +147,11 @@ class ShareInternalDonatedItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ShareInternalDonatedItem $shareInternalDonatedItem)
     {
-        //
+        $shareInternalDonatedItem = new ShareInternalDonatedItemResource($shareInternalDonatedItem);
+
+        return view('backend.share_intenal_donated_item.create', compact('shareInternalDonatedItem'));
     }
 
     /**
@@ -160,9 +161,15 @@ class ShareInternalDonatedItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ShareInternalDonatedItemStoreFormRequest $request, ShareInternalDonatedItem $shareInternalDonatedItem)
     {
-        //
+        $data = $request->shareInternalDonatedItemData()->all();
+
+        $shareInternalDonatedItem->update($data);
+
+        $shareInternalDonatedItem = ShareInternalDonatedItem::find($shareInternalDonatedItem->id);
+
+        return response()->json(new ShareInternalDonatedItemResource($shareInternalDonatedItem), 200);
     }
 
     /**
@@ -171,13 +178,13 @@ class ShareInternalDonatedItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InternalDonatedItem $internalDonatedItem, InternalRequestedItem $internalRequestedItem)
+    public function destroy(ShareInternalDonatedItem $shareInternalDonatedItem)
     {
-        if ($internalDonatedItem->status != InternalDonatedItemStatus::advanceSearch('Complete')["code"]) {
-            $internalRequestedItem->delete();
-            return response()->json(true, 200);
-        } else {
-            return response()->json(false, 403);
-        }
+        // if ($internalDonatedItem->status != InternalDonatedItemStatus::advanceSearch('Complete')["code"]) {
+        //     $internalRequestedItem->delete();
+        //     return response()->json(true, 200);
+        // } else {
+        //     return response()->json(false, 403);
+        // }
     }
 }

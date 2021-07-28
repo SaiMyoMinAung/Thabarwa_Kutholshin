@@ -18,23 +18,24 @@ class ShareInternalDonatedItemResource extends JsonResource
     {
         $id = $this->requestable->id;
         $name = $this->requestable->name;
+        $requestable_type = explode('\\', $this->requestable_type);
+        $requestable_type = strtoupper($requestable_type[1]);
 
         return [
             'uuid' => $this->uuid,
 
-            'package_qty' => $this->package_qty,
             'socket_qty' => $this->socket_qty,
 
             'item_type_id' => $this->item_type_id,
             'item_sub_type_id' => $this->item_sub_type_id,
 
-            'requestable_type' => $this->requestable_type,
+            'requestable_type' => $requestable_type,
             'requestable_id' => $this->requestable_id,
 
             'selectedItemType' => new ItemTypeResource($this->itemType),
             'selectedItemSubType' => new ItemSubTypeResource($this->itemSubType),
 
-            'selectedRequestableType' => ['id' => $this->requestable_type, 'name' => $this->requestable_type],
+            'selectedRequestableType' => ['id' => $requestable_type, 'name' => $requestable_type],
             'selectedRequestableTypeId' => ['id' => $id, 'name' => $name],
         ];
     }

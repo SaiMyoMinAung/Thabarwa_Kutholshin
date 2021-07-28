@@ -84,7 +84,8 @@ export default class ShareInternalDonatedItem {
                 this.ShareInternalDonatedItemValidation = new ShareInternalDonatedItemValidation()
                 // construct with new data
                 this.constructData(response.data);
-                
+                // To Reload The Store List
+                window.dashboard_app.$emit('successfulSaveShare', response.data);
                 window.dashboard_app.$emit('success', response.data)
                 window.dashboard_app.$toasted.show("Saving Success.", { icon: "save" });
                 window.dashboard_app.$emit('endLoading');
@@ -94,6 +95,43 @@ export default class ShareInternalDonatedItem {
                 console.log(error.response.data.errors)
                 self.ShareInternalDonatedItemValidation = new ShareInternalDonatedItemValidation(error.response.data.errors)
                 window.dashboard_app.$toasted.show("Saving Failed.", { icon: "save" });
+                window.dashboard_app.$emit('endLoading');
+            });
+
+    }
+
+    updateShare() {
+        let self = this;
+        let data = this.data;
+        data['_method'] = 'PATCH';
+        let url = route('share_internal_donated_items.update', this.data.uuid);
+
+        window.dashboard_app.$emit('startLoading');
+
+        axios.post(url, this.data)
+            .then(response => {
+                // clear validation
+                this.ShareInternalDonatedItemValidation = new ShareInternalDonatedItemValidation()
+                // construct with new data
+                this.constructData(response.data);
+                // To Reload The Store List
+                window.dashboard_app.$emit('successfulSaveShare', response.data);
+                // send event
+                window.dashboard_app.$emit('success', response.data)
+                // do loading
+                window.dashboard_app.$emit('endLoading');
+                // do toast
+                window.dashboard_app.$toasted.show("Saving Success.", { icon: "save" });
+                window.history.pushState({}, '', route('share_internal_donated_items.edit', this.data.uuid));
+
+            })
+            .catch(function (error) {
+                // window.dashboard_app.$emit('failed')
+                console.log(error.response)
+                self.ShareInternalDonatedItemValidation = new ShareInternalDonatedItemValidation(error.response.data.errors)
+                // do toast
+                window.dashboard_app.$toasted.show("Saving Failed.", { icon: "save" });
+                // do loading
                 window.dashboard_app.$emit('endLoading');
             });
 

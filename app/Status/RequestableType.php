@@ -17,5 +17,5 @@ class RequestableType extends Enum
     private const USER = 'App\User';
     private const TEAM = 'App\Team';
     private const YOGI = 'App\Yogi';
-    private const UNEXPECTED_PERSON = 'App\UnexpectedPerson';
+    private const UNEXPECTEDPERSON = 'App\UnexpectedPerson';
 }

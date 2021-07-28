@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use Exception;
 use Carbon\Carbon;
-use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\DTO\ShareInternalDonatedItemDTO;
 use App\Rules\CheckLeftItem;
+use App\Status\RequestableType;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
+use App\Http\Requests\DTO\ShareInternalDonatedItemDTO;
 
 class ShareInternalDonatedItemStoreFormRequest extends FormRequest
 {
@@ -54,6 +57,16 @@ class ShareInternalDonatedItemStoreFormRequest extends FormRequest
 
     public function shareInternalDonatedItemData()
     {
+        try {
+            $type = call_user_func(array(RequestableType::class, $this->input('requestable_type')));
+        } catch (Exception $e) {
+            report($e);
+            $error = ValidationException::withMessages([
+                'cannot_found_type_error' => ['Not Found Requestable Type'],
+            ]);
+            throw $error;
+        }
+
         return new ShareInternalDonatedItemDTO([
             'date' => Carbon::now(),
             'socket_qty' => $this->input('socket_qty'),
@@ -61,7 +74,7 @@ class ShareInternalDonatedItemStoreFormRequest extends FormRequest
             'item_type_id' => $this->input('item_type_id'),
             'item_sub_type_id' => $this->input('item_sub_type_id'),
 
-            'requestable_type' =>  call_user_func(['App\\Status\\RequestableType', $this->input('requestable_type')]),
+            'requestable_type' =>  $type,
             'requestable_id' => $this->input('requestable_id'),
 
             'admin_id' => auth()->user()->id
