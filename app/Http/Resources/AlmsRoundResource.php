@@ -18,6 +18,7 @@ class AlmsRoundResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'center_id' => $this->center_id,
             'center' => new CenterResource($this->center),
             'deleted_at' => $this->deleted_at
         ];

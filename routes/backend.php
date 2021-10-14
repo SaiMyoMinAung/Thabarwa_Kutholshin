@@ -32,6 +32,7 @@ Route::group(['middleware' => 'internal.donated.item.record.admintype'], functio
     Route::resource('unexpected_persons', 'UnexpectedPersonController');
     Route::resource('item_types', 'ItemTypeController');
     Route::resource('item_sub_types', 'ItemSubTypeController');
+    Route::resource('alms_rounds', 'AlmsRoundController');
     Route::get('get_store_list', 'ItemTypeController@getStoreList')->name('get.store.list');
 
     Route::resource('contributions', 'ContributionController');
@@ -91,6 +92,9 @@ Route::group(['middleware' => 'setting.admintype'], function () {
     Route::resource('wards', 'WardController');
     Route::resource('volunteer_jobs', 'VolunteerJobController');
     Route::resource('item_types', 'ItemTypeController');
+    Route::resource('item_sub_types', 'ItemSubTypeController');
+    Route::resource('alms_rounds', 'AlmsRoundController');
+    Route::resource('units', 'UnitController');
 });
 
 /**

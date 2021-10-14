@@ -7,7 +7,6 @@ use App\Office;
 use App\StateRegion;
 use App\TypeOfAdmin;
 use App\Traits\HasUUID;
-use App\InternalRequestedItem;
 use Illuminate\Notifications\Notifiable;
 use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;

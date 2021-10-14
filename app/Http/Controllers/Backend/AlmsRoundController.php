@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use Exception;
-use App\ItemType;
 use App\AlmsRound;
-use App\ItemSubType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemTypeResource;
-use App\Http\Requests\ItemTypeStoreRequest;
-use App\Http\Requests\ItemTypeUpdateRequest;
+use App\Http\Resources\AlmsRoundResource;
+use App\Http\Requests\AlmsRoundStoreRequest;
+use App\Http\Requests\AlmsRoundUpdateRequest;
 use App\Http\Resources\AlmsRoundResourceCollection;
-use App\Http\Resources\Select2\ItemSubTypeSelect2ResourceCollection;
 
 class AlmsRoundController extends Controller
 {
@@ -44,12 +42,12 @@ class AlmsRoundController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ItemTypeStoreRequest $request)
+    public function store(AlmsRoundStoreRequest $request)
     {
         try {
             $validated_data = $request->validated();
-            $itemType = ItemType::create($validated_data);
-            return response()->json(new ItemTypeResource($itemType), 201);
+            $almsRound = AlmsRound::create($validated_data);
+            return response()->json(new AlmsRoundResource($almsRound), 201);
         } catch (Exception $e) {
             report($e);
             return response()->json(['message' => 'fail'], 500);
@@ -85,12 +83,12 @@ class AlmsRoundController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ItemTypeUpdateRequest $request, ItemType $itemType)
+    public function update(AlmsRoundUpdateRequest $request, AlmsRound $almsRound)
     {
         try {
             $validated_data = $request->validated();
-            $itemType->update($validated_data);
-            return response()->json(new ItemTypeResource($itemType), 200);
+            $almsRound->update($validated_data);
+            return response()->json(new ItemTypeResource($almsRound), 200);
         } catch (Exception $e) {
             report($e);
             return response()->json(['message' => 'fail'], 500);
@@ -103,13 +101,13 @@ class AlmsRoundController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ItemType $itemType)
+    public function destroy(AlmsRound $almsRound)
     {
         try {
-            if ($itemType->trashed()) {
-                $itemType->restore();
+            if ($almsRound->trashed()) {
+                $almsRound->restore();
             } else {
-                $itemType->delete();
+                $almsRound->delete();
             }
 
             return response()->json(['message' => 'success'], 200);

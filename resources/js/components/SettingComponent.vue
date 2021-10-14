@@ -318,6 +318,45 @@
           >
         </div>
       </li>
+      <span class="badge badge-primary">3</span>
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
+        <a
+          class="nav-link dropdown-toggle alms-round-setting"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Alms Round</a
+        >
+        <div class="dropdown-menu">
+          <a
+            class="dropdown-item"
+            id="alms-round-list-tab"
+            data-toggle="tab"
+            href="#alms-round-list"
+            role="tab"
+            aria-controls="alms-round-list"
+            aria-selected="false"
+            >Alms Round List</a
+          >
+          <a
+            class="dropdown-item"
+            id="alms-round-create-tab"
+            href="#alms-round-list-create"
+            data-toggle="tab"
+            role="tab"
+            aria-controls="alms-round-list-create"
+            aria-selected="false"
+            @click="almsRound.model.clearData()"
+            >Create Alms Round</a
+          >
+        </div>
+      </li>
       <span class="badge badge-info">1</span>
       <li
         class="nav-item dropdown"
@@ -357,7 +396,7 @@
           >
         </div>
       </li>
-      <span class="badge badge-info">1</span>
+      <span class="badge badge-warning">1</span>
       <li
         class="nav-item dropdown"
         role="presentation"
@@ -393,6 +432,84 @@
             aria-selected="false"
             @click="itemType.model.clearData()"
             >Create Item Type</a
+          >
+        </div>
+      </li>
+      <span class="badge badge-warning">2</span>
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
+        <a
+          class="nav-link dropdown-toggle item-sub-type-setting"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Item Sub Type</a
+        >
+        <div class="dropdown-menu">
+          <a
+            class="dropdown-item"
+            id="item-sub-type-tab"
+            data-toggle="tab"
+            href="#item-sub-type-list"
+            role="tab"
+            aria-controls="item-sub-type-list"
+            aria-selected="false"
+            >Item Sub Type</a
+          >
+          <a
+            class="dropdown-item"
+            id="item-sub-type-create-tab"
+            href="#item-sub-type-list-create"
+            data-toggle="tab"
+            role="tab"
+            aria-controls="item-sub-type-list-create"
+            aria-selected="false"
+            @click="itemSubType.model.clearData()"
+            >Create Item Sub Type</a
+          >
+        </div>
+      </li>
+      <span class="badge badge-danger">1</span>
+      <li
+        class="nav-item dropdown"
+        role="presentation"
+        style="min-width: 150px"
+      >
+        <a
+          class="nav-link dropdown-toggle unit-setting"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Unit</a
+        >
+        <div class="dropdown-menu">
+          <a
+            class="dropdown-item"
+            id="unit-tab"
+            data-toggle="tab"
+            href="#unit-list"
+            role="tab"
+            aria-controls="unit-list"
+            aria-selected="false"
+            >Unit</a
+          >
+          <a
+            class="dropdown-item"
+            id="unit-create-tab"
+            href="#unit-list-create"
+            data-toggle="tab"
+            role="tab"
+            aria-controls="unit-list-create"
+            aria-selected="false"
+            @click="unit.model.clearData()"
+            >Create Unit</a
           >
         </div>
       </li>
@@ -794,6 +911,211 @@
         </div>
       </div>
       <!-- end item type -->
+
+      <!-- start item sub type -->
+      <div
+        class="tab-pane fade show"
+        id="item-sub-type-list"
+        role="tabpanel"
+        aria-labelledby="item-sub-type-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Item Type</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(item, index) in itemSubType.model.list.data"
+              :key="item.id"
+            >
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">{{ item.item_type.name }}</td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-item-sub-type-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >
+                  Edit
+                </button>
+                <div
+                  :id="`edit-collapse-item-sub-type-${item.id}`"
+                  class="collapse p-1"
+                >
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="itemSubType.model.editRecord(index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-item-sub-type-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-item-sub-type-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
+                </button>
+                <div :id="`collapse-item-sub-type-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="itemSubType.model.deleteItemSubType(item.id, index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-item-sub-type-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="itemSubType.model.list"
+          align="center"
+          v-on:pagination-change-page="getItemSubTypeResult"
+        ></pagination>
+      </div>
+      <div
+        class="tab-pane fade show"
+        id="item-sub-type-list-create"
+        role="tabpanel"
+        aria-labelledby="item-type-list-create-tab"
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+
+            <!-- start item type select2 -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': itemSubType.validation.item_type_id_hasError,
+                'was-validated':
+                  itemSubType.validation.item_type_id_successMessage &&
+                  !itemSubType.validation.item_type_id_hasError,
+              }"
+            >
+              <label for="country-id">
+                Select Item Type
+                <span class="text-danger">*</span>
+              </label>
+              <select2
+                placeholder="Type To Search Item Type..."
+                :url="itemType.model.fetchListUrl"
+                :value="itemSubType.model.item_type_id"
+                @input="itemSubType.model.itemTypeSelected($event)"
+                :selected-option="itemSubType.model.center"
+                v-bind:class="{
+                  'is-invalid': itemSubType.validation.item_type_id_hasError,
+                }"
+              ></select2>
+
+              <div class="invalid-feedback">
+                {{ itemSubType.validation.item_type_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ itemSubType.validation.item_type_id_successMessage }}
+              </div>
+            </div>
+            <!-- end item type select2 -->
+
+            <!-- start item sub type name -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': itemSubType.validation.name_hasError,
+                'was-validated':
+                  itemSubType.validation.validation != null &&
+                  !itemSubType.validation.name_hasError,
+              }"
+            >
+              <label for="item_type_name">
+                Item Sub Type Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="item_sub_type_name"
+                type="text"
+                class="form-control"
+                placeholder="Item Sub Type Name"
+                v-model="itemSubType.model.name"
+                v-bind:class="{
+                  'is-invalid': itemSubType.validation.name_hasError,
+                }"
+              />
+              <div class="invalid-feedback">
+                {{ itemSubType.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ itemSubType.validation.name_successMessage }}
+              </div>
+            </div>
+            <!-- end item sub type name -->
+
+            <button
+              v-if="itemSubType.model.isEdit"
+              @click="itemSubType.model.updateItemSubType()"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              v-if="itemSubType.model.isEdit"
+              @click="itemSubType.model.goToList()"
+              class="btn btn-default"
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="itemSubType.model.saveItemSubType()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- end item sub type -->
 
       <!-- start store -->
       <div
@@ -2051,13 +2373,13 @@
                   }"
                   type="button"
                   data-toggle="collapse"
-                  :data-target="`#collapse-${item.id}`"
+                  :data-target="`#collapse-city-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
                   {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
-                <div :id="`collapse-${item.id}`" class="collapse p-1">
+                <div :id="`collapse-city-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="city.model.deleteCity(item.id, index)"
@@ -2067,7 +2389,7 @@
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
-                    :data-target="`#collapse-${item.id}`"
+                    :data-target="`#collapse-city-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
                   >
@@ -2269,13 +2591,13 @@
                   class="btn btn-outline-warning"
                   type="button"
                   data-toggle="collapse"
-                  :data-target="`#edit-collapse-${item.id}`"
+                  :data-target="`#edit-collapse-center-${item.id}`"
                   aria-expanded="false"
                   aria-controls="editCollapseExample"
                 >
                   Edit
                 </button>
-                <div :id="`edit-collapse-${item.id}`" class="collapse p-1">
+                <div :id="`edit-collapse-center-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="center.model.editRecord(index)"
@@ -2285,7 +2607,7 @@
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
-                    :data-target="`#edit-collapse-${item.id}`"
+                    :data-target="`#edit-collapse-center-${item.id}`"
                     aria-expanded="false"
                     aria-controls="editCollapseExample"
                   >
@@ -2302,13 +2624,13 @@
                   }"
                   type="button"
                   data-toggle="collapse"
-                  :data-target="`#collapse-${item.id}`"
+                  :data-target="`#collapse-center-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
                   {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
-                <div :id="`collapse-${item.id}`" class="collapse p-1">
+                <div :id="`collapse-center-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="center.model.deleteCenter(item.id, index)"
@@ -2318,7 +2640,7 @@
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
-                    :data-target="`#collapse-${item.id}`"
+                    :data-target="`#collapse-center-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
                   >
@@ -2361,11 +2683,11 @@
                 <span class="text-danger">*</span>
               </label>
               <select2
-                placeholder="Type To Search State Region..."
+                placeholder="Type To Search Center..."
                 :url="center.model.fetchListUrl"
                 :value="ward.model.center_id"
                 @input="ward.model.centerSelected($event)"
-                :selected-option="ward.model.ward"
+                :selected-option="ward.model.center"
                 v-bind:class="{
                   'is-invalid': ward.validation.center_id_hasError,
                 }"
@@ -2520,13 +2842,13 @@
                   class="btn btn-outline-warning"
                   type="button"
                   data-toggle="collapse"
-                  :data-target="`#edit-collapse-${item.id}`"
+                  :data-target="`#edit-collapse-ward-${item.id}`"
                   aria-expanded="false"
                   aria-controls="editCollapseExample"
                 >
                   Edit
                 </button>
-                <div :id="`edit-collapse-${item.id}`" class="collapse p-1">
+                <div :id="`edit-collapse-ward-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="ward.model.editRecord(index)"
@@ -2536,7 +2858,7 @@
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
-                    :data-target="`#edit-collapse-${item.id}`"
+                    :data-target="`#edit-collapse-ward-${item.id}`"
                     aria-expanded="false"
                     aria-controls="editCollapseExample"
                   >
@@ -2553,13 +2875,13 @@
                   }"
                   type="button"
                   data-toggle="collapse"
-                  :data-target="`#collapse-${item.id}`"
+                  :data-target="`#collapse-ward-${item.id}`"
                   aria-expanded="false"
                   aria-controls="collapseExample"
                 >
                   {{ item.deleted_at == null ? "Delete" : "Restore" }}
                 </button>
-                <div :id="`collapse-${item.id}`" class="collapse p-1">
+                <div :id="`collapse-ward-${item.id}`" class="collapse p-1">
                   <button
                     class="btn btn-sm btn-outline-danger"
                     @click="ward.model.deleteWard(item.id, index)"
@@ -2569,7 +2891,7 @@
                   <button
                     class="btn btn-sm btn-default"
                     data-toggle="collapse"
-                    :data-target="`#collapse-${item.id}`"
+                    :data-target="`#collapse-ward-${item.id}`"
                     aria-expanded="false"
                     aria-controls="collapseExample"
                   >
@@ -2587,6 +2909,476 @@
         ></pagination>
       </div>
       <!-- end ward -->
+
+      <!-- start alms round -->
+      <div
+        class="tab-pane fade row"
+        id="alms-round-list-create"
+        role="tabpanel"
+        aria-labelledby="alms-round-create-tab"
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            <!-- start center select2 -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': almsRound.validation.center_id_hasError,
+                'was-validated':
+                  almsRound.validation.center_id_successMessage &&
+                  !almsRound.validation.center_id_hasError,
+              }"
+            >
+              <label for="country-id">
+                Select Center
+                <span class="text-danger">*</span>
+              </label>
+              <select2
+                placeholder="Type To Search Center..."
+                :url="center.model.fetchListUrl"
+                :value="almsRound.model.center_id"
+                @input="almsRound.model.almsRoundSelected($event)"
+                :selected-option="almsRound.model.center"
+                v-bind:class="{
+                  'is-invalid': almsRound.validation.center_id_hasError,
+                }"
+              ></select2>
+
+              <div class="invalid-feedback">
+                {{ almsRound.validation.center_id_errorMessage }}
+              </div>
+              <div class="valid-feedback" style="display: block">
+                {{ almsRound.validation.center_id_successMessage }}
+              </div>
+            </div>
+            <!-- end center select2 -->
+
+            <!-- start alms round name -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': almsRound.validation.name_hasError,
+                'was-validated':
+                  almsRound.validation.validation != null &&
+                  !almsRound.validation.name_hasError,
+              }"
+            >
+              <label for="about_item">
+                Alms Round Name
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="alms_round_name"
+                type="text"
+                class="form-control"
+                placeholder="Alms Round Name"
+                v-model="almsRound.model.name"
+                v-bind:class="{ 'is-invalid': almsRound.validation.name_hasError }"
+              />
+              <div class="invalid-feedback">
+                {{ almsRound.validation.name_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ almsRound.validation.name_successMessage }}
+              </div>
+            </div>
+            <!-- end alms round name -->
+
+            <button
+              v-if="almsRound.model.isEdit"
+              @click="almsRound.model.updateAlmsRound()"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              v-if="almsRound.model.isEdit"
+              @click="almsRound.model.goToList('alms-round-list')"
+              class="btn btn-default"
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="almsRound.model.saveAlmsRound()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="alms-round-list"
+        role="tabpanel"
+        aria-labelledby="alms-round-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Center</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in almsRound.model.list.data" :key="item.id">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.name }}</td>
+              <td style="max-width: 20px">
+                <i
+                  aria-hidden="true"
+                  v-if="item.center ? item.center.is_available == 1 : ''"
+                  class="material-icons green"
+                  >check_circle</i
+                >
+                <i
+                  aria-hidden="true"
+                  v-else-if="item.center ? item.center.is_available == 0 : ''"
+                  class="material-icons red"
+                  >cancel</i
+                >
+                {{ item.center ? item.center.name : "-" }}
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-alms-round-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >
+                  Edit
+                </button>
+                <div :id="`edit-collapse-alms-round-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="almsRound.model.editRecord(index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-alms-round-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-alms-round-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
+                </button>
+                <div :id="`collapse-alms-round-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="almsRound.model.deleteAlmsRound(item.id, index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-alms-round-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="almsRound.model.list"
+          align="center"
+          v-on:pagination-change-page="getAlmsRoundResult"
+        ></pagination>
+      </div>
+      <!-- end alms round -->
+
+      <!-- start unit -->
+      <div
+        class="tab-pane fade row"
+        id="unit-list-create"
+        role="tabpanel"
+        aria-labelledby="unit-create-tab"
+      >
+        <div class="col-md-6 card border border-success">
+          <div class="card-body">
+            
+            <!-- start package unit -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': unit.validation.package_unit_hasError,
+                'was-validated':
+                  unit.validation.validation != null &&
+                  !unit.validation.package_unit_hasError,
+              }"
+            >
+              <label for="about_item">
+                Package Unit
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="package_unit"
+                type="text"
+                class="form-control"
+                placeholder="Package Unit"
+                v-model="unit.model.package_unit"
+                v-bind:class="{ 'is-invalid': unit.validation.package_unit_hasError }"
+              />
+              <div class="invalid-feedback">
+                {{ unit.validation.package_unit_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ unit.validation.package_unit_successMessage }}
+              </div>
+            </div>
+            <!-- end package unit -->
+
+            <!-- start package symbol -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': unit.validation.package_symbol_hasError,
+                'was-validated':
+                  unit.validation.validation != null &&
+                  !unit.validation.package_symbol_hasError,
+              }"
+            >
+              <label for="about_item">
+                Package Symbol
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="package_symbol"
+                type="text"
+                class="form-control"
+                placeholder="Package Symbol"
+                v-model="unit.model.package_symbol"
+                v-bind:class="{ 'is-invalid': unit.validation.package_symbol_hasError }"
+              />
+              <div class="invalid-feedback">
+                {{ unit.validation.package_symbol_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ unit.validation.package_symbol_successMessage }}
+              </div>
+            </div>
+            <!-- end package symbol -->
+
+            <!-- start loose symbol -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': unit.validation.loose_symbol_hasError,
+                'was-validated':
+                  unit.validation.validation != null &&
+                  !unit.validation.loose_symbol_hasError,
+              }"
+            >
+              <label for="about_item">
+                Loose Symbol
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="loose_symbol"
+                type="text"
+                class="form-control"
+                placeholder="Loose Symbol"
+                v-model="unit.model.loose_symbol"
+                v-bind:class="{ 'is-invalid': unit.validation.loose_symbol_hasError }"
+              />
+              <div class="invalid-feedback">
+                {{ unit.validation.loose_symbol_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ unit.validation.loose_symbol_successMessage }}
+              </div>
+            </div>
+            <!-- end loose symbol -->
+
+            <!-- start loose unit -->
+            <div
+              class="form-group"
+              v-bind:class="{
+                'has-error': unit.validation.loose_unit_hasError,
+                'was-validated':
+                  unit.validation.validation != null &&
+                  !unit.validation.loose_unit_hasError,
+              }"
+            >
+              <label for="about_item">
+                Loose Unit
+                <span class="text-danger">*</span>
+              </label>
+              <input
+                id="loose_unit"
+                type="text"
+                class="form-control"
+                placeholder="Loose Unit"
+                v-model="unit.model.loose_unit"
+                v-bind:class="{ 'is-invalid': unit.validation.loose_unit_hasError }"
+              />
+              <div class="invalid-feedback">
+                {{ unit.validation.loose_unit_errorMessage }}
+              </div>
+              <div class="valid-feedback">
+                {{ unit.validation.loose_unit_successMessage }}
+              </div>
+            </div>
+            <!-- end loose unit -->
+
+            <button
+              v-if="unit.model.isEdit"
+              @click="unit.model.updateUnit()"
+              class="btn btn-success"
+            >
+              Update
+            </button>
+            <button
+              v-if="unit.model.isEdit"
+              @click="unit.model.goToList('unit-list')"
+              class="btn btn-default"
+            >
+              Cancel
+            </button>
+            <button
+              v-else
+              @click="unit.model.saveUnit()"
+              class="btn btn-success"
+            >
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="unit-list"
+        role="tabpanel"
+        aria-labelledby="unit-list-tab"
+      >
+        <table
+          class="table table-hover table-dark"
+          cellpadding="0"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Package Unit</th>
+              <th scope="col">Loose Unit</th>
+              <th scope="col">Package Symbol</th>
+              <th scope="col">Loose Symbol</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item, index) in unit.model.list.data" :key="item.id">
+              <th scope="row">{{ index + 1 }}</th>
+              <td style="max-width: 20px">{{ item.package_unit }}</td>
+              <td style="max-width: 20px">{{ item.loose_unit }}</td>
+              <td style="max-width: 20px">{{ item.package_symbol }}</td>
+              <td style="max-width: 20px">{{ item.loose_symbol }}</td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn btn-outline-warning"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#edit-collapse-unit-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="editCollapseExample"
+                >
+                  Edit
+                </button>
+                <div :id="`edit-collapse-unit-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="unit.model.editRecord(index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#edit-collapse-unit-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="editCollapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+              <td style="max-width: 20px">
+                <button
+                  class="btn"
+                  v-bind:class="{
+                    'btn-outline-danger': item.deleted_at == null,
+                    'btn-outline-success': item.deleted_at != null,
+                  }"
+                  type="button"
+                  data-toggle="collapse"
+                  :data-target="`#collapse-unit-${item.id}`"
+                  aria-expanded="false"
+                  aria-controls="collapseExample"
+                >
+                  {{ item.deleted_at == null ? "Delete" : "Restore" }}
+                </button>
+                <div :id="`collapse-unit-${item.id}`" class="collapse p-1">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    @click="unit.model.deleteUnit(item.id, index)"
+                  >
+                    Yes
+                  </button>
+                  <button
+                    class="btn btn-sm btn-default"
+                    data-toggle="collapse"
+                    :data-target="`#collapse-unit-${item.id}`"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    No
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination
+          :data="unit.model.list"
+          align="center"
+          v-on:pagination-change-page="getUnitResult"
+        ></pagination>
+      </div>
+      <!-- end unit  -->
 
       <!-- start volunteer job -->
       <div
@@ -2795,6 +3587,8 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import cityValidation from "../validations/setting_component/city.js";
 import cityModel from "../models/city.js";
+import unitValidation from "../validations/setting_component/unit.js";
+import unitModel from "../models/unit.js";
 import centerValidation from "../validations/setting_component/center.js";
 import centerModel from "../models/center.js";
 import wardValidation from "../validations/setting_component/ward.js";
@@ -2813,6 +3607,10 @@ import volunteerJobValidation from "../validations/setting_component/volunteer_j
 import volunteerJobModel from "../models/volunteer_job.js";
 import itemTypeValidation from "../validations/setting_component/item_type.js";
 import itemTypeModel from "../models/item_type.js";
+import itemSubTypeValidation from "../validations/setting_component/item_sub_type.js";
+import itemSubTypeModel from "../models/item_sub_type.js";
+import almsRoundValidation from "../validations/setting_component/alms_round.js";
+import almsRoundModel from "../models/alms_round.js";
 import select2 from "./select2";
 
 export default {
@@ -2859,6 +3657,18 @@ export default {
       validation: new itemTypeValidation(),
       model: new itemTypeModel(),
     },
+    itemSubType: {
+      validation: new itemSubTypeValidation(),
+      model: new itemSubTypeModel(),
+    },
+    almsRound: {
+      validation: new almsRoundValidation(),
+      model: new almsRoundModel(),
+    },
+    unit: {
+      validation: new unitValidation(),
+      model: new unitModel(),
+    },
   }),
   computed: {
     isLoadingWatch() {
@@ -2872,7 +3682,10 @@ export default {
         this.center.model.isLoading ||
         this.ward.model.isLoading ||
         this.volunteerJob.model.isLoading ||
-        this.itemType.model.isLoading
+        this.itemType.model.isLoading ||
+        this.itemSubType.model.isLoading ||
+        this.almsRound.model.isLoading ||
+        this.unit.model.isLoading
       );
     },
     isCreateSuccessWatch() {
@@ -2886,7 +3699,10 @@ export default {
         this.center.model.isCreateSuccess ||
         this.ward.model.isCreateSuccess ||
         this.volunteerJob.model.isCreateSuccess ||
-        this.itemType.model.isCreateSuccess
+        this.itemType.model.isCreateSuccess ||
+        this.itemSubType.model.isCreateSuccess ||
+        this.almsRound.model.isCreateSuccess ||
+        this.unit.model.isCreateSuccess 
       );
     },
     isCreateFailWatch() {
@@ -2900,7 +3716,10 @@ export default {
         this.center.model.isCreateFail ||
         this.ward.model.isCreateFail ||
         this.volunteerJob.model.isCreateFail ||
-        this.itemType.model.isCreateFail
+        this.itemType.model.isCreateFail ||
+        this.itemSubType.model.isCreateFail ||
+        this.almsRound.model.isCreateFail ||
+        this.unit.model.isCreateFail
       );
     },
     isUpdateSuccessWatch() {
@@ -2914,7 +3733,10 @@ export default {
         this.center.model.isUpdateSuccess ||
         this.ward.model.isUpdateSuccess ||
         this.volunteerJob.model.isUpdateSuccess ||
-        this.itemType.model.isUpdateSuccess
+        this.itemType.model.isUpdateSuccess ||
+        this.itemSubType.model.isUpdateSuccess ||
+        this.almsRound.model.isUpdateSuccess ||
+        this.unit.model.isUpdateSuccess
       );
     },
     isUpdateFailWatch() {
@@ -2928,7 +3750,10 @@ export default {
         this.center.model.isUpdateFail ||
         this.ward.model.isUpdateFail ||
         this.volunteerJob.model.isUpdateFail ||
-        this.itemType.model.isUpdateFail
+        this.itemType.model.isUpdateFail ||
+        this.itemSubType.model.isUpdateFail ||
+        this.almsRound.model.isUpdateFail ||
+        this.unit.model.isUpdateFail
       );
     },
     isDeleteSuccessWatch() {
@@ -2942,7 +3767,10 @@ export default {
         this.center.model.isDeleteSuccess ||
         this.ward.model.isDeleteSuccess ||
         this.volunteerJob.model.isDeleteSuccess ||
-        this.itemType.model.isDeleteSuccess
+        this.itemType.model.isDeleteSuccess ||
+        this.itemSubType.model.isDeleteSuccess ||
+        this.almsRound.model.isDeleteSuccess ||
+        this.unit.model.isDeleteSuccess
       );
     },
     isRestoreSuccessWatch() {
@@ -2956,7 +3784,10 @@ export default {
         this.center.model.isRestoreSuccess ||
         this.ward.model.isRestoreSuccess ||
         this.volunteerJob.model.isRestoreSuccess ||
-        this.itemType.model.isRestoreSuccess
+        this.itemType.model.isRestoreSuccess ||
+        this.itemSubType.model.isRestoreSuccess ||
+        this.almsRound.model.isRestoreSuccess ||
+        this.unit.model.isRestoreSuccess
       );
     },
     isDeleteFailWatch() {
@@ -2970,7 +3801,10 @@ export default {
         this.center.model.isDeleteFail ||
         this.ward.model.isDeleteFail ||
         this.volunteerJob.model.isDeleteFail ||
-        this.itemType.model.isDeleteFail
+        this.itemType.model.isDeleteFail ||
+        this.itemSubType.model.isDeleteFail ||
+        this.almsRound.model.isDeleteFail ||
+        this.unit.model.isDeleteFail
       );
     },
   },
@@ -3047,6 +3881,15 @@ export default {
     "itemType.model.validation": function (newValidation, oldValidation) {
       this.itemType.validation = new itemTypeValidation(newValidation);
     },
+    "itemSubType.model.validation": function (newValidation, oldValidation) {
+      this.itemSubType.validation = new itemSubTypeValidation(newValidation);
+    },
+    "almsRound.model.validation": function (newValidation, oldValidation) {
+      this.almsRound.validation = new almsRoundValidation(newValidation);
+    },
+    "unit.model.validation": function (newValidation, oldValidation) {
+      this.unit.validation = new unitValidation(newValidation);
+    },
   },
   components: {
     Loading,
@@ -3093,6 +3936,18 @@ export default {
       this.itemType.model.page = page;
       this.itemType.model.fetchList(page);
     },
+    getItemSubTypeResult(page) {
+      this.itemSubType.model.page = page;
+      this.itemSubType.model.fetchList(page);
+    },
+    getAlmsRoundResult(page) {
+      this.almsRound.model.page = page;
+      this.almsRound.model.fetchList(page);
+    },
+    getUnitResult(page) {
+      this.unit.model.page = page;
+      this.unit.model.fetchList(page);
+    },
     fetchListAndResetCondition() {
       this.stateRegion.model.fetchList(this.stateRegion.model.page);
       this.city.model.fetchList(this.city.model.page);
@@ -3104,6 +3959,9 @@ export default {
       this.ward.model.fetchList(this.ward.model.page);
       this.volunteerJob.model.fetchList(this.volunteerJob.model.page);
       this.itemType.model.fetchList(this.itemType.model.page);
+      this.itemSubType.model.fetchList(this.itemSubType.model.page);
+      this.almsRound.model.fetchList(this.almsRound.model.page);
+      this.unit.model.fetchList(this.unit.model.page);
 
       this.stateRegion.model.isCreateSuccess = false;
       this.city.model.isCreateSuccess = false;
@@ -3115,6 +3973,9 @@ export default {
       this.ward.model.isCreateSuccess = false;
       this.volunteerJob.model.isCreateSuccess = false;
       this.itemType.model.isCreateSuccess = false;
+      this.itemSubType.model.isCreateSuccess = false;
+      this.almsRound.model.isCreateSuccess = false;
+      this.unit.model.isCreateSuccess = false;
 
       this.stateRegion.model.isUpdateSuccess = false;
       this.city.model.isUpdateSuccess = false;
@@ -3126,6 +3987,9 @@ export default {
       this.ward.model.isUpdateSuccess = false;
       this.volunteerJob.model.isUpdateSuccess = false;
       this.itemType.model.isUpdateSuccess = false;
+      this.itemSubType.model.isUpdateSuccess = false;
+      this.almsRound.model.isUpdateSuccess = false;
+      this.unit.model.isUpdateSuccess = false;
 
       this.stateRegion.model.isDeleteSuccess = false;
       this.city.model.isDeleteSuccess = false;
@@ -3137,6 +4001,9 @@ export default {
       this.ward.model.isDeleteSuccess = false;
       this.volunteerJob.model.isDeleteSuccess = false;
       this.itemType.model.isDeleteSuccess = false;
+      this.itemSubType.model.isDeleteSuccess = false;
+      this.almsRound.model.isDeleteSuccess = false;
+      this.unit.model.isDeleteSuccess = false;
 
       this.stateRegion.model.isRestoreSuccess = false;
       this.city.model.isRestoreSuccess = false;
@@ -3148,6 +4015,9 @@ export default {
       this.ward.model.isRestoreSuccess = false;
       this.volunteerJob.model.isRestoreSuccess = false;
       this.itemType.model.isRestoreSuccess = false;
+      this.itemSubType.model.isRestoreSuccess = false;
+      this.almsRound.model.isRestoreSuccess = false;
+      this.unit.model.isRestoreSuccess = false;
 
       this.$forceUpdate();
     },

@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemTypeResource;
 use App\Http\Requests\ItemTypeStoreRequest;
+use App\Http\Resources\ItemSubTypeResource;
 use App\Http\Requests\ItemTypeUpdateRequest;
+use App\Http\Requests\ItemSubTypeStoreRequest;
+use App\Http\Requests\ItemSubTypeUpdateRequest;
 use App\Http\Resources\ItemSubTypeResourceCollection;
 use App\Http\Resources\Select2\ItemSubTypeSelect2ResourceCollection;
 
@@ -43,12 +46,12 @@ class ItemSubTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ItemTypeStoreRequest $request)
+    public function store(ItemSubTypeStoreRequest $request)
     {
         try {
             $validated_data = $request->validated();
-            $itemType = ItemType::create($validated_data);
-            return response()->json(new ItemTypeResource($itemType), 201);
+            $itemType = ItemSubType::create($validated_data);
+            return response()->json(new ItemSubTypeResource($itemType), 201);
         } catch (Exception $e) {
             report($e);
             return response()->json(['message' => 'fail'], 500);
@@ -84,12 +87,12 @@ class ItemSubTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ItemTypeUpdateRequest $request, ItemType $itemType)
+    public function update(ItemSubTypeUpdateRequest $request, ItemSubType $itemSubType)
     {
         try {
             $validated_data = $request->validated();
-            $itemType->update($validated_data);
-            return response()->json(new ItemTypeResource($itemType), 200);
+            $itemSubType->update($validated_data);
+            return response()->json(new ItemSubTypeResource($itemSubType), 200);
         } catch (Exception $e) {
             report($e);
             return response()->json(['message' => 'fail'], 500);
@@ -102,13 +105,13 @@ class ItemSubTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ItemType $itemType)
+    public function destroy(ItemSubType $itemSubType)
     {
         try {
-            if ($itemType->trashed()) {
-                $itemType->restore();
+            if ($itemSubType->trashed()) {
+                $itemSubType->restore();
             } else {
-                $itemType->delete();
+                $itemSubType->delete();
             }
 
             return response()->json(['message' => 'success'], 200);

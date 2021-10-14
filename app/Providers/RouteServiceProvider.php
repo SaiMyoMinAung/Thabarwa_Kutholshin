@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Box;
 use App\City;
 use App\Team;
+use App\Unit;
 use App\Ward;
 use App\Yogi;
 use App\Admin;
@@ -13,7 +14,9 @@ use App\Center;
 use App\Office;
 use App\Country;
 use App\ItemType;
+use App\AlmsRound;
 use App\Volunteer;
+use App\ItemSubType;
 use App\StateRegion;
 use App\VolunteerJob;
 use Illuminate\Routing\Router;
@@ -53,6 +56,14 @@ class RouteServiceProvider extends ServiceProvider
             return ItemType::withTrashed()->where('id', $value)->first();
         });
 
+        $this->app['router']->bind('item_sub_type', function ($value) {
+            return ItemSubType::withTrashed()->where('id', $value)->first();
+        });
+
+        $this->app['router']->bind('alms_round', function ($value) {
+            return AlmsRound::withTrashed()->where('id', $value)->first();
+        });
+
         $this->app['router']->bind('volunteer_job', function ($value) {
             return VolunteerJob::withTrashed()->where('id', $value)->first();
         });
@@ -87,6 +98,10 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->app['router']->bind('box', function ($value) {
             return Box::withTrashed()->where('uuid', $value)->first();
+        });
+
+        $this->app['router']->bind('unit', function ($value) {
+            return Unit::withTrashed()->where('id', $value)->first();
         });
 
         $this->app['router']->bind('office', function ($value) {
