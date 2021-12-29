@@ -89,6 +89,18 @@
                             @endif
                         </div>
 
+                        @if($edit)
+                        <div class="form-group {{ $errors->has('reset_password') ? 'has-error' : '' }}">
+                            <label for="reset_password">Reset Password </label>
+                            <input type="checkbox" name="reset_password" value="1" id="reset_password">
+                            @if ($errors->has('reset_password'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('reset_password') }}
+                            </div>
+                            @endif
+                        </div>
+                        @endif
+
                         <button type="submit" class="btn btn-success">@if($edit) Update @else Create @endif</button>
                         <a href="{{route('admins.index')}}" class="btn btn-warning">Cancel</a>
                     </div>

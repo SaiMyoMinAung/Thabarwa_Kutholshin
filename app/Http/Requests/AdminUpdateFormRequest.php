@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Str;
 use App\Http\Requests\DTO\AdminDTO;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 
@@ -39,7 +41,8 @@ class AdminUpdateFormRequest extends FormRequest
             'email' => "required|email|unique:admins,email,$id|max:255",
             'phone' => "required|numeric|unique:admins,phone,$id|max:99999999999",
             'office_id' => "required|numeric",
-            'type_of_admin_id' => 'required|array'
+            'type_of_admin_id' => 'required|array',
+            'reset_password' => 'nullable'
         ];
     }
 
@@ -64,13 +67,33 @@ class AdminUpdateFormRequest extends FormRequest
             'name' => $this->input('name'),
             'email' => $this->input('email'),
             'phone' => $this->input('phone'),
-            'password' => $this->admin->password,
+            'password' => $this->resetPassword() ? $this->addPassword() : $this->admin->password,
             'office_id' => $this->input('office_id'),
         ]);
+    }
+
+    public function resetPassword()
+    {
+        return $this->input('reset_password') != null && $this->input('reset_password') == "1";
     }
 
     public function typeOfAdminId()
     {
         return $this->input('type_of_admin_id');
+    }
+
+    public function addPassword()
+    {
+        $password = Str::random(8);
+        $hash = Hash::make($password);
+
+        $this->password = $password;
+
+        return $hash;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
     }
 }

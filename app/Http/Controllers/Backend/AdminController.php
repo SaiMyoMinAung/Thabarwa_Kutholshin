@@ -197,6 +197,7 @@ class AdminController extends Controller
         $admin->typeOfAdmins()->sync($request->typeOfAdminId());
 
         $password = $request->getPassword();
+
         Mail::to($admin->email)->send(new AdminInviteMail($admin, $password));
 
         return redirect(route('admins.index'))->with('success', 'Create Admin Successful');
@@ -240,6 +241,12 @@ class AdminController extends Controller
         $admin->update($data);
 
         $admin->typeOfAdmins()->sync($request->typeOfAdminId());
+
+        if ($request->resetPassword()) {
+            $password = $request->getPassword();
+
+            Mail::to($admin->email)->send(new AdminInviteMail($admin, $password));
+        }
 
         return redirect(route('admins.index'))->with('success', 'Update Admin Successful.');
     }
