@@ -92,6 +92,15 @@
     </form>
     {{-- Body Content --}}
     @yield('body')
+
+
+    <script>
+        window.default_locale = "{{ config('app.locale') }}";
+        window.fallback_locale = "{{ config('app.fallback_locale') }}";
+        window.messages = @json($messages);
+
+    </script>
+
     <script>
         window.Laravel = {!! json_encode([
                 'csrfToken' => csrf_token(),

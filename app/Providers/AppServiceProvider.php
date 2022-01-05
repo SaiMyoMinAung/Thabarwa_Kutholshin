@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use ExportLocalization;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +18,12 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_DEBUG')) {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
+
+        View::composer('backend.*', function ($view) {
+            return $view->with([
+                'messages' => ExportLocalization::export()->toFlat(),
+            ]);
+        });
     }
 
     /**

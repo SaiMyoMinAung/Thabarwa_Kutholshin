@@ -12,9 +12,9 @@
 @section('content_header')
 <div class="mb-3 d-flex justify-content-between">
     <div>
-        <h1>Store list</h1>
+        <h1>{{trans('title.store_list')}}</h1>
     </div>
-    <a href="{{route('internal_donated_items.create')}}" class="btn btn-success">Add New Item To Store</a>
+    <a href="{{route('internal_donated_items.create')}}" class="btn btn-success">{{trans('button.add_new_item_to_store')}}</a>
 </div>
 
 @stop
@@ -24,13 +24,13 @@
     <thead>
         <tr>
             <th></th>
-            <th>Item Unique Id</th>
-            <th>Item Type</th>
-            <th>Item Sub Type</th>
-            <th>QTY</th>
-            <th>Alms Round</th>
-            <th>Status</th>
-            <th>Option</th>
+            <th>{{trans('input.item_unique_id')}}</th>
+            <th>{{trans('input.item_type')}}</th>
+            <th>{{trans('input.item_sub_type')}}</th>
+            <th>{{trans('input.qty')}}</th>
+            <th>{{trans('input.alms_round')}}</th>
+            <th>{{trans('input.status')}}</th>
+            <th>{{trans('input.option')}}</th>
         </tr>
     </thead>
     <tbody>

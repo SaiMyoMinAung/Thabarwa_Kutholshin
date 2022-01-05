@@ -7,7 +7,7 @@
       data-toggle="modal"
       data-target="#unexpectedPersonModel"
     >
-      Create Unexpected Person
+      {{trans.get('button.create_unexpected_person')}}
     </button>
 
     <!-- Modal -->

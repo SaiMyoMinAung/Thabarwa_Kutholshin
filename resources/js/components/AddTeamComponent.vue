@@ -7,7 +7,7 @@
       data-toggle="modal"
       data-target="#teamModel"
     >
-      Create Team
+      {{trans.get('button.create_team')}}
     </button>
 
     <!-- Modal -->

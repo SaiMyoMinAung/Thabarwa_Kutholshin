@@ -12,7 +12,7 @@
             ShareInternalDonatedItemModel.createShareInternalDonatedItemUrl
           "
           class="btn btn-success pull-right"
-          >Add Share List
+          >{{trans.get('button.add_share_list')}}
         </a>
       </div>
 
@@ -21,7 +21,7 @@
           class="btn btn-outline-primary"
           style="min-width: 250px"
           :href="ShareInternalDonatedItemModel.shareInternalDonatedItemIndexUrl"
-          ><i class="fas fa-table"></i> Show Table</a
+          ><i class="fas fa-table"></i> {{trans.get('button.show_table')}}</a
         >
       </div>
       <div class="col-md-6 mb-2">
@@ -40,7 +40,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="item_type"
-            >Item Type <span class="text-danger">*</span></label
+            >{{trans.get('input.item_type')}} <span class="text-danger">*</span></label
           >
           <select2
             :url="ShareInternalDonatedItemModel.fetchItemType"
@@ -93,7 +93,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="itemSubType"
-            >Item Sub Type <span class="text-danger">*</span></label
+            >{{trans.get('input.item_sub_type')}} <span class="text-danger">*</span></label
           >
           <select2
             :url="ShareInternalDonatedItemModel.fetchItemSubType"
@@ -147,7 +147,7 @@
 
       <div class="form-group col-md-6">
         <label for="requestable_type"
-          >Requestable Type <span class="text-danger">*</span></label
+          >{{trans.get('input.requestable_type')}} <span class="text-danger">*</span></label
         >
         <select2
           :url="ShareInternalDonatedItemModel.getRequestableTypeUrl"
@@ -199,7 +199,7 @@
 
       <div class="form-group col-md-6">
         <label for="requestable_type"
-          >Requestable Person <span class="text-danger">*</span></label
+          >{{trans.get('input.requestable_person')}} <span class="text-danger">*</span></label
         >
         <select2
           :disabled="
@@ -258,7 +258,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label for="socket_qty"
-            >Socket Qty <span class="text-danger">*</span></label
+            >{{trans.get('input.sacket_qty')}} <span class="text-danger">*</span></label
           >
           <input
             name="socket_qty"
@@ -318,7 +318,7 @@
               : ShareInternalDonatedItemModel.saveShare()
           "
         >
-          {{ edit ? "Update" : "Add Share" }}
+          {{ edit ? trans.get('button.update') : trans.get('button.create') }}
         </button>
       </div>
     </div>

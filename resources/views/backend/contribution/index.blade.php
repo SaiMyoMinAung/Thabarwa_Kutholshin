@@ -12,9 +12,9 @@
 @section('content_header')
 <div class="mb-3 d-flex justify-content-between">
     <div>
-        <h1>Contribution Lists</h1>
+        <h1>{{trans('menu.contribution_lists')}}</h1>
     </div>
-    <a href="{{route('contributions.create')}}" class="btn btn-success">Create Contribution List</a>
+    <a href="{{route('contributions.create')}}" class="btn btn-success">{{trans('button.create_contribution_list')}}</a>
 </div>
 @stop
 

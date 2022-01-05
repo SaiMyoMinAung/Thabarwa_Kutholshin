@@ -7,6 +7,13 @@ import 'vue-select/dist/vue-select.css';
 import Vue from 'vue';
 import Toasted from 'vue-toasted';
 import VirtualList from 'vue-virtual-scroll-list'
+import Lang from 'lang.js';
+
+const default_locale = window.default_locale;
+const fallback_locale = window.fallback_locale;
+const messages = window.messages;
+
+Vue.prototype.trans = new Lang( { messages, locale: default_locale, fallback: fallback_locale } );
 
 Vue.use(Toasted, {
   iconPack: 'material-icons',

@@ -7,7 +7,7 @@
       data-toggle="modal"
       data-target="#yogiModel"
     >
-      Create Yogi
+      {{trans.get('button.create_yogi')}}
     </button>
 
     <!-- Modal -->

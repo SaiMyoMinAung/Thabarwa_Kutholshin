@@ -10,7 +10,7 @@
         <a
           :href="InternalDonatedItemModel.internalDonatedItemCreateUrl"
           class="btn btn-success"
-          >Add New Item To Store</a
+          >{{trans.get('button.add_new_item_to_store')}}</a
         >
       </div>
       <div class="col-md-3">
@@ -18,7 +18,7 @@
           class="btn btn-outline-primary"
           style="min-width: 250px"
           :href="InternalDonatedItemModel.internalDonatedItemIndexUrl"
-          ><i class="fas fa-table"></i> Show Table</a
+          ><i class="fas fa-table"></i> {{trans.get('button.show_table')}}</a
         >
       </div>
     </div>
@@ -88,7 +88,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="almsRound"
-                    >Alms Round <span class="text-danger">*</span></label
+                    >{{trans.get('input.alms_round')}}<span class="text-danger">*</span></label
                   >
                   <select2
                     :url="InternalDonatedItemModel.fetchAlmsRound"
@@ -145,7 +145,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="item_type"
-                    >Item Type <span class="text-danger">*</span></label
+                    >{{trans.get('input.item_type')}} <span class="text-danger">*</span></label
                   >
                   <select2
                     :url="InternalDonatedItemModel.fetchItemType"
@@ -197,7 +197,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="itemSubType"
-                    >Item Sub Type <span class="text-danger">*</span></label
+                    >{{trans.get('input.item_sub_type')}}<span class="text-danger">*</span></label
                   >
                   <select2
                     :url="InternalDonatedItemModel.fetchItemSubType"
@@ -255,7 +255,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="unit"
-                    >Unit <span class="text-danger">*</span></label
+                    >{{trans.get('input.unit')}} <span class="text-danger">*</span></label
                   >
                   <select2
                     :url="InternalDonatedItemModel.fetchUnit"
@@ -308,7 +308,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="package_qty"
-                    >Package Qty <span class="text-danger">*</span></label
+                    >{{trans.get('input.package_qty')}} <span class="text-danger">*</span></label
                   >
                   <input
                     name="package_qty"
@@ -359,7 +359,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="socket_qty"
-                    >Sacket Qty <span class="text-danger">*</span></label
+                    >{{trans.get('input.sacket_qty')}} <span class="text-danger">*</span></label
                   >
                   <input
                     name="socket_qty"
@@ -410,7 +410,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="socket_per_package"
-                    >Sacket Per Package
+                    >{{trans.get('input.sacket_per_package')}}
                     <span class="text-danger">*</span></label
                   >
                   <input
@@ -462,7 +462,7 @@
             </div>
 
             <div class="form-group">
-              <label>Remark <span class="text-danger">*</span></label>
+              <label>{{trans.get('input.remark')}} <span class="text-danger">*</span></label>
               <textarea
                 name="remark"
                 class="form-control"
@@ -520,12 +520,12 @@
                     : InternalDonatedItemModel.saveItem()
                 "
               >
-                {{ edit ? "Update" : "Create" }}
+                {{ edit ? trans.get('button.update') : trans.get('button.create') }}
               </button>
               <input
                 type="submit"
                 class="btn btn-danger m-1"
-                :value="edit ? 'Update And Confirm' : 'Create And Confirm'"
+                :value="edit ? trans.get('button.update_and_confirm') : trans.get('button.update_and_confirm')"
                 name="update_and_confirm"
                 v-if="!disabled"
                 @click="

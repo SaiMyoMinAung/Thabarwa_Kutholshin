@@ -10,10 +10,10 @@
 @section('content_header')
 <div class="mb-3 d-flex justify-content-between">
     <div>
-        <h1>Shared List Of Store</h1>
+        <h1>{{trans('title.shared_list_of_store')}}</h1>
     </div>
     <div class="pull-right">
-        <a class="btn btn-success" href="{{route('share_internal_donated_items.create')}}">Add Share List</a>
+        <a class="btn btn-success" href="{{route('share_internal_donated_items.create')}}">{{trans('button.add_share_list')}}</a>
     </div>
 </div>
 @stop
@@ -23,12 +23,12 @@
     <thead>
         <tr>
             <th></th>
-            <th>Date</th>
-            <th style="max-width: 200px;">Item Type Name</th>
-            <th style="max-width: 200px;">Item Sub Type Name</th>
-            <th>Sacket</th>
-            <th style="max-width: 200px;">By Admin</th>
-            <th>Option</th>
+            <th>{{trans('input.date')}}</th>
+            <th style="max-width: 200px;">{{trans('input.item_type')}}</th>
+            <th style="max-width: 200px;">{{trans('input.item_sub_type')}}</th>
+            <th>{{trans('input.sacket_qty')}}</th>
+            <th style="max-width: 200px;">{{trans('input.by_admin')}}</th>
+            <th>{{trans('input.option')}}</th>
         </tr>
     </thead>
     <tbody>
