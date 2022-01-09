@@ -134,6 +134,7 @@ export default class InternalDonatedItem {
                 window.dashboard_app.$toasted.show("Saving Failed.", { icon: "save" });
                 // do loading
                 window.dashboard_app.$emit('endLoading');
+                self.data.is_confirmed = false
             });
 
     }
@@ -161,6 +162,7 @@ export default class InternalDonatedItem {
                 self.InternalDonatedItemValidation = new InternalDonatedItemValidation(error.response.data.errors)
                 window.dashboard_app.$toasted.show("Saving Failed.", { icon: "save" });
                 window.dashboard_app.$emit('endLoading');
+                self.data.is_confirmed = false
             });
 
         // this.data.is_confirmed = false;

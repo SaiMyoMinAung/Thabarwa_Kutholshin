@@ -11,12 +11,13 @@ return [
     'edit' => 'ပြင်ဆင်မည်',
     'delete' => 'ဖျက်မည်',
     'cancel' => 'မလုပ်တော့ပါ',
+    'close' => 'ပိတ်မည်',
 
     'add_share_list' => 'ပစ္စည်း ဝေမည်',
 
     'create_contribution_list' => 'အခြားရိပ်သာသို့ ပစ္စည်း ပေးမည်',
 
-    'create_unexpected_person' => 'မမျှော်လင့်လူ ထည့်သွင်းမည်',
+    'create_unexpected_person' => 'လူစာရင်း ထည့်သွင်းမည်',
     'create_team' => 'အဖွဲ့အစည်း ထည့်သွင်းမည်',
     'create_yogi' => 'ယောဂီ ထည့်သွင်းမည်'
 

@@ -10,6 +10,7 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'cancel' => 'Cancel',
+    'close' => 'Close',
     'add_share_list' => 'Add Share List',
 
     'create_contribution_list' => 'Create Contribution List',

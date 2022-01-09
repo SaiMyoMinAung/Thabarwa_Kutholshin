@@ -41,19 +41,19 @@ class InternalDonatedItemStoreFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'package_qty.required' => 'Please Fill Package Qty.',
-            'package_qty.numeric' => 'Please Fill Number Only.',
-            'socket_qty.required' => 'Please Fill Socket Qty.',
-            'socket_qty.numeric' => 'Please Fill Number Only.',
-            'unit_id.required' => 'Please Fill Unit.',
-            'unit_id.numeric' => 'Please Fill Number Only.',
-            'item_type_id.required' => 'Please Select Item Type.',
-            'item_type_id.numeric' => 'Please Select Item Type.',
-            'alms_round_id.required' => 'Please Select Alms Round.',
-            'alms_round_id.numeric' => 'Please Select Alms Round.',
-            'item_sub_type_id.required' => 'Please Select Item Sub Type.',
-            'item_sub_type_id.numeric' => 'Please Select Item Sub Type.',
-            'remark.required' => 'Please Fill Remark.',
+            'package_qty.required' => trans('custom-vali.package_qty_required'),
+            'package_qty.numeric' => trans('custom-vali.package_qty_numeric'),
+            'socket_qty.required' => trans('custom-vali.socket_qty_required'),
+            'socket_qty.numeric' => trans('custom-vali.socket_qty_numeric'),
+            'unit_id.required' => trans('custom-vali.unit_id_required'),
+            'unit_id.numeric' => trans('custom-vali.unit_id_numeric'),
+            'item_type_id.required' => trans('custom-vali.item_type_id_required'),
+            'item_type_id.numeric' => trans('custom-vali.item_type_id_numeric'),
+            'alms_round_id.required' => trans('custom-vali.alms_round_id_required'),
+            'alms_round_id.numeric' => trans('custom-vali.alms_round_id_numeric'),
+            'item_sub_type_id.required' => trans('custom-vali.item_sub_type_id_required'),
+            'item_sub_type_id.numeric' => trans('custom-vali.item_sub_type_id_numeric'),
+            'remark.required' => trans('custom-vali.remark_required'),
         ];
     }
 

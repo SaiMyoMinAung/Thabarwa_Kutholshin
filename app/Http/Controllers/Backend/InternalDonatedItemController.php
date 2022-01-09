@@ -318,13 +318,13 @@ class InternalDonatedItemController extends Controller
      */
     public function destroy(InternalDonatedItem $internalDonatedItem)
     {
-        if ($internalDonatedItem->contributions->count() == 0 && $internalDonatedItem->internalRequestedItems->count() == 0) {
+        if (count($internalDonatedItem->contributions) == 0) {
 
             $internalDonatedItem->delete();
 
-            return back()->with('success', 'Internal Donated Item Delete Successful.');
+            return back()->with('success', trans('flash-message.internal_donated_item_delete'));
         } else {
-            return back()->with('danger', 'Internal Donated Item Cannot Be Delete.');
+            return back()->with('danger', trans('flash-message.internal_donated_item_cannot_delete'));
         }
     }
 

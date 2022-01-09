@@ -3,28 +3,26 @@
     <!-- Button trigger modal -->
     <button
       type="button"
-      class="btn btn-info"
+      class="btn btn-sm btn-info"
       data-toggle="modal"
-      data-target="#unexpectedPersonModel"
+      data-target="#itemType"
     >
-      {{trans.get('button.create_unexpected_person')}}
+      +
     </button>
 
     <!-- Modal -->
     <div
       class="modal fade"
-      id="unexpectedPersonModel"
+      id="itemType"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="unexpectedPersonLabel"
+      aria-labelledby="itemTypeLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="unexpectedPersonLabel">
-              {{trans.get('button.create_unexpected_person')}}
-            </h5>
+            <h5 class="modal-title" id="itemTypeLabel">{{trans.get("title.create_item_type")}}</h5>
             <button
               type="button"
               class="close"
@@ -36,14 +34,14 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label for="person_name"
-                >{{trans.get('input.name')}} <span class="text-danger">*</span></label
+              <label for="name"
+                >{{trans.get('input.item_type')}} <span class="text-danger">*</span></label
               >
               <input
                 type="text"
                 class="form-control"
-                id="person_name"
-                :placeholder="trans.get('input.name_placeholder')"
+                id="name"
+                placeholder="Enter Name"
                 v-model="data.name"
                 v-bind:class="{
                   'is-invalid': validation.name_hasError,
@@ -65,14 +63,15 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" @click="create()">
-              {{trans.get('button.create')}}
+              {{trans.get("button.create")}}
             </button>
             <button
               type="button"
+              id="itemTypeClose"
               class="btn btn-secondary"
               data-dismiss="modal"
             >
-              {{trans.get('button.close')}}
+             {{trans.get("button.close")}}
             </button>
           </div>
         </div>
@@ -86,7 +85,7 @@ export default {
   data: function () {
     return {
       data: {
-        name: "",
+        name: ""
       },
       submited: false,
       validation: {
@@ -97,15 +96,11 @@ export default {
     };
   },
   methods: {
-    clearValidation() {
-      this.name_hasError = false;
-      this.name_errorMessage = "";
-      this.name_successMessage = "";
-    },
     create() {
+      this.submited = true;
       let self = this;
-      let url = route("unexpected_persons.store");
-
+      let url = route("item_types.store");
+      
       window.dashboard_app.$emit("startLoading");
 
       axios
@@ -114,20 +109,19 @@ export default {
           this.clearValidation();
           this.clearData();
 
-          window.dashboard_app.$emit("success", response.data);
+          window.dashboard_app.$emit("itemTypeSuccess", response.data);
           window.dashboard_app.$toasted.show("Saving Success.", {
             icon: "save",
           });
           window.dashboard_app.$emit("endLoading");
+          document.getElementById('itemTypeClose').click();
         })
         .catch(function (error) {
           // window.dashboard_app.$emit('failed')
           console.log(error.response);
-          let verror = error.response.data.errors;
-          if (verror.name) {
-            self.validation.name_hasError = true;
-            self.validation.name_errorMessage = verror.name[0];
-            self.validation.name_successMessage = "Good Job";
+          self.clearValidation();
+          if(error.response.data){
+            self.constructValidation(error.response.data.errors);
           }
 
           window.dashboard_app.$toasted.show("Saving Failed.", {
@@ -135,6 +129,19 @@ export default {
           });
           window.dashboard_app.$emit("endLoading");
         });
+    },
+    clearValidation() {
+      this.validation.name_hasError = false;
+      this.validation.name_errorMessage = "";
+      this.validation.name_successMessage = "";
+    },
+    constructValidation(validation) {
+      if (validation.name) {
+        this.validation.name_hasError = true;
+        this.validation.name_errorMessage = validation.name[0];
+      } else {
+        this.validation.name_successMessage = "Good Job";
+      }
     },
     clearData() {
       this.data.name = "";

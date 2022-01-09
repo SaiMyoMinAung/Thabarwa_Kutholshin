@@ -22,7 +22,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="yogiLabel">Create Yogi</h5>
+            <h5 class="modal-title" id="yogiLabel">{{trans.get('button.create_yogi')}}</h5>
             <button
               type="button"
               class="close"
@@ -35,13 +35,13 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="yogi_name"
-                >Name <span class="text-danger">*</span></label
+                >{{trans.get('input.name')}} <span class="text-danger">*</span></label
               >
               <input
                 type="text"
                 class="form-control"
                 id="yogi_name"
-                placeholder="Enter Yogi Name"
+                :placeholder="trans.get('input.name_placeholder')"
                 v-model="data.name"
                 v-bind:class="{
                   'is-invalid': validation.name_hasError,
@@ -62,12 +62,12 @@
             </div>
 
             <div class="form-group">
-              <label for="yogi_phone">Yogi Phone </label>
+              <label for="yogi_phone">{{trans.get('input.phone')}} </label>
               <input
                 type="text"
                 class="form-control only-number"
                 id="yogi_phone"
-                placeholder="Enter Yogi Phone"
+                :placeholder="trans.get('input.phone_placeholder')"
                 v-model="data.phone"
                 v-bind:class="{
                   'is-invalid': validation.phone_hasError,
@@ -88,7 +88,7 @@
             </div>
 
             <div class="form-group">
-              <label for="ward">Ward <span class="text-danger">*</span></label>
+              <label for="ward">{{trans.get('input.select_ward')}} <span class="text-danger">*</span></label>
               <select2
                 :url="fetchWard"
                 placeholder="Select Ward"
@@ -114,14 +114,14 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" @click="create()">
-              Create
+              {{trans.get('button.create')}}
             </button>
             <button
               type="button"
               class="btn btn-secondary"
               data-dismiss="modal"
             >
-              Close
+              {{trans.get('button.close')}}
             </button>
           </div>
         </div>

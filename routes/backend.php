@@ -14,7 +14,7 @@ Route::get('auth_admin_information', 'AdminController@information')->name('auth.
 Route::get('dashboard', 'DashboardController@index');
 Route::get('my-profile', 'ProfileController@profile')->name('profile');
 Route::post('my-profile/{admin}', 'ProfileController@update')->name('profile.update');
-Route::get('search', 'SearchController@index')->name('search.index');
+// Route::get('search', 'SearchController@index')->name('search.index');
 
 /**
  * Internal Donated Item Record Admin Type
@@ -28,7 +28,7 @@ Route::group(['middleware' => 'internal.donated.item.record.admintype'], functio
 
     Route::resource('share_internal_donated_items', 'ShareInternalDonatedItemController');
 
-    Route::resource('internal_donated_items/{internal_donated_item}/internal_requested_items', 'InternalRequestedItemController');
+    // Route::resource('internal_donated_items/{internal_donated_item}/internal_requested_items', 'InternalRequestedItemController');
     Route::resource('unexpected_persons', 'UnexpectedPersonController');
     Route::resource('item_types', 'ItemTypeController');
     Route::resource('item_sub_types', 'ItemSubTypeController');

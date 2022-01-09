@@ -29,4 +29,14 @@ class CenterStoreRequest extends FormRequest
             'is_available' => 'required|numeric|max:1'
         ];
     }
+
+
+    public function messages()
+    {
+        return [
+            'city_id.required' => trans('custom-vali.city_id_required'),
+            'name.required' => trans('custom-vali.name_required'),
+            'is_available.required' => trans('custom-vali.is_available_required'),
+        ];
+    }
 }
