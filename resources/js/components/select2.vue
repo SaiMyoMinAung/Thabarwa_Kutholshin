@@ -152,7 +152,7 @@ export default {
                 return;
             }
             var self = this;
-            fetch(this.url + `?q=${escape(this.q)}&page=${this.page}`)
+            fetch(this.url + `?q=${this.q}&page=${this.page}`)
                 .then(res => {
                     res.json().then(json => {
                         self.options = json.data;

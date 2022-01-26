@@ -5,6 +5,7 @@ namespace App;
 use App\Admin;
 use App\ItemType;
 use App\ItemSubType;
+use App\Services\MainCalculation;
 use App\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,5 +36,19 @@ class ShareInternalDonatedItem extends Model
     public function itemSubType()
     {
         return $this->belongsTo(ItemSubType::class, 'item_sub_type_id')->withDefault();
+    }
+
+    public function scopeFilterByOffice($query)
+    {
+        return $query->where('office_id', auth()->user()->office->id);
+    }
+
+    public function getAmountTextAttribute()
+    {
+        $mainCalculation = new MainCalculation;
+
+        $calculated = $mainCalculation->seperatePackageSackets($this->item_sub_type_id, $this->sacket_qty);
+
+        return $calculated['text'];
     }
 }

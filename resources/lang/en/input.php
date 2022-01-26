@@ -29,7 +29,7 @@ return [
 
     'remark' => 'Remark',
     'remark_placehoder' => 'Enter Remark',
-    
+
     'qty' => 'QTY',
     'status' => 'Status',
     'option' => 'Option',
@@ -56,5 +56,8 @@ return [
     'select_ward' => 'Select Ward',
 
     'select_city' => 'Select City',
+
+    'no' => 'No',
+    'amount' => 'Amount',
 
 ];

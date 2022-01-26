@@ -7,13 +7,9 @@ export default class InternalDonatedItem {
             uuid: "",
             item_unique_id: "",
             alms_round_id: "",
-            item_type_id: "",
             item_sub_type_id: "",
             package_qty: "",
-            socket_qty: "",
-            socket_per_package: "",
-            unit_id: "",
-            remark: "",
+            sacket_qty: "",
             is_confirmed: false,
             status: "",
         };
@@ -27,17 +23,12 @@ export default class InternalDonatedItem {
 
         // selected
         this.selectedAlmsRound = null;
-        this.selectedItemType = null;
         this.selectedItemSubType = null;
         this.selectedUnit = null;
 
-        // fetch 
-        this.itemSubTypeFetch = 0;
         // route
-        this.fetchUnit = route('units.fetch');
-        this.fetchItemType = route('item_types.fetch');
         this.fetchAlmsRound = route('alms_round.fetch');
-        this.fetchItemSubType = "";
+        this.fetchItemSubType = route('item_sub_types.fetch');
         if (internal_donated_item != undefined || internal_donated_item != null) {
             this.constructData(internal_donated_item)
         }
@@ -48,20 +39,15 @@ export default class InternalDonatedItem {
         this.data.uuid = internal_donated_item.uuid;
         this.data.item_unique_id = internal_donated_item.item_unique_id;
         this.data.alms_round_id = internal_donated_item.alms_round_id;
-        this.data.item_type_id = internal_donated_item.item_type_id;
         this.data.item_sub_type_id = internal_donated_item.item_sub_type_id;
         this.data.package_qty = internal_donated_item.package_qty;
-        this.data.socket_qty = internal_donated_item.socket_qty;
-        this.data.socket_per_package = internal_donated_item.socket_per_package;
-        this.data.unit_id = internal_donated_item.unit_id;
-        this.data.remark = internal_donated_item.remark;
+        this.data.sacket_qty = internal_donated_item.sacket_qty;
         this.data.is_confirmed = internal_donated_item.is_confirmed;
         this.data.status = internal_donated_item.status;
 
         this.InternalDonatedItemSubmited = false;
 
         this.selectedAlmsRound = internal_donated_item.selectedAlmsRound;
-        this.selectedItemType = internal_donated_item.selectedItemType;
         this.selectedItemSubType = internal_donated_item.selectedItemSubType;
         this.selectedUnit = internal_donated_item.selectedUnit;
 
@@ -166,20 +152,6 @@ export default class InternalDonatedItem {
             });
 
         // this.data.is_confirmed = false;
-    }
-
-    selectedUnitBox(event) {
-        this.selectedUnit = event;
-        this.data.unit_id = event != null ? event.id : "";
-    }
-
-    selectedItemTypeBox(event) {
-        this.selectedItemType = event;
-        this.data.item_type_id = event != null ? event.id : "";
-        this.fetchItemSubType = route('item_sub_types.fetch') + this.data.item_type_id;
-        this.data.item_sub_type_id = "";
-        this.selectedItemSubType = null;
-        this.itemSubTypeFetch++;
     }
 
     selectedItemSubTypeBox(event) {

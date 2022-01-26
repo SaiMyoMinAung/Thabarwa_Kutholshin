@@ -17,7 +17,10 @@ class ItemSubTypeResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'original_name' => $this->name,
+            'name' => $this->name  . " ( " . $this->unit->package_unit . " one တွင်" . $this->unit->loose_unit . $this->sacket_per_package . " ပါဝင်သည်။ )",
+            'unit' => new UnitResource($this->unit),
+            'sacket_per_package' => $this->sacket_per_package,
             'item_type' => new ItemTypeResource($this->itemType),
             'deleted_at' => $this->deleted_at
         ];

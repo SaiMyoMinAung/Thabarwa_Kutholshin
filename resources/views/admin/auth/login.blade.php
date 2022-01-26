@@ -71,18 +71,5 @@
             </div>
         </div>
     </div>
-
-    <div class="row justify-content-center pt-2">
-        <h1>OR</h1>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-            <div class="card ">
-                <div class="card-body">
-                    <a href="/donate" class="btn btn-lg btn-info col-12">လှူဒါန်းမည်</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 @endsection

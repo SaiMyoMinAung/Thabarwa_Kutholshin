@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\InternalDonatedItem;
 use Illuminate\Http\Request;
 use App\ShareInternalDonatedItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Query\Builder;
 use App\Http\Requests\ShareInternalDonatedItemStoreFormRequest;
+use App\Http\Requests\ShareInternalDonatedItemUpdateFormRequest;
 use App\Http\Resources\InternalDonatedItem\ShareInternalDonatedItemResource;
 
 class ShareInternalDonatedItemController extends Controller
@@ -21,72 +21,107 @@ class ShareInternalDonatedItemController extends Controller
     {
         if ($request->ajax()) {
 
-            $columns = array(
-                0 => 'DT_RowIndex',
-                1 => 'date',
-                2 => 'item_type_name',
-                3 => 'item_sub_type_name',
-                4 => 'socket_qty',
-                5 => 'by_admin'
-            );
+            // $columns = array(
+            //     0 => 'DT_RowIndex',
+            //     1 => 'date',
+            //     2 => 'item_type_name',
+            //     3 => 'item_sub_type_name',
+            //     4 => 'sacket_qty',
+            //     5 => 'by_admin'
+            // );
 
             $totalData = ShareInternalDonatedItem::count();
 
             $totalFiltered = $totalData;
 
-            $limit = $request->input('length');
-            $start = $request->input('start');
-            $order = $columns[$request->input('order.0.column')];
-            $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
-            $dir = $request->input('order.0.dir');
+            // $limit = $request->input('length');
+            // $start = $request->input('start');
+            // $order = $columns[$request->input('order.0.column')];
+            // $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
+            // $dir = $request->input('order.0.dir');
 
             $share_internal_requests = ShareInternalDonatedItem::query();
 
-            if (!empty($request->input('search.value'))) {
+            $share_internal_requests->filterByOffice();
 
-                $search = $request->input('search.value');
+            // if (!empty($request->input('search.value'))) {
 
-                $share_internal_requests =  $share_internal_requests->where(function ($q) use ($search) {
-                    return $q->where('package_qty', 'LIKE', "%{$search}%")
-                        ->orWhere('socket_qty', 'LIKE', "%{$search}%")
-                        ->orWhere('date', 'LIKE', "%{$search}%")
-                        ->orWhereHasMorph('requestable', ['*'], function (Builder $query) use ($search) {
-                            $query->where('name', 'LIKE', "%{$search}%");
-                        })
-                        ->orWhereHas('admin', function (Builder $query) use ($search) {
-                            $query->where('admins.name', 'LIKE', "%{$search}%");
-                        });
-                });
-            }
+            //     $search = $request->input('search.value');
+
+            //     $share_internal_requests =  $share_internal_requests->where(function ($q) use ($search) {
+            //         return $q->where('package_qty', 'LIKE', "%{$search}%")
+            //             ->orWhere('sacket_qty', 'LIKE', "%{$search}%")
+            //             ->orWhere('date', 'LIKE', "%{$search}%")
+            //             ->orWhereHasMorph('requestable', ['*'], function (Builder $query) use ($search) {
+            //                 $query->where('name', 'LIKE', "%{$search}%");
+            //             })
+            //             ->orWhereHas('admin', function (Builder $query) use ($search) {
+            //                 $query->where('admins.name', 'LIKE', "%{$search}%");
+            //             });
+            //     });
+            // }
 
             // start sorting
-            if ($order === 'date') {
-                $share_internal_requests = $share_internal_requests->orderBy($order, $dir);
-            }
+            // if ($order === 'date') {
+            //     $share_internal_requests = $share_internal_requests->orderBy($order, $dir);
+            // }
             // end sorting
 
-            $totalFiltered = $share_internal_requests->count();
+            // $totalFiltered = $share_internal_requests->count();
 
-            $share_internal_requests = $share_internal_requests->offset($start)
-                ->limit($limit)
-                ->get();
+            // $share_internal_requests = $share_internal_requests->offset($start)
+            //     ->limit($limit)
+            //     ->get();
 
             $data = array();
-            if (!empty($share_internal_requests)) {
-                foreach ($share_internal_requests as $key => $share_internal_request) {
-                    $editLink = route('share_internal_donated_items.edit', $share_internal_request->uuid);
-                    $nestedData['DT_RowIndex'] = $key + 1;
-                    $nestedData['uuid'] = $share_internal_request->uuid;
-                    $nestedData['date'] = "<a href='$editLink'>$share_internal_request->date</a>";
-                    $nestedData['item_type'] =  $share_internal_request->itemType->name;
-                    $nestedData['item_sub_type'] =  $share_internal_request->itemSubType->name;
-                    $nestedData['socket'] = $share_internal_request->socket_qty;
-                    $nestedData['by_admin'] = $share_internal_request->admin->name;
-                    $nestedData['option'] = '<a class="btn btn-default text-primary" data-uuid="' . $share_internal_request->uuid . '" data-toggle="editconfirmation" data-href="' . route('share_internal_donated_items.edit', $share_internal_request->uuid) . '"><i class="fas fa-edit"></i></a> - ';
-                    $nestedData['option'] .= '<a class="btn btn-default text-danger" data-toggle="confirmation" data-href="' . route('share_internal_donated_items.destroy', $share_internal_request->uuid) . '"><i class="fas fa-trash"></i></a>';
-                    $data[] = $nestedData;
+
+            $share_internal_requests = $share_internal_requests->with('requestable')->get();
+
+            $groups = $share_internal_requests->groupBy(['date', 'requestable.name']);
+
+            $data = [];
+
+            if (!empty($groups)) {
+
+                foreach ($groups as $date => $item) {
+                    $nestedData['date'] = $date;
+
+                    foreach ($item as $name => $items) {
+                        $nestedData['name'] = $name;
+                        $nestedData['count'] = count($items);
+                        foreach ($items as $key => $record) {
+                            $nestedData['id'] = $key + 1;
+                            $nestedData['detail_data'][$key]['uuid'] = $record->uuid;
+                            $nestedData['detail_data'][$key]['no'] = $key + 1;
+                            $nestedData['detail_data'][$key]['item_sub_type_name'] = $record->itemSubType->name;
+                            $nestedData['detail_data'][$key]['amount'] = $record->amount_text;
+                            $nestedData['detail_data'][$key]['canEdit'] = true;
+                            $nestedData['detail_data'][$key]['canDelete'] = true;
+                        }
+                    }
+                    array_push($data, $nestedData);
+                    $nestedData = [];
                 }
             }
+            // dd($data);
+
+            // dd($share_internal_requests);
+
+            // if (!empty($share_internal_requests)) {
+            //     foreach ($share_internal_requests as $key => $share_internal_request) {
+            //         $editLink = route('share_internal_donated_items.edit', $share_internal_request->uuid);
+            //         $nestedData['DT_RowIndex'] = $key + 1;
+            //         $nestedData['uuid'] = $share_internal_request->uuid;
+            //         $nestedData['date'] = "<a href='$editLink'>$share_internal_request->date</a>";
+            //         $nestedData['item_type'] =  $share_internal_request->itemType->name;
+            //         $nestedData['item_sub_type'] =  $share_internal_request->itemSubType->name;
+            //         $nestedData['sacket'] = $share_internal_request->sacket_qty;
+            //         $nestedData['by_admin'] = $share_internal_request->admin->name;
+            //         $nestedData['option'] = '<a class="btn btn-default text-primary" data-uuid="' . $share_internal_request->uuid . '" data-toggle="editconfirmation" data-href="' . route('share_internal_donated_items.edit', $share_internal_request->uuid) . '"><i class="fas fa-edit"></i></a> - ';
+            //         $nestedData['option'] .= '<a class="btn btn-default text-danger" data-toggle="confirmation" data-href="' . route('share_internal_donated_items.destroy', $share_internal_request->uuid) . '"><i class="fas fa-trash"></i></a>';
+            //         $data[] = $nestedData;
+            //     }
+            // }
 
             $json_data = array(
                 "draw"            => intval($request->input('draw')),
@@ -161,7 +196,7 @@ class ShareInternalDonatedItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ShareInternalDonatedItemStoreFormRequest $request, ShareInternalDonatedItem $shareInternalDonatedItem)
+    public function update(ShareInternalDonatedItemUpdateFormRequest $request, ShareInternalDonatedItem $shareInternalDonatedItem)
     {
         $data = $request->shareInternalDonatedItemData()->all();
 

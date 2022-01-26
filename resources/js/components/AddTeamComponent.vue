@@ -1,14 +1,14 @@
 <template>
     <div>
         <!-- Button trigger modal -->
-        <button
+        <!-- <button
             type="button"
             class="btn btn-info"
             data-toggle="modal"
             data-target="#teamModel"
         >
             {{ trans.get("button.create_team") }}
-        </button>
+        </button> -->
         <add-center-component />
         <!-- Modal -->
         <div
@@ -223,6 +223,7 @@
                             type="button"
                             class="btn btn-secondary"
                             data-dismiss="modal"
+                            id="teamModelClose"
                         >
                             {{ trans.get("button.close") }}
                         </button>
@@ -302,11 +303,12 @@ export default {
                     this.clearValidation();
                     this.clearData();
 
-                    window.dashboard_app.$emit("success", response.data);
+                    window.dashboard_app.$emit("teamCreateSuccess", response.data);
                     window.dashboard_app.$toasted.show("Saving Success.", {
                         icon: "save"
                     });
                     window.dashboard_app.$emit("endLoading");
+                    document.getElementById('teamModelClose').click();
                 })
                 .catch(function(error) {
                     // window.dashboard_app.$emit('failed')

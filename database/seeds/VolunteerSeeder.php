@@ -18,7 +18,6 @@ class VolunteerSeeder extends Seeder
             'name' => VOLUNTEER_DRIVER,
             'phone' => '0998989898',
             'email' => trim(VOLUNTEER_DRIVER . '@gmail.com'),
-            'password' => bcrypt('password'),
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
         $volunteer = Volunteer::create($data);
@@ -29,7 +28,6 @@ class VolunteerSeeder extends Seeder
             'name' => VOLUNTEER_STORE_KEEPER,
             'phone' => '0998989891',
             'email' => trim(VOLUNTEER_STORE_KEEPER . '@gmail.com'),
-            'password' => bcrypt('password'),
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
         $volunteerTwo = Volunteer::create($data);
@@ -40,7 +38,6 @@ class VolunteerSeeder extends Seeder
             'name' => VOLUNTEER_REPAIRER,
             'phone' => '0998989895',
             'email' => trim(VOLUNTEER_REPAIRER . '@gmail.com'),
-            'password' => bcrypt('password'),
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
         $volunteerThree = Volunteer::create($data);
@@ -51,7 +48,6 @@ class VolunteerSeeder extends Seeder
             'name' => VOLUNTEER_DELIVER,
             'phone' => '0998989491',
             'email' => trim(VOLUNTEER_DELIVER . '@gmail.com'),
-            'password' => bcrypt('password'),
             'office_id' => Office::where('name', OFFICE_ONE)->first()->id,
         ];
         $volunteerFour = Volunteer::create($data);

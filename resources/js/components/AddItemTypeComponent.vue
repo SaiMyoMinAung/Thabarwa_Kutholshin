@@ -1,14 +1,14 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <button
+    <!-- <button
       type="button"
       class="btn btn-sm btn-info"
       data-toggle="modal"
       data-target="#itemType"
     >
       +
-    </button>
+    </button> -->
 
     <!-- Modal -->
     <div

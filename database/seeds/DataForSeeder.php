@@ -60,45 +60,121 @@ const ITEM_TYPE_SIX = "Painkiller";
 const ITEM_TYPE_SEVEN = "Pills";
 
 const ITEM_SUB_TYPE_ONE = [
-    ['name' => 'doxycycline'],
-    ['name' => 'minocycline'],
-    ['name' => 'Accutane']
+    [
+        'name' => 'doxycycline',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'minocycline',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'Accutane',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ]
 ];
 
 const ITEM_SUB_TYPE_TWO = [
-    ['name' => 'enalapril'],
-    ['name' => 'lisinopril'],
-    ['name' => 'perindopril'],
+    [
+        'name' => 'enalapril',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'lisinopril',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'perindopril',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
 ];
 
 const ITEM_SUB_TYPE_THREE = [
-    ['name' => 'Vitamin C'],
-    ['name' => 'Omega 3'],
-    ['name' => 'Multivitamin']
+    [
+        'name' => 'Vitamin C',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'Omega 3',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'Multivitamin',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ]
 ];
 
 const ITEM_SUB_TYPE_FOUR = [
-    ['name' => 'penicillin'],
-    ['name' => 'covid-19 vaccine'],
-    ['name' => 'toxoids']
+    [
+        'name' => 'penicillin',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'covid-19 vaccine',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'toxoids',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ]
 ];
 
 const ITEM_SUB_TYPE_FIVE = [
-    ['name' => 'zandu'],
-    ['name' => 'Drez']
+    [
+        'name' => 'zandu',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'Drez',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ]
 ];
 
 const ITEM_SUB_TYPE_SIX = [
-    ['name' => 'Lenapain'],
-    ['name' => 'Nurofen'],
-    ['name' => 'panadol']
+    [
+        'name' => 'Lenapain',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'Nurofen',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'panadol',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ]
 ];
 
 const ITEM_SUB_TYPE_SEVEN = [
-    ['name' => 'Paracetamol'],
-    ['name' => 'Biogesic']
+    [
+        'name' => 'Paracetamol',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ],
+    [
+        'name' => 'Biogesic',
+        'sacket_per_package' => 10,
+        'unit_id' => 1
+    ]
 ];
 
 
 const ALMS_ROUND_ONE = 'ကျောက်မြောင်း တန်းဆွမ်း';
-const ALMS_ROUND_TWO = 'သာကေတ တန်းဆွမ်း'; 
+const ALMS_ROUND_TWO = 'သာကေတ တန်းဆွမ်း';

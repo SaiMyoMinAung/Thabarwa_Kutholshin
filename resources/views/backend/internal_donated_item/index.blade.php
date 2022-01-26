@@ -7,14 +7,29 @@
 <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/sp-1.2.2/datatables.min.css" /> -->
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.2.2/css/searchPanes.dataTables.min.css"> -->
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"> -->
+<style>
+    td.details-control {
+        background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('https://datatables.net/examples/resources/details_close.png') no-repeat center center;
+    }
+</style>
 @stop
 
 @section('content_header')
-<div class="mb-3 d-flex justify-content-between">
-    <div>
-        <h1>{{trans('title.store_list')}}</h1>
+<div class="d-flex justify-content-center">
+    <h1>
+        {{trans('title.store_list')}}
+
+    </h1>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <a href="{{route('internal_donated_items.create')}}" style="min-width: 250px" class="btn btn-success">{{trans('button.add_new_item_to_store')}}</a>
     </div>
-    <a href="{{route('internal_donated_items.create')}}" class="btn btn-success">{{trans('button.add_new_item_to_store')}}</a>
 </div>
 
 @stop
@@ -24,13 +39,9 @@
     <thead>
         <tr>
             <th></th>
-            <th>{{trans('input.item_unique_id')}}</th>
-            <th>{{trans('input.item_type')}}</th>
-            <th>{{trans('input.item_sub_type')}}</th>
-            <th>{{trans('input.qty')}}</th>
+            <th>{{trans('input.date')}}</th>
             <th>{{trans('input.alms_round')}}</th>
-            <th>{{trans('input.status')}}</th>
-            <th>{{trans('input.option')}}</th>
+            <th>{{trans('input.qty')}}</th>
         </tr>
     </thead>
     <tbody>
@@ -47,73 +58,104 @@
 <!-- <script src="https://cdn.datatables.net/searchpanes/1.2.2/js/dataTables.searchPanes.min.js" type="text/javascript"></script> -->
 <!-- <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js" type="text/javascript"></script> -->
 <script>
+    function format(d, uuid) {
+        return $.get('generate-internal-donated-item-list', {
+            "data": d.detail_data,
+            "uuid": uuid
+        }, function(data, status, xhr) {
+            return data;
+        })
+    }
+
     $(document).ready(function() {
-        let dataTable = $('#internalDonatedItemTable').DataTable({
+        var dataTable = $('#internalDonatedItemTable').DataTable({
             createdRow: function(row, data, dataIndex) {
-                let uuid = localStorage.getItem('internal_donateditem_uuid')
-
-                if (uuid != null && data.uuid == uuid) {
-                    $(row).addClass('bg-info');
-                    localStorage.removeItem('internal_donateditem_uuid')
-                }
-
+                $(row).attr('id', data.id);
             },
-            // dom: 'Pfrtpi',
-            // searchPanes: {
-            //     layout: 'columns-4',
-            // },
-            // "columnDefs": [{
-                // searchPanes: {
-                //     show: true,
-                // },
-                // targets: [3, 4, 5],
-            // }],
+            dom: 't',
             "processing": true,
             "serverSide": true,
             "ajax": {
                 "url": "{{ route('internal_donated_items.index') }}",
             },
             "order": [
-                [0, 'desc']
+                [1, 'desc']
             ],
             "columns": [{
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    searchable: false
-                },
-                {
-                    "data": "item_unique_id"
-                },
-                {
-                    "data": "item_type"
-                },
-                {
-                    "data": "item_sub_type"
-                },
-                {
-                    "data": "qty"
-                },
-                {
-                    "data": "alms_round"
-                },
-                {
-                    "data": "status"
-                },
-                {
-                    "data": "option",
+                    "class": "details-control",
+                    "orderable": false,
+                    "data": null,
+                    "defaultContent": ""
+                }, {
+                    "data": "date",
                     orderable: false,
                     searchable: false
                 },
+                {
+                    "data": "alms_round_name",
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    "data": "item_sub_type_count",
+                    orderable: false,
+                    searchable: false
+                }
             ]
         });
 
+        var detailRows = [];
+
+        $('#internalDonatedItemTable tbody').on('click', 'tr td.details-control', async function() {
+            var tr = $(this).closest('tr');
+            var row = dataTable.row(tr);
+            var idx = $.inArray(tr.attr('id'), detailRows);
+
+            if (row.child.isShown()) {
+                tr.removeClass('details');
+                row.child.hide();
+
+                // Remove from the 'open' array
+                detailRows.splice(idx, 1);
+            } else {
+                tr.addClass('details');
+
+                // to show edited mark color
+                let uuid = localStorage.getItem('internal_donateditem_uuid')
+
+                format(row.data(), uuid).then(await
+                    function(res) {
+                        row.child(res).show();
+                        // remove saved uuid from local storage
+                        localStorage.removeItem('internal_donateditem_uuid')
+                        // activate yes cancel tooltip
+                        activateToggle()
+                    })
+
+
+                // Add to the 'open' array
+                if (idx === -1) {
+                    detailRows.push(tr.attr('id'));
+                }
+            }
+            localStorage.setItem('detailRowsForIDI', JSON.stringify(detailRows));
+        });
+
+        // On each draw, loop over the `detailRows` array and show any child rows
         dataTable.on('draw', function() {
+            let id = JSON.parse(localStorage.getItem('detailRowsForIDI'));
+            $.each(id, function(i, id) {
+                $('#' + id + ' td.details-control').trigger('click');
+            });
+
+        });
+
+        function activateToggle() {
             $('[data-toggle=confirmation]').confirmation({
                 rootSelector: '[data-toggle=confirmation]',
                 // other options
                 onConfirm: function(value) {
                     let href = $(this).data('href')
-                    console.log(href)
                     $('#delete-form').attr('action', href)
                     document.getElementById("delete-form").submit();
                 },
@@ -150,7 +192,7 @@
                     }
                 ]
             });
-        });
+        }
 
     });
 </script>

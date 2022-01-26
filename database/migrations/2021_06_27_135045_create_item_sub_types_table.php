@@ -17,6 +17,8 @@ class CreateItemSubTypesTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('item_type_id');
+            $table->mediumInteger('sacket_per_package')->default(1);
+            $table->smallInteger('unit_id');
             $table->softDeletes();
             $table->timestamps();
         });

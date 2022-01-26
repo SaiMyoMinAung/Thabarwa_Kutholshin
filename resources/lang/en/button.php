@@ -17,7 +17,9 @@ return [
 
     'create_unexpected_person' => 'Create Unexpected Person',
     'create_team' => 'Create Team',
-    'create_yogi' => 'Create Yogi'
+    'create_yogi' => 'Create Yogi',
+
+    'share_this_person_again' => 'Share This Person Again',
 
 
 ];

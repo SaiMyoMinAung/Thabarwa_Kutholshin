@@ -22,13 +22,22 @@ export default class CreateShareInternalDonatedItemValidation {
                 this.item_sub_type_id_successMessage = 'Good Job.';
             }
 
-            if (validation.socket_qty) {
-                this.socket_qty_hasError = true;
-                this.socket_qty_errorMessage = validation.socket_qty[0];
-                this.socket_qty_successMessage = null;
+            if (validation.package_qty) {
+                this.package_qty_hasError = true;
+                this.package_qty_errorMessage = validation.package_qty[0];
+                this.package_qty_successMessage = null;
             } else {
-                this.socket_qty_hasError = false;
-                this.socket_qty_successMessage = 'Good Job.';
+                this.package_qty_hasError = false;
+                this.package_qty_successMessage = 'Good Job.';
+            }
+
+            if (validation.sacket_qty) {
+                this.sacket_qty_hasError = true;
+                this.sacket_qty_errorMessage = validation.sacket_qty[0];
+                this.sacket_qty_successMessage = null;
+            } else {
+                this.sacket_qty_hasError = false;
+                this.sacket_qty_successMessage = 'Good Job.';
             }
 
             // For Internal Requested Item
@@ -62,9 +71,9 @@ export default class CreateShareInternalDonatedItemValidation {
         this.package_qty_errorMessage = '';
         this.package_qty_successMessage = '';
 
-        this.socket_qty_hasError = false;
-        this.socket_qty_errorMessage = '';
-        this.socket_qty_successMessage = '';
+        this.sacket_qty_hasError = false;
+        this.sacket_qty_errorMessage = '';
+        this.sacket_qty_successMessage = '';
 
         this.item_sub_type_id_hasError = false;
         this.item_sub_type_id_errorMessage = '';

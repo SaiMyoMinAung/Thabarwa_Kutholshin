@@ -3,22 +3,24 @@
 namespace App\Rules;
 
 use App\ItemSubType;
+use App\Services\MainCalculation;
 use Illuminate\Contracts\Validation\Rule;
 
 class CheckLeftItem implements Rule
 {
-    public $itemSubType;
-    public $request_socket_qty;
+    public $mainCalculation, $item_sub_type_id, $request_sacket_qty, $request_package_qty;
 
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($item_sub_type_id, $request_socket_qty)
+    public function __construct($item_sub_type_id, $request_package_qty, $request_sacket_qty)
     {
-        $this->itemSubType = ItemSubType::find($item_sub_type_id);
-        $this->request_socket_qty = $request_socket_qty;
+        $this->mainCalculation = new MainCalculation;
+        $this->item_sub_type_id = $item_sub_type_id;
+        $this->request_sacket_qty = $request_sacket_qty;
+        $this->request_package_qty = $request_package_qty;
     }
 
     /**
@@ -30,18 +32,11 @@ class CheckLeftItem implements Rule
      */
     public function passes($attribute, $value)
     {
-        $leftSocket = $this->itemSubType->left_sockets;
-        $requestedSocket = $this->request_socket_qty;
-
-        if ($requestedSocket == 0) {
+        if ($this->request_sacket_qty == 0 && $this->request_package_qty == 0) {
             return false;
         }
 
-        if ($leftSocket >= $requestedSocket) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->mainCalculation->canShareThisAmount($this->item_sub_type_id, $this->request_package_qty, $this->request_sacket_qty);
     }
 
     /**

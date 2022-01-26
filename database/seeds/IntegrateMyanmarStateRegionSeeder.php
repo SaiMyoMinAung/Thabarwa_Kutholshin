@@ -1,5 +1,7 @@
 <?php
 
+use App\City;
+use App\Country;
 use App\StateRegion;
 use Illuminate\Database\Seeder;
 
@@ -12,9 +14,21 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
      */
     public function run()
     {
+        $country = [
+            'name' => COUNTRY_ONE,
+            'is_available' => 1
+        ];
+        
+        $country = Country::create($country);
+
         $myanmar = [
             [
-                'state_region' => 'ကချင်ပြည်နယ်',
+                'state_region' => [
+                    'name' => 'ကချင်ပြည်နယ်',
+                    'code' => '01',
+                    'country_id' => $country->id,
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကန်ပိုက်တီမြို့",
                     "ကာမိုင်းမြို့",
@@ -50,7 +64,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'မကွေးတိုင်းဒေသကြီး',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'မကွေးတိုင်းဒေသကြီး',
+                    'code' => '08',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကံမမြို့ (သရက်ခရိုင်)",
                     "ကမ္မမြို့ (ပခုက္ကူခရိုင်)",
@@ -85,7 +104,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'ရှမ်းပြည်နယ်',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'ရှမ်းပြည်နယ်',
+                    'code' => '13',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကျိုင်းတုံမြို့",
                     "ကျိုင်းတောင်းမြို့",
@@ -198,7 +222,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'ကယားပြည်နယ်',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'ကယားပြည်နယ်',
+                    'code' => '02',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ဒီမောဆိုးမြို့",
                     "နန်းမယ်ခုံမြို့",
@@ -215,7 +244,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'ကရင်ပြည်နယ်',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'ကရင်ပြည်နယ်',
+                    'code' => '03',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကမမောင်းမြို့",
                     "ကော့ကရိတ်မြို့",
@@ -238,7 +272,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'ချင်းပြည်နယ်',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'ချင်းပြည်နယ်',
+                    'code' => '04',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကန်ပက်လက်မြို့",
                     "ကျီခါးမြို့",
@@ -256,7 +295,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'စစ်ကိုင်းတိုင်းဒေသကြီး',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'စစ်ကိုင်းတိုင်းဒေသကြီး',
+                    'code' => '05',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကနီမြို့",
                     "ကန့်ဘလူမြို့",
@@ -307,7 +351,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'တနင်္သာရီတိုင်းဒေသကြီ',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'တနင်္သာရီတိုင်းဒေသကြီ',
+                    'code' => '06',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကရသူရိမြို့",
                     "ကလိန်အောင်မြို့",
@@ -329,7 +378,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'နေပြည်တော် ပြည်ထောင်စုနယ်မြေ',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'နေပြည်တော် ပြည်ထောင်စုနယ်မြေ',
+                    'code' => '15',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ဇမ္ဗူသီရိမြို့",
                     "ဇေယျာသီရိမြို့",
@@ -343,7 +397,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'ပဲခူးတိုင်းဒေသကြီး',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'ပဲခူးတိုင်းဒေသကြီး',
+                    'code' => '07',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကညွှတ်ကွင်းမြို့",
                     "ကဝမြို့",
@@ -395,7 +454,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'မန္တလေးတိုင်းဒေသကြီး',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'မန္တလေးတိုင်းဒေသကြီး',
+                    'code' => '09',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကျောက်ဆည်မြို့",
                     "ကျောက်ပန်းတောင်းမြို့",
@@ -431,7 +495,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
 
             ],
             [
-                'state_region' => 'မွန်ပြည်နယ်',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'မွန်ပြည်နယ်',
+                    'code' => '10',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကမာဝက်မြို့",
                     "ကျိုက္ခမီမြို့",
@@ -453,7 +522,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'ရခိုင်ပြည်နယ်',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'ရခိုင်ပြည်နယ်',
+                    'code' => '11',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကမ်းထောင့်ကြီးမြို့",
                     "ကျိန္တလီမြို့",
@@ -483,7 +557,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'ရန်ကုန်တိုင်းဒေသကြီး',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'ရန်ကုန်တိုင်းဒေသကြီး',
+                    'code' => '12',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကမာရွတ်မြို့",
                     "ကျောက်တံတားမြို့",
@@ -537,7 +616,12 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
                 ]
             ],
             [
-                'state_region' => 'ဧရာဝတီတိုင်းဒေသကြီး',
+                'state_region' => [
+                    'country_id' => $country->id,
+                    'name' => 'ဧရာဝတီတိုင်းဒေသကြီး',
+                    'code' => '14',
+                    'is_available' => 1
+                ],
                 'city' => [
                     "ကနောင်မြို့",
                     "ကန်ကြီးထောင့်မြို့",
@@ -583,7 +667,7 @@ class IntegrateMyanmarStateRegionSeeder extends Seeder
         ];
 
         foreach ($myanmar as $data) {
-            $state = StateRegion::create(['name' => $data['state_region']]);
+            $state = StateRegion::create($data['state_region']);
             foreach ($data['city'] as $city) {
                 City::create([
                     'name' => $city,

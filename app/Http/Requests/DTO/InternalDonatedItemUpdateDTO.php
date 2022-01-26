@@ -10,11 +10,7 @@ final class InternalDonatedItemUpdateDTO extends DataTransferObject
 {
     public $alms_round_id;
     public $package_qty;
-    public $socket_qty;
-    public $socket_per_package;
-    public $unit_id;
-    public $item_type_id;
+    public $sacket_qty;
     public $item_sub_type_id;
-    public $remark;
     public $is_confirmed;
 }

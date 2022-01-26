@@ -16,7 +16,8 @@ class ItemSubTypeSelect2Resource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'original_name' => $this->name,
+            'name' => $this->name . " ( " . $this->unit->package_unit . "one တွင်" . $this->unit->loose_unit . $this->sacket_per_package . " ပါဝင်သည်။ )",
         ];
     }
 }

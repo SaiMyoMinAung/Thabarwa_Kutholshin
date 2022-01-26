@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Unit;
+use App\ItemSubType;
 use App\InternalDonatedItem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,6 +21,11 @@ class ItemType extends Model
 
     public function internalDonatedItems()
     {
-        return $this->hasMany(InternalDonatedItem::class, 'item_type_id');
+        return $this->hasManyThrough(InternalDonatedItem::class, ItemSubType::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 }

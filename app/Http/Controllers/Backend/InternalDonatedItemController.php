@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\ItemType;
 use App\InternalDonatedItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +12,7 @@ use App\Http\Requests\InternalDonatedItemStoreFormRequest;
 use App\Http\Requests\InternalDonatedItemUpdateFormRequest;
 use App\Http\Resources\InternalDonatedItemResourceCollection;
 use App\Http\Resources\InternalDonatedItem\InternalDonatedItemResource;
+use Carbon\Carbon;
 
 class InternalDonatedItemController extends Controller
 {
@@ -25,199 +25,89 @@ class InternalDonatedItemController extends Controller
     {
         if ($request->ajax()) {
 
-            $columns = array(
-                0 => 'DT_RowIndex',
-                1 => 'item_unique_id',
-                2 => 'item_type',
-                3 => 'item_sub_type',
-                4 => 'qty',
-                5 => 'alms_round',
-                6 => 'status'
-            );
+            // $columns = array(
+            //     0 => 'DT_RowIndex',
+            //     1 => 'item_unique_id',
+            //     2 => 'item_type',
+            //     3 => 'item_sub_type',
+            //     4 => 'qty',
+            //     5 => 'alms_round',
+            //     6 => 'status'
+            // );
 
             $totalData = InternalDonatedItem::count();
 
             $totalFiltered = $totalData;
 
-            $limit = $request->input('length');
-            $start = $request->input('start');
-            $order = $columns[$request->input('order.0.column')];
-            $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
-            $dir = $request->input('order.0.dir');
+            // $limit = $request->input('length');
+            // $start = $request->input('start');
+            // $order = $columns[$request->input('order.0.column')] ?? 0;
+            // $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
+            // $dir = $request->input('order.0.dir') ?? 'desc';
 
-            $donated_items = InternalDonatedItem::query();
-
-            $donated_items = $donated_items->filterByHistory();
+            $internal_donated_items = InternalDonatedItem::query();
 
 
-            if (!empty($request->input('search.value'))) {
+            // if (!empty($request->input('search.value'))) {
 
-                $search = $request->input('search.value');
+            //     $search = $request->input('search.value');
 
-                $donated_items =  $donated_items->where(function ($q) use ($search) {
-                    return $q->where('item_unique_id', 'LIKE', "%{$search}%")
-                        ->orWhereHas('itemType', function (Builder $query) use ($search) {
-                            $query->where('item_types.name', 'LIKE', "%{$search}%");
-                        });
-                });
-            }
-
-            // start search panes query
-            // if (!empty($request->searchPanes["item_type"])) {
-            //     $name =  $request->input('searchPanes.item_type')[0];
-            //     $donated_items->whereHas('itemType', function (Builder $query) use ($name) {
-            //         $query->where('name', $name);
+            //     $internal_donated_items =  $internal_donated_items->where(function ($q) use ($search) {
+            //         return $q->where('item_unique_id', 'LIKE', "%{$search}%")
+            //             ->orWhereHas('itemType', function (Builder $query) use ($search) {
+            //                 $query->where('item_types.name', 'LIKE', "%{$search}%");
+            //             });
             //     });
             // }
 
-            // if (!empty($request->searchPanes["status"])) {
-            //     $name =  $request->input('searchPanes.status')[0];
-            //     if ($name == "Confirmed") {
-            //         $donated_items->where('is_confirmed', 1);
-            //     } else if ($name == "Unconfirmed") {
-            //         $donated_items->where('is_confirmed', 0);
-            //     } else {
-            //         $donated_items->where('status', $name);
-            //     }
-            // }
-
-            // if (!empty($request->searchPanes["qty"])) {
-            //     $qty =  $request->input('searchPanes.qty')[0];
-            //     $qty = explode("-", $qty);
-            //     $donated_items->whereBetween('package_qty', $qty);
-            // }
-            // end search panes query
-
-            // Start Search Pane Data
-            // $searchPanes = [
-            //     'options' => [
-            //         "item_type" => [],
-            //         "status" => [
-            //             [
-            //                 "label" => "Confirmed",
-            //                 "total" => InternalDonatedItem::where('is_confirmed', 1)->count(),
-            //                 "value" => "Confirmed"
-            //             ],
-            //             [
-            //                 "label" => "Unconfirmed",
-            //                 "total" => InternalDonatedItem::where('is_confirmed', 0)->count(),
-            //                 "value" => "Unconfirmed"
-            //             ]
-            //         ],
-            //         "qty" => [
-            //             [
-            //                 "label" => "1 pkg - 5 pkg",
-            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [1, 5])->count(),
-            //                 "value" => "1-5"
-            //             ],
-            //             [
-            //                 "label" => "5 pkg - 10 pkg",
-            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [5, 10])->count(),
-            //                 "value" => "5-10"
-            //             ],
-            //             [
-            //                 "label" => "10 pkg - 20 pkg",
-            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [10, 20])->count(),
-            //                 "value" => "10-20"
-            //             ],
-            //             [
-            //                 "label" => "20 pkg - 30 pkg",
-            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [20, 30])->count(),
-            //                 "value" => "20-30"
-            //             ],
-            //             [
-            //                 "label" => "30 pkg - 40 pkg",
-            //                 "total" => InternalDonatedItem::whereBetween('package_qty', [30, 40])->count(),
-            //                 "value" => "30-40"
-            //             ],
-            //         ]
-            //     ]
-            // ];
-
-            // $itemTypes = ItemType::all();
-
-            // foreach ($itemTypes as $itemType) {
-            //     array_push(
-            //         $searchPanes['options']['item_type'],
-            //         [
-            //             "label" => $itemType->name,
-            //             "total" => $itemType->internalDonatedItems()->count(),
-            //             "value" => $itemType->name,
-            //         ]
-            //     );
-            // }
-
-            // foreach (collect(InternalDonatedItemStatus::TYPE()) as $type) {
-            //     array_push(
-            //         $searchPanes['options']['status'],
-            //         [
-            //             "label" => $type['label'],
-            //             "total" => InternalDonatedItem::where('status', $type['code'])->count(),
-            //             "value" => $type['code'],
-            //         ]
-            //     );
-            // }
-            // end search pane
-
             // start sorting
-            if ($order === 'qty') {
-                $donated_items = $donated_items->orderByRaw("((package_qty * socket_per_package) +  socket_qty) $dir");
-            } else if ($order === 'item_type') {
-                $donated_items = $donated_items->whereHas('itemType', function (Builder $query) use ($dir) {
-                    $query->orderBy('item_types.name', $dir);
-                });
-            } else if ($order === 'status') {
-                $donated_items = $donated_items->orderBy($order, $dir);
-            } else {
-                $donated_items = $donated_items->orderBy($order, $dir);
-            }
+            // if ($order === 'qty') {
+            //     $internal_donated_items = $internal_donated_items->orderByRaw("((package_qty * socket_per_package) +  socket_qty) $dir");
+            // } else if ($order === 'item_type') {
+            //     $internal_donated_items = $internal_donated_items->whereHas('itemType', function (Builder $query) use ($dir) {
+            //         $query->orderBy('item_types.name', $dir);
+            //     });
+            // } else if ($order === 'status') {
+            //     $internal_donated_items = $internal_donated_items->orderBy($order, $dir);
+            // } else {
+            //     $internal_donated_items = $internal_donated_items->orderBy($order, $dir);
+            // }
             // end sorting
 
             //Filter Query
-            $donated_items->filterByOffice();
+            $internal_donated_items->filterByOffice();
 
-            $totalFiltered = $donated_items->count();
+            $nowDate = Carbon::now()->format('Y-m-d');
+            $internal_donated_items = $internal_donated_items->with('almsRound', 'itemSubType', 'itemSubType.unit')->whereDate('date', $nowDate)->get();
 
-            $donated_items = $donated_items->offset($start)
-                ->limit($limit)
-                ->get();
+            $groups = $internal_donated_items->groupBy(['date', 'almsRound.name']);
 
-            $data = array();
-            if (!empty($donated_items)) {
-                foreach ($donated_items as $key => $donated_item) {
+            $data = [];
 
-                    // if ((!isset($donated_item->getLatestHistory)) || ($donated_item->getLatestHistory->is_confirmed && $donated_item->getLatestHistory->is_accepted)) {
-                    $show =  route('internal_donated_items.show', $donated_item->uuid);
-
-                    $nestedData['DT_RowIndex'] = $key + 1;
-                    $nestedData['uuid'] = $donated_item->uuid;
-                    $nestedData['item_unique_id'] = $donated_item->item_unique_id;
-                    $nestedData['item_type'] = $donated_item->itemType->name;
-                    $nestedData['item_sub_type'] = $donated_item->itemSubType->name;
-                    $nestedData['qty'] = $donated_item->package_qty . 'p | ' . $donated_item->socket_qty . 's ( per ' . $donated_item->socket_per_package . ' )';
-                    $nestedData['alms_round'] = $donated_item->almsRound->name;
-
-                    $nestedData['status'] = '<span class="' . InternalDonatedItemStatus::advanceSearch(($donated_item->status))["class"] . '">' . InternalDonatedItemStatus::advanceSearch(($donated_item->status))["label"] . '</span> ';
-
-                    if ($donated_item->is_confirmed) {
-                        $nestedData['status'] .= '/ <span class="badge badge-success">Confirmed</span>';
-                    } else {
-                        $nestedData['status'] .= '/ <span class="badge badge-warning">Unconfirmed</span>';
+            if (!empty($groups)) {
+                foreach ($groups  as $date => $items) {
+                    foreach ($items as $alms_round_name => $item) {
+                        $nestedData['date'] = $date;
+                        $nestedData['alms_round_name'] = $alms_round_name;
+                        $nestedData['item_sub_type_count'] = count($item);
+                        foreach ($item as $key => $record) {
+                            $nestedData['id'] = $key + 1;
+                            $nestedData['detail_data'][$key]['uuid'] = $record->uuid;
+                            $nestedData['detail_data'][$key]['no'] = $key + 1;
+                            $nestedData['detail_data'][$key]['item_sub_type_name'] = $record->itemSubType->name;
+                            $nestedData['detail_data'][$key]['amount'] = $record->package_qty . ' ' . $record->itemSubType->unit->package_unit . ' ' . $record->sacket_qty . ' ' . $record->itemSubType->unit->loose_unit;
+                            $nestedData['detail_data'][$key]['status'] = '<span class="' . InternalDonatedItemStatus::advanceSearch(($record->status))["class"] . '">' . InternalDonatedItemStatus::advanceSearch(($record->status))["label"] . '</span> ';
+                            if ($record->is_confirmed) {
+                                $nestedData['detail_data'][$key]['status'] .= '/ <span class="badge badge-success">Confirmed</span>';
+                            } else {
+                                $nestedData['detail_data'][$key]['status'] .= '/ <span class="badge badge-warning">Unconfirmed</span>';
+                            }
+                            $nestedData['detail_data'][$key]['canEdit'] = true;
+                            $nestedData['detail_data'][$key]['canDelete'] = true;
+                        }
+                        array_push($data, $nestedData);
+                        $nestedData = [];
                     }
-                    if (
-                        InternalDonatedItemStatus::advanceSearch(($donated_item->status))["label"] != InternalDonatedItemStatus::COMPLETE()
-                        &&
-                        InternalDonatedItemStatus::advanceSearch(($donated_item->status))["label"] != InternalDonatedItemStatus::LOST()
-                    ) {
-                        $nestedData['option'] = '<a class="btn btn-default text-primary" data-uuid="' . $donated_item->uuid . '" data-toggle="editconfirmation" data-href="' . route('internal_donated_items.edit', $donated_item->uuid) . '"><i class="fas fa-edit"></i></a> - ';
-                        $nestedData['option'] .= '<a class="btn btn-default text-danger" data-toggle="confirmation" data-href="' . route('internal_donated_items.destroy', $donated_item->uuid) . '"><i class="fas fa-trash"></i></a>';
-                    } else {
-                        $nestedData['option'] = '-';
-                    }
-
-
-                    $data[] = $nestedData;
-                    // }
                 }
             }
 
@@ -318,12 +208,13 @@ class InternalDonatedItemController extends Controller
      */
     public function destroy(InternalDonatedItem $internalDonatedItem)
     {
-        if (count($internalDonatedItem->contributions) == 0) {
+        if (!$internalDonatedItem->is_confirmed) {
 
             $internalDonatedItem->delete();
 
             return back()->with('success', trans('flash-message.internal_donated_item_delete'));
         } else {
+
             return back()->with('danger', trans('flash-message.internal_donated_item_cannot_delete'));
         }
     }

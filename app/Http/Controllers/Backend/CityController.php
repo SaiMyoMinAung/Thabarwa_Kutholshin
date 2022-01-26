@@ -18,9 +18,9 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cities = City::withTrashed()->with('stateRegion')->orderBy('id', 'desc')->paginate(5);
+        $cities = City::withTrashed()->with('stateRegion')->where('name','LIKE',"%$request->q%")->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new CityResourceCollection($cities), 200);
     }

@@ -31,31 +31,22 @@ export default class CreateInternalDonatedItemValidation {
                 this.package_qty_successMessage = 'Good Job.';
             }
 
-            if (validation.socket_qty) {
-                this.socket_qty_hasError = true;
-                this.socket_qty_errorMessage = validation.socket_qty[0];
-                this.socket_qty_successMessage = null;
+            if (validation.sacket_qty) {
+                this.sacket_qty_hasError = true;
+                this.sacket_qty_errorMessage = validation.sacket_qty[0];
+                this.sacket_qty_successMessage = null;
             } else {
-                this.socket_qty_hasError = false;
-                this.socket_qty_successMessage = 'Good Job.';
+                this.sacket_qty_hasError = false;
+                this.sacket_qty_successMessage = 'Good Job.';
             }
 
-            if (validation.socket_per_package) {
-                this.socket_per_package_hasError = true;
-                this.socket_per_package_errorMessage = validation.socket_per_package[0];
-                this.socket_per_package_successMessage = null;
+            if (validation.sacket_per_package) {
+                this.sacket_per_package_hasError = true;
+                this.sacket_per_package_errorMessage = validation.sacket_per_package[0];
+                this.sacket_per_package_successMessage = null;
             } else {
-                this.socket_per_package_hasError = false;
-                this.socket_per_package_successMessage = 'Good Job.';
-            }
-
-            if (validation.item_type_id) {
-                this.item_type_id_hasError = true;
-                this.item_type_id_errorMessage = validation.item_type_id[0];
-                this.item_type_id_successMessage = null;
-            } else {
-                this.item_type_id_hasError = false;
-                this.item_type_id_successMessage = 'Good Job.';
+                this.sacket_per_package_hasError = false;
+                this.sacket_per_package_successMessage = 'Good Job.';
             }
 
             if (validation.item_sub_type_id) {
@@ -95,21 +86,17 @@ export default class CreateInternalDonatedItemValidation {
         this.package_qty_errorMessage = '';
         this.package_qty_successMessage = '';
 
-        this.socket_qty_hasError = false;
-        this.socket_qty_errorMessage = '';
-        this.socket_qty_successMessage = '';
+        this.sacket_qty_hasError = false;
+        this.sacket_qty_errorMessage = '';
+        this.sacket_qty_successMessage = '';
 
-        this.socket_per_package_hasError = false;
-        this.socket_per_package_errorMessage = '';
-        this.socket_per_package_successMessage = '';
+        this.sacket_per_package_hasError = false;
+        this.sacket_per_package_errorMessage = '';
+        this.sacket_per_package_successMessage = '';
 
         this.unit_hasError = false;
         this.unit_errorMessage = '';
         this.unit_successMessage = '';
-
-        this.item_type_id_hasError = false;
-        this.item_type_id_errorMessage = '';
-        this.item_type_id_successMessage = '';
 
         this.remark_hasError = false;
         this.remark_errorMessage = '';

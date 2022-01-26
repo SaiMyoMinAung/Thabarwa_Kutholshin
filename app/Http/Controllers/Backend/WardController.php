@@ -119,7 +119,7 @@ class WardController extends Controller
 
     public function getAllWards(Request $request)
     {
-        $wards = auth()->user()->center->wards()->paginate(5);
+        $wards = auth()->user()->center->wards()->where('name', 'LIKE', "%$request->q%")->paginate(5);
 
         return response()->json(new WardSelect2ResourceCollection($wards), 200);
     }

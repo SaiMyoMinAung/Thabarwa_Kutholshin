@@ -4,14 +4,22 @@ namespace App\Http\Requests;
 
 use Exception;
 use Carbon\Carbon;
+use App\ItemSubType;
 use App\Rules\CheckLeftItem;
 use App\Status\RequestableType;
+use App\Services\MainCalculation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\DTO\ShareInternalDonatedItemDTO;
 
 class ShareInternalDonatedItemStoreFormRequest extends FormRequest
 {
+    public $mainCalculation;
+
+    public function __construct()
+    {
+        $this->mainCalculation = new MainCalculation;
+    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -30,11 +38,14 @@ class ShareInternalDonatedItemStoreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'item_type_id' => ['required', 'numeric'],
             'item_sub_type_id' => ['required', 'numeric'],
-            'socket_qty' => [
+            'package_qty' => [
                 'required', 'numeric', 'max:100000',
-                new CheckLeftItem($this->input('item_sub_type_id'), $this->input('socket_qty'))
+                new CheckLeftItem($this->input('item_sub_type_id'), $this->input('package_qty'), $this->input('sacket_qty'))
+            ],
+            'sacket_qty' => [
+                'required', 'numeric', 'max:100000',
+                new CheckLeftItem($this->input('item_sub_type_id'), $this->input('package_qty'), $this->input('sacket_qty'))
             ],
             'requestable_type' => ['required'],
             'requestable_id' => ['required'],
@@ -44,12 +55,15 @@ class ShareInternalDonatedItemStoreFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'socket_qty.required' => 'Please Fill Socket Qty.',
-            'socket_qty.numeric' => 'Please Fill Number Only.',
-            'item_type_id.required' => 'Please Select Item Type.',
-            'item_type_id.numeric' => 'Please Select Item Type.',
+            'package_qty.required' => 'Please Fill Package Qty.',
+            'package_qty.numeric' => 'Please Fill Number Only.',
+
+            'sacket_qty.required' => 'Please Fill Sacket Qty.',
+            'sacket_qty.numeric' => 'Please Fill Number Only.',
+
             'item_sub_type_id.required' => 'Please Select Item Sub Type.',
             'item_sub_type_id.numeric' => 'Please Select Item Sub Type.',
+
             'requestable_type' => 'Please Select Requestable Type',
             'requestable_id' => 'Please Select Requestable Person',
         ];
@@ -69,15 +83,16 @@ class ShareInternalDonatedItemStoreFormRequest extends FormRequest
 
         return new ShareInternalDonatedItemDTO([
             'date' => Carbon::now(),
-            'socket_qty' => $this->input('socket_qty'),
+            'sacket_qty' => $this->mainCalculation->changeAllToSackets($this->input('item_sub_type_id'), $this->input('package_qty'), $this->input('sacket_qty')),
 
-            'item_type_id' => $this->input('item_type_id'),
+            'item_type_id' => ItemSubType::find($this->input('item_sub_type_id'))->itemType->id,
             'item_sub_type_id' => $this->input('item_sub_type_id'),
 
             'requestable_type' =>  $type,
             'requestable_id' => $this->input('requestable_id'),
 
-            'admin_id' => auth()->user()->id
+            'admin_id' => auth()->user()->id,
+            'office_id' => $this->input('office_id')
         ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Exception;
 use App\ItemType;
 use Illuminate\Http\Request;
+use App\Services\MainCalculation;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemTypeResource;
 use App\Status\InternalDonatedItemStatus;
@@ -12,9 +13,14 @@ use App\Http\Requests\ItemTypeStoreRequest;
 use App\Http\Requests\ItemTypeUpdateRequest;
 use App\Http\Resources\ItemTypeResourceCollection;
 use App\Http\Resources\Select2\ItemTypeSelect2ResourceCollection;
-
 class ItemTypeController extends Controller
 {
+    public $mainCalculation;
+
+    public function __construct()
+    {
+        $this->mainCalculation = new MainCalculation();    
+    }
     /**
      * Display a listing of the resource.
      *
@@ -170,15 +176,11 @@ class ItemTypeController extends Controller
             $itemSub = [];
             foreach ($item->itemSubTypes as $key => $itemSubType) {
 
-                $sharedSockets = $itemSubType->sharedInternalDonatedItems->sum(function ($item) {
-                    return $item->socket_qty;
-                });
+                $result = $this->mainCalculation->calculateOnInternalDonatedItems($itemSubType);
 
                 $itemSub[$key] = [
                     'name' => $itemSubType->name,
-                    'count' => $itemSubType->internalDonatedItems->sum(function ($item) {
-                        return ($item->package_qty * $item->socket_per_package) + $item->socket_qty;
-                    }) - $sharedSockets
+                    'count' => $result['text']
                 ];
             }
 
@@ -186,7 +188,7 @@ class ItemTypeController extends Controller
 
             return $storeList;
         });
-
+        
         return response()->json($storeList, 200);
     }
 }

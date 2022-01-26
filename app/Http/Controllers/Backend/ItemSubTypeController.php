@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use Exception;
-use App\ItemType;
 use App\ItemSubType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ItemTypeResource;
-use App\Http\Requests\ItemTypeStoreRequest;
 use App\Http\Resources\ItemSubTypeResource;
-use App\Http\Requests\ItemTypeUpdateRequest;
 use App\Http\Requests\ItemSubTypeStoreRequest;
 use App\Http\Requests\ItemSubTypeUpdateRequest;
 use App\Http\Resources\ItemSubTypeResourceCollection;
@@ -125,8 +121,8 @@ class ItemSubTypeController extends Controller
     {
         $itemSubTypes = ItemSubType::query();
 
-        if ($request->item_type_id) {
-            $itemSubTypes->where('item_type_id', $request->item_type_id);
+        if ($request->q) {
+            $itemSubTypes->where('name', 'LIKE', '%' . $request->q . '%');
         }
 
         $data = $itemSubTypes->orderBy('id', 'desc')->paginate(5);

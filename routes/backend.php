@@ -76,7 +76,11 @@ Route::get('get_all_unexpected_persons', 'UnexpectedPersonController@getAllUnexp
 Route::get('get_all_units', 'UnitController@getAllUnits')->name('units.fetch');
 Route::get('get_all_item_types', 'ItemTypeController@getAllItemTypes')->name('item_types.fetch');
 Route::get('get_all_alms_round', 'AlmsRoundController@getAllAlmsRound')->name('alms_round.fetch');
-Route::get('get_all_item_sub_types/{item_type_id?}', 'ItemSubTypeController@getAllItemSubTypes')->name('item_sub_types.fetch');
+Route::get('get_all_item_sub_types', 'ItemSubTypeController@getAllItemSubTypes')->name('item_sub_types.fetch');
+
+/**For Datatable detail list */
+Route::get('generate-internal-donated-item-list', "GenerateDetailListController@forInternalDonatedItem");
+Route::get('generate-share-internal-donated-item-list', "GenerateDetailListController@forShareInternalDonatedItem");
 
 
 Route::group(['middleware' => 'setting.admintype'], function () {

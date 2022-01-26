@@ -5,12 +5,15 @@ export default class ShareInternalDonatedItem {
         this.listOfRequest = {};
         this.data = {
             uuid: "",
-            item_type_id: "",
             item_sub_type_id: "",
-            socket_qty: "",
+            package_qty: "",
+            sacket_qty: "",
             requestable_type: "",
             requestable_id: "",
+            office_id: ""
         };
+        // model
+        this.showModel = "";
 
         // url
         this.createShareInternalDonatedItemUrl = route('share_internal_donated_items.create');
@@ -21,7 +24,6 @@ export default class ShareInternalDonatedItem {
         this.ShareInternalDonatedItemSubmited = false;
         this.ShareInternalDonatedItemValidation = new ShareInternalDonatedItemValidation();
         // selected
-        this.selectedItemType = null;
         this.selectedItemSubType = null;
         this.selectedRequestableType = null;
         this.selectedRequestableTypeId = null;
@@ -29,8 +31,7 @@ export default class ShareInternalDonatedItem {
         this.itemSubTypeFetch = 0;
         this.RequestablePersonFetch = 0;
         // route
-        this.fetchItemType = route('item_types.fetch');
-        this.fetchItemSubType = "";
+        this.fetchItemSubType = route('item_sub_types.fetch');
 
         if (share_internal_donated_item != undefined || share_internal_donated_item != null) {
             this.constructData(share_internal_donated_item)
@@ -39,12 +40,11 @@ export default class ShareInternalDonatedItem {
     }
     blankData() {
         this.uuid = "";
-        this.item_type_id = "";
         this.item_sub_type_id = "";
         this.requestable_type = "";
         this.requestable_id = "";
-        this.socket_qty = "";
-        this.selectedItemType = null;
+        this.package_qty = "";
+        this.sacket_qty = "";
         this.selectedItemSubType = null;
         this.selectedRequestableType = null;
         this.selectedRequestableTypeId = null;
@@ -53,15 +53,14 @@ export default class ShareInternalDonatedItem {
     constructData(share_internal_donated_item) {
 
         this.data.uuid = share_internal_donated_item.uuid;
-        this.data.item_type_id = share_internal_donated_item.item_type_id;
         this.data.item_sub_type_id = share_internal_donated_item.item_sub_type_id;
-        this.data.socket_qty = share_internal_donated_item.socket_qty;
+        this.data.package_qty = share_internal_donated_item.package_qty;
+        this.data.sacket_qty = share_internal_donated_item.sacket_qty;
         this.data.requestable_type = share_internal_donated_item.requestable_type;
         this.data.requestable_id = share_internal_donated_item.requestable_id;
 
         this.ShareInternalDonatedItemSubmited = false;
 
-        this.selectedItemType = share_internal_donated_item.selectedItemType;
         this.selectedItemSubType = share_internal_donated_item.selectedItemSubType;
         this.selectedRequestableType = share_internal_donated_item.selectedRequestableType;
         this.selectedRequestableTypeId = share_internal_donated_item.selectedRequestableTypeId;
@@ -137,15 +136,6 @@ export default class ShareInternalDonatedItem {
 
     }
 
-    selectedItemTypeBox(event) {
-        this.selectedItemType = event;
-        this.data.item_type_id = event != null ? event.id : "";
-        this.fetchItemSubType = route('item_sub_types.fetch') + this.data.item_type_id;
-        this.data.item_sub_type_id = "";
-        this.selectedItemSubType = null;
-        this.itemSubTypeFetch++;
-    }
-
     selectedItemSubTypeBox(event) {
         this.selectedItemSubType = event;
         this.data.item_sub_type_id = event != null ? event.id : "";
@@ -159,13 +149,20 @@ export default class ShareInternalDonatedItem {
         this.selectedRequestableTypeId = null;
 
         if (event.id === "TEAM") {
+            this.showModel = "#teamModel"
             this.getRequestableTypeIdUrl = route('teams.fetch');
-        } else if (event.id === "USER") {
-            this.getRequestableTypeIdUrl = route('users.fetch');
-        } else if (event.id === "YOGI") {
+        }
+        //  else if (event.id === "USER") {
+        //     this.getRequestableTypeIdUrl = route('users.fetch');
+        // }
+         else if (event.id === "YOGI") {
+             this.showModel = "#yogiModel"
             this.getRequestableTypeIdUrl = route('yogis.fetch');
-        } else if (event.id === "UNEXPECTED_PERSON") {
+        } else if (event.id === "UNEXPECTEDPERSON") {
+            this.showModel = "#unexpectedPersonModel"
             this.getRequestableTypeIdUrl = route('unexpected_persons.fetch');
+        }else{
+            this.showModel = ""
         }
         this.RequestablePersonFetch++;
 

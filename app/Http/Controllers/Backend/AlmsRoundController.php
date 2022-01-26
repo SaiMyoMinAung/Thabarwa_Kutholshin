@@ -117,9 +117,10 @@ class AlmsRoundController extends Controller
         }
     }
 
-    public function getAllAlmsRound()
+    public function getAllAlmsRound(Request $request)
     {
         $data = AlmsRound::where('center_id', auth()->user()->center->id)
+            ->where('name', 'LIKE', "%$request->q%")
             ->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new AlmsRoundResourceCollection($data), 200);

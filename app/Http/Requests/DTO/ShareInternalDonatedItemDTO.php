@@ -10,7 +10,7 @@ final class ShareInternalDonatedItemDTO extends DataTransferObject
 {
     public $date;
 
-    public $socket_qty;
+    public $sacket_qty;
 
     public $item_type_id;
     public $item_sub_type_id;
@@ -19,4 +19,6 @@ final class ShareInternalDonatedItemDTO extends DataTransferObject
 
     public $requestable_type;
     public $requestable_id;
+
+    public $office_id;
 }

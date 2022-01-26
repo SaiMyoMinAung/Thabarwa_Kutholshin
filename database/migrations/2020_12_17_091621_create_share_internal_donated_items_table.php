@@ -19,10 +19,11 @@ class CreateShareInternalDonatedItemsTable extends Migration
             $table->date('date');
             $table->integer('item_type_id');
             $table->integer('item_sub_type_id');
-            $table->integer('socket_qty')->default(1);
+            $table->integer('sacket_qty')->default(1);
             $table->integer('requestable_id');
             $table->string('requestable_type');
             $table->integer('admin_id');
+            $table->integer('office_id');
             $table->timestamps();
         });
     }

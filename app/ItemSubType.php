@@ -17,6 +17,11 @@ class ItemSubType extends Model
         return $this->belongsTo(ItemType::class, 'item_type_id')->withDefault();
     }
 
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id')->withDefault();
+    }
+
     public function internalDonatedItems()
     {
         return $this->hasMany(InternalDonatedItem::class, 'item_sub_type_id');
@@ -27,13 +32,4 @@ class ItemSubType extends Model
         return $this->hasMany(ShareInternalDonatedItem::class, 'item_sub_type_id');
     }
 
-    public function getLeftSocketsAttribute()
-    {
-        return $this->internalDonatedItems()
-            ->where('office_id', auth()->user()->office->id)
-            ->get()
-            ->sum(function ($item) {
-                return ($item->package_qty * $item->socket_per_package) + $item->socket_qty;
-            });
-    }
 }

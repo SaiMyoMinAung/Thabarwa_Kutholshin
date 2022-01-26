@@ -20,6 +20,7 @@ class CreateContributionsTable extends Migration
             $table->integer('office_id');
             $table->integer('receive_office_id');
             $table->integer('volunteer_id');
+            $table->boolean('is_confirmed')->default(0);
             $table->timestamps();
         });
     }

@@ -1,14 +1,14 @@
 <template>
   <div>
     <!-- Button trigger modal -->
-    <button
+    <!-- <button
       type="button"
       class="btn btn-info"
       data-toggle="modal"
       data-target="#unexpectedPersonModel"
     >
       {{trans.get('button.create_unexpected_person')}}
-    </button>
+    </button> -->
 
     <!-- Modal -->
     <div
@@ -69,6 +69,7 @@
             </button>
             <button
               type="button"
+              id="unexpectedPersonModelClose"
               class="btn btn-secondary"
               data-dismiss="modal"
             >
@@ -114,11 +115,12 @@ export default {
           this.clearValidation();
           this.clearData();
 
-          window.dashboard_app.$emit("success", response.data);
+          window.dashboard_app.$emit("unexpectedPersonCreateSuccess", response.data);
           window.dashboard_app.$toasted.show("Saving Success.", {
             icon: "save",
           });
           window.dashboard_app.$emit("endLoading");
+          document.getElementById('unexpectedPersonModelClose').click();
         })
         .catch(function (error) {
           // window.dashboard_app.$emit('failed')

@@ -14,29 +14,29 @@ class UnitSeeder extends Seeder
     {
         $data = [
             [
-                'package_unit' => 'Liter',
-                'loose_unit' => 'Milliliter',
+                'package_unit' => 'လီတာ',
+                'loose_unit' => 'မီလီ လီတာ',
                 'package_symbol' => 'l',
                 'loose_symbol' => 'ml',
             ],
             [
-                'package_unit' => 'Viss',
-                'loose_unit' => 'Kyat Tar',
+                'package_unit' => 'ပိသာ',
+                'loose_unit' => 'ကျပ်သား',
                 'package_symbol' => 'V',
                 'loose_symbol' => 'KT',
             ],
             [
-                'package_unit' => 'Package',
-                'loose_unit' => 'Loose Package',
+                'package_unit' => 'ပါကင်',
+                'loose_unit' => 'အပြည်',
                 'package_symbol' => 'P',
                 'loose_symbol' => 'LP',
             ],
-            [
-                'package_unit' => 'Other',
-                'loose_unit' => 'MiniOther',
-                'package_symbol' => 'OT',
-                'loose_symbol' => 'MOT',
-            ],
+            // [
+            //     'package_unit' => 'Other',
+            //     'loose_unit' => 'MiniOther',
+            //     'package_symbol' => 'OT',
+            //     'loose_symbol' => 'MOT',
+            // ],
         ];
 
         Unit::insert($data);
