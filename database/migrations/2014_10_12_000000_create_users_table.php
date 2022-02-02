@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->integer('city_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('is_special_user')->default(0);
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

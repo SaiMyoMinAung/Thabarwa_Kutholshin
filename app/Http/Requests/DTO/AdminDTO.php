@@ -13,5 +13,4 @@ final class AdminDTO extends DataTransferObject
     public $password;
     public $phone;
     public $office_id;
-    public $type_of_admin_id;
 }

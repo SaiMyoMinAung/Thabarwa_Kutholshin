@@ -4,7 +4,6 @@ namespace App\ViewModels;
 
 use App\Admin;
 use App\Office;
-use App\TypeOfAdmin;
 use Spatie\ViewModels\ViewModel;
 
 class AdminModel extends ViewModel
@@ -16,16 +15,6 @@ class AdminModel extends ViewModel
     {
         $this->admin = $admin;
         $this->edit = $edit;
-    }
-
-    public function typeOfAdmins()
-    {
-        return TypeOfAdmin::orderBy('id', 'desc')->get();
-    }
-
-    public function selectedTypeOfAdminId()
-    {
-        return $this->admin ? $this->admin->typeOfAdmins->pluck('id')->toArray() : null;
     }
 
     public function offices()

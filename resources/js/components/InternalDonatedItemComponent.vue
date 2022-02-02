@@ -5,26 +5,7 @@
             :can-cancel="true"
             :is-full-page="fullPage"
         ></loading>
-        <div class="col-md-12 col-lg-12 row mb-1">
-            <!-- <div class="col-md-3">
-                <a
-                    :href="
-                        InternalDonatedItemModel.internalDonatedItemCreateUrl
-                    "
-                    class="btn btn-success"
-                    >{{ trans.get("button.add_new_item_to_store") }}</a
-                >
-            </div>
-            <div class="col-md-3">
-                <a
-                    class="btn btn-outline-primary"
-                    style="min-width: 250px"
-                    :href="InternalDonatedItemModel.internalDonatedItemIndexUrl"
-                    ><i class="fas fa-table"></i>
-                    {{ trans.get("button.show_table") }}</a
-                >
-            </div> -->
-        </div>
+        <div class="col-md-12 col-lg-12 row mb-1"></div>
         <div class="col-md-6 col-lg-6 ">
             <div class="border border-success" style="min-height: 550px">
                 <div class="card-body row">

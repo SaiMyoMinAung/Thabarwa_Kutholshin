@@ -17,13 +17,6 @@ class AdminUpdateFormRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->admin->is_super) {
-            $error = ValidationException::withMessages([
-                'super_error' => ['Cannot Update Super Admin'],
-            ]);
-            throw $error;
-        }
-
         return true;
     }
 
@@ -41,7 +34,6 @@ class AdminUpdateFormRequest extends FormRequest
             'email' => "required|email|unique:admins,email,$id|max:255",
             'phone' => "required|numeric|unique:admins,phone,$id|max:99999999999",
             'office_id' => "required|numeric",
-            'type_of_admin_id' => 'required|array',
             'reset_password' => 'nullable'
         ];
     }
@@ -57,7 +49,6 @@ class AdminUpdateFormRequest extends FormRequest
             'email.email' => 'Email Must Be Valid Email.',
             'email.max' => 'Email Is Too Long!',
             'office_id.required' => 'Please Select Office.',
-            'type_of_admin_id.required' => 'Please Select Type Of Admin.',
         ];
     }
 
@@ -75,11 +66,6 @@ class AdminUpdateFormRequest extends FormRequest
     public function resetPassword()
     {
         return $this->input('reset_password') != null && $this->input('reset_password') == "1";
-    }
-
-    public function typeOfAdminId()
-    {
-        return $this->input('type_of_admin_id');
     }
 
     public function addPassword()

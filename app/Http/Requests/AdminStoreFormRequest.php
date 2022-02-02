@@ -32,8 +32,7 @@ class AdminStoreFormRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => "required|email|unique:admins|max:255",
             'phone' => "required|numeric|unique:admins|max:99999999999",
-            'office_id' => "required|numeric",
-            'type_of_admin_id' => 'required|array'
+            'office_id' => "required|numeric"
         ];
     }
 
@@ -47,8 +46,7 @@ class AdminStoreFormRequest extends FormRequest
             'phone.max' => 'Phone is Too Long!',
             'email.email' => 'Email Must Be Valid Email.',
             'email.max' => 'Email Is Too Long!',
-            'office_id.required' => 'Please Select Office.',
-            'type_of_admin_id.required' => 'Please Select Type Of Admin.',
+            'office_id.required' => 'Please Select Office.'
         ];
     }
 
@@ -61,11 +59,6 @@ class AdminStoreFormRequest extends FormRequest
             'password' => $this->addPassword(),
             'office_id' => $this->input('office_id'),
         ]);
-    }
-
-    public function typeOfAdminId()
-    {
-        return $this->input('type_of_admin_id');
     }
 
     public function addPassword()

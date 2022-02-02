@@ -10,6 +10,7 @@ use App\Http\Resources\CenterResource;
 use App\Http\Requests\CenterStoreRequest;
 use App\Http\Requests\CenterUpdateRequest;
 use App\Http\Resources\CenterResourceCollection;
+use App\Http\Resources\Select2\CenterSelect2ResourceCollection;
 
 class CenterController extends Controller
 {
@@ -113,5 +114,12 @@ class CenterController extends Controller
             report($e);
             return response()->json(['message' => 'fail'], 500);
         }
+    }
+
+    public function getAllCenters(Request $request)
+    {
+        $centers = Center::where('name', 'LIKE', "%$request->q%")->paginate(5);
+
+        return response()->json(new CenterSelect2ResourceCollection($centers), 200);
     }
 }

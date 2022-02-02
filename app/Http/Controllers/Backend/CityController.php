@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\City;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CityResource;
 use App\Http\Requests\CityStoreRequest;
 use App\Http\Requests\CityUpdateRequest;
 use App\Http\Resources\CityResourceCollection;
-use Exception;
+use App\Http\Resources\Select2\CitySelect2ResourceCollection;
 
 class CityController extends Controller
 {
@@ -20,7 +21,7 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-        $cities = City::withTrashed()->with('stateRegion')->where('name','LIKE',"%$request->q%")->orderBy('id', 'desc')->paginate(5);
+        $cities = City::withTrashed()->with('stateRegion')->where('name', 'LIKE', "%$request->q%")->orderBy('id', 'desc')->paginate(5);
 
         return response()->json(new CityResourceCollection($cities), 200);
     }
@@ -112,5 +113,12 @@ class CityController extends Controller
             report($e);
             return response()->json(['message' => 'fail'], 500);
         }
+    }
+
+    public function getAllCities(Request $request)
+    {
+        $cities = City::where('name', 'LIKE', "%$request->q%")->paginate(5);
+
+        return response()->json(new CitySelect2ResourceCollection($cities), 200);
     }
 }

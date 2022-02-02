@@ -42,7 +42,7 @@ class PermissionSeeder extends Seeder
             ['name' => 'edit-volunteer'],
             ['name' => 'delete-volunteer'],
             ['name' => 'restore-volunteer'],
-            
+
             //admin
             ['name' => 'create-admin'],
             ['name' => 'read-admin'],
@@ -118,7 +118,7 @@ class PermissionSeeder extends Seeder
 
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission['name']]);
+            Permission::create(['name' => $permission['name'], 'guard_name' => 'admin']);
         }
     }
 }

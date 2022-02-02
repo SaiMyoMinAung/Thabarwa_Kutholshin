@@ -23,8 +23,6 @@ class AdminResource extends JsonResource
             'name' => $this->name,
             'phone' => $this->phone,
             'email' => $this->email,
-            'is_reginal_admin' => (bool) $this->is_reginal_admin,
-            'is_super' => (bool) $this->is_super,
             'center' => new CenterResource($this->center),
             'office' => new OfficeResource($this->office),
         ];

@@ -237,37 +237,33 @@ return [
         //     'topnav' => true,
         // ],
         
-        [
-            'text'        => 'Donation Records',
-            'url'         => 'backend/donation_records',
-            'active'      => ['backend/donation_records', 'backend/donation_records/*'],
-            'icon'        => 'fas fa-tasks',
-            'label_color' => 'success',
-            'can' => 'can-do-donation-record',
-        ],
-        [
-            'text'        => 'Donated Items',
-            'url'         => 'backend/donated_items',
-            'active'      => ['backend/donated_items', 'backend/donated_items/*/manage', 'backend/donated_items/*'],
-            'icon'        => 'fas fa-globe',
-            'label_color' => 'success',
-            'can' => 'can-do-donated-item-record',
-        ],
+        // [
+        //     'text'        => 'Donation Records',
+        //     'url'         => 'backend/donation_records',
+        //     'active'      => ['backend/donation_records', 'backend/donation_records/*'],
+        //     'icon'        => 'fas fa-tasks',
+        //     'label_color' => 'success'
+        // ],
+        // [
+        //     'text'        => 'Donated Items',
+        //     'url'         => 'backend/donated_items',
+        //     'active'      => ['backend/donated_items', 'backend/donated_items/*/manage', 'backend/donated_items/*'],
+        //     'icon'        => 'fas fa-globe',
+        //     'label_color' => 'success'
+        // ],
         [
             'text'        => 'store',
             'url'         => 'backend/internal_donated_items',
             'active'      => ['backend/internal_donated_items', 'backend/internal_donated_items/*'],
             'icon'        => 'fas fa-store',
-            'label_color' => 'success',
-            'can' => 'can-do-internal-donated-item-record'
+            'label_color' => 'success'
         ],
         [
             'text'        => 'share_stored_item',
             'url'         => 'backend/share_internal_donated_items',
             'active'      => ['backend/share_internal_donated_items', 'backend/share_internal_donated_items/*'],
             'icon'        => 'fas fa-hand-holding',
-            'label_color' => 'success',
-            'can' => 'can-do-internal-donated-item-record'
+            'label_color' => 'success'
         ],
         // [
         //     'text'        => 'contribution_lists',
@@ -285,30 +281,35 @@ return [
         //     'label_color' => 'success',
         //     'can' => 'can-do-internal-donated-item-record'
         // ],
-        ['header' => 'Settings', 'can' => 'can-do-setting'],
+        ['header' => 'Settings'],
         [
             'text'        => 'Admins',
             'url'         => 'backend/admins',
             'icon'        => 'fas fa-user-tie',
             'active'      => ['backend/admins', 'backend/admins/*/edit', 'backend/admins/create'],
             'label_color' => 'success',
-            'can' => 'super-admin',
         ],
         [
-            'text'        => 'Volunteers',
-            'url'         => 'backend/volunteers',
-            'icon'        => 'fas fa-people-carry',
-            'active'      => ['backend/volunteers', 'backend/volunteers/*/edit', 'backend/volunteers/create'],
+            'text'        => 'Roles',
+            'url'         => 'backend/roles',
+            'icon'        => 'fas fa-crown',
+            'active'      => ['backend/roles', 'backend/roles/*/edit', 'backend/roles/create'],
             'label_color' => 'success',
-            'can' => 'can-do-setting',
         ],
+
+        // [
+        //     'text'        => 'Volunteers',
+        //     'url'         => 'backend/volunteers',
+        //     'icon'        => 'fas fa-people-carry',
+        //     'active'      => ['backend/volunteers', 'backend/volunteers/*/edit', 'backend/volunteers/create'],
+        //     'label_color' => 'success',
+        // ],
         [
             'text'        => 'Teams',
             'url'         => 'backend/teams',
             'icon'        => 'fas fa-users',
             'active'      => ['backend/teams', 'backend/teams/*/edit', 'backend/teams/create'],
             'label_color' => 'success',
-            'can' => 'can-do-setting',
         ],
         [
             'text'        => 'Yogi',
@@ -316,21 +317,18 @@ return [
             'icon'        => 'fas fa-dharmachakra',
             'active'      => ['backend/yogis', 'backend/yogis/*/edit', 'backend/yogis/create'],
             'label_color' => 'success',
-            'can' => 'can-do-setting',
         ],
-        [
-            'text'        => 'Users',
-            'url'         => 'backend/users',
-            'icon'        => 'fas fa-user',
-            'label_color' => 'success',
-            'can' => 'can-do-setting',
-        ],
+        // [
+        //     'text'        => 'Users',
+        //     'url'         => 'backend/users',
+        //     'icon'        => 'fas fa-user',
+        //     'label_color' => 'success',
+        // ],
         [
             'text'        => 'Settings',
             'url'         => 'backend/settings',
             'icon'        => 'fas fa-cogs',
             'label_color' => 'success',
-            'can' => 'can-do-setting',
         ],
 
     ],

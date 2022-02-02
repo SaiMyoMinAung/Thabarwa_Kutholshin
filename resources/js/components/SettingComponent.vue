@@ -45,7 +45,7 @@
           >
         </div>
       </li>
-      <span class="badge badge-warning">2</span>
+      <!-- <span class="badge badge-warning">2</span>
       <li
         class="nav-item dropdown"
         role="presentation"
@@ -83,8 +83,8 @@
             >Create Store</a
           >
         </div>
-      </li>
-      <span class="badge badge-warning">3</span>
+      </li> -->
+      <!-- <span class="badge badge-warning">3</span>
       <li
         class="nav-item dropdown"
         role="presentation"
@@ -122,7 +122,7 @@
             >Create Box</a
           >
         </div>
-      </li>
+      </li> -->
       <span class="badge badge-success">1</span>
       <li
         class="nav-item dropdown"

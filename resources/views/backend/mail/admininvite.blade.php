@@ -45,14 +45,7 @@
         </div>
         <div class="content">
             <p>
-                You are invited as a
-
-                @foreach ($admin->typeOfAdmins as $type)
-                <i class="badge badge-success">
-                    {{$type->name}}
-                </i>
-                @endforeach
-                admin role.
+                You are invited as a admin role.
                 <p>You can login by using following credentials.</p>
                 <ul>
                     <li>URL - {{route('admin.login')}}</li>

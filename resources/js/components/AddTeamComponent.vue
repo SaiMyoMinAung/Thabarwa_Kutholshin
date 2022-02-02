@@ -252,7 +252,7 @@ export default {
                 center_id: ""
             },
             submited: false,
-            fetchCenter: route("centers.index"),
+            fetchCenter: route("centers.fetch"),
             selectedCenter: {},
             validation: {
                 name_hasError: false,

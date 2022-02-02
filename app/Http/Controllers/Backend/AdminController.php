@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Admin;
-use Carbon\Carbon;
+use App\Office;
 use Illuminate\Http\Request;
 use App\Mail\AdminInviteMail;
 use App\ViewModels\AdminModel;
@@ -13,8 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\AdminStoreFormRequest;
 use App\Http\Requests\AdminUpdateFormRequest;
 use App\Http\Resources\AdminResource;
-use App\Office;
-use App\TypeOfAdmin;
+
 use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
@@ -36,7 +35,7 @@ class AdminController extends Controller
                 4 => 'office',
             );
 
-            $totalData = Admin::withTrashed()->where('is_super', 0)->count();
+            $totalData = Admin::withTrashed()->count();
 
             $totalFiltered = $totalData;
 
@@ -46,7 +45,7 @@ class AdminController extends Controller
             $order = ($order == 'DT_RowIndex') ? 'created_at' : $order;
             $dir = $request->input('order.0.dir');
 
-            $admins = Admin::query()->withTrashed()->where('is_super', 0);
+            $admins = Admin::query()->withTrashed();
 
             // start search query
             if (!empty($request->input('search.value'))) {
@@ -70,57 +69,6 @@ class AdminController extends Controller
             }
             // end sorting
 
-            // start search panes query
-            if (!empty($request->searchPanes["office"])) {
-                $name =  $request->input('searchPanes.office')[0];
-                $admins->whereHas('office', function (Builder $query) use ($name) {
-                    $query->where('name', $name);
-                });
-            }
-
-            if (!empty($request->searchPanes["type"])) {
-                $name =  $request->input('searchPanes.type')[0];
-                $admins->whereHas('typeOfAdmins', function (Builder $query) use ($name) {
-                    $query->where('name', $name);
-                });
-            }
-            // end search panes query
-
-            // Start Search Pane Data
-            $searchPanes = [
-                'options' => [
-                    "office" => [],
-                    "type" => [],
-                ]
-            ];
-
-            $offices = Office::withTrashed()->get();
-
-            foreach ($offices as $office) {
-                array_push(
-                    $searchPanes['options']['office'],
-                    [
-                        "label" => $office->name,
-                        "total" => $office->admins()->where('is_super', 0)->count(),
-                        "value" => $office->name,
-                    ]
-                );
-            }
-
-            $typeOfAdmins = TypeOfAdmin::get();
-
-            foreach ($typeOfAdmins as $typeOfAdmin) {
-                array_push(
-                    $searchPanes['options']['type'],
-                    [
-                        "label" => $typeOfAdmin->name,
-                        "total" => $typeOfAdmin->admins()->where('is_super', 0)->count(),
-                        "value" => $typeOfAdmin->name,
-                    ]
-                );
-            }
-            // End Search Pane Data
-
             $totalFiltered = $admins->count();
 
             $admins = $admins->offset($start)
@@ -140,9 +88,7 @@ class AdminController extends Controller
                     $nestedData['phone'] = $admin->phone;
                     $nestedData['office'] = $admin->office->name ?? '-';
                     $nestedData['type'] = '';
-                    foreach ($admin->typeOfAdmins as $type) {
-                        $nestedData['type'] .= '<span class="badge badge-success">' . $type->name . '</span> ';
-                    }
+                    
                     // $nestedData['phone'] = substr(strip_tags($admin->phone), 0, 50) . "...";
                     $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$admin->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
                     if ($admin->trashed()) {
@@ -160,8 +106,7 @@ class AdminController extends Controller
                 "draw"            => intval($request->input('draw')),
                 "recordsTotal"    => intval($totalData),
                 "recordsFiltered" => intval($totalFiltered),
-                "data"            => $data,
-                "searchPanes" => $searchPanes,
+                "data"            => $data
             );
 
             return $json_data;
@@ -193,8 +138,6 @@ class AdminController extends Controller
         $data = $request->adminData()->all();
 
         $admin = Admin::create($data);
-
-        $admin->typeOfAdmins()->sync($request->typeOfAdminId());
 
         $password = $request->getPassword();
 
@@ -240,8 +183,6 @@ class AdminController extends Controller
 
         $admin->update($data);
 
-        $admin->typeOfAdmins()->sync($request->typeOfAdminId());
-
         if ($request->resetPassword()) {
             $password = $request->getPassword();
 
@@ -259,13 +200,6 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin)
     {
-        if ($admin->is_super) {
-            $error = ValidationException::withMessages([
-                'super_error' => ['Cannot Delete Super Admin'],
-            ]);
-            throw $error;
-        }
-
         if ($admin->trashed()) {
             $admin->restore();
             return back()->with('success', 'Restore Admin Successful.');

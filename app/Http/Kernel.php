@@ -63,11 +63,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'donation.record.admintype' => \App\Http\Middleware\DonationRecordAdminType::class,
-        'donated.item.record.admintype' => \App\Http\Middleware\DonatedItemRecordAdminType::class,
-        'internal.donated.item.record.admintype' => \App\Http\Middleware\InternalDonatedItemRecordAdminType::class,
-        'setting.admintype' => \App\Http\Middleware\SettingAdminType::class,
-        'super.admin' => \App\Http\Middleware\SuperAdmin::class,
         'check.first.time.login' => \App\Http\Middleware\CheckFirstTimeLogin::class,
     ];
 }

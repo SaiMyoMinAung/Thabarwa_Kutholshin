@@ -5,8 +5,8 @@ namespace App;
 use App\City;
 use App\Office;
 use App\StateRegion;
-use App\TypeOfAdmin;
 use App\Traits\HasUUID;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Znck\Eloquent\Traits\BelongsToThrough;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-    use Notifiable, HasUUID, BelongsToThrough, SoftDeletes;
+    use Notifiable, HasUUID, BelongsToThrough, SoftDeletes, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -67,11 +67,6 @@ class Admin extends Authenticatable
     public function getUnreadNotis()
     {
         return $this->unreadNotifications()->orderBy('id', 'desc')->take(5)->get();
-    }
-
-    public function typeOfAdmins()
-    {
-        return $this->belongsToMany(TypeOfAdmin::class, 'admin_has_type_of_admins', 'admin_id', 'type_of_admin_id');
     }
 
     public function shareInternalDonatedItems()

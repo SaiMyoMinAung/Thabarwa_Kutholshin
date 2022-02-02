@@ -2217,7 +2217,7 @@ __webpack_require__.r(__webpack_exports__);
         city_id: "",
         is_available: 1
       },
-      fetchCity: route("cities.index"),
+      fetchCity: route("cities.fetch"),
       selectedCity: {},
       submited: false,
       validation: {
@@ -3097,7 +3097,7 @@ __webpack_require__.r(__webpack_exports__);
         center_id: ""
       },
       submited: false,
-      fetchCenter: route("centers.index"),
+      fetchCenter: route("centers.fetch"),
       selectedCenter: {},
       validation: {
         name_hasError: false,
@@ -3887,25 +3887,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_loading_overlay__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_loading_overlay__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _AddItemTypeComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddItemTypeComponent.vue */ "./resources/js/components/AddItemTypeComponent.vue");
 /* harmony import */ var _AddItemSubTypeComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddItemSubTypeComponent.vue */ "./resources/js/components/AddItemSubTypeComponent.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -67389,138 +67370,6 @@ var render = function() {
                     }
                   },
                   [_vm._v("Create Office")]
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-warning" }, [_vm._v("2")]),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "nav-item dropdown",
-              staticStyle: { "min-width": "150px" },
-              attrs: { role: "presentation" }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link dropdown-toggle store-setting",
-                  attrs: {
-                    "data-toggle": "dropdown",
-                    href: "#",
-                    role: "button",
-                    "aria-haspopup": "true",
-                    "aria-expanded": "false"
-                  }
-                },
-                [_vm._v("Store")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "dropdown-menu" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: {
-                      id: "store-list-tab",
-                      "data-toggle": "tab",
-                      href: "#store-list",
-                      role: "tab",
-                      "aria-controls": "store-list",
-                      "aria-selected": "true"
-                    }
-                  },
-                  [_vm._v("Store List")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: {
-                      id: "store-list-create-tab",
-                      "data-toggle": "tab",
-                      href: "#store-list-create",
-                      role: "tab",
-                      "aria-controls": "store-list-create",
-                      "aria-selected": "false"
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.store.model.clearData()
-                      }
-                    }
-                  },
-                  [_vm._v("Create Store")]
-                )
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "badge badge-warning" }, [_vm._v("3")]),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "nav-item dropdown",
-              staticStyle: { "min-width": "150px" },
-              attrs: { role: "presentation" }
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link dropdown-toggle store-setting",
-                  attrs: {
-                    "data-toggle": "dropdown",
-                    href: "#",
-                    role: "button",
-                    "aria-haspopup": "true",
-                    "aria-expanded": "false"
-                  }
-                },
-                [_vm._v("Box")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "dropdown-menu" }, [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: {
-                      id: "box-list-tab",
-                      "data-toggle": "tab",
-                      href: "#box-list",
-                      role: "tab",
-                      "aria-controls": "box-list",
-                      "aria-selected": "true"
-                    }
-                  },
-                  [_vm._v("Box List")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: {
-                      id: "box-list-create-tab",
-                      "data-toggle": "tab",
-                      href: "#box-list-create",
-                      role: "tab",
-                      "aria-controls": "box-list-create",
-                      "aria-selected": "false"
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.box.model.clearData()
-                      }
-                    }
-                  },
-                  [_vm._v("Create Box")]
                 )
               ])
             ]

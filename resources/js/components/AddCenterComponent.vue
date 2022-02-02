@@ -136,7 +136,7 @@ export default {
                 city_id: "",
                 is_available: 1
             },
-            fetchCity: route("cities.index"),
+            fetchCity: route("cities.fetch"),
             selectedCity: {},
             submited: false,
             validation: {

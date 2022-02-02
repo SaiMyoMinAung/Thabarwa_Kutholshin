@@ -15,12 +15,6 @@
 
 @section('content')
 <div class="row">
-    @if($errors->has('super_error'))
-    <div class="col-md-12 alert alert-danger">
-        {{ $errors->first('super_error') }}
-    </div>
-    @endif
-
     <div class="col-md-12 col-lg-12 col-centered">
         <form action="{{ $edit ? route('admins.update',$admin->uuid) : route('admins.store')}}" method="post">
             @if($edit)
@@ -55,21 +49,6 @@
                             @if ($errors->has('phone'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('phone') }}
-                            </div>
-                            @endif
-                        </div>
-
-                        <div class="form-group {{ $errors->has('type_of_admin_id') ? 'has-error' : '' }}">
-                            <label for="type_of_admin">Select Type Of Admin <span class="text-danger">*</span></label>
-                            <select name="type_of_admin_id[]" id="type_of_admin" class="form-control custom-select {{ $errors->has('type_of_admin_id') ? 'is-invalid' : (old('type_of_admin_id') && !$errors->has('type_of_admin_id') ? 'is-valid': '') }}" multiple>
-                                <option></option>
-                                @foreach($typeOfAdmins as $type)
-                                <option value="{{$type->id}}" @if($edit && in_array($type->id, $selectedTypeOfAdminId)) selected @endif @if(old('type_of_admin_id') == $type->id) selected @endif>{{$type->name}}</option>
-                                @endforeach
-                            </select>
-                            @if ($errors->has('type_of_admin_id'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('type_of_admin_id') }}
                             </div>
                             @endif
                         </div>

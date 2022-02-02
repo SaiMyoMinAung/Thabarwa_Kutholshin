@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use App\Constants\SuperRoleConstant;
 use Illuminate\Support\Facades\Gate;
-
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -25,28 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('can-do-donation-record', function ($user) {
-            return $user->typeOfAdmins->where('name', DONATION_RECORD_ADMIN)->count() > 0
-                || $user->is_super;
-        });
-
-        Gate::define('can-do-donated-item-record', function ($user) {
-            return $user->typeOfAdmins->where('name', DONATED_ITEM_RECORD_ADMIN)->count() > 0
-                || $user->is_super;
-        });
-
-        Gate::define('can-do-internal-donated-item-record', function ($user) {
-            return $user->typeOfAdmins->where('name', INTERNAL_DONATED_ITEM_RECORD_ADMIN)->count() > 0
-                || $user->is_super;
-        });
-
-        Gate::define('can-do-setting', function ($user) {
-            return $user->typeOfAdmins->where('name', SETTING)->count() > 0
-                || $user->is_super;
-        });
-
-        Gate::define('super-admin', function ($user) {
-            return $user->is_super;
+        Gate::before(function ($admin, $ability) {
+            return $admin->hasRole(SuperRoleConstant::SuperRole) ? true : null;
         });
     }
 }

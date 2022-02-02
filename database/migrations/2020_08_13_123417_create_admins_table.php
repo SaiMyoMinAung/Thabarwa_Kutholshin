@@ -22,8 +22,6 @@ class CreateAdminsTable extends Migration
             $table->integer('office_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('is_regional_admin')->default(0);
-            $table->boolean('is_super')->default(0);
             $table->integer('first_time_login')->default(1);
             $table->softDeletes();
             $table->rememberToken();
