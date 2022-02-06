@@ -14,6 +14,10 @@ use App\ViewModels\YogiViewModel;
 
 class YogiController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Yogi::class);
+    }
     /**
      * Display a listing of the resource.
      *

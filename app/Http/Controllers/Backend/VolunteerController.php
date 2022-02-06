@@ -13,6 +13,10 @@ use App\ViewModels\VolunteerViewModel;
 
 class VolunteerController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Volunteer::class);
+    }
     /**
      * Display a listing of the resource.
      *

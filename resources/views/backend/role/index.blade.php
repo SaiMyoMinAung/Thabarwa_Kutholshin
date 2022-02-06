@@ -60,14 +60,14 @@
             </td>
             <td>
                 @if (auth()->user()->can('edit-role'))
-                <a href="{{route('roles.edit' , $role->id)}}" class="btn btn-red link-text">Edit</a>
+                <a href="{{route('roles.edit' , $role->id)}}" class="btn btn-warning link-text">Edit</a>
                 @else
                 -
                 @endif
             </td>
             <td>
                 @if (auth()->user()->can('delete-role'))
-                <a class="btn btn-red link-text" href="#deleteModalCenter" onclick="deleteData('{{route('roles.destroy',$role->id)}}')" data-toggle="modal">Delete</a>
+                <a class="btn btn-danger link-text" href="#deleteModalCenter" onclick="deleteData('{{route('roles.destroy',$role->id)}}')" data-toggle="modal">Delete</a>
                 @else
                 -
                 @endif

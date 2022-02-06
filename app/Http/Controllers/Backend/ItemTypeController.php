@@ -20,6 +20,7 @@ class ItemTypeController extends Controller
     public function __construct()
     {
         $this->mainCalculation = new MainCalculation();    
+        $this->authorizeResource(ItemType::class);
     }
     /**
      * Display a listing of the resource.

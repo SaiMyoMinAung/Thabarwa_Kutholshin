@@ -15,11 +15,11 @@ class RoleController extends Controller
     public $lists;
     public function __construct()
     {
-        // $this->authorizeResource(Role::class, 'role');
+        $this->authorizeResource(Role::class);
         $this->lists = [
             'internal-donated-items', 'share-internal-donated-item', 'see-setting', 'team', 'yogi', 'volunteer',
             'admin', 'item-sub-type', 'item-type', 'country', 'state-region', 'city', 'unit', 'center', 'ward', 'alms-round',
-            'office', 'role'
+            'office', 'role', 'can-see-setting'
         ];
     }
 
@@ -72,7 +72,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($permissions ?? []);
 
-        return redirect(route('roles.index'))->with('success', trans('controller.success.create', ['model' => 'Role']));
+        return redirect(route('roles.index'))->with('success', 'Create Role Successful.');
     }
 
     /**
@@ -98,12 +98,14 @@ class RoleController extends Controller
             return redirect(route('roles.index'));
         }
 
+        $pForIDIRecordAdminType = PermissionConstant::forIDIRAT;
+
         $checked_permissions_id = $role->permissions->pluck('id')->toArray();
 
         $lists = $this->lists;
 
 
-        return view('backend.role.edit', compact('role', 'lists', 'checked_permissions_id'));
+        return view('backend.role.edit', compact('role', 'lists', 'checked_permissions_id', 'pForIDIRecordAdminType'));
     }
 
     /**
@@ -125,7 +127,7 @@ class RoleController extends Controller
 
         $role->syncPermissions($validated_data['permission_id'] ?? []);
 
-        return redirect(route('roles.index'))->with('success', trans('controller.success.update', ['model' => 'Role']));
+        return redirect(route('roles.index'))->with('success', 'Update Role Successful.');;
     }
 
     /**
@@ -142,6 +144,6 @@ class RoleController extends Controller
 
         $role->delete();
 
-        return redirect(route('roles.index'))->with('success', trans('controller.success.delete', ['model' => 'Admin']));
+        return redirect(route('roles.index'))->with('success', 'Delete Role Successful.');
     }
 }

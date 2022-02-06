@@ -6,7 +6,6 @@ use App\InternalDonatedItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Status\InternalDonatedItemStatus;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\InternalDonatedItemStoreFormRequest;
 use App\Http\Requests\InternalDonatedItemUpdateFormRequest;
@@ -16,6 +15,10 @@ use Carbon\Carbon;
 
 class InternalDonatedItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(InternalDonatedItem::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -95,15 +98,16 @@ class InternalDonatedItemController extends Controller
                             $nestedData['detail_data'][$key]['uuid'] = $record->uuid;
                             $nestedData['detail_data'][$key]['no'] = $key + 1;
                             $nestedData['detail_data'][$key]['item_sub_type_name'] = $record->itemSubType->name;
-                            $nestedData['detail_data'][$key]['amount'] = $record->package_qty . ' ' . $record->itemSubType->unit->package_unit . ' ' . $record->sacket_qty . ' ' . $record->itemSubType->unit->loose_unit;
+                            $nestedData['detail_data'][$key]['per_qty'] = '<span class="badge badge-primary">'.$record->itemSubType->sacket_per_package .'</span>'. $record->itemSubType->unit->loose_unit . ' ပါ';
+                            $nestedData['detail_data'][$key]['amount'] = '<span class="badge badge-primary">'.$record->package_qty . '</span> ' . $record->itemSubType->unit->package_unit . ' <span class="badge badge-primary">' . $record->sacket_qty . '</span> ' . $record->itemSubType->unit->loose_unit;
                             $nestedData['detail_data'][$key]['status'] = '<span class="' . InternalDonatedItemStatus::advanceSearch(($record->status))["class"] . '">' . InternalDonatedItemStatus::advanceSearch(($record->status))["label"] . '</span> ';
                             if ($record->is_confirmed) {
                                 $nestedData['detail_data'][$key]['status'] .= '/ <span class="badge badge-success">Confirmed</span>';
                             } else {
                                 $nestedData['detail_data'][$key]['status'] .= '/ <span class="badge badge-warning">Unconfirmed</span>';
                             }
-                            $nestedData['detail_data'][$key]['canEdit'] = true;
-                            $nestedData['detail_data'][$key]['canDelete'] = true;
+                            $nestedData['detail_data'][$key]['canEdit'] = auth()->user()->can('update-internal-donated-items') && $record->is_confirmed == 0 ? 1 : 0;
+                            $nestedData['detail_data'][$key]['canDelete'] = auth()->user()->can('delete-internal-donated-items') && $record->is_confirmed == 0 ? 1 : 0;
                         }
                         array_push($data, $nestedData);
                         $nestedData = [];
@@ -145,6 +149,10 @@ class InternalDonatedItemController extends Controller
     public function store(InternalDonatedItemStoreFormRequest $request)
     {
         $data = $request->internalDonatedItemData()->all();
+
+        if (auth()->user()->cannot('create-and-confirm-internal-donated-items')) {
+            $data['is_confirmed'] = 0;
+        }
 
         $internalDonatedItem = InternalDonatedItem::create($data);
 
@@ -194,6 +202,10 @@ class InternalDonatedItemController extends Controller
         }
 
         $data = $request->internalDonatedItemData()->all();
+
+        if (auth()->user()->cannot('create-and-confirm-internal-donated-items')) {
+            $data['is_confirmed'] = 0;
+        }
 
         $internalDonatedItem->update($data);
 

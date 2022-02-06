@@ -236,7 +236,7 @@ return [
         //     'search' => true,
         //     'topnav' => true,
         // ],
-        
+
         // [
         //     'text'        => 'Donation Records',
         //     'url'         => 'backend/donation_records',
@@ -256,7 +256,8 @@ return [
             'url'         => 'backend/internal_donated_items',
             'active'      => ['backend/internal_donated_items', 'backend/internal_donated_items/*'],
             'icon'        => 'fas fa-store',
-            'label_color' => 'success'
+            'label_color' => 'success',
+            'can' => 'read-internal-donated-items'
         ],
         [
             'text'        => 'share_stored_item',
@@ -281,13 +282,14 @@ return [
         //     'label_color' => 'success',
         //     'can' => 'can-do-internal-donated-item-record'
         // ],
-        ['header' => 'Settings'],
+        ['header' => 'Settings', 'can' => 'can-see-setting'],
         [
             'text'        => 'Admins',
             'url'         => 'backend/admins',
             'icon'        => 'fas fa-user-tie',
             'active'      => ['backend/admins', 'backend/admins/*/edit', 'backend/admins/create'],
             'label_color' => 'success',
+            'can' => 'read-admin'
         ],
         [
             'text'        => 'Roles',
@@ -295,6 +297,7 @@ return [
             'icon'        => 'fas fa-crown',
             'active'      => ['backend/roles', 'backend/roles/*/edit', 'backend/roles/create'],
             'label_color' => 'success',
+            'can' => 'read-role'
         ],
 
         // [
@@ -310,6 +313,7 @@ return [
             'icon'        => 'fas fa-users',
             'active'      => ['backend/teams', 'backend/teams/*/edit', 'backend/teams/create'],
             'label_color' => 'success',
+            'can' => 'read-team'
         ],
         [
             'text'        => 'Yogi',
@@ -317,6 +321,7 @@ return [
             'icon'        => 'fas fa-dharmachakra',
             'active'      => ['backend/yogis', 'backend/yogis/*/edit', 'backend/yogis/create'],
             'label_color' => 'success',
+            'can' => 'read-yogi'
         ],
         // [
         //     'text'        => 'Users',
@@ -329,6 +334,7 @@ return [
             'url'         => 'backend/settings',
             'icon'        => 'fas fa-cogs',
             'label_color' => 'success',
+            'can' => 'can-see-setting'
         ],
 
     ],

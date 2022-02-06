@@ -14,6 +14,10 @@ use App\Http\Resources\Select2\WardSelect2ResourceCollection;
 
 class WardController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Ward::class);
+    }
     /**
      * Display a listing of the resource.
      *

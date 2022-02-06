@@ -14,6 +14,10 @@ use App\Http\Resources\Select2\CenterSelect2ResourceCollection;
 
 class CenterController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Center::class);
+    }
     /**
      * Display a listing of the resource.
      *

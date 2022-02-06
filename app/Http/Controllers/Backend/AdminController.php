@@ -87,8 +87,8 @@ class AdminController extends Controller
                     $nestedData['email'] = $admin->email ?? '-';
                     $nestedData['phone'] = $admin->phone;
                     $nestedData['office'] = $admin->office->name ?? '-';
-                    $nestedData['type'] = '';
-                    
+                    $nestedData['role'] = $admin->roles()->first() ? $admin->roles()->first()->name : '-';
+
                     // $nestedData['phone'] = substr(strip_tags($admin->phone), 0, 50) . "...";
                     $nestedData['options'] = "<a class='btn btn-default text-primary' data-uuid=$admin->uuid data-toggle='editconfirmation' data-href=$edit><i class='fas fa-edit'></i></a> - ";
                     if ($admin->trashed()) {
@@ -139,6 +139,8 @@ class AdminController extends Controller
 
         $admin = Admin::create($data);
 
+        $admin->syncRoles([$request->role_id]);
+
         $password = $request->getPassword();
 
         Mail::to($admin->email)->send(new AdminInviteMail($admin, $password));
@@ -182,6 +184,8 @@ class AdminController extends Controller
         $data = $request->adminData()->all();
 
         $admin->update($data);
+
+        $admin->syncRoles([$request->role_id]);
 
         if ($request->resetPassword()) {
             $password = $request->getPassword();

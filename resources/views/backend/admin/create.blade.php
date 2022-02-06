@@ -68,6 +68,21 @@
                             @endif
                         </div>
 
+                        <div class="form-group {{ $errors->has('role_id') ? 'has-error' : '' }}">
+                            <label for="role">Select Role <span class="text-danger">*</span></label>
+                            <select name="role_id" id="role" class="form-control custom-select {{ $errors->has('role_id') ? 'is-invalid' : (old('role_id') && !$errors->has('role_id') ? 'is-valid': '') }}">
+                                <option></option>
+                                @foreach($roles as $role)
+                                <option value="{{$role->id}}" @if($edit && $admin->hasRole($role,'admin')) selected @endif @if(old('role_id') == $role->id) selected @endif>{{$role->name}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('role_id'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('role_id') }}
+                            </div>
+                            @endif
+                        </div>
+
                         @if($edit)
                         <div class="form-group {{ $errors->has('reset_password') ? 'has-error' : '' }}">
                             <label for="reset_password">Reset Password </label>
@@ -101,6 +116,11 @@
 
         $('#office').select2({
             placeholder: "Select Office",
+            allowClear: true
+        })
+
+        $('#role').select2({
+            placeholder: "Select Role",
             allowClear: true
         })
     });

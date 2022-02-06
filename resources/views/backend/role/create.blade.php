@@ -96,8 +96,6 @@
             if ($(className)[0]) {
                 $(className)[0].checked = source.checked
             }
-            // $(className)[0].checked = source.checked
-            console.log($(className))
         }
     }
 </script>

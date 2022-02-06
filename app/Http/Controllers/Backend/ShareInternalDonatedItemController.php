@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\ShareInternalDonatedItem;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\Query\Builder;
 use App\Http\Requests\ShareInternalDonatedItemStoreFormRequest;
 use App\Http\Requests\ShareInternalDonatedItemUpdateFormRequest;
 use App\Http\Resources\InternalDonatedItem\ShareInternalDonatedItemResource;
 
 class ShareInternalDonatedItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(ShareInternalDonatedItem::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -75,7 +79,8 @@ class ShareInternalDonatedItemController extends Controller
 
             $data = array();
 
-            $share_internal_requests = $share_internal_requests->with('requestable')->get();
+            $nowDate = Carbon::now()->format('Y-m-d');
+            $share_internal_requests = $share_internal_requests->with('requestable')->whereDate('date', $nowDate)->get();
 
             $groups = $share_internal_requests->groupBy(['date', 'requestable.name']);
 
@@ -95,8 +100,8 @@ class ShareInternalDonatedItemController extends Controller
                             $nestedData['detail_data'][$key]['no'] = $key + 1;
                             $nestedData['detail_data'][$key]['item_sub_type_name'] = $record->itemSubType->name;
                             $nestedData['detail_data'][$key]['amount'] = $record->amount_text;
-                            $nestedData['detail_data'][$key]['canEdit'] = true;
-                            $nestedData['detail_data'][$key]['canDelete'] = true;
+                            $nestedData['detail_data'][$key]['canEdit'] = auth()->user()->can('update-share-internal-donated-item') ? 1 : 0;;
+                            $nestedData['detail_data'][$key]['canDelete'] = auth()->user()->can('delete-share-internal-donated-item') ? 1 : 0;;
                         }
                     }
                     array_push($data, $nestedData);
@@ -215,11 +220,8 @@ class ShareInternalDonatedItemController extends Controller
      */
     public function destroy(ShareInternalDonatedItem $shareInternalDonatedItem)
     {
-        // if ($internalDonatedItem->status != InternalDonatedItemStatus::advanceSearch('Complete')["code"]) {
-        //     $internalRequestedItem->delete();
-        //     return response()->json(true, 200);
-        // } else {
-        //     return response()->json(false, 403);
-        // }
+        $shareInternalDonatedItem->delete();
+
+        return back()->with('success', trans('flash-message.share_internal_donated_item_delete'));
     }
 }

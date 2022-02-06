@@ -24,6 +24,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Office</th>
+            <th>Role</th>
             <th style="min-width: 105px;">Options</th>
         </tr>
     </thead>
@@ -77,6 +78,9 @@
                 },
                 {
                     "data": "office"
+                },
+                {
+                    "data": "role"
                 },
                 {
                     "data": "options",

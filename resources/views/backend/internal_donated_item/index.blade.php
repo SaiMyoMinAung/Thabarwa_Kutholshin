@@ -28,7 +28,9 @@
 </div>
 <div class="row">
     <div class="col-md-3">
+        @can('create-internal-donated-items')
         <a href="{{route('internal_donated_items.create')}}" style="min-width: 250px" class="btn btn-success">{{trans('button.add_new_item_to_store')}}</a>
+        @endcan
     </div>
 </div>
 

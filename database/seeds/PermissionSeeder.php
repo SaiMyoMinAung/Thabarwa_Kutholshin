@@ -42,7 +42,8 @@ class PermissionSeeder extends Seeder
             ['name' => 'edit-volunteer'],
             ['name' => 'delete-volunteer'],
             ['name' => 'restore-volunteer'],
-
+            // can see setting
+            ['name' => 'can-see-setting'],
             //admin
             ['name' => 'create-admin'],
             ['name' => 'read-admin'],

@@ -411,7 +411,7 @@
                                         : trans.get('button.update_and_confirm')
                                 "
                                 name="update_and_confirm"
-                                v-if="!disabled"
+                                v-if="!disabled && canConfirm"
                                 @click="
                                     edit
                                         ? InternalDonatedItemModel.updateAndConfirm()
@@ -456,13 +456,17 @@ export default {
         return {
             fullPage: false,
             isLoading: false,
+            canConfirm: false,
             InternalDonatedItemModel: new InternalDonatedItem(
                 this.internal_donated_item
             )
         };
     },
-    mounted() {
-        //
+    async mounted() {
+        const { data } = await axios.get(
+            "/backend/check-permission?permission=create-and-confirm-internal-donated-items"
+        );
+        this.canConfirm = data;
     },
     computed: {
         edit() {

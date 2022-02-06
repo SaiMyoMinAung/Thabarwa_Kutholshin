@@ -14,6 +14,10 @@ use App\Http\Resources\Select2\TeamSelect2ResourceCollection;
 
 class TeamController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Team::class);
+    }
     /**
      * Display a listing of the resource.
      *

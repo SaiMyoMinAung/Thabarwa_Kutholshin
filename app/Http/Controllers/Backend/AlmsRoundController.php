@@ -14,6 +14,10 @@ use App\Http\Resources\AlmsRoundResourceCollection;
 
 class AlmsRoundController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(AlmsRound::class);
+    }
     /**
      * Display a listing of the resource.
      *

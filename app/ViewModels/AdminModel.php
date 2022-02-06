@@ -3,7 +3,9 @@
 namespace App\ViewModels;
 
 use App\Admin;
+use App\Constants\SuperRoleConstant;
 use App\Office;
+use Spatie\Permission\Models\Role;
 use Spatie\ViewModels\ViewModel;
 
 class AdminModel extends ViewModel
@@ -20,5 +22,10 @@ class AdminModel extends ViewModel
     public function offices()
     {
         return Office::withTrashed()->available()->get();
+    }
+
+    public function roles()
+    {
+        return Role::where('name', '!=', SuperRoleConstant::SuperRole)->get();
     }
 }

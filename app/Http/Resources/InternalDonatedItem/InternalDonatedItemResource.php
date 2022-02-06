@@ -31,7 +31,8 @@ class InternalDonatedItemResource extends JsonResource
             'status' => InternalDonatedItemStatus::advanceSearch($this->status)["label"],
             'selectedAlmsRound' => new AlmsRoundResource($this->AlmsRound),
             'selectedItemType' => new ItemTypeResource($this->itemType),
-            'selectedItemSubType' => new ItemSubTypeResource($this->itemSubType)
+            'selectedItemSubType' => new ItemSubTypeResource($this->itemSubType),
+            'canConfirm' => auth()->user()->can('create-and-confirm-internal-donated-items')
         ];
     }
 }

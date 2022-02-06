@@ -14,6 +14,11 @@ use App\Http\Resources\Select2\ItemSubTypeSelect2ResourceCollection;
 
 class ItemSubTypeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(ItemSubType::class);
+    }
     /**
      * Display a listing of the resource.
      *

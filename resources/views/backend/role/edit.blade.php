@@ -33,6 +33,8 @@
 
                     <div class="form-group mb-4">
                         <input type="checkbox" onClick="toggle(this)" id="select-all" /> <label for="select-all">Select All</label>
+                        <br>
+                        <input type="checkbox" onClick="toggleIDI(this)" id="for-IDM" /> <label for="for-IDM">For စတို Admin</label>
                         @foreach ($lists as $list)
                         <div class="card">
                             <div class="card-footer">
@@ -45,7 +47,7 @@
                                     @foreach(Spatie\Permission\Models\Permission::where('name','LIKE',"%$list")->get() as $permission)
                                     <div class=" mx-0">
                                         <span class="cover"></span>
-                                        <input id="permission_{{$permission->id}}" class="sub-{{$list}}" type="checkbox" name="permission_id[]" value="{{$permission->id}}" class="form-check-input" @if (in_array($permission->id,$checked_permissions_id)) checked @endif>
+                                        <input id="permission_{{$permission->id}}" class="sub-{{$list}} {{$permission->name}}" type="checkbox" name="permission_id[]" value="{{$permission->id}}" class="form-check-input" @if (in_array($permission->id,$checked_permissions_id)) checked @endif>
                                         <label class="form-check-label mr-5" for="permission_{{$permission->id}}">{{$permission->name}}</label>
                                     </div>
                                     @endforeach
@@ -61,7 +63,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-red link-text">Update</button>
+                    <button type="submit" class="btn btn-warning link-text">Update</button>
                 </div>
             </form>
         </div>
@@ -72,6 +74,8 @@
 
 @section('js')
 <script>
+    var pForIDIRecordAdminType = <?php echo json_encode($pForIDIRecordAdminType) ?>
+
     function customToggle(source, list) {
         subcheckboxes = document.getElementsByClassName('sub-' + list);
         for (var i = 0; i < subcheckboxes.length; i++) {
@@ -85,6 +89,15 @@
         checkboxes.forEach(function(item, index) {
             item.checked = source.checked
         });
+    }
+
+    function toggleIDI(source) {
+        for (var i = 0; i < pForIDIRecordAdminType.length; i++) {
+            let className = "." + pForIDIRecordAdminType[i];
+            if ($(className)[0]) {
+                $(className)[0].checked = source.checked
+            }
+        }
     }
 </script>
 @stop

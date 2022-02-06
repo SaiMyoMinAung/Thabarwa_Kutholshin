@@ -23,7 +23,9 @@
 </div>
 <div class="row">
     <div class="col-md-3">
+        @can('create-share-internal-donated-item')
         <a class="btn btn-success" style="min-width: 250px" href="{{route('share_internal_donated_items.create')}}">{{trans('button.add_share_list')}}</a>
+        @endcan
     </div>
 </div>
 @stop

@@ -74,6 +74,9 @@ Route::get('get_all_item_types', 'ItemTypeController@getAllItemTypes')->name('it
 Route::get('get_all_alms_round', 'AlmsRoundController@getAllAlmsRound')->name('alms_round.fetch');
 Route::get('get_all_item_sub_types', 'ItemSubTypeController@getAllItemSubTypes')->name('item_sub_types.fetch');
 
+/**For Permission Check */
+Route::get('check-permission','CheckPermissionController@check');
+
 /**For Datatable detail list */
 Route::get('generate-internal-donated-item-list', "GenerateDetailListController@forInternalDonatedItem");
 Route::get('generate-share-internal-donated-item-list', "GenerateDetailListController@forShareInternalDonatedItem");
