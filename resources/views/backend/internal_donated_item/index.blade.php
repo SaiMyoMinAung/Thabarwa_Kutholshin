@@ -3,10 +3,8 @@
 @section('title', 'Donated Items')
 
 @section('css')
+<link href="{{ asset('css/bootstrap-datepicker.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-<!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/sp-1.2.2/datatables.min.css" /> -->
-<!-- <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.2.2/css/searchPanes.dataTables.min.css"> -->
-<!-- <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"> -->
 <style>
     td.details-control {
         background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;
@@ -20,23 +18,34 @@
 @stop
 
 @section('content_header')
-<div class="d-flex justify-content-center">
-    <h1>
+<div class="row">
+    @can('create-internal-donated-items')
+    <a href="{{route('internal_donated_items.create')}}" style="min-width: 250px" class="btn btn-success">{{trans('button.add_new_item_to_store')}}</a>
+    @endcan
+    <h1 class="ml-5">
         {{trans('title.store_list')}}
-
     </h1>
 </div>
-<div class="row">
-    <div class="col-md-3">
-        @can('create-internal-donated-items')
-        <a href="{{route('internal_donated_items.create')}}" style="min-width: 250px" class="btn btn-success">{{trans('button.add_new_item_to_store')}}</a>
-        @endcan
-    </div>
-</div>
-
 @stop
 
 @section('content')
+<div class="row">
+    <div class="col-md-3">
+        <div class="input-daterange input-group" id="datepicker">
+            <input type="text" class="form-control" name="date" id="date" placeholder="Date" autocomplete="off">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <select class="form-control" id="export">
+                <option >Select To Download</option>
+                <option value="excel">Excel File</option>
+                <option value="pdf">PDF File</option>
+            </select>
+        </div>
+    </div>
+</div>
+
 <table id="internalDonatedItemTable" class="table table-bordered" style="width:100%">
     <thead>
         <tr>
@@ -55,10 +64,7 @@
 @section('js')
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
-<!-- for search pane -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/sp-1.2.2/datatables.min.js"></script> -->
-<!-- <script src="https://cdn.datatables.net/searchpanes/1.2.2/js/dataTables.searchPanes.min.js" type="text/javascript"></script> -->
-<!-- <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js" type="text/javascript"></script> -->
+<script src="{{ asset('js/backend/bootstrap-datepicker.js') }}"></script>
 <script>
     function format(d, uuid) {
         return $.get('generate-internal-donated-item-list', {
@@ -70,6 +76,48 @@
     }
 
     $(document).ready(function() {
+        let today = localStorage.getItem('internalDonatedItemDate') ?? new Date().toISOString().substr(0, 10);
+        document.querySelector("#date").value = today;
+
+        $("#date").datepicker({
+            format: 'yyyy-mm-dd',
+            "autoclose": true
+        });
+
+        $('#export').change(function($event) {
+            var date = $("#date").val()
+            var self = this;
+            var value = $event.target.value
+            var url = window.location.href + '?export=' + value + '&date=' + date
+
+            $.ajax({
+                url,
+                xhrFields: {
+                    responseType: 'blob',
+                },
+                success: function(result, status, xhr) {
+                    var disposition = xhr.getResponseHeader('content-disposition');
+                    var matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(disposition);
+                    console.log(matches)
+                    var filename = (matches != null && matches[1] ? matches[1].replaceAll('"', '') : '.xlsx');
+
+                    // The actual download
+                    var blob = new Blob([result], {
+                        // type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                    });
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = filename;
+
+                    document.body.appendChild(link);
+
+                    link.click();
+                    document.body.removeChild(link);
+                    document.getElementById('export').getElementsByTagName('option')[0].selected = 'selected'
+                }
+            })
+        })
+        let url = "{{ route('internal_donated_items.index') }}" + "?date=" + today
         var dataTable = $('#internalDonatedItemTable').DataTable({
             createdRow: function(row, data, dataIndex) {
                 $(row).attr('id', data.id);
@@ -78,7 +126,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ route('internal_donated_items.index') }}",
+                "url": url,
             },
             "order": [
                 [1, 'desc']
@@ -151,6 +199,13 @@
             });
 
         });
+
+        $("#date").change(function() {
+            var date = $(this).val()
+            localStorage.setItem('internalDonatedItemDate', date);
+            var new_url = location.protocol + '//' + location.host + location.pathname + '?date=' + date;
+            dataTable.ajax.url(new_url).load();
+        })
 
         function activateToggle() {
             $('[data-toggle=confirmation]').confirmation({

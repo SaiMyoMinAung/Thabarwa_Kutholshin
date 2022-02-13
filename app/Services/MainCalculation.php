@@ -94,4 +94,25 @@ class MainCalculation
             'text' => $text
         ];
     }
+
+    public function changeSacketsToFormat($item_sub_type_id, $sacket_qty)
+    {
+        $itemSubType = ItemSubType::find($item_sub_type_id);
+
+        if ($sacket_qty >= $itemSubType->sacket_per_package) {
+            $package = $sacket_qty / $itemSubType->sacket_per_package;
+            $leftLoose = $sacket_qty % $itemSubType->sacket_per_package;
+        } else {
+            $package = 0;
+            $leftLoose = $sacket_qty;
+        }
+
+        $text = floor($package) . ' ' . $itemSubType->unit->package_unit . ' ' . $leftLoose . ' ' . $itemSubType->unit->loose_unit;
+
+        return [
+            'package_qty' => floor($package),
+            'sacket_qty' => $leftLoose,
+            'text' => $text
+        ];
+    }
 }

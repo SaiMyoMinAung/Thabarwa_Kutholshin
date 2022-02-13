@@ -7,15 +7,12 @@
 @stop
 
 @section('content_header')
-<div class="d-flex justify-content-center">
-    <h1>
+<div class="row">
+    <a href="{{route('internal_donated_items.index')}}" style="min-width: 250px" class="btn btn-outline-primary"><i class="fas fa-table"></i>
+        {{trans('button.show_table')}}</a>
+    <h1 class="ml-5">
         {{trans('title.add_list_to_store')}}
     </h1>
-</div>
-<div class="row">
-    <div class="col-md-3">
-        <a href="{{route('internal_donated_items.index')}}" style="min-width: 250px" class="btn btn-outline-primary"><i class="fas fa-table"></i> {{trans('button.show_table')}}</a>
-    </div>
 </div>
 @stop
 

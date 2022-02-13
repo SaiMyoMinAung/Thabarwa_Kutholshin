@@ -143,9 +143,9 @@ class AdminController extends Controller
 
         $password = $request->getPassword();
 
-        Mail::to($admin->email)->send(new AdminInviteMail($admin, $password));
+        // Mail::to($admin->email)->send(new AdminInviteMail($admin, $password));
 
-        return redirect(route('admins.index'))->with('success', 'Create Admin Successful');
+        return redirect(route('admins.index'))->with('success', "Created Password is $password");
     }
 
     /**

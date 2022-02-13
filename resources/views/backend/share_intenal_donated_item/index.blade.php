@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 
 @section('css')
+<link href="{{ asset('css/bootstrap-datepicker.css') }}" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/sp-1.2.2/datatables.min.css" />
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"> -->
 <style>
@@ -18,19 +19,34 @@
 @section('title', 'Shared List Of Store')
 
 @section('content_header')
-<div class="d-flex justify-content-center">
-    <h1>{{trans('title.shared_list_of_store')}}</h1>
-</div>
 <div class="row">
-    <div class="col-md-3">
-        @can('create-share-internal-donated-item')
-        <a class="btn btn-success" style="min-width: 250px" href="{{route('share_internal_donated_items.create')}}">{{trans('button.add_share_list')}}</a>
-        @endcan
-    </div>
+    @can('create-share-internal-donated-item')
+    <a class="btn btn-success" style="min-width: 250px" href="{{route('share_internal_donated_items.create')}}">{{trans('button.add_share_list')}}</a>
+    @endcan
+    <h1 class="ml-5">
+        {{trans('title.shared_list_of_store')}}
+    </h1>
 </div>
 @stop
 
 @section('content')
+<div class="row">
+    <div class="col-md-3">
+        <div class="input-daterange input-group" id="datepicker">
+            <input type="text" class="form-control" name="date" id="date" placeholder="Date" autocomplete="off">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <select class="form-control" id="export">
+                <option disabled selected>Select To Download</option>
+                <option value="excel">Excel File</option>
+                <!-- <option value="pdf">PDF File</option> -->
+            </select>
+        </div>
+    </div>
+</div>
+
 <table id="shareInternalDonatedItemTable" class="table table-bordered" style="width:100%">
     <thead>
         <tr>
@@ -47,9 +63,51 @@
 
 @section('js')
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/sp-1.2.2/datatables.min.js"></script>
-<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js" type="text/javascript"></script>
+<script src="{{ asset('js/backend/bootstrap-datepicker.js') }}"></script>
 <script>
     $(document).ready(function() {
+        
+        let today = localStorage.getItem('shareInternalDonatedItemDate') ?? new Date().toISOString().substr(0, 10);
+        document.querySelector("#date").value = today;
+
+        $("#date").datepicker({
+            format: 'yyyy-mm-dd',
+            "autoclose": true
+        });
+
+        $('#export').change(function($event) {
+            var date = $("#date").val()
+            var self = this;
+            var value = $event.target.value
+            var url = window.location.href + '?export=' + value + '&date=' + date
+
+            $.ajax({
+                url,
+                xhrFields: {
+                    responseType: 'blob',
+                },
+                success: function(result, status, xhr) {
+                    var disposition = xhr.getResponseHeader('content-disposition');
+                    var matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(disposition);
+                    console.log(matches)
+                    var filename = (matches != null && matches[1] ? matches[1].replaceAll('"', '') : '.xlsx');
+
+                    // The actual download
+                    var blob = new Blob([result], {
+                        // type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                    });
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = filename;
+
+                    document.body.appendChild(link);
+
+                    link.click();
+                    document.body.removeChild(link);
+                    document.getElementById('export').getElementsByTagName('option')[0].selected = 'selected'
+                }
+            })
+        })
 
         function format(d, uuid) {
             return $.get('generate-share-internal-donated-item-list', {
@@ -59,7 +117,7 @@
                 return data;
             })
         }
-
+        let url = "{{ route('share_internal_donated_items.index') }}" + "?date=" + today
         let dataTable = $('#shareInternalDonatedItemTable').DataTable({
             createdRow: function(row, data, dataIndex) {
                 $(row).attr('id', data.id);
@@ -71,7 +129,7 @@
             "processing": true,
             "serverSide": true,
             "ajax": {
-                "url": "{{ route('share_internal_donated_items.index') }}",
+                "url": url,
             },
             "columns": [{
                     "class": "details-control",
@@ -141,6 +199,13 @@
             });
 
         });
+
+        $("#date").change(function() {
+            var date = $(this).val()
+            localStorage.setItem('shareInternalDonatedItemDate', date);
+            var new_url = location.protocol + '//' + location.host + location.pathname + '?date=' + date;
+            dataTable.ajax.url(new_url).load();
+        })
 
         function activateToggle() {
             $('[data-toggle=confirmation]').confirmation({

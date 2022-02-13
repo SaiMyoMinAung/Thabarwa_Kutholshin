@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\ShareInternalDonatedItem;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ShareInternalDonatedItemExport;
 use App\Http\Requests\ShareInternalDonatedItemStoreFormRequest;
 use App\Http\Requests\ShareInternalDonatedItemUpdateFormRequest;
 use App\Http\Resources\InternalDonatedItem\ShareInternalDonatedItemResource;
@@ -33,6 +35,7 @@ class ShareInternalDonatedItemController extends Controller
             //     4 => 'sacket_qty',
             //     5 => 'by_admin'
             // );
+            $date = $request->date;
 
             $totalData = ShareInternalDonatedItem::count();
 
@@ -79,8 +82,20 @@ class ShareInternalDonatedItemController extends Controller
 
             $data = array();
 
-            $nowDate = Carbon::now()->format('Y-m-d');
-            $share_internal_requests = $share_internal_requests->with('requestable')->whereDate('date', $nowDate)->get();
+            $nowDate = $date ?? Carbon::now()->format('Y-m-d');
+
+            $share_internal_requests = $share_internal_requests->with('requestable')->whereDate('date', $nowDate);
+
+            if ($request->export === 'excel') {
+                return Excel::download(new ShareInternalDonatedItemExport($share_internal_requests), $nowDate . "-storelist.xlsx");
+            }
+            //  elseif ($request->export === 'pdf') {
+            //     $data = $share_internal_requests->get();
+            //     $htmlContent = view('backend.partial_blade.IDI', compact('data', 'nowDate'));
+            //     return GeneratePDF::createPdf($htmlContent,  "$nowDate-storelist.pdf");
+            // }
+
+            $share_internal_requests = $share_internal_requests->get();
 
             $groups = $share_internal_requests->groupBy(['date', 'requestable.name']);
 
@@ -89,9 +104,8 @@ class ShareInternalDonatedItemController extends Controller
             if (!empty($groups)) {
 
                 foreach ($groups as $date => $item) {
-                    $nestedData['date'] = $date;
-
                     foreach ($item as $name => $items) {
+                        $nestedData['date'] = $date;
                         $nestedData['name'] = $name;
                         $nestedData['count'] = count($items);
                         foreach ($items as $key => $record) {
@@ -103,12 +117,12 @@ class ShareInternalDonatedItemController extends Controller
                             $nestedData['detail_data'][$key]['canEdit'] = auth()->user()->can('update-share-internal-donated-item') ? 1 : 0;;
                             $nestedData['detail_data'][$key]['canDelete'] = auth()->user()->can('delete-share-internal-donated-item') ? 1 : 0;;
                         }
+                        array_push($data, $nestedData);
+                        $nestedData = [];
                     }
-                    array_push($data, $nestedData);
-                    $nestedData = [];
                 }
             }
-            // dd($data);
+
 
             // dd($share_internal_requests);
 
