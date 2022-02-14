@@ -4,10 +4,8 @@ namespace App\Http\Resources\InternalDonatedItem;
 
 use App\Http\Resources\AlmsRoundResource;
 use App\Http\Resources\ItemTypeResource;
-use App\Status\InternalDonatedItemStatus;
 use App\Http\Resources\ItemSubTypeResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Select2\UnitSelect2Resource;
 
 class InternalDonatedItemResource extends JsonResource
 {
@@ -28,7 +26,6 @@ class InternalDonatedItemResource extends JsonResource
             'item_type_id' => $this->item_type_id,
             'item_sub_type_id' => $this->item_sub_type_id,
             'is_confirmed' => (bool) $this->is_confirmed,
-            'status' => InternalDonatedItemStatus::advanceSearch($this->status)["label"],
             'selectedAlmsRound' => new AlmsRoundResource($this->AlmsRound),
             'selectedItemType' => new ItemTypeResource($this->itemType),
             'selectedItemSubType' => new ItemSubTypeResource($this->itemSubType),

@@ -63,31 +63,6 @@ export default class InternalDonatedItem {
         this.updateItem()
     }
 
-    controlAvailable() {
-        let url = route('control.available', this.data.uuid);
-
-        window.dashboard_app.$emit('startLoading');
-
-        axios.get(url)
-            .then(response => {
-                // construct with new data
-                this.constructData(response.data);
-                // send event
-                window.dashboard_app.$emit('success', response.data)
-                // do loading
-                window.dashboard_app.$emit('endLoading');
-                // do toast
-                window.dashboard_app.$toasted.show("Saving Success.", { icon: "save" });
-
-            })
-            .catch(function (error) {
-                // do toast
-                window.dashboard_app.$toasted.show("Saving Failed.", { icon: "save" });
-                // do loading
-                window.dashboard_app.$emit('endLoading');
-            });
-    }
-
     updateItem() {
         let self = this;
         let data = this.data;

@@ -11,34 +11,12 @@
                 <div class="card-body row">
                     <div class="col-md-9" v-if="edit">
                         <h3>
-                            <span
-                                v-bind:class="{
-                                    'badge badge-danger':
-                                        InternalDonatedItemModel.data.status ===
-                                        'Lost',
-                                    'badge badge-success':
-                                        InternalDonatedItemModel.data.status ===
-                                        'Available'
-                                }"
-                            >
+                            <span>
                                 {{
                                     InternalDonatedItemModel.data.item_unique_id
                                 }}
                             </span>
-                            -
-                            <span
-                                v-bind:class="{
-                                    'badge badge-danger':
-                                        InternalDonatedItemModel.data.status ===
-                                        'Lost',
-                                    'badge badge-success':
-                                        InternalDonatedItemModel.data.status ===
-                                        'Available'
-                                }"
-                            >
-                                {{ InternalDonatedItemModel.data.status }}
-                            </span>
-                            -
+                            (
                             <span
                                 v-bind:class="{
                                     'badge badge-success':
@@ -54,49 +32,8 @@
                                         : "Unconfirmed"
                                 }}
                             </span>
+                            )
                         </h3>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="" v-if="showRequestControl">
-                            <div
-                                class="form-group"
-                                v-if="
-                                    InternalDonatedItemModel.data.status !=
-                                        'Complete'
-                                "
-                            >
-                                <div
-                                    class="
-                    custom-control
-                    custom-switch
-                    custom-switch-off-danger
-                    custom-switch-on-success
-                  "
-                                >
-                                    <input
-                                        type="checkbox"
-                                        class="custom-control-input"
-                                        id="is_left_item"
-                                        :checked="
-                                            InternalDonatedItemModel.data
-                                                .status == 'Available'
-                                                ? true
-                                                : false
-                                        "
-                                        @click="
-                                            InternalDonatedItemModel.controlAvailable()
-                                        "
-                                    />
-                                    <label
-                                        class="custom-control-label"
-                                        for="is_left_item"
-                                        >{{
-                                            InternalDonatedItemModel.data.status
-                                        }}</label
-                                    >
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="col-md-12">
@@ -483,12 +420,6 @@ export default {
         },
         itemSubTypeDisabled() {
             return this.InternalDonatedItemModel.data.is_confirmed;
-        },
-        showRequestControl() {
-            return (
-                this.InternalDonatedItemModel.data.is_confirmed &&
-                this.InternalDonatedItemModel.data.status != "Complete"
-            );
         }
     },
     created() {

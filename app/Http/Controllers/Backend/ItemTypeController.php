@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Services\MainCalculation;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemTypeResource;
-use App\Status\InternalDonatedItemStatus;
 use App\Http\Requests\ItemTypeStoreRequest;
 use App\Http\Requests\ItemTypeUpdateRequest;
 use App\Http\Resources\ItemTypeResourceCollection;
@@ -155,16 +154,14 @@ class ItemTypeController extends Controller
         // ];
 
         $office_id = auth()->user()->office->id;
-        $available_status = InternalDonatedItemStatus::AVAILABLE()->getValue();
-        $available_code = InternalDonatedItemStatus::advanceSearch($available_status);
 
-        $storeList = ItemType::withCount(['internalDonatedItems' => function ($q) use ($office_id, $available_code) {
-            $q->where('office_id', $office_id)->where('status', $available_code['code']);
-        }])->with(['itemSubTypes' => function ($q) use ($office_id, $available_code) {
+        $storeList = ItemType::withCount(['internalDonatedItems' => function ($q) use ($office_id) {
+            $q->where('office_id', $office_id);
+        }])->with(['itemSubTypes' => function ($q) use ($office_id) {
             $q->with([
                 'sharedInternalDonatedItems',
-                'internalDonatedItems' => function ($q) use ($office_id, $available_code) {
-                    $q->where('office_id', $office_id)->where('status', $available_code['code']);
+                'internalDonatedItems' => function ($q) use ($office_id) {
+                    $q->where('office_id', $office_id);
                 }
             ]);
         }])->get()->map(function ($item, $key) {

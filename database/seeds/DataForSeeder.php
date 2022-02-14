@@ -1,7 +1,7 @@
 <?php
 
-const OFFICE_ONE = 'ဆေးစတို (ဓမ္မာရုံအောက်)';
-const OFFICE_TWO = 'ဆေးစတို';
+const OFFICE_ONE = 'ဆေးစတို အမှတ် ၁ ( သန်လျင် )';
+const OFFICE_TWO = 'ဆေးစတို အမှတ် ၁ ( ရွှေချောင်း )';
 
 const STORE_ONE = 'စတို ၁';
 const STORE_TWO = 'စတို ၂';

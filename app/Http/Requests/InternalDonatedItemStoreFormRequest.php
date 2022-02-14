@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\DTO\InternalDonatedItemDTO;
-use App\Status\InternalDonatedItemStatus;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Http\Requests\DTO\InternalDonatedItemDTO;
 class InternalDonatedItemStoreFormRequest extends FormRequest
 {
     /**
@@ -60,7 +58,6 @@ class InternalDonatedItemStoreFormRequest extends FormRequest
             'sacket_qty' => $this->input('sacket_qty'),
             'alms_round_id' => $this->input('alms_round_id'),
             'item_sub_type_id' => $this->input('item_sub_type_id'),
-            'status' => InternalDonatedItemStatus::advanceSearch('Available')["code"],
             'is_confirmed' => $this->input('is_confirmed'),
             'office_id' => auth()->user()->office->id,
             'admin_id' => auth()->user()->id

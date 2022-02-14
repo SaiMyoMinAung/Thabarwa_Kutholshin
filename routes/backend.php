@@ -22,7 +22,6 @@ Route::post('my-profile/{admin}', 'ProfileController@update')->name('profile.upd
  */
 Route::resource('internal_donated_items', 'InternalDonatedItemController');
 Route::get('get_internal_donated_items', 'InternalDonatedItemController@getInternalDonatedItems')->name('get.internalDonatedItems');
-Route::get('internal_donated_items/control_available/{internal_donated_item}', 'InternalDonatedItemController@controlAvailableOrLost')->name('control.available');
 
 /**
  * share internal donated item (အဝေ စာရင်း)

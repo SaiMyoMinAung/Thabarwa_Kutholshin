@@ -13,7 +13,6 @@ final class InternalDonatedItemDTO extends DataTransferObject
     public $package_qty;
     public $sacket_qty;
     public $item_sub_type_id;
-    public $status;
     public $is_confirmed;
     public $office_id;
     public $admin_id;

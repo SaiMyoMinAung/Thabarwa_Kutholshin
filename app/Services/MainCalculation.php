@@ -38,6 +38,7 @@ class MainCalculation
 
         $totalSackets = $itemSubType->internalDonatedItems()
             ->where('office_id', auth()->user()->office_id)
+            ->confirmed()
             ->get()->sum(function ($item) use ($itemSubType) {
                 return ($item->package_qty * $itemSubType->sacket_per_package) + $item->sacket_qty;
             });

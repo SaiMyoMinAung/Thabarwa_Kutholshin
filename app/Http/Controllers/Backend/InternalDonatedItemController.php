@@ -7,7 +7,6 @@ use App\InternalDonatedItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Status\InternalDonatedItemStatus;
 use App\Exports\InternalDonatedItemExport;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\InternalDonatedItemStoreFormRequest;
@@ -62,9 +61,10 @@ class InternalDonatedItemController extends Controller
                 ->whereDate('date', $nowDate);
 
             if ($request->export === 'excel') {
+                $internal_donated_items = $internal_donated_items->confirmed();
                 return Excel::download(new InternalDonatedItemExport($internal_donated_items), $nowDate . "-storelist.xlsx");
             } elseif ($request->export === 'pdf') {
-                $data = $internal_donated_items->get();
+                $data = $internal_donated_items->confirmed()->get();
                 $htmlContent = view('backend.partial_blade.IDI', compact('data', 'nowDate'));
                 return GeneratePDF::createPdf($htmlContent,  "$nowDate-storelist.pdf");
             }
@@ -88,11 +88,10 @@ class InternalDonatedItemController extends Controller
                             $nestedData['detail_data'][$key]['item_sub_type_name'] = $record->itemSubType->name;
                             $nestedData['detail_data'][$key]['per_qty'] = '<span class="badge badge-primary">' . $record->itemSubType->sacket_per_package . '</span>' . $record->itemSubType->unit->loose_unit . ' ပါသည်';
                             $nestedData['detail_data'][$key]['amount'] = '<span class="badge badge-primary">' . $record->package_qty . '</span> ' . $record->itemSubType->unit->package_unit . ' <span class="badge badge-primary">' . $record->sacket_qty . '</span> ' . $record->itemSubType->unit->loose_unit;
-                            $nestedData['detail_data'][$key]['status'] = '<span class="' . InternalDonatedItemStatus::advanceSearch(($record->status))["class"] . '">' . InternalDonatedItemStatus::advanceSearch(($record->status))["label"] . '</span> ';
                             if ($record->is_confirmed) {
-                                $nestedData['detail_data'][$key]['status'] .= '/ <span class="badge badge-success">Confirmed</span>';
+                                $nestedData['detail_data'][$key]['status'] = '<span class="badge badge-success">Confirmed</span>';
                             } else {
-                                $nestedData['detail_data'][$key]['status'] .= '/ <span class="badge badge-warning">Unconfirmed</span>';
+                                $nestedData['detail_data'][$key]['status'] = '<span class="badge badge-warning">Unconfirmed</span>';
                             }
                             $nestedData['detail_data'][$key]['canEdit'] = auth()->user()->can('update-internal-donated-items') && $record->is_confirmed == 0 ? 1 : 0;
                             $nestedData['detail_data'][$key]['canDelete'] = auth()->user()->can('delete-internal-donated-items') && $record->is_confirmed == 0 ? 1 : 0;
@@ -222,7 +221,6 @@ class InternalDonatedItemController extends Controller
     public function getInternalDonatedItems(Request $request)
     {
         $internalDonatedItems = auth()->user()->office->internalDonatedItems()
-            ->available()
             ->confirmed()
             ->filterByHistory()
             ->filterByOffice()
@@ -230,29 +228,5 @@ class InternalDonatedItemController extends Controller
             ->paginate(5);
 
         return response()->json(new InternalDonatedItemResourceCollection($internalDonatedItems), 200);
-    }
-
-    public function controlAvailableOrLost(InternalDonatedItem $internalDonatedItem)
-    {
-        $internalDonatedItemStatus = InternalDonatedItemStatus::advanceSearch($internalDonatedItem->status);
-
-        if ($internalDonatedItemStatus["label"] == 'Available') {
-            $status = InternalDonatedItemStatus::advanceSearch('Lost')["code"];
-        } else if ($internalDonatedItemStatus["label"] == 'Lost') {
-            $status = InternalDonatedItemStatus::advanceSearch('Available')["code"];
-        } else if ($internalDonatedItemStatus["label"] == 'Complete') {
-            $error = ValidationException::withMessages([
-                'cannot_change_status_error' => ['This Item Is Completed.Cannot Change To Other Status.'],
-            ]);
-            throw $error;
-        }
-
-        $internalDonatedItem->update([
-            'status' => $status
-        ]);
-
-        $internalDonatedItem->fresh();
-
-        return response()->json(new InternalDonatedItemResource($internalDonatedItem), 200);
     }
 }

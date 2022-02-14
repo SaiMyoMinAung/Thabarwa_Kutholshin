@@ -52,7 +52,6 @@
             <th>ပစ္စည်း အမည်</th>
             <th>နှုန်းထား</th>
             <th>ပမာဏ</th>
-            <th>အခြေအနေ</th>
         </tr>
         @foreach ($data as $d)
         <tr>
@@ -61,7 +60,6 @@
             <td>{{$d->itemSubType->name}}</td>
             <td>{{$d->itemSubType->sacket_per_package}}</td>
             <td>{{$d->package_qty . ' ' . $d->itemSubType->unit->package_unit . ' / ' . $d->sacket_qty . ' ' . $d->itemSubType->unit->loose_unitdate}}</td>
-            <td>{{\App\Status\InternalDonatedItemStatus::advanceSearch(($d->status))["label"]}}</td>
         </tr>
         @endforeach
 

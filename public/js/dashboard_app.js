@@ -4279,69 +4279,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -4413,9 +4350,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     itemSubTypeDisabled: function itemSubTypeDisabled() {
       return this.InternalDonatedItemModel.data.is_confirmed;
-    },
-    showRequestControl: function showRequestControl() {
-      return this.InternalDonatedItemModel.data.is_confirmed && this.InternalDonatedItemModel.data.status != "Complete";
     }
   },
   created: function created() {
@@ -65286,53 +65220,17 @@ var render = function() {
               _vm.edit
                 ? _c("div", { staticClass: "col-md-9" }, [
                     _c("h3", [
-                      _c(
-                        "span",
-                        {
-                          class: {
-                            "badge badge-danger":
-                              _vm.InternalDonatedItemModel.data.status ===
-                              "Lost",
-                            "badge badge-success":
-                              _vm.InternalDonatedItemModel.data.status ===
-                              "Available"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(
-                                _vm.InternalDonatedItemModel.data.item_unique_id
-                              ) +
-                              "\n                        "
-                          )
-                        ]
-                      ),
+                      _c("span", [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(
+                              _vm.InternalDonatedItemModel.data.item_unique_id
+                            ) +
+                            "\n                        "
+                        )
+                      ]),
                       _vm._v(
-                        "\n                        -\n                        "
-                      ),
-                      _c(
-                        "span",
-                        {
-                          class: {
-                            "badge badge-danger":
-                              _vm.InternalDonatedItemModel.data.status ===
-                              "Lost",
-                            "badge badge-success":
-                              _vm.InternalDonatedItemModel.data.status ===
-                              "Available"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(_vm.InternalDonatedItemModel.data.status) +
-                              "\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(
-                        "\n                        -\n                        "
+                        "\n                        (\n                        "
                       ),
                       _c(
                         "span",
@@ -65355,64 +65253,13 @@ var render = function() {
                               "\n                        "
                           )
                         ]
+                      ),
+                      _vm._v(
+                        "\n                        )\n                    "
                       )
                     ])
                   ])
                 : _vm._e(),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-3" }, [
-                _vm.showRequestControl
-                  ? _c("div", {}, [
-                      _vm.InternalDonatedItemModel.data.status != "Complete"
-                        ? _c("div", { staticClass: "form-group" }, [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "\n                custom-control\n                custom-switch\n                custom-switch-off-danger\n                custom-switch-on-success\n              "
-                              },
-                              [
-                                _c("input", {
-                                  staticClass: "custom-control-input",
-                                  attrs: {
-                                    type: "checkbox",
-                                    id: "is_left_item"
-                                  },
-                                  domProps: {
-                                    checked:
-                                      _vm.InternalDonatedItemModel.data
-                                        .status == "Available"
-                                        ? true
-                                        : false
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.InternalDonatedItemModel.controlAvailable()
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "label",
-                                  {
-                                    staticClass: "custom-control-label",
-                                    attrs: { for: "is_left_item" }
-                                  },
-                                  [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm.InternalDonatedItemModel.data.status
-                                      )
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
-                        : _vm._e()
-                    ])
-                  : _vm._e()
-              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-12" }, [
                 _c("div", { staticClass: "col-md-12" }, [
@@ -91681,14 +91528,20 @@ var InternalDonatedItem = /*#__PURE__*/function () {
       this.updateItem();
     }
   }, {
-    key: "controlAvailable",
-    value: function controlAvailable() {
+    key: "updateItem",
+    value: function updateItem() {
       var _this = this;
 
-      var url = route('control.available', this.data.uuid);
+      var self = this;
+      var data = this.data;
+      data['_method'] = 'PATCH';
+      var url = route('internal_donated_items.update', this.data.uuid);
       window.dashboard_app.$emit('startLoading');
-      axios.get(url).then(function (response) {
-        // construct with new data
+      axios.post(url, this.data).then(function (response) {
+        console.log(response); // clear validation
+
+        _this.InternalDonatedItemValidation = new _validations_internal_donated_item_component_create_internal_donated_item_validation__WEBPACK_IMPORTED_MODULE_0__["default"](); // construct with new data
+
         _this.constructData(response.data); // send event
 
 
@@ -91699,41 +91552,7 @@ var InternalDonatedItem = /*#__PURE__*/function () {
         window.dashboard_app.$toasted.show("Saving Success.", {
           icon: "save"
         });
-      })["catch"](function (error) {
-        // do toast
-        window.dashboard_app.$toasted.show("Saving Failed.", {
-          icon: "save"
-        }); // do loading
-
-        window.dashboard_app.$emit('endLoading');
-      });
-    }
-  }, {
-    key: "updateItem",
-    value: function updateItem() {
-      var _this2 = this;
-
-      var self = this;
-      var data = this.data;
-      data['_method'] = 'PATCH';
-      var url = route('internal_donated_items.update', this.data.uuid);
-      window.dashboard_app.$emit('startLoading');
-      axios.post(url, this.data).then(function (response) {
-        console.log(response); // clear validation
-
-        _this2.InternalDonatedItemValidation = new _validations_internal_donated_item_component_create_internal_donated_item_validation__WEBPACK_IMPORTED_MODULE_0__["default"](); // construct with new data
-
-        _this2.constructData(response.data); // send event
-
-
-        window.dashboard_app.$emit('success', response.data); // do loading
-
-        window.dashboard_app.$emit('endLoading'); // do toast
-
-        window.dashboard_app.$toasted.show("Saving Success.", {
-          icon: "save"
-        });
-        window.history.pushState({}, '', route('internal_donated_items.edit', _this2.data.uuid));
+        window.history.pushState({}, '', route('internal_donated_items.edit', _this.data.uuid));
       })["catch"](function (error) {
         // window.dashboard_app.$emit('failed')
         console.log(error.response);
@@ -91750,7 +91569,7 @@ var InternalDonatedItem = /*#__PURE__*/function () {
   }, {
     key: "saveItem",
     value: function saveItem() {
-      var _this3 = this;
+      var _this2 = this;
 
       this.InternalDonatedItemSubmited = true;
       var self = this;
@@ -91758,9 +91577,9 @@ var InternalDonatedItem = /*#__PURE__*/function () {
       window.dashboard_app.$emit('startLoading');
       axios.post(url, this.data).then(function (response) {
         console.log(response);
-        _this3.InternalDonatedItemValidation = new _validations_internal_donated_item_component_create_internal_donated_item_validation__WEBPACK_IMPORTED_MODULE_0__["default"]();
+        _this2.InternalDonatedItemValidation = new _validations_internal_donated_item_component_create_internal_donated_item_validation__WEBPACK_IMPORTED_MODULE_0__["default"]();
 
-        _this3.constructData(response.data);
+        _this2.constructData(response.data);
 
         window.dashboard_app.$emit('success', response.data);
         window.dashboard_app.$toasted.show("Saving Success.", {

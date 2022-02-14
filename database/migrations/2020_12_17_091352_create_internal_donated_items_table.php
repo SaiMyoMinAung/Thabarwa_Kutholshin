@@ -22,7 +22,6 @@ class CreateInternalDonatedItemsTable extends Migration
             $table->integer('item_sub_type_id');
             $table->integer('package_qty')->default(0);
             $table->integer('sacket_qty')->default(0);
-            $table->smallInteger('status');
             $table->boolean('is_confirmed');
             $table->integer('office_id');
             $table->integer('admin_id');

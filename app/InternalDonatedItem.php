@@ -5,7 +5,6 @@ namespace App;
 use App\Traits\HasUUID;
 use App\Traits\HasItemUniqueId;
 use Illuminate\Database\Eloquent\Model;
-use App\Status\InternalDonatedItemStatus;
 
 class InternalDonatedItem extends Model
 {
@@ -25,11 +24,6 @@ class InternalDonatedItem extends Model
     public function itemSubType()
     {
         return $this->belongsTo(ItemSubType::class, 'item_sub_type_id')->withDefault();
-    }
-
-    public function scopeAvailable($query)
-    {
-        return $query->where('status', InternalDonatedItemStatus::advanceSearch('Available')["code"]);
     }
 
     public function scopeConfirmed($query)
