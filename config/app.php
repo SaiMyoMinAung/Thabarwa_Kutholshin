@@ -164,6 +164,7 @@ return [
         KgBot\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        App\Providers\ViewComposerServiceProvider::class,
 
         /*
          * Package Service Providers...

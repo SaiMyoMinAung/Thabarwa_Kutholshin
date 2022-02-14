@@ -6,6 +6,7 @@
 @section('title', 'Create Team')
 
 @section('content_header')
+@include('backend.partials.admininfo')
 <div class="mb-3 d-flex justify-content-between">
     <div>
         <h1>@if($edit) Edit @else Create @endif Team</h1>

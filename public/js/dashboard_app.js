@@ -4279,6 +4279,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 
 
@@ -9817,6 +9819,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddTeamComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddTeamComponent.vue */ "./resources/js/components/AddTeamComponent.vue");
 /* harmony import */ var _AddYogiComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./AddYogiComponent.vue */ "./resources/js/components/AddYogiComponent.vue");
 /* harmony import */ var _ItemOfStore_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./ItemOfStore.vue */ "./resources/js/components/ItemOfStore.vue");
+//
+//
 //
 //
 //
@@ -65469,6 +65473,7 @@ var render = function() {
                             .InternalDonatedItemValidation.package_qty_hasError
                       },
                       attrs: {
+                        autocomplete: "off",
                         tabindex: 5,
                         name: "package_qty",
                         id: "package_qty",
@@ -65560,6 +65565,7 @@ var render = function() {
                             .InternalDonatedItemValidation.sacket_qty_hasError
                       },
                       attrs: {
+                        autocomplete: "off",
                         tabindex: 6,
                         name: "sacket_qty",
                         id: "sacket_qty",
@@ -75553,6 +75559,7 @@ var render = function() {
                     .ShareInternalDonatedItemValidation.package_qty_hasError
               },
               attrs: {
+                autocomplete: "off",
                 name: "package_qty",
                 id: "package_qty",
                 type: "text",
@@ -75639,6 +75646,7 @@ var render = function() {
                     .ShareInternalDonatedItemValidation.sacket_qty_hasError
               },
               attrs: {
+                autocomplete: "off",
                 name: "sacket_qty",
                 id: "sacket_qty",
                 type: "text",

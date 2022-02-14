@@ -19,6 +19,7 @@
 @section('title', 'Shared List Of Store')
 
 @section('content_header')
+@include('backend.partials.admininfo')
 <div class="row">
     @can('create-share-internal-donated-item')
     <a class="btn btn-success" style="min-width: 250px" href="{{route('share_internal_donated_items.create')}}">{{trans('button.add_share_list')}}</a>
@@ -66,8 +67,13 @@
 <script src="{{ asset('js/backend/bootstrap-datepicker.js') }}"></script>
 <script>
     $(document).ready(function() {
+
+        if (localStorage.getItem('internalDonatedItemDate')) {
+            var today = localStorage.getItem('internalDonatedItemDate');
+        } else {
+            var today = new Date().toISOString().substr(0, 10);
+        }
         
-        let today = localStorage.getItem('shareInternalDonatedItemDate') ?? new Date().toISOString().substr(0, 10);
         document.querySelector("#date").value = today;
 
         $("#date").datepicker({

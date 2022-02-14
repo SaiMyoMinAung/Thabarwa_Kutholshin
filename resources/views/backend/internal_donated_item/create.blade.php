@@ -7,6 +7,7 @@
 @stop
 
 @section('content_header')
+@include('backend.partials.admininfo')
 <div class="row">
     <a href="{{route('internal_donated_items.index')}}" style="min-width: 250px" class="btn btn-outline-primary"><i class="fas fa-table"></i>
         {{trans('button.show_table')}}</a>

@@ -3,7 +3,7 @@
 @section('title', 'Role')
 
 @section('content_header')
-
+@include('backend.partials.admininfo')
 @stop
 
 @section('content')

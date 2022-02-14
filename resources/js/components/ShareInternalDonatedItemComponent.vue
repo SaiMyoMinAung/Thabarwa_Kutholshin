@@ -226,6 +226,7 @@
                         <span class="text-danger">*</span></label
                     >
                     <input
+                        autocomplete="off"
                         name="package_qty"
                         id="package_qty"
                         type="text"
@@ -284,6 +285,7 @@
                         <span class="text-danger">*</span></label
                     >
                     <input
+                        autocomplete="off"
                         name="sacket_qty"
                         id="sacket_qty"
                         type="text"

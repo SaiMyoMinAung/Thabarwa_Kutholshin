@@ -195,6 +195,7 @@
                                     <span class="text-danger">*</span></label
                                 >
                                 <input
+                                    autocomplete="off"
                                     :tabindex="5"
                                     name="package_qty"
                                     id="package_qty"
@@ -261,6 +262,7 @@
                                     <span class="text-danger">*</span></label
                                 >
                                 <input
+                                    autocomplete="off"
                                     :tabindex="6"
                                     name="sacket_qty"
                                     id="sacket_qty"

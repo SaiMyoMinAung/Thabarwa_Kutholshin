@@ -18,7 +18,9 @@
 @stop
 
 @section('content_header')
+@include('backend.partials.admininfo')
 <div class="row">
+
     @can('create-internal-donated-items')
     <a href="{{route('internal_donated_items.create')}}" style="min-width: 250px" class="btn btn-success">{{trans('button.add_new_item_to_store')}}</a>
     @endcan
@@ -31,14 +33,14 @@
 @section('content')
 <div class="row">
     <div class="col-md-3">
-        <div class="input-daterange input-group" id="datepicker">
+        <div class="input-daterange input-group pb-1" id="datepicker">
             <input type="text" class="form-control" name="date" id="date" placeholder="Date" autocomplete="off">
         </div>
     </div>
     <div class="col-md-3">
-        <div class="form-group">
+        <div class="form-group pb-1">
             <select class="form-control" id="export">
-                <option >Select To Download</option>
+                <option>Select To Download</option>
                 <option value="excel">Excel File</option>
                 <option value="pdf">PDF File</option>
             </select>
@@ -76,7 +78,12 @@
     }
 
     $(document).ready(function() {
-        let today = localStorage.getItem('internalDonatedItemDate') ?? new Date().toISOString().substr(0, 10);
+        if (localStorage.getItem('internalDonatedItemDate')) {
+            var today = localStorage.getItem('internalDonatedItemDate');
+        } else {
+            var today = new Date().toISOString().substr(0, 10);
+        }
+
         document.querySelector("#date").value = today;
 
         $("#date").datepicker({

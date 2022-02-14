@@ -3,11 +3,7 @@
 @section('title', 'Settings')
 
 @section('content_header')
-<div class="mb-3 d-flex justify-content-between">
-    <div>
-        <h1>Settings</h1>
-    </div>
-</div>
+@include('backend.partials.admininfo')
 @stop
 
 @section('content')

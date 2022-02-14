@@ -7,6 +7,7 @@
 @section('title', 'Role List')
 
 @section('content_header')
+@include('backend.partials.admininfo')
 <div class="mb-3 d-flex justify-content-between">
     <div>
         <h1>Role List</h1>
