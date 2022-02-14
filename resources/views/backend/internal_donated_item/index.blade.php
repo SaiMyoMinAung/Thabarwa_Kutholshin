@@ -119,6 +119,9 @@
         })
         let url = "{{ route('internal_donated_items.index') }}" + "?date=" + today
         var dataTable = $('#internalDonatedItemTable').DataTable({
+            "language": {
+                "zeroRecords": "စာရင်း ထည့်သွင်းထားခြင်း မရှိပါ။"
+            },
             createdRow: function(row, data, dataIndex) {
                 $(row).attr('id', data.id);
             },
