@@ -120,6 +120,7 @@ class TeamController extends Controller
     public function getAllTeams(Request $request)
     {
         $teams = Team::where('teams.name', 'like', '%' . $request->q . '%')
+            ->where('center_id', '=', auth()->user()->center->id)
             ->orderBy('id', 'desc')
             ->paginate(5);
 
