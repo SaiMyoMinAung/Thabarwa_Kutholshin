@@ -4,7 +4,6 @@
 
 @section('css')
 <link href="{{ asset('css/bootstrap-datepicker.css') }}" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 <style>
     td.details-control {
         background: url('https://datatables.net/examples/resources/details_open.png') no-repeat center center;
@@ -64,8 +63,6 @@
 @stop
 
 @section('js')
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
 <script src="{{ asset('js/backend/bootstrap-datepicker.js') }}"></script>
 <script>
     function format(d, uuid) {

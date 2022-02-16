@@ -375,22 +375,22 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'asset' => true,
+                    'location' => '/js/backend/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'asset' => true,
+                    'location' => '/js/backend/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'asset' => true,
+                    'location' => '/css/backend/dataTables.bootstrap4.min.css',
                 ],
             ],
         ],
@@ -415,17 +415,17 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => '//adminlte.io/themes/dev/AdminLTE/plugins/select2/js/select2.full.min.js',
+                    'location' => '/js/backend/select2.full.min.js',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//adminlte.io/themes/dev/AdminLTE/plugins/select2/css/select2.min.css',
+                    'location' => '/css/backend/select2.full.min.css',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//adminlte.io/themes/dev/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css',
+                    'location' => '/css/backend/select2.bootstrap4.min.css',
                 ],
             ],
         ],
