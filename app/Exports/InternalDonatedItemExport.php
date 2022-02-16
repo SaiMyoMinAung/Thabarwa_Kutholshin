@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Status\InternalDonatedItemStatus;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -42,8 +41,7 @@ class InternalDonatedItemExport implements FromQuery, WithHeadings, WithMapping,
             $internalDonatedItem->almsRound->name,
             $internalDonatedItem->itemSubType->name,
             $internalDonatedItem->itemSubType->sacket_per_package,
-            $internalDonatedItem->package_qty . ' ' . $internalDonatedItem->itemSubType->unit->package_unit . ' / ' . $internalDonatedItem->sacket_qty . ' ' . $internalDonatedItem->itemSubType->unit->loose_unit,
-            InternalDonatedItemStatus::advanceSearch(($internalDonatedItem->status))["label"]
+            $internalDonatedItem->package_qty . ' ' . $internalDonatedItem->itemSubType->unit->package_unit . ' / ' . $internalDonatedItem->sacket_qty . ' ' . $internalDonatedItem->itemSubType->unit->loose_unit
         ];
     }
 
@@ -61,8 +59,7 @@ class InternalDonatedItemExport implements FromQuery, WithHeadings, WithMapping,
             "ပစ္စည်း ဝင်လာသည့် နေရာ",
             "ပစ္စည်း အမည်",
             "နှုန်းထား",
-            "ပမာဏ",
-            "အခြေအနေ",
+            "ပမာဏ"
         ];
     }
 }
