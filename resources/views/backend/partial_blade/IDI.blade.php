@@ -1,68 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>အဝေ စာရင်း</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>စတိုစာရင်း</title>
     <style>
-        body {
-            font-family: 'pyidaungsu';
-            color: black;
-            background-color: white;
-            padding: 0 4rem;
-            max-width: 2480px;
+        h1 {
+            font-family: monospace;
         }
 
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
+        th,
+        td {
+            border: 1px solid black;
+            text-align: center;
         }
 
-        td,
+        .table1 {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table td,
         th {
-            border: 1px solid #dddddd;
-            text-align: left;
             padding: 8px;
         }
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        table {
+            border-collapse: collapse;
+            width: 70em;
         }
 
-        h3 {
-            font-size: 13px;
-            color: black;
-            text-align: center;
+        .nothing {
+            width: 5em;
+        }
+
+        .table2 {
+            width: 60em;
+            margin-top: 2px;
+            background-color: lightblue;
+            margin-left: 30px;
+        }
+
+        .spans {
+            background-color: blue;
+            border: 1px solid black;
+            border-radius: 2px;
+            color: white;
+            border-radius: 5px;
+            padding: 1px 2px;
+        }
+
+        .spans2 {
+            border: 1px solid black;
+            background-color: #11dd26;
+            border-radius: 2px;
+        }
+
+        tr.shown td.details-control {
+            background: url("https://datatables.net/examples/resources/details_open.png") no-repeat center center;
         }
     </style>
 </head>
 
 <body>
+    <h1 style="text-align: center">စတိုစာရင်း</h1>
 
-    <h3>({{$nowDate}}) စတို စာရင်း</h3>
+    <table class="table1">
+        <tbody>
+            <tr>
+                <th class="nothing"></th>
+                <th>ရက်စွဲ</th>
+                <th>ပစ္စည်းဝင်လာသည့် နေရာ</th>
+                <th>အရေအတွက်</th>
+            </tr>
 
-    <table>
-        <tr>
-            <th>ရက်စွဲ</th>
-            <th>ပစ္စည်း ဝင်လာသည့် နေရာ</th>
-            <th>ပစ္စည်း အမည်</th>
-            <th>နှုန်းထား</th>
-            <th>ပမာဏ</th>
-        </tr>
-        @foreach ($data as $d)
-        <tr>
-            <td>{{$d->date}}</td>
-            <td>{{$d->almsRound->name}}</td>
-            <td>{{$d->itemSubType->name}}</td>
-            <td>{{$d->itemSubType->sacket_per_package}}</td>
-            <td>{{$d->package_qty . ' ' . $d->itemSubType->unit->package_unit . ' / ' . $d->sacket_qty . ' ' . $d->itemSubType->unit->loose_unitdate}}</td>
-        </tr>
-        @endforeach
-
+            @foreach ($groups as $date => $items)
+            @foreach ($items as $alms_round_name => $item)
+            <tr class="shown">
+                <td class="details-control"></td>
+                <td>{{$date}}</td>
+                <td>{{$alms_round_name}}</td>
+                <td>{{count($item)}}</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <table class="table2">
+                        <tr>
+                            <th>နံပါတ်</th>
+                            <th>ပစ္စည်း အမည်</th>
+                            <th>နှုန်းထား</th>
+                            <th>ပမာဏ</th>
+                        </tr>
+                        @foreach ($item as $key => $record)
+                        <tr>
+                            <td>{{$key+1}}</td>
+                            <td>{{$record->itemSubType->name}}</td>
+                            <td>
+                                <span class="badge badge-primary">{{ $record->itemSubType->sacket_per_package }} </span> {{$record->itemSubType->unit->loose_unit}} ပါသည်
+                            </td>
+                            <td>
+                                <span class="badge badge-primary"> {{ $record->package_qty }} </span> {{$record->itemSubType->unit->package_unit}} <span class="badge badge-primary"> {{$record->sacket_qty}} </span> {{$record->itemSubType->unit->loose_unit}}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </td>
+            </tr>
+            @endforeach
+            @endforeach
+        </tbody>
     </table>
 </body>
 

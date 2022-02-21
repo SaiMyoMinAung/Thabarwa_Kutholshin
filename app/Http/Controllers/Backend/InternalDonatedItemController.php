@@ -66,7 +66,11 @@ class InternalDonatedItemController extends Controller
                 return Excel::download(new InternalDonatedItemExport($internal_donated_items), $nowDate . "-storelist.xlsx");
             } elseif ($request->export === 'pdf') {
                 $data = $internal_donated_items->confirmed()->get();
-                $htmlContent = view('backend.partial_blade.IDI', compact('data', 'nowDate'));
+
+                $groups = $data->groupBy(['date', 'almsRound.name']);
+
+                $htmlContent = view('backend.partial_blade.IDI', compact('groups'));
+
                 return GeneratePDF::createPdf($htmlContent,  "$nowDate-storelist.pdf");
             }
 
