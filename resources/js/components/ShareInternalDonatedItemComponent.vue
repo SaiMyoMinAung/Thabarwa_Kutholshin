@@ -8,6 +8,7 @@
         <add-unexpected-person-component />
         <add-team-component />
         <add-yogi-component />
+        <add-contribution-component />
         <div class="col-sm-6 col-md-6 col-lg-6 row">
             <div class="col-md-12">
                 <div class="form-group">
@@ -392,6 +393,7 @@ import Loading from "vue-loading-overlay";
 import AddUnexpectedPersonComponent from "./AddUnexpectedPersonComponent.vue";
 import AddTeamComponent from "./AddTeamComponent.vue";
 import AddYogiComponent from "./AddYogiComponent.vue";
+import AddContributionComponent from "./AddContributionComponent.vue";
 import ItemOfStore from "./ItemOfStore.vue";
 
 export default {
@@ -430,6 +432,11 @@ export default {
             this.ShareInternalDonatedItemModel.data.requestable_id = data.id;
             this.ShareInternalDonatedItemModel.selectedRequestableTypeId = data;
         });
+        
+        this.$root.$on("contributionCreateSuccess", data => {
+            this.ShareInternalDonatedItemModel.data.requestable_id = data.id;
+            this.ShareInternalDonatedItemModel.selectedRequestableTypeId = data;
+        });
     },
     updated() {
         // this is for edit page to highlight the list by scrolling
@@ -448,7 +455,8 @@ export default {
         Loading,
         AddUnexpectedPersonComponent,
         AddTeamComponent,
-        AddYogiComponent
+        AddYogiComponent,
+        AddContributionComponent
     },
     props: {
         share_internal_donated_item: { type: Object, default: () => ({}) }

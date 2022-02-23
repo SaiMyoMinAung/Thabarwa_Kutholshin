@@ -28,6 +28,8 @@ return [
     'date' => 'ရက်စွဲ',
     'by_admin' => 'စာရင်း သွင်းသူ',
 
+    'share_type' => 'မျှဝေခြင်း အမျိုးအစား',
+    
     'name' => 'နာမည်',
     'name_placeholder' => 'နာမည် ဖြည့်ပါ',
 
@@ -38,9 +40,13 @@ return [
     'phone_placeholder' => 'ဖုန်း ထည့်ပါ',
 
     'select_center' => 'ရိပ်သာ ရွေးပါ',
+    'select_receive_office' => 'ဝေမည့် ရုံးခန်း ရွေးပါ',
 
     'note' => 'မှတ်စုတို',
     'note_placeholder' => 'မှတ်စုတို ဖြည့်ပါ',
+
+    'address' => 'လိပ်စာ',
+    'address_placeholder' => 'လိပ်စာ ဖြည့်ပါ',
 
     'select_ward' => 'အဆောင် ရွေးပါ',
     'select_city' => 'မြို့တော် ရွေးပါ',

@@ -10,6 +10,7 @@ use MyCLabs\Enum\Enum;
  * @method static RequestableType TEAM()
  * @method static RequestableType YOGI()
  * @method static RequestableType UNEXPECTED_PERSON()
+ * * @method static RequestableType OTHERCENTER()
  */
 class RequestableType extends Enum
 {
@@ -18,4 +19,5 @@ class RequestableType extends Enum
     private const TEAM = 'App\Team';
     private const YOGI = 'App\Yogi';
     private const UNEXPECTEDPERSON = 'App\UnexpectedPerson';
+    private const CONTRIBUTION = 'App\Contribution';
 }

@@ -10,6 +10,7 @@ use App\Http\Resources\OfficeResource;
 use App\Http\Requests\OfficeStoreRequest;
 use App\Http\Requests\OfficeUpdateRequest;
 use App\Http\Resources\OfficeResourceCollection;
+use App\Http\Resources\Select2\OfficeSelect2ResourceCollection;
 
 class OfficeController extends Controller
 {
@@ -114,5 +115,14 @@ class OfficeController extends Controller
             report($e);
             return response()->json(['message' => 'fail'], 500);
         }
+    }
+
+    public function getAllOffices(Request $request)
+    {
+        $adminOfficeID = auth()->user()->office_id;
+        $offices = Office::where('name', 'LIKE', "%$request->q%")
+            ->where('id', '!=', $adminOfficeID)->paginate(5);
+
+        return response()->json(new OfficeSelect2ResourceCollection($offices), 200);
     }
 }

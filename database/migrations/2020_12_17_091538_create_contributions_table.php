@@ -15,12 +15,9 @@ class CreateContributionsTable extends Migration
     {
         Schema::create('contributions', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('title');
-            $table->text('note');
+            $table->mediumText('name');
             $table->integer('office_id');
             $table->integer('receive_office_id');
-            $table->integer('volunteer_id');
-            $table->boolean('is_confirmed')->default(0);
             $table->timestamps();
         });
     }

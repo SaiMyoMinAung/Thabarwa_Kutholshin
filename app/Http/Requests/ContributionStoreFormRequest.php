@@ -25,10 +25,7 @@ class ContributionStoreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
-            'note' => 'required|string|max:1000',
-            'items_id' => 'required|array',
-            'volunteer_id' => "required|numeric",
+            'name' => 'required|max:255',
             'receive_office_id' => 'required',
         ];
     }
@@ -36,28 +33,18 @@ class ContributionStoreFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Please Fill Title.',
-            'title.max' => 'Title is Too Long!',
-            'note.required' => 'Please Fill Note.',
-            'items_id.required' => 'Please Select Items.',
-            'items_id.numeric' => 'Please Fill Number Only.',
-            'volunteer_id.required' => 'Please Select Volunteer.'
+            'name.required' => 'Please Fill Name.',
+            'name.max' => 'Name is Too Long!',
+            'receive_office_id.required' => 'Please Select Receive Office.'
         ];
     }
 
     public function getContributionData()
     {
         return new ContributionDTO([
-            'title' => $this->input('title'),
-            'note' => $this->input('note'),
-            'volunteer_id' => $this->input('volunteer_id'),
-            'office_id' => auth()->user()->office->id,
+            'name' => $this->input('name'),
             'receive_office_id' => $this->input('receive_office_id'),
+            'office_id' => auth()->user()->office_id
         ]);
-    }
-
-    public function getItemsId()
-    {
-        return $this->input('items_id');
     }
 }

@@ -97,7 +97,7 @@ class ShareInternalDonatedItemController extends Controller
 
             $share_internal_requests = $share_internal_requests->get();
 
-            $groups = $share_internal_requests->groupBy(['date', 'requestable.name']);
+            $groups = $share_internal_requests->groupBy(['date', 'requestable.name', 'requestable_type']);
 
             $data = [];
 
@@ -105,20 +105,32 @@ class ShareInternalDonatedItemController extends Controller
 
                 foreach ($groups as $date => $item) {
                     foreach ($item as $name => $items) {
-                        $nestedData['date'] = $date;
-                        $nestedData['name'] = $name;
-                        $nestedData['count'] = count($items);
-                        foreach ($items as $key => $record) {
-                            $nestedData['id'] = $key + 1;
-                            $nestedData['detail_data'][$key]['uuid'] = $record->uuid;
-                            $nestedData['detail_data'][$key]['no'] = $key + 1;
-                            $nestedData['detail_data'][$key]['item_sub_type_name'] = $record->itemSubType->name;
-                            $nestedData['detail_data'][$key]['amount'] = $record->amount_text;
-                            $nestedData['detail_data'][$key]['canEdit'] = auth()->user()->can('update-share-internal-donated-item') ? 1 : 0;;
-                            $nestedData['detail_data'][$key]['canDelete'] = auth()->user()->can('delete-share-internal-donated-item') ? 1 : 0;;
+                        foreach ($items as $type => $records) {
+                            $nestedData['date'] = $date;
+                            $nestedData['name'] = $name;
+                            if (str_contains($type, 'Contribution')) { 
+                                $nestedData['share_type'] = 'အခြားရိပ်သာသို့';
+                            }elseif(str_contains($type, 'Team')) {
+                                $nestedData['share_type'] = "အဖွဲ့ အစည်းသို့";
+                            }elseif(str_contains($type, 'Yogi')) {
+                                $nestedData['share_type'] = 'ယောဂီ သို့';
+                            }elseif(str_contains($type, 'Unexpectedperson')) {
+                                $nestedData['share_type'] = 'အခြား လူ သို့';
+                            }
+                            
+                            $nestedData['count'] = count($items);
+                            foreach ($records as $key => $record) {
+                                $nestedData['id'] = $key + 1;
+                                $nestedData['detail_data'][$key]['uuid'] = $record->uuid;
+                                $nestedData['detail_data'][$key]['no'] = $key + 1;
+                                $nestedData['detail_data'][$key]['item_sub_type_name'] = $record->itemSubType->name;
+                                $nestedData['detail_data'][$key]['amount'] = $record->amount_text;
+                                $nestedData['detail_data'][$key]['canEdit'] = auth()->user()->can('update-share-internal-donated-item') ? 1 : 0;;
+                                $nestedData['detail_data'][$key]['canDelete'] = auth()->user()->can('delete-share-internal-donated-item') ? 1 : 0;;
+                            }
+                            array_push($data, $nestedData);
+                            $nestedData = [];
                         }
-                        array_push($data, $nestedData);
-                        $nestedData = [];
                     }
                 }
             }

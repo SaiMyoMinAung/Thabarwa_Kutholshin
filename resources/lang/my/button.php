@@ -20,6 +20,7 @@ return [
     'create_unexpected_person' => 'လူစာရင်း ထည့်သွင်းမည်',
     'create_team' => 'အဖွဲ့အစည်း ထည့်သွင်းမည်',
     'create_yogi' => 'ယောဂီ ထည့်သွင်းမည်',
+    'create_contribution' => 'အခြား ရိပ်သာ မျှဝေခြင်း ခေါင်းစဥ် ထည့်သွင်းမည်',
 
     'share_this_person_again' => 'ဤလူကိုပဲ ဆေးထက်ပေးမည်'
 ];

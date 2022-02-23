@@ -17,5 +17,7 @@ return [
 
     'add_list_to_store' => 'Add List To Store',
 
-    'add_shared_list' => 'Add Shared List'
+    'add_shared_list' => 'Add Shared List',
+
+    'create_office' => 'Create Office'
 ];

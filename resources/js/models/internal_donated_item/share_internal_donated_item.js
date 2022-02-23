@@ -161,6 +161,9 @@ export default class ShareInternalDonatedItem {
         } else if (event.id === "UNEXPECTEDPERSON") {
             this.showModel = "#unexpectedPersonModel"
             this.getRequestableTypeIdUrl = route('unexpected_persons.fetch');
+        } else if (event.id === "CONTRIBUTION") {
+            this.showModel = "#contributionModel"
+            this.getRequestableTypeIdUrl = "";
         }else{
             this.showModel = ""
         }

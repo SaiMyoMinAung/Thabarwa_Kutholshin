@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Status\InternalDonatedItemStatus;
 use App\ViewModels\ContributionViewModel;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Resources\ContributionResource;
 use App\Http\Requests\ContributionStoreFormRequest;
 use App\Http\Requests\ContributionUpdateFormRequest;
 
@@ -224,12 +225,9 @@ class ContributionController extends Controller
 
         $contribution = Contribution::create($validated_data);
 
-        $items_id = $request->getItemsId();
-
-        $contribution->internalDonatedItems()->sync($items_id);
-
-        return redirect(route('contributions.index'))->with('success', 'Contribution Create Successful.');
+        return response()->json(new ContributionResource($contribution), 201);
     }
+    
     public function edit(Contribution $contribution)
     {
         $viewModel = new ContributionViewModel($contribution, true);

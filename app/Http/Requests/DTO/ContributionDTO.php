@@ -8,9 +8,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 final class ContributionDTO extends DataTransferObject
 {
-    public $title;
-    public $note;
-    public $volunteer_id;
-    public $office_id;
+    public $name;
     public $receive_office_id;
+    public $office_id;
 }

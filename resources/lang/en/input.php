@@ -2,17 +2,6 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
     'alms_round' => 'Alms Round',
     'item_type' => 'Item Type',
     'item_sub_type' => 'Item Sub Type',
@@ -39,6 +28,8 @@ return [
     'date' => 'Date',
     'by_admin' => 'By Admin',
 
+    'share_type' => 'Share Type',
+
     'name' => 'Name',
     'name_placeholder' => 'Enter Name',
 
@@ -49,9 +40,13 @@ return [
     'phone_placeholder' => 'Enter Phone',
 
     'select_center' => 'Select Center',
+    'select_receive_office' => 'Select Receive Office',
 
     'note' => 'Note',
     'note_placeholder' => 'Enter Note',
+
+    'address' => 'Address',
+    'address_placeholder' => 'Enter Address',
 
     'select_ward' => 'Select Ward',
 

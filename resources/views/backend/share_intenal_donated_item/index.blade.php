@@ -52,6 +52,7 @@
             <th></th>
             <th>{{trans('input.date')}}</th>
             <th style="max-width: 200px;">{{trans('input.name')}}</th>
+            <th>{{trans('input.share_type')}}</th>
             <th>{{trans('input.qty')}}</th>
         </tr>
     </thead>
@@ -65,8 +66,8 @@
 <script>
     $(document).ready(function() {
 
-        if (localStorage.getItem('internalDonatedItemDate')) {
-            var today = localStorage.getItem('internalDonatedItemDate');
+        if (localStorage.getItem('shareInternalDonatedItemDate')) {
+            var today = localStorage.getItem('shareInternalDonatedItemDate');
         } else {
             var today = new Date().toISOString().substr(0, 10);
         }
@@ -149,6 +150,11 @@
                 },
                 {
                     "data": "name",
+                    orderable: false,
+                    searchable: false,
+                },
+                {
+                    "data": "share_type",
                     orderable: false,
                     searchable: false,
                 },

@@ -67,6 +67,7 @@ Route::get('get_all_yogis', 'YogiController@getAllYogis')->name('yogis.fetch');
 Route::get('get_all_wards', 'WardController@getAllWards')->name('wards.fetch');
 Route::get('get_all_cities', 'CityController@getAllCities')->name('cities.fetch');
 Route::get('get_all_centers', 'CenterController@getAllCenters')->name('centers.fetch');
+Route::get('get_all_offices', 'OfficeController@getAllOffices')->name('offices.fetch');
 Route::get('get_all_unexpected_persons', 'UnexpectedPersonController@getAllUnexpectedPersons')->name('unexpected_persons.fetch');
 Route::get('get_all_units', 'UnitController@getAllUnits')->name('units.fetch');
 Route::get('get_all_item_types', 'ItemTypeController@getAllItemTypes')->name('item_types.fetch');
