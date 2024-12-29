@@ -23,11 +23,9 @@ class InternalDonatedItemResource extends JsonResource
             'alms_round_id' => $this->alms_round_id,
             'package_qty' => $this->package_qty,
             'sacket_qty' => $this->sacket_qty,
-            'item_type_id' => $this->item_type_id,
             'item_sub_type_id' => $this->item_sub_type_id,
             'is_confirmed' => (bool) $this->is_confirmed,
-            'selectedAlmsRound' => new AlmsRoundResource($this->AlmsRound),
-            'selectedItemType' => new ItemTypeResource($this->itemType),
+            'selectedAlmsRound' => new AlmsRoundResource($this->almsRound),
             'selectedItemSubType' => new ItemSubTypeResource($this->itemSubType),
             'canConfirm' => auth()->user()->can('create-and-confirm-internal-donated-items')
         ];

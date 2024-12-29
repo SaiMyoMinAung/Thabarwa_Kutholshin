@@ -2,20 +2,21 @@
 
 namespace App\Rules;
 
-use App\Contribution;
 use Illuminate\Contracts\Validation\Rule;
 
-class ReceiveOfficeCanChange implements Rule
+class CheckZeroQTY implements Rule
 {
-    public $contribution;
+    public $sac_qty, $pac_qty;
+
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($contribution)
+    public function __construct($sac_qty, $pac_qty)
     {
-        $this->contribution = $contribution;
+        $this->sac_qty = $sac_qty;
+        $this->pac_qty = $pac_qty;
     }
 
     /**
@@ -27,11 +28,7 @@ class ReceiveOfficeCanChange implements Rule
      */
     public function passes($attribute, $value)
     {
-        if ($this->contribution->receive_office_id != $value) {
-            return !$this->contribution->atLeastOneItemConfirmed($this->contribution);
-        }
-
-        return true;
+        return $this->sac_qty != 0 ||  $this->pac_qty != 0;
     }
 
     /**
@@ -41,6 +38,6 @@ class ReceiveOfficeCanChange implements Rule
      */
     public function message()
     {
-        return 'Item Is Confirmed To This Office.So Cannot Change To Other Office.';
+        return trans('custom-vali.greater_than_one');
     }
 }

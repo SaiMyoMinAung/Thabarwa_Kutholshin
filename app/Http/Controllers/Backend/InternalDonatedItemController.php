@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Admin;
+use App\AlmsRound;
 use Carbon\Carbon;
 use App\InternalDonatedItem;
 use Illuminate\Http\Request;
 use App\Services\GeneratePDF;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Resources\AlmsRoundResource;
 use App\Exports\InternalDonatedItemExport;
 use Illuminate\Validation\ValidationException;
 use App\Http\Requests\InternalDonatedItemStoreFormRequest;
 use App\Http\Requests\InternalDonatedItemUpdateFormRequest;
 use App\Http\Resources\InternalDonatedItemResourceCollection;
 use App\Http\Resources\InternalDonatedItem\InternalDonatedItemResource;
+use App\Http\Resources\ItemSubTypeResource;
 
 class InternalDonatedItemController extends Controller
 {
@@ -86,6 +89,17 @@ class InternalDonatedItemController extends Controller
                         $nestedData['date'] = $date;
                         $nestedData['alms_round_name'] = $alms_round_name;
                         $nestedData['item_sub_type_count'] = count($item);
+                        $url = route("internal_donated_items.create", ["alms_round_name" => $alms_round_name]);
+
+                        if (
+                            $nowDate == Carbon::now()->format('Y-m-d')
+                            && auth()->user()->can('create-internal-donated-items')
+                        ) {
+                            $button = "<a class='btn btn-primary' href='$url'>စာရင်း ထပ်ထည့်မည်</a>";
+                        } else {
+                            $button = '-';
+                        }
+                        $nestedData['give_again'] =  $button;
                         foreach ($item as $key => $record) {
                             $nestedData['id'] = $key + 1;
                             $nestedData['detail_data'][$key]['uuid'] = $record->uuid;
@@ -98,6 +112,7 @@ class InternalDonatedItemController extends Controller
                             } else {
                                 $nestedData['detail_data'][$key]['status'] = '<span class="badge badge-warning">Unconfirmed</span>';
                             }
+                            $nestedData['detail_data'][$key]['canCreate'] = auth()->user()->can('create-internal-donated-items') && $nowDate == Carbon::now()->format('Y-m-d') ? 1 : 0;
                             $nestedData['detail_data'][$key]['canEdit'] = auth()->user()->can('update-internal-donated-items') && $record->is_confirmed == 0 ? 1 : 0;
                             $nestedData['detail_data'][$key]['canDelete'] = auth()->user()->can('delete-internal-donated-items') && $record->is_confirmed == 0 ? 1 : 0;
                         }
@@ -125,9 +140,26 @@ class InternalDonatedItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $internalDonatedItem = null;
+        $internalDonatedItem = [
+            'sacket_qty' => 0,
+            'package_qty' => 0,
+        ];
+
+        if ($request->alms_round_name) {
+            $almsRound = AlmsRound::where('name', $request->alms_round_name)->firstOrFail();
+            $internalDonatedItem['selectedAlmsRound'] = new AlmsRoundResource($almsRound);
+            $internalDonatedItem['alms_round_id'] = $almsRound->id;
+        }
+
+        if ($request->uuid) {
+            $internalDonatedItemData = InternalDonatedItem::where('uuid', $request->uuid)->firstOrFail();
+            $internalDonatedItem['selectedAlmsRound'] = new AlmsRoundResource($internalDonatedItemData->almsRound);
+            $internalDonatedItem['alms_round_id'] = $internalDonatedItemData->alms_round_id;
+            $internalDonatedItem['selectedItemSubType'] = new ItemSubTypeResource($internalDonatedItemData->itemSubType);
+            $internalDonatedItem['item_sub_type_id'] = $internalDonatedItemData->item_sub_type_id;
+        }
 
         return view('backend.internal_donated_item.create', compact('internalDonatedItem'));
     }

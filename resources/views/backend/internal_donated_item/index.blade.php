@@ -54,6 +54,7 @@
             <th>{{trans('input.date')}}</th>
             <th>{{trans('input.alms_round')}}</th>
             <th>{{trans('input.qty')}}</th>
+            <th>{{trans('input.option')}}</th>
         </tr>
     </thead>
     <tbody>
@@ -155,6 +156,11 @@
                 },
                 {
                     "data": "item_sub_type_count",
+                    orderable: false,
+                    searchable: false
+                },
+                {
+                    "data": "give_again",
                     orderable: false,
                     searchable: false
                 }

@@ -6,8 +6,8 @@ export default class ShareInternalDonatedItem {
         this.data = {
             uuid: "",
             item_sub_type_id: "",
-            package_qty: "",
-            sacket_qty: "",
+            package_qty: 0,
+            sacket_qty: 0,
             requestable_type: "",
             requestable_id: "",
             office_id: ""
@@ -52,18 +52,52 @@ export default class ShareInternalDonatedItem {
     }
     constructData(share_internal_donated_item) {
 
-        this.data.uuid = share_internal_donated_item.uuid;
-        this.data.item_sub_type_id = share_internal_donated_item.item_sub_type_id;
-        this.data.package_qty = share_internal_donated_item.package_qty;
-        this.data.sacket_qty = share_internal_donated_item.sacket_qty;
-        this.data.requestable_type = share_internal_donated_item.requestable_type;
-        this.data.requestable_id = share_internal_donated_item.requestable_id;
+        if(share_internal_donated_item.uuid){
+            this.data.uuid = share_internal_donated_item.uuid;
+        }
+        
+        if(share_internal_donated_item.item_sub_type_id){
+            this.data.item_sub_type_id = share_internal_donated_item.item_sub_type_id;
+        }
+        
+        if(share_internal_donated_item.package_qty){
+            this.data.package_qty = share_internal_donated_item.package_qty;
+        }
+        
+        if(share_internal_donated_item.sacket_qty){
+            this.data.sacket_qty = share_internal_donated_item.sacket_qty;
+        }
+        
+        if(share_internal_donated_item.requestable_type){
+            this.data.requestable_type = share_internal_donated_item.requestable_type;
+        }
+        
+        if(share_internal_donated_item.requestable_id){
+            this.data.requestable_id = share_internal_donated_item.requestable_id;
+        }
 
+        if(share_internal_donated_item.getRequestableTypeIdUrl){
+            this.getRequestableTypeIdUrl = share_internal_donated_item.getRequestableTypeIdUrl
+        }
+
+        if(share_internal_donated_item.showModel){
+            this.showModel = share_internal_donated_item.showModel
+        }
+        
         this.ShareInternalDonatedItemSubmited = false;
 
-        this.selectedItemSubType = share_internal_donated_item.selectedItemSubType;
-        this.selectedRequestableType = share_internal_donated_item.selectedRequestableType;
-        this.selectedRequestableTypeId = share_internal_donated_item.selectedRequestableTypeId;
+        if(share_internal_donated_item.selectedItemSubType){
+            this.selectedItemSubType = share_internal_donated_item.selectedItemSubType;    
+        }
+
+        if(share_internal_donated_item.selectedRequestableType) {
+            this.selectedRequestableType = share_internal_donated_item.selectedRequestableType;
+        }
+        
+        if(share_internal_donated_item.selectedRequestableTypeId) {
+            this.selectedRequestableTypeId = share_internal_donated_item.selectedRequestableTypeId;
+        }
+        
 
     }
 

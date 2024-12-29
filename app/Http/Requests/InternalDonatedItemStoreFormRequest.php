@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\DTO\InternalDonatedItemDTO;
+use App\Rules\CheckZeroQTY;
+
 class InternalDonatedItemStoreFormRequest extends FormRequest
 {
     /**
@@ -25,8 +27,8 @@ class InternalDonatedItemStoreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'package_qty' => 'required|numeric|max:100000',
-            'sacket_qty' => 'required|numeric|max:100000',
+            'package_qty' => ['required', 'numeric', 'max:100000', new CheckZeroQTY($this->sacket_qty, $this->package_qty)],
+            'sacket_qty' => ['required', 'numeric', 'max:100000', new CheckZeroQTY($this->sacket_qty, $this->package_qty)],
             'alms_round_id' => 'required|numeric',
             'item_sub_type_id' => 'required|numeric',
             'is_confirmed' => "required|boolean"

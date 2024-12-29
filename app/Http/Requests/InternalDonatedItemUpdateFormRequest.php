@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckZeroQTY;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\DTO\InternalDonatedItemUpdateDTO;
 
@@ -26,8 +27,8 @@ class InternalDonatedItemUpdateFormRequest extends FormRequest
     {
         return [
             'alms_round_id' => 'required|numeric',
-            'package_qty' => 'required|numeric|max:100000',
-            'sacket_qty' => 'required|numeric|max:100000',
+            'package_qty' => ['required', 'numeric', 'max:100000', new CheckZeroQTY($this->sacket_qty, $this->package_qty)],
+            'sacket_qty' => ['required', 'numeric', 'max:100000', new CheckZeroQTY($this->sacket_qty, $this->package_qty)],
             'item_sub_type_id' => 'required|numeric',
             'is_confirmed' => "required|boolean"
         ];
@@ -36,14 +37,17 @@ class InternalDonatedItemUpdateFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'package_qty.required' => 'Please Fill Package Qty.',
-            'package_qty.numeric' => 'Please Fill Number Only.',
-            
-            'alms_round_id.required' => 'Please Select Alms Round.',
-            'alms_round_id.numeric' => 'Please Select Alms Round.',
+            'package_qty.required' => trans('custom-vali.package_qty_required'),
+            'package_qty.numeric' => trans('custom-vali.package_qty_numeric'),
 
-            'item_sub_type_id.required' => 'Please Select Item Sub Type.',
-            'item_sub_type_id.numeric' => 'Please Select Item Sub Type.'
+            'sacket_qty.required' => trans('custom-vali.sacket_qty_required'),
+            'sacket_qty.numeric' => trans('custom-vali.sacket_qty_numeric'),
+
+            'alms_round_id.required' => trans('custom-vali.alms_round_id_required'),
+            'alms_round_id.numeric' => trans('custom-vali.alms_round_id_numeric'),
+
+            'item_sub_type_id.required' => trans('custom-vali.item_sub_type_id_required'),
+            'item_sub_type_id.numeric' => trans('custom-vali.item_sub_type_id_numeric'),
         ];
     }
 

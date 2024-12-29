@@ -442,7 +442,7 @@ export default {
         // this is for edit page to highlight the list by scrolling
         if (
             this.share_internal_donated_item != null &&
-            this.share_internal_donated_item.selectedItemSubType !== null
+            this.share_internal_donated_item.selectedItemSubType !== undefined
         ) {
             this.doScroll(
                 this.share_internal_donated_item.selectedItemSubType

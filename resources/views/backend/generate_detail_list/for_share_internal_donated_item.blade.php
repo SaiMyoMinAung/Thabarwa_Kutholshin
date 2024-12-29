@@ -22,6 +22,12 @@
             @else
             -
             @endif
+            /
+            @if ((bool) $data['canCreate'])
+            <a class="btn btn-xs btn-primary" href="{{route('share_internal_donated_items.create',['uuid'=>$data['uuid']])}}">စာရင်း ထပ်သွင်းမည်</a>
+            @else
+            -
+            @endif
         </td>
     </tr>
     @endforeach

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Contribution;
+use App\Team;
+use App\Yogi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\ShareInternalDonatedItem;
@@ -11,6 +14,7 @@ use App\Exports\ShareInternalDonatedItemExport;
 use App\Http\Requests\ShareInternalDonatedItemStoreFormRequest;
 use App\Http\Requests\ShareInternalDonatedItemUpdateFormRequest;
 use App\Http\Resources\InternalDonatedItem\ShareInternalDonatedItemResource;
+use App\UnexpectedPerson;
 
 class ShareInternalDonatedItemController extends Controller
 {
@@ -108,23 +112,36 @@ class ShareInternalDonatedItemController extends Controller
                         foreach ($items as $type => $records) {
                             $nestedData['date'] = $date;
                             $nestedData['name'] = $name;
-                            if (str_contains($type, 'Contribution')) { 
+                            if (str_contains($type, 'Contribution')) {
                                 $nestedData['share_type'] = 'အခြားရိပ်သာသို့';
-                            }elseif(str_contains($type, 'Team')) {
+                            } elseif (str_contains($type, 'Team')) {
                                 $nestedData['share_type'] = "အဖွဲ့ အစည်းသို့";
-                            }elseif(str_contains($type, 'Yogi')) {
+                            } elseif (str_contains($type, 'Yogi')) {
                                 $nestedData['share_type'] = 'ယောဂီ သို့';
-                            }elseif(str_contains($type, 'Unexpectedperson')) {
+                            } elseif (str_contains($type, 'Unexpectedperson')) {
                                 $nestedData['share_type'] = 'အခြား လူ သို့';
                             }
-                            
+
                             $nestedData['count'] = count($items);
+
+                            $url = route("share_internal_donated_items.create", ["name" => $name, "type" => $type]);
+                            if (
+                                $nowDate == Carbon::now()->format('Y-m-d')
+                                && auth()->user()->can('create-share-internal-donated-items')
+                            ) {
+                                $button = "<a class='btn btn-primary' href='$url'>စာရင်း ထပ်ထည့်မည်</a>";
+                            } else {
+                                $button = '-';
+                            }
+                            $nestedData['give_again'] =  $button;
+
                             foreach ($records as $key => $record) {
                                 $nestedData['id'] = $key + 1;
                                 $nestedData['detail_data'][$key]['uuid'] = $record->uuid;
                                 $nestedData['detail_data'][$key]['no'] = $key + 1;
                                 $nestedData['detail_data'][$key]['item_sub_type_name'] = $record->itemSubType->name;
                                 $nestedData['detail_data'][$key]['amount'] = $record->amount_text;
+                                $nestedData['detail_data'][$key]['canCreate'] = auth()->user()->can('create-share-internal-donated-item') && $nowDate == Carbon::now()->format('Y-m-d') ? 1 : 0;
                                 $nestedData['detail_data'][$key]['canEdit'] = auth()->user()->can('update-share-internal-donated-item') ? 1 : 0;;
                                 $nestedData['detail_data'][$key]['canDelete'] = auth()->user()->can('delete-share-internal-donated-item') ? 1 : 0;;
                             }
@@ -134,25 +151,6 @@ class ShareInternalDonatedItemController extends Controller
                     }
                 }
             }
-
-
-            // dd($share_internal_requests);
-
-            // if (!empty($share_internal_requests)) {
-            //     foreach ($share_internal_requests as $key => $share_internal_request) {
-            //         $editLink = route('share_internal_donated_items.edit', $share_internal_request->uuid);
-            //         $nestedData['DT_RowIndex'] = $key + 1;
-            //         $nestedData['uuid'] = $share_internal_request->uuid;
-            //         $nestedData['date'] = "<a href='$editLink'>$share_internal_request->date</a>";
-            //         $nestedData['item_type'] =  $share_internal_request->itemType->name;
-            //         $nestedData['item_sub_type'] =  $share_internal_request->itemSubType->name;
-            //         $nestedData['sacket'] = $share_internal_request->sacket_qty;
-            //         $nestedData['by_admin'] = $share_internal_request->admin->name;
-            //         $nestedData['option'] = '<a class="btn btn-default text-primary" data-uuid="' . $share_internal_request->uuid . '" data-toggle="editconfirmation" data-href="' . route('share_internal_donated_items.edit', $share_internal_request->uuid) . '"><i class="fas fa-edit"></i></a> - ';
-            //         $nestedData['option'] .= '<a class="btn btn-default text-danger" data-toggle="confirmation" data-href="' . route('share_internal_donated_items.destroy', $share_internal_request->uuid) . '"><i class="fas fa-trash"></i></a>';
-            //         $data[] = $nestedData;
-            //     }
-            // }
 
             $json_data = array(
                 "draw"            => intval($request->input('draw')),
@@ -172,9 +170,94 @@ class ShareInternalDonatedItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $shareInternalDonatedItem = null;
+        $shareInternalDonatedItem = [];
+
+        if ($request->uuid) {
+            $share = ShareInternalDonatedItem::with('itemSubType')->where('uuid', $request->uuid)->firstOrFail();
+            $itemSubType = $share->itemSubType;
+            $type = $share->requestable_type;
+            $shareInternalDonatedItem['selectedItemSubType'] = [
+                'id' => $itemSubType->id,
+                'original_name' => $itemSubType->name,
+                'name' => $itemSubType->name  . " ( " . $itemSubType->unit->package_unit . " one တွင်" . $itemSubType->unit->loose_unit . $itemSubType->sacket_per_package . " ပါဝင်သည်။ )",
+            ];
+            $shareInternalDonatedItem['item_sub_type_id'] = $itemSubType->id;
+            $shareInternalDonatedItem['selectedRequestableTypeId'] = [
+                'id' => $share->requestable->id,
+                'name' => $share->requestable->name
+            ];
+            $shareInternalDonatedItem['requestable_id'] = $share->requestable->id;
+        } else {
+            $type = $request->type;
+        }
+
+        if ($type == 'App\Team') {
+            $shareInternalDonatedItem['selectedRequestableType'] = [
+                'id' => 'TEAM',
+                'name' => 'TEAM',
+            ];
+            $team = Team::where('name', $request->name)->first();
+            if ($team) {
+                $shareInternalDonatedItem['selectedRequestableTypeId'] = [
+                    'id' => $team->id,
+                    'name' => $team->name
+                ];
+                $shareInternalDonatedItem['requestable_id'] = $team->id;
+            }
+            $shareInternalDonatedItem['getRequestableTypeIdUrl'] =  route('teams.fetch');
+            $shareInternalDonatedItem['showModel'] =  '#teamModel';
+            $shareInternalDonatedItem['requestable_type'] =  'TEAM';
+        } else if ($type == 'App\Yogi') {
+            $shareInternalDonatedItem['selectedRequestableType'] = [
+                'id' => 'YOGI',
+                'name' => 'YOGI',
+            ];
+            $shareInternalDonatedItem['getRequestableTypeIdUrl'] =  route('yogis.fetch');
+            $shareInternalDonatedItem['showModel'] =  '#yogiModel';
+            $shareInternalDonatedItem['requestable_type'] =  'YOGI';
+            $yogi = Yogi::where('name', $request->name)->first();
+            if ($yogi) {
+                $shareInternalDonatedItem['selectedRequestableTypeId'] = [
+                    'id' => $yogi->id,
+                    'name' => $yogi->name
+                ];
+                $shareInternalDonatedItem['requestable_id'] = $yogi->id;
+            }
+        } else if ($type == 'App\UnexpectedPerson') {
+            $shareInternalDonatedItem['selectedRequestableType'] = [
+                'id' => 'UNEXPECTEDPERSON',
+                'name' => 'UNEXPECTEDPERSON',
+            ];
+            $shareInternalDonatedItem['getRequestableTypeIdUrl'] =  route('unexpected_persons.fetch');
+            $shareInternalDonatedItem['showModel'] =  '#unexpectedPersonModel';
+            $shareInternalDonatedItem['requestable_type'] =  'UNEXPECTEDPERSON';
+            $unexpectedPerson = UnexpectedPerson::where('name', $request->name)->first();
+            if ($unexpectedPerson) {
+                $shareInternalDonatedItem['selectedRequestableTypeId'] = [
+                    'id' => $unexpectedPerson->id,
+                    'name' => $unexpectedPerson->name
+                ];
+                $shareInternalDonatedItem['requestable_id'] = $unexpectedPerson->id;
+            }
+        } else if ($type == 'App\Contribution') {
+            $shareInternalDonatedItem['selectedRequestableType'] = [
+                'id' => 'CONTRIBUTION',
+                'name' => 'CONTRIBUTION',
+            ];
+            $shareInternalDonatedItem['getRequestableTypeIdUrl'] =  route('contributions.fetch');
+            $shareInternalDonatedItem['showModel'] =  '#contributionModel';
+            $shareInternalDonatedItem['requestable_type'] =  'CONTRIBUTION';
+            $contribution = Contribution::where('name', $request->name)->first();
+            if ($contribution) {
+                $shareInternalDonatedItem['selectedRequestableTypeId'] = [
+                    'id' => $contribution->id,
+                    'name' => $contribution->name
+                ];
+                $shareInternalDonatedItem['requestable_id'] = $contribution->id;
+            }
+        }
 
         return view('backend.share_intenal_donated_item.create', compact('shareInternalDonatedItem'));
     }

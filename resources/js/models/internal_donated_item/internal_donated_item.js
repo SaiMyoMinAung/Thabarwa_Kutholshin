@@ -8,8 +8,8 @@ export default class InternalDonatedItem {
             item_unique_id: "",
             alms_round_id: "",
             item_sub_type_id: "",
-            package_qty: "",
-            sacket_qty: "",
+            package_qty: 0,
+            sacket_qty: 0,
             is_confirmed: false,
             status: "",
         };
@@ -35,21 +35,45 @@ export default class InternalDonatedItem {
 
     }
     constructData(internal_donated_item) {
-
-        this.data.uuid = internal_donated_item.uuid;
-        this.data.item_unique_id = internal_donated_item.item_unique_id;
-        this.data.alms_round_id = internal_donated_item.alms_round_id;
-        this.data.item_sub_type_id = internal_donated_item.item_sub_type_id;
-        this.data.package_qty = internal_donated_item.package_qty;
-        this.data.sacket_qty = internal_donated_item.sacket_qty;
-        this.data.is_confirmed = internal_donated_item.is_confirmed;
-        this.data.status = internal_donated_item.status;
-
+        if(internal_donated_item.uuid){
+            this.data.uuid = internal_donated_item.uuid;
+        }
+        if(internal_donated_item.item_unique_id){
+            this.data.item_unique_id = internal_donated_item.item_unique_id;
+        }
+        if(internal_donated_item.alms_round_id){
+            this.data.alms_round_id = internal_donated_item.alms_round_id;
+        }
+        if(internal_donated_item.item_sub_type_id){
+            this.data.item_sub_type_id = internal_donated_item.item_sub_type_id;
+        }
+        if(internal_donated_item.package_qty){
+            this.data.package_qty = internal_donated_item.package_qty;
+        }
+        if(internal_donated_item.sacket_qty){
+            this.data.sacket_qty = internal_donated_item.sacket_qty;
+        }
+        if(internal_donated_item.is_confirmed){
+            this.data.is_confirmed = internal_donated_item.is_confirmed;
+        }
+        if(internal_donated_item.status){
+            this.data.status = internal_donated_item.status;
+        }
+        
         this.InternalDonatedItemSubmited = false;
 
-        this.selectedAlmsRound = internal_donated_item.selectedAlmsRound;
-        this.selectedItemSubType = internal_donated_item.selectedItemSubType;
-        this.selectedUnit = internal_donated_item.selectedUnit;
+        if(internal_donated_item.selectedAlmsRound){
+            this.selectedAlmsRound = internal_donated_item.selectedAlmsRound;
+        }
+
+        if(internal_donated_item.selectedItemSubType){
+            this.selectedItemSubType = internal_donated_item.selectedItemSubType;
+        }
+        
+        if(internal_donated_item.selectedUnit){
+            this.selectedUnit = internal_donated_item.selectedUnit;
+        }
+        
 
     }
 

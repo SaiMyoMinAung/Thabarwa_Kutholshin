@@ -54,6 +54,7 @@
             <th style="max-width: 200px;">{{trans('input.name')}}</th>
             <th>{{trans('input.share_type')}}</th>
             <th>{{trans('input.qty')}}</th>
+            <th>{{trans('input.option')}}</th>
         </tr>
     </thead>
     <tbody>
@@ -160,6 +161,11 @@
                 },
                 {
                     "data": "count",
+                    orderable: false,
+                    searchable: false,
+                },
+                {
+                    "data": "give_again",
                     orderable: false,
                     searchable: false,
                 }

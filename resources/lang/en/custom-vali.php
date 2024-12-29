@@ -28,4 +28,6 @@ return [
     'name_required' => 'Please Fill name.',
     'name_unique' => 'Same name found.',
 
+    'greater_than_one' => 'Should be 1 or greater than 1.',
+
 ];

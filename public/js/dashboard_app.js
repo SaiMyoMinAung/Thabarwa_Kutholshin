@@ -10809,7 +10809,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   updated: function updated() {
     // this is for edit page to highlight the list by scrolling
-    if (this.share_internal_donated_item != null && this.share_internal_donated_item.selectedItemSubType !== null) {
+    if (this.share_internal_donated_item != null && this.share_internal_donated_item.selectedItemSubType !== undefined) {
       this.doScroll(this.share_internal_donated_item.selectedItemSubType.original_name);
     }
   },
@@ -92756,8 +92756,8 @@ var InternalDonatedItem = /*#__PURE__*/function () {
       item_unique_id: "",
       alms_round_id: "",
       item_sub_type_id: "",
-      package_qty: "",
-      sacket_qty: "",
+      package_qty: 0,
+      sacket_qty: 0,
       is_confirmed: false,
       status: ""
     }; // url
@@ -92782,18 +92782,51 @@ var InternalDonatedItem = /*#__PURE__*/function () {
   _createClass(InternalDonatedItem, [{
     key: "constructData",
     value: function constructData(internal_donated_item) {
-      this.data.uuid = internal_donated_item.uuid;
-      this.data.item_unique_id = internal_donated_item.item_unique_id;
-      this.data.alms_round_id = internal_donated_item.alms_round_id;
-      this.data.item_sub_type_id = internal_donated_item.item_sub_type_id;
-      this.data.package_qty = internal_donated_item.package_qty;
-      this.data.sacket_qty = internal_donated_item.sacket_qty;
-      this.data.is_confirmed = internal_donated_item.is_confirmed;
-      this.data.status = internal_donated_item.status;
+      if (internal_donated_item.uuid) {
+        this.data.uuid = internal_donated_item.uuid;
+      }
+
+      if (internal_donated_item.item_unique_id) {
+        this.data.item_unique_id = internal_donated_item.item_unique_id;
+      }
+
+      if (internal_donated_item.alms_round_id) {
+        this.data.alms_round_id = internal_donated_item.alms_round_id;
+      }
+
+      if (internal_donated_item.item_sub_type_id) {
+        this.data.item_sub_type_id = internal_donated_item.item_sub_type_id;
+      }
+
+      if (internal_donated_item.package_qty) {
+        this.data.package_qty = internal_donated_item.package_qty;
+      }
+
+      if (internal_donated_item.sacket_qty) {
+        this.data.sacket_qty = internal_donated_item.sacket_qty;
+      }
+
+      if (internal_donated_item.is_confirmed) {
+        this.data.is_confirmed = internal_donated_item.is_confirmed;
+      }
+
+      if (internal_donated_item.status) {
+        this.data.status = internal_donated_item.status;
+      }
+
       this.InternalDonatedItemSubmited = false;
-      this.selectedAlmsRound = internal_donated_item.selectedAlmsRound;
-      this.selectedItemSubType = internal_donated_item.selectedItemSubType;
-      this.selectedUnit = internal_donated_item.selectedUnit;
+
+      if (internal_donated_item.selectedAlmsRound) {
+        this.selectedAlmsRound = internal_donated_item.selectedAlmsRound;
+      }
+
+      if (internal_donated_item.selectedItemSubType) {
+        this.selectedItemSubType = internal_donated_item.selectedItemSubType;
+      }
+
+      if (internal_donated_item.selectedUnit) {
+        this.selectedUnit = internal_donated_item.selectedUnit;
+      }
     }
   }, {
     key: "confirmAndSaveItem",
@@ -92925,8 +92958,8 @@ var ShareInternalDonatedItem = /*#__PURE__*/function () {
     this.data = {
       uuid: "",
       item_sub_type_id: "",
-      package_qty: "",
-      sacket_qty: "",
+      package_qty: 0,
+      sacket_qty: 0,
       requestable_type: "",
       requestable_id: "",
       office_id: ""
@@ -92972,16 +93005,51 @@ var ShareInternalDonatedItem = /*#__PURE__*/function () {
   }, {
     key: "constructData",
     value: function constructData(share_internal_donated_item) {
-      this.data.uuid = share_internal_donated_item.uuid;
-      this.data.item_sub_type_id = share_internal_donated_item.item_sub_type_id;
-      this.data.package_qty = share_internal_donated_item.package_qty;
-      this.data.sacket_qty = share_internal_donated_item.sacket_qty;
-      this.data.requestable_type = share_internal_donated_item.requestable_type;
-      this.data.requestable_id = share_internal_donated_item.requestable_id;
+      if (share_internal_donated_item.uuid) {
+        this.data.uuid = share_internal_donated_item.uuid;
+      }
+
+      if (share_internal_donated_item.item_sub_type_id) {
+        this.data.item_sub_type_id = share_internal_donated_item.item_sub_type_id;
+      }
+
+      if (share_internal_donated_item.package_qty) {
+        this.data.package_qty = share_internal_donated_item.package_qty;
+      }
+
+      if (share_internal_donated_item.sacket_qty) {
+        this.data.sacket_qty = share_internal_donated_item.sacket_qty;
+      }
+
+      if (share_internal_donated_item.requestable_type) {
+        this.data.requestable_type = share_internal_donated_item.requestable_type;
+      }
+
+      if (share_internal_donated_item.requestable_id) {
+        this.data.requestable_id = share_internal_donated_item.requestable_id;
+      }
+
+      if (share_internal_donated_item.getRequestableTypeIdUrl) {
+        this.getRequestableTypeIdUrl = share_internal_donated_item.getRequestableTypeIdUrl;
+      }
+
+      if (share_internal_donated_item.showModel) {
+        this.showModel = share_internal_donated_item.showModel;
+      }
+
       this.ShareInternalDonatedItemSubmited = false;
-      this.selectedItemSubType = share_internal_donated_item.selectedItemSubType;
-      this.selectedRequestableType = share_internal_donated_item.selectedRequestableType;
-      this.selectedRequestableTypeId = share_internal_donated_item.selectedRequestableTypeId;
+
+      if (share_internal_donated_item.selectedItemSubType) {
+        this.selectedItemSubType = share_internal_donated_item.selectedItemSubType;
+      }
+
+      if (share_internal_donated_item.selectedRequestableType) {
+        this.selectedRequestableType = share_internal_donated_item.selectedRequestableType;
+      }
+
+      if (share_internal_donated_item.selectedRequestableTypeId) {
+        this.selectedRequestableTypeId = share_internal_donated_item.selectedRequestableTypeId;
+      }
     }
   }, {
     key: "saveShare",
